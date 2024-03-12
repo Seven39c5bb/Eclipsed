@@ -19,15 +19,15 @@ public class Card : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler
     //卡牌的费用
     public int cost;
     //获取该卡牌上的recttransform组件
-    private RectTransform rtTransform;
+    public RectTransform rtTransform;
     //获取CanvasGroup组件
-    private CanvasGroup canvasGroup;
-    private void Start()
+    public CanvasGroup canvasGroup;
+    public void Start()
     {
         rtTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
-    private void Update()
+    public void Update()
     {
         
     }
