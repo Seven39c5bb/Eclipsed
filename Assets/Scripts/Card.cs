@@ -22,6 +22,8 @@ public class Card : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler
     public RectTransform rtTransform;
     //获取CanvasGroup组件
     public CanvasGroup canvasGroup;
+    //获取Canvas
+    public Canvas canvas;
     public void Start()
     {
         rtTransform = GetComponent<RectTransform>();
@@ -39,7 +41,7 @@ public class Card : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        rtTransform.anchoredPosition += eventData.delta;
+        rtTransform.anchoredPosition += eventData.delta/canvas.scaleFactor;
     }
     public void OnEndDrag(PointerEventData eventData)
     {
