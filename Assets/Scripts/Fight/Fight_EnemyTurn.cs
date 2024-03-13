@@ -6,7 +6,7 @@ public class Fight_EnemyTurn : FightUnit
 {
     public override void Init()
     {
-        
+        Debug.Log("this init fightunit init");
     }
     public override void OnUpdate()
     {

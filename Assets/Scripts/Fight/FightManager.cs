@@ -4,7 +4,6 @@ using UnityEngine;
 
 public enum FightType
 {
-
     None,Init,Player,Enemy,Win,Loss
 }
 public class FightManager : MonoBehaviour
@@ -44,6 +43,6 @@ public class FightManager : MonoBehaviour
                 fightUnit=new Fight_Loss();
                 break;
         }
-        fightUnit.Init();
+        fightUnit.Init();//初始化该战斗单元
     }
 }

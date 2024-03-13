@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //战斗单元，作为基类
-public class FightUnit : MonoBehaviour
+public class FightUnit
 {
    public virtual void Init()//初始化
     {

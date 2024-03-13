@@ -6,7 +6,8 @@ public class FightInit : FightUnit
 {
     public override void Init()
     {
-        
+        UIManager.Instance.HideUI("FightUI");
+        Debug.Log("this init fightunit init");
     }
     public override void OnUpdate()
     {
