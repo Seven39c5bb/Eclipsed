@@ -1,7 +1,9 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class up : Card
 {
@@ -17,6 +19,9 @@ public class up : Card
     }
     public void MoveUp()
     {
-        playerTransform.DOMove(new Vector3(0, playerTransform.position.y+1, 0), 0.5f);
+        Slider slider = this.GetComponentInChildren<Slider>();
+        cost= (int)slider.value;
+        playerTransform.DOMove(new Vector3(0, playerTransform.position.y+cost, 0), 0.5f);
+        costManager.curCost -= cost;
     }
 }
