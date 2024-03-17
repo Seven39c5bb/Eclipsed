@@ -182,9 +182,13 @@ public class ChessboardManager : MonoBehaviour
         return (target_lacation, target, roadblockType, roadblockObject);
     }
 
+    /// <summary>
+    /// 从棋盘上移除指定的棋子（仅仅改变棋格属性）。
+    /// </summary>
+    /// <param name="deleteObject">要删除的棋子对象。</param>
     public void RemoveChess(GameObject deleteObject)
     {
-        //遍历所有棋格，找到要删除的棋格
+        //遍历所有棋格，找到要删除的对象
         for (int i = 0; i < 10; i++)
         {
             for (int j = 0; j < 10; j++)
@@ -196,6 +200,26 @@ public class ChessboardManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    
+    /// <summary>
+    /// 检查指定的棋格是否有棋子。
+    /// </summary>
+    /// <param name="Location">要检查的棋格坐标。</param>
+    /// <returns>返回棋格上的棋子对象，如果没有则返回null。</returns>
+    /// <remarks>返回的棋子对象可能是玩家或敌方棋子,需要在其他脚本中处理</remarks>
+    public GameObject CheckCell(Vector2Int Location)
+    {
+        if(cellStates[Location.x, Location.y].state == Cell.StateType.Occupied)
+        {
+            return cellStates[Location.x, Location.y].occupant;
+        }
+        else
+        {
+            return null;
+        }
+        
     }
 
 }
