@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class UIBase : MonoBehaviour
 {
+    private void Awake()
+    {
+
+    }
     //×¢²áÊÂ¼þ
     public UIEventTrigger Register(string name)
     {

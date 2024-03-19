@@ -13,7 +13,7 @@ public class UseCard : MonoBehaviour,IDropHandler
         //如果费用不够，返回。
         
         GameObject curCard = eventData.pointerDrag;//获取正在拖拽的卡牌对象
-        if (curCard.name == "up")
+        if (curCard.name.Contains("up"))
         {
             //获取滑动条上该卡牌cost
             Slider slider=curCard.GetComponentInChildren<Slider>();

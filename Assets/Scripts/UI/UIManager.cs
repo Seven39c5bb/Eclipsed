@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
@@ -12,6 +13,9 @@ public class UIManager : MonoBehaviour
     {
         Instance = this;
         canvasTf = GameObject.Find("Canvas").transform;
+
+        //DontDestroyOnLoad(this.gameObject);
+
         uiList = new List<UIBase>();
     }
     //显示
@@ -21,7 +25,7 @@ public class UIManager : MonoBehaviour
         if (ui == null)
         {
             //集合中没有，需要从Resources文件夹中加载
-            GameObject obj = Instantiate(Resources.Load("UI/Prefabs" + uiName), canvasTf) as GameObject;
+            GameObject obj = Instantiate(Resources.Load("Prefabs/UI/" + uiName), canvasTf) as GameObject;
 
             //改名字
             obj.name = uiName;
@@ -72,6 +76,21 @@ public class UIManager : MonoBehaviour
         foreach (UIBase ui in uiList)
         {
             if (ui.name == uiName) return ui;
+        }
+        return null;
+    }
+    //跳转场景
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+    //获得某个ui上的某个脚本
+    public T GetUI<T>(string uiName) where T : UIBase
+    {
+        UIBase ui = Find(uiName);
+        if(ui != null)
+        {
+            return ui.GetComponent<T>();
         }
         return null;
     }

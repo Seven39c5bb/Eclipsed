@@ -10,6 +10,7 @@ public class FightManager : MonoBehaviour
 {
     public static FightManager instance;
     public FightUnit fightUnit;
+    public string curFightType;
     private void Awake()
     {
         instance = this;
