@@ -14159,6 +14159,11 @@ MonoBehaviour:
   cardDesk:
   - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
   - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
   discardDesk: []
   handCards: []
   test: 1

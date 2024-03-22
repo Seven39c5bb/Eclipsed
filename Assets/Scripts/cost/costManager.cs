@@ -5,11 +5,16 @@ using TMPro;
 public class costManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static int curCost;
-    public static int maxCost;
+    public static costManager instance;
+    public int curCost;
+    public int maxCost;
     public int oriCost = 4;
     //获取费用槽字体
     public TextMeshProUGUI textMeshPro;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         curCost = oriCost;

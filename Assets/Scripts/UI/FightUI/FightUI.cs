@@ -34,9 +34,11 @@ public class FightUI : UIBase
         }
         for(int i = 0; i < count; i++)//ç”Ÿæˆå¡ç‰Œ
         {
-            GameObject obj=Instantiate(Resources.Load("Prefabs/Card/up"),GameObject.Find("handCardArea").transform) as GameObject;
-            Debug.Log("instantiate A card");
-            obj.GetComponent<RectTransform>().anchoredPosition=new Vector2(0,-100f);
+            //
+            GameObject obj=Instantiate(Resources.Load("Prefabs/Card/up"),GameObject.Find("handCardArea").transform) as GameObject;//test Ö»Éú³Éup
+            //Debug.Log("instantiate A card");
+            obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.x,
+                GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.y+100f);
             var objCard=obj.GetComponent<Card>();
             cardList.Add(objCard);
         }
