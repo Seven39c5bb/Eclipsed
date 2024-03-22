@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
-    ChessboardManager chessboardManager;
+    public ChessboardManager chessboardManager;
 
     // 共有属性
     public int MaxHp = 10;//最大生命值
@@ -16,14 +16,14 @@ public class ChessBase : MonoBehaviour //棋子基类
         set { hp = Mathf.Clamp(value, 0, MaxHp); }
     }
 
-    private int barrier = 0;//护盾值
+    public int barrier = 0;//护盾值
     public int Barrier
     {
         get { return barrier; }
         set { barrier = Mathf.Max(0, value); }
     }
 
-    private int meleeAttackPower = 2;//近战攻击力
+    public int meleeAttackPower = 2;//近战攻击力
     public int MeleeAttackPower
     {
         get { return meleeAttackPower; }

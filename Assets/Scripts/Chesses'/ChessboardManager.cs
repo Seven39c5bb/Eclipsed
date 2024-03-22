@@ -202,6 +202,28 @@ public class ChessboardManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 往棋盘上添加指定的棋子（仅仅改变棋格属性）。
+    /// </summary>
+    /// <param name="addObject">要添加的棋子对象。</param>
+    /// <param name="Location">要添加的棋子的位置。</param>
+    /// <remarks>添加棋子时需要判断棋格是否为空，如果不为空则不添加。</remarks>
+    /// <returns>返回是否添加成功。</returns>
+    public bool AddChess(GameObject addObject, Vector2Int Location)
+    {
+        if(cellStates[Location.x, Location.y].state == Cell.StateType.Empty)
+        {
+            cellStates[Location.x, Location.y].state = Cell.StateType.Occupied;
+            cellStates[Location.x, Location.y].occupant = addObject;
+            addObject.transform.position = cellStates[Location.x, Location.y].transform.position;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     
     /// <summary>
     /// 检查指定的棋格是否有棋子。
