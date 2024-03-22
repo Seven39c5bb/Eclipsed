@@ -22,6 +22,6 @@ public class up : Card
         Slider slider = this.GetComponentInChildren<Slider>();
         cost= (int)slider.value;
         playerTransform.DOMove(new Vector3(0, playerTransform.position.y+cost, 0), 0.5f);
-        costManager.curCost -= cost;
+        costManager.instance.curCost -= cost;
     }
 }

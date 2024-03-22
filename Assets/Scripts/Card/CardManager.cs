@@ -1,4 +1,4 @@
-﻿using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,16 +15,16 @@ public class CardManager : MonoBehaviour
         //cardDesk = new List<Card>();
         discardDesk = new List<Card>();
         Debug.Log(cardDesk.Count);
-        //从text中加载牌组信息
+        //浠巘ext涓姞杞界墝缁勪俊鎭�
         //......;
     }
     //抽卡
-    public void Draw()
+    public void Draw(int num)
     {
         Card drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
-        //从resource中找到该卡牌，并将其生成到手牌区中
+        //浠巖esource涓壘鍒拌鍗＄墝锛屽苟灏嗗叾鐢熸垚鍒版墜鐗屽尯涓�
         //InstantiateCard(drawCard.name);
-        FightUI.instance.InstantiateCard(1);//test
+        FightUI.instance.InstantiateCard(num);//test
         cardDesk.Remove(drawCard);
     }
     public void UPdateDesk()
