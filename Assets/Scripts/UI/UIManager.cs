@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public Transform canvasTf;//???
-    public List<UIBase> uiList;//´æ´¢¼ÓÔØµÄ½çÃæµÄ¼¯ºÏ
+    public List<UIBase> uiList;//å­˜å‚¨åŠ è½½çš„ç•Œé¢çš„é›†åˆ
     private void Awake()
     {
         Instance = this;
@@ -18,22 +18,22 @@ public class UIManager : MonoBehaviour
 
         uiList = new List<UIBase>();
     }
-    //ÏÔÊ¾
+    //æ˜¾ç¤º
     public UIBase ShowUI<T>(string uiName) where T : UIBase
     {
         UIBase ui = Find(uiName);
         if (ui == null)
         {
-            //¼¯ºÏÖĞÃ»ÓĞ£¬ĞèÒª´ÓResourcesÎÄ¼ş¼ĞÖĞ¼ÓÔØ
+            //é›†åˆä¸­æ²¡æœ‰ï¼Œéœ€è¦ä»Resourcesæ–‡ä»¶å¤¹ä¸­åŠ è½½
             GameObject obj = Instantiate(Resources.Load("Prefabs/UI/" + uiName), canvasTf) as GameObject;
 
-            //¸ÄÃû×Ö
+            //æ”¹åå­—
             obj.name = uiName;
 
-            //Ìí¼ÓĞèÒªµÄ½Å±¾
+            //æ·»åŠ éœ€è¦çš„è„šæœ¬
             ui.AddComponent<T>();
 
-            //Ìí¼Óµ½¼¯ºÏ½øĞĞ´¢´æ
+            //æ·»åŠ åˆ°é›†åˆè¿›è¡Œå‚¨å­˜
             uiList.Add(ui);
         }
         else
@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour
         }
         return ui;
     }
-    //Òş²ØUI
+    //éšè—UI
     public void HideUI(string UIName)
     {
         UIBase ui=Find(UIName);
@@ -51,7 +51,7 @@ public class UIManager : MonoBehaviour
             ui.Hide();
         }
     }
-    //¹Ø±ÕÄ³¸ö½çÃæ
+    //å…³é—­æŸä¸ªç•Œé¢
     public void CloseUI(string UIName)
     {
         UIBase ui=Find(UIName); 
@@ -61,7 +61,7 @@ public class UIManager : MonoBehaviour
             Destroy(ui.gameObject);
         }
     }
-    //¹Ø±ÕËùÓĞUI
+    //å…³é—­æ‰€æœ‰UI
     public void CloseAll()
     {
         foreach(UIBase ui in uiList)
@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
         }
         uiList.Clear();
     }
-    //»ñÈ¡¶ÔÓ¦Ãû×ÖµÄUIBase
+    //è·å–å¯¹åº”åå­—çš„UIBase
     public UIBase Find(string uiName)
     {
         foreach (UIBase ui in uiList)
@@ -79,12 +79,12 @@ public class UIManager : MonoBehaviour
         }
         return null;
     }
-    //Ìø×ª³¡¾°
+    //è·³è½¬åœºæ™¯
     public void LoadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
-    //»ñµÃÄ³¸öuiÉÏµÄÄ³¸ö½Å±¾
+    //è·å¾—æŸä¸ªuiä¸Šçš„æŸä¸ªè„šæœ¬
     public T GetUI<T>(string uiName) where T : UIBase
     {
         UIBase ui = Find(uiName);
