@@ -20,6 +20,6 @@ public class up : Card
         Slider slider = this.GetComponentInChildren<Slider>();
         cost= (int)slider.value;
         PlayerController.instance.Move(new Vector2Int(0, -cost));
-        costManager.curCost -= cost;
+        costManager.instance.curCost -= cost;
     }
 }
