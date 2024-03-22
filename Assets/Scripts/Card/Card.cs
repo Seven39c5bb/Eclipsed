@@ -24,6 +24,12 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     public CanvasGroup canvasGroup;
     //获取Canvas
     public Canvas canvas;
+    //获取打出手牌时位置
+    public Vector3 startPos;
+    private void Awake()
+    {
+        
+    }
     public void Start()
     {
         rtTransform = GetComponent<RectTransform>();
@@ -47,6 +53,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     #endregion
     public void OnBeginDrag(PointerEventData eventData)
     {
+        startPos = this.transform.position;
         canvasGroup.blocksRaycasts = false;
         Debug.Log("onbegindrag");
     }

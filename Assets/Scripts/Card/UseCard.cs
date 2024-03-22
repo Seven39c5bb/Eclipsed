@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class UseCard : MonoBehaviour,IDropHandler
 {
@@ -20,6 +21,7 @@ public class UseCard : MonoBehaviour,IDropHandler
             int value = (int)slider.value;
             //如果curCost不够释放，返回
             if (costManager.curCost < value) {
+                curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);
                 Debug.Log("no more cost");
                 return; 
             }
