@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +7,8 @@ public class Fight_PlayerTurn : FightUnit
     public override void Init()
     {
         Debug.Log("Player Trun now");
-        //ÏÔÊ¾ÂÖµ½Íæ¼Ò»ØºÏ¶¯»­
-        //³éÎåÕÅÅÆ
+        //æ˜¾ç¤ºè½®åˆ°ç©å®¶å›åˆåŠ¨ç”»
+        //æŠ½äº”å¼ ç‰Œ
         for (int i = 0; i < 5; i++)
         {
             FightUI.instance.InstantiateCard(1);
@@ -16,9 +16,9 @@ public class Fight_PlayerTurn : FightUnit
     }
     public override void OnUpdate()
     {
-        //¿ÉÒÔ½øĞĞ²Ù×÷
-        //»ØºÏ½áÊø°´ÕÕ³öÅÆÇø¿¨ÅÆµÄË³Ğò½øĞĞĞĞÎª
-        //½«³öÅÆÇø¿¨ÅÆÖÃÈëÆúÅÆÇø
-        //ÆúµôËùÓĞÊÖÅÆ
+        //å¯ä»¥è¿›è¡Œæ“ä½œ
+        //å›åˆç»“æŸæŒ‰ç…§å‡ºç‰ŒåŒºå¡ç‰Œçš„é¡ºåºè¿›è¡Œè¡Œä¸º
+        //å°†å‡ºç‰ŒåŒºå¡ç‰Œç½®å…¥å¼ƒç‰ŒåŒº
+        //å¼ƒæ‰æ‰€æœ‰æ‰‹ç‰Œ
     }
 }

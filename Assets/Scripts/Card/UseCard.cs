@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -10,16 +10,16 @@ public class UseCard : MonoBehaviour,IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log(eventData.pointerDrag.name);
-        //»ñÈ¡µ±Ç°Ê£Óà
-        //Èç¹û·ÑÓÃ²»¹»£¬·µ»Ø¡£
+        //è·å–å½“å‰å‰©ä½™
+        //å¦‚æœè´¹ç”¨ä¸å¤Ÿï¼Œè¿”å›ã€‚
         
-        GameObject curCard = eventData.pointerDrag;//»ñÈ¡ÕıÔÚÍÏ×§µÄ¿¨ÅÆ¶ÔÏó
+        GameObject curCard = eventData.pointerDrag;//è·å–æ­£åœ¨æ‹–æ‹½çš„å¡ç‰Œå¯¹è±¡
         if (curCard.name.Contains("up"))
         {
-            //»ñÈ¡»¬¶¯ÌõÉÏ¸Ã¿¨ÅÆcost
+            //è·å–æ»‘åŠ¨æ¡ä¸Šè¯¥å¡ç‰Œcost
             Slider slider=curCard.GetComponentInChildren<Slider>();
             int value = (int)slider.value;
-            //Èç¹ûcurCost²»¹»ÊÍ·Å£¬·µ»Ø
+            //å¦‚æœcurCostä¸å¤Ÿé‡Šæ”¾ï¼Œè¿”å›
             if (costManager.curCost < value) {
                 curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);
                 Debug.Log("no more cost");

@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +44,6 @@ public class FightManager : MonoBehaviour
                 fightUnit=new Fight_Loss();
                 break;
         }
-        fightUnit.Init();//初始化该战斗单元
+        fightUnit.Init();//鍒濆鍖栬鎴樻枟鍗曞厓
     }
 }

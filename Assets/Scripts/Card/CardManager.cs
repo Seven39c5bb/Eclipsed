@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,14 +15,14 @@ public class CardManager : MonoBehaviour
         //cardDesk = new List<Card>();
         discardDesk = new List<Card>();
         Debug.Log(cardDesk.Count);
-        //´ÓtextÖĞ¼ÓÔØÅÆ×éĞÅÏ¢
+        //ä»textä¸­åŠ è½½ç‰Œç»„ä¿¡æ¯
         //......;
     }
-    //³é¿¨
+    //æŠ½å¡
     public void Draw()
     {
         Card drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
-        //´ÓresourceÖĞÕÒµ½¸Ã¿¨ÅÆ£¬²¢½«ÆäÉú³Éµ½ÊÖÅÆÇøÖĞ
+        //ä»resourceä¸­æ‰¾åˆ°è¯¥å¡ç‰Œï¼Œå¹¶å°†å…¶ç”Ÿæˆåˆ°æ‰‹ç‰ŒåŒºä¸­
         //InstantiateCard(drawCard.name);
         FightUI.instance.InstantiateCard(1);//test
         cardDesk.Remove(drawCard);

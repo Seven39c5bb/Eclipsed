@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -8,7 +8,7 @@ public class costManager : MonoBehaviour
     public static int curCost;
     public static int maxCost;
     public int oriCost = 4;
-    //»ñÈ¡·ÑÓÃ²Û×ÖÌå
+    //è·å–è´¹ç”¨æ§½å­—ä½“
     public TextMeshProUGUI textMeshPro;
     void Start()
     {
@@ -19,6 +19,6 @@ public class costManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        textMeshPro.text=curCost.ToString()+'/'+maxCost.ToString();//ÊµÊ±ÏÔÊ¾Ê£Óà·ÑÓÃºÍmax·ÑÓÃ
+        textMeshPro.text=curCost.ToString()+'/'+maxCost.ToString();//å®æ—¶æ˜¾ç¤ºå‰©ä½™è´¹ç”¨å’Œmaxè´¹ç”¨
     }
 }

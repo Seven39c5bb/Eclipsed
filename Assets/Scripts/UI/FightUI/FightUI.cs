@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,7 +12,7 @@ public class FightUI : UIBase
     {
         cardList = new List<Card>();
         instance = this;
-        //Õ½¶·³õÊ¼»¯  
+        //æˆ˜æ–—åˆå§‹åŒ–  
         Register("endTurnButton").onClick = onClickEndTurn;
     }
     private void Start()
@@ -22,7 +22,7 @@ public class FightUI : UIBase
     }
     private void onClickEndTurn(GameObject obj,PointerEventData eventData)
     {
-        //²âÊÔ£º£ºÇĞ»»µ½µĞÈË»ØºÏ
+        //æµ‹è¯•ï¼šï¼šåˆ‡æ¢åˆ°æ•Œäººå›åˆ
         FightManager.instance.ChangeType(FightType.Enemy);           
     }
     public void InstantiateCard(int count)
@@ -32,7 +32,7 @@ public class FightUI : UIBase
         {
             count=CardManager.instance.cardDesk.Count;
         }
-        for(int i = 0; i < count; i++)//Éú³É¿¨ÅÆ
+        for(int i = 0; i < count; i++)//ç”Ÿæˆå¡ç‰Œ
         {
             GameObject obj=Instantiate(Resources.Load("Prefabs/Card/up"),GameObject.Find("handCardArea").transform) as GameObject;
             Debug.Log("instantiate A card");

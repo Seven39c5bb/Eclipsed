@@ -1,4 +1,4 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class UIBase : MonoBehaviour
     {
 
     }
-    //注册事件
+    //娉ㄥ唽浜嬩欢
     public UIEventTrigger Register(string name)
     {
         return UIEventTrigger.Get(GameObject.Find(name));
@@ -22,7 +22,7 @@ public class UIBase : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-    //关闭界面
+    //鍏抽棴鐣岄潰
     public virtual void Close()
     {
         UIManager.Instance.CloseUI(gameObject.name);
