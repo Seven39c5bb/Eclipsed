@@ -1,4 +1,4 @@
-using System.Collections;
+é”˜ç¸°sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,24 +15,24 @@ public class UseCard : MonoBehaviour,IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log(eventData.pointerDrag.name);
-        //»ñÈ¡µ±Ç°Ê£Óà
-        //Èç¹û·ÑÓÃ²»¹»£¬·µ»Ø¡£
+        //é‘¾å³°å½‡è¤°æ’³å¢ é“â•€ç¶‘
+        //æ¿¡å‚›ç‰ç’åœ­æ•¤æ¶“å¶…î™„é”›å²ƒç¹‘é¥ç‚ªï¿½ï¿½
         
-        GameObject curCard = eventData.pointerDrag;//»ñÈ¡ÕıÔÚÍÏ×§µÄ¿¨ÅÆ¶ÔÏó
+        GameObject curCard = eventData.pointerDrag;//è·å–æ­£åœ¨æ‹–æ‹½çš„å¡ç‰Œå¯¹è±¡
         usingCard=curCard; 
         if (curCard.name.Contains("up"))
         {
-            //»ñÈ¡»¬¶¯ÌõÉÏ¸Ã¿¨ÅÆcost
+            //é‘¾å³°å½‡å©Šæˆå§©é‰â€²ç¬‚ç’‡ãƒ¥å´±é—å®‘ost
             Slider slider=curCard.GetComponentInChildren<Slider>();
             int value = (int)slider.value;
-            //Èç¹ûcurCost²»¹»ÊÍ·Å£¬·µ»Ø
+            //å¦‚æœcurCostä¸å¤Ÿé‡Šæ”¾ï¼Œè¿”å›
             if (costManager.instance.curCost < value) {
                 curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);
                 Debug.Log("no more cost");
                 return; 
             }
             curCard.GetComponent<up>().MoveUp();
-            //ÒÆ¶¯µ½ÆúÅÆ¶Ñ¶¯»­£¬È»ºóÏú»Ù
+            //ç§»åŠ¨åˆ°å¼ƒç‰Œå †åŠ¨ç”»ï¼Œç„¶åé”€æ¯
             curCard.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.5f);
             Invoke("DestroyCard", 0.5f);
         }

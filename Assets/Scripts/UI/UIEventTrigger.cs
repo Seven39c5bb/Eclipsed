@@ -1,13 +1,13 @@
-using System.Collections;
+锘縰sing System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 public class UIEventTrigger : MonoBehaviour, IPointerClickHandler
 {
-    public Action<GameObject, PointerEventData> onClick;//触发事件
+    public Action<GameObject, PointerEventData> onClick;//瑙﹀彂浜嬩欢
 
-    public static UIEventTrigger Get(GameObject obj)//获得该物体上的UIEventTrigger组件
+    public static UIEventTrigger Get(GameObject obj)//鑾峰緱璇ョ墿浣撲笂鐨刄IEventTrigger缁勪欢
     {
         UIEventTrigger trigger = obj.GetComponent<UIEventTrigger>();
         if (trigger == null)

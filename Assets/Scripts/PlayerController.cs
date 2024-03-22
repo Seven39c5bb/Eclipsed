@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows;
@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 offset;
     
     private Rigidbody Rigidbody;
-    public float speed;//²âÊÔÒÆ¶¯
+    public float speed;//æµ‹è¯•ç§»åŠ¨
     public float inputX, inputY;
     // Start is called before the first frame update
     void Start()

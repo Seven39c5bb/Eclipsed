@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,10 +8,10 @@ public class FightInit : FightUnit
     public override void Init()
     {
         Debug.Log("this init fightunit init");
-        //test:Ìí¼Ó¼¸ÕÅÅÆ½øÅÆ×é
+        //test:æ·»åŠ å‡ å¼ ç‰Œè¿›ç‰Œç»„
         //GameObject obj= Resources.Load("Prefabs/Card/up") as GameObject;
         //CardManager.instance.cardDesk.Add(obj.GetComponent<Card>());
-        //³õÊ¼»¯Íê³ÉºóÇĞ»»µ½Íæ¼Ò»ØºÏ
+        //åˆå§‹åŒ–å®Œæˆååˆ‡æ¢åˆ°ç©å®¶å›åˆ
         FightManager.instance.ChangeType(FightType.Player);
     }
     public override void OnUpdate()

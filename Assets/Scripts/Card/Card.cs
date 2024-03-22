@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,24 +7,24 @@ using UnityEngine.EventSystems;
 
 public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerEnterHandler,IPointerExitHandler
 {
-    //Ã¶¾Ù¿¨ÅÆµÄÖÖÀà
+    //æšä¸¾å¡ç‰Œçš„ç§ç±»
     public enum cardType
     {
         action,skill,trap
     }
-    //¿¨ÅÆµÄÖÖÀà
+    //å¡ç‰Œçš„ç§ç±»
     public cardType type;
-    //¿¨ÅÆÃèÊö
+    //å¡ç‰Œæè¿°
     public string discription;
-    //¿¨ÅÆµÄ·ÑÓÃ
+    //å¡ç‰Œçš„è´¹ç”¨
     public int cost;
-    //»ñÈ¡¸Ã¿¨ÅÆÉÏµÄrecttransform×é¼ş
+    //è·å–è¯¥å¡ç‰Œä¸Šçš„recttransformç»„ä»¶
     public RectTransform rtTransform;
-    //»ñÈ¡CanvasGroup×é¼ş
+    //è·å–CanvasGroupç»„ä»¶
     public CanvasGroup canvasGroup;
-    //»ñÈ¡Canvas
+    //è·å–Canvas
     public Canvas canvas;
-    //»ñÈ¡´ò³öÊÖÅÆÊ±Î»ÖÃ
+    //è·å–æ‰“å‡ºæ‰‹ç‰Œæ—¶ä½ç½®
     public Vector3 startPos;
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     {
         
     }
-    #region ½«Êó±ê·ÅÔÚ¿¨ÅÆÉÏµÄĞ§¹û
+    #region å°†é¼ æ ‡æ”¾åœ¨å¡ç‰Œä¸Šçš„æ•ˆæœ
     
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -64,7 +64,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-        //Èç¹ûÃ»ÓĞÊÍ·Å£¬»Øµ½³õÊ¼Î»ÖÃ
+        //å¦‚æœæ²¡æœ‰é‡Šæ”¾ï¼Œå›åˆ°åˆå§‹ä½ç½®
         canvasGroup.blocksRaycasts = true;
         Debug.Log("enddrag");
     }
