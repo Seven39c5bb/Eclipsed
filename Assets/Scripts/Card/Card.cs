@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Card : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler
+public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerEnterHandler,IPointerExitHandler
 {
     //枚举卡牌的种类
     public enum cardType
@@ -24,17 +24,36 @@ public class Card : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler
     public CanvasGroup canvasGroup;
     //获取Canvas
     public Canvas canvas;
+    //获取打出手牌时位置
+    public Vector3 startPos;
+    private void Awake()
+    {
+        
+    }
     public void Start()
     {
         rtTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
     }
     public void Update()
     {
         
     }
+    #region 将鼠标放在卡牌上的效果
+    
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        this.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        this.transform.localScale = new Vector3(1f, 1f, 1);
+    }
+    #endregion
     public void OnBeginDrag(PointerEventData eventData)
     {
+        startPos = this.transform.position;
         canvasGroup.blocksRaycasts = false;
         Debug.Log("onbegindrag");
     }
@@ -45,7 +64,10 @@ public class Card : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler
     }
     public void OnEndDrag(PointerEventData eventData)
     {
+        //如果没有释放，回到初始位置
         canvasGroup.blocksRaycasts = true;
         Debug.Log("enddrag");
     }
+
+    
 }
