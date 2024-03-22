@@ -19,12 +19,12 @@ public class CardManager : MonoBehaviour
         //......;
     }
     //抽卡
-    public void Draw()
+    public void Draw(int num)
     {
         Card drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
         //从resource中找到该卡牌，并将其生成到手牌区中
         //InstantiateCard(drawCard.name);
-        FightUI.instance.InstantiateCard(1);//test
+        FightUI.instance.InstantiateCard(num);//test
         cardDesk.Remove(drawCard);
     }
     public void UPdateDesk()

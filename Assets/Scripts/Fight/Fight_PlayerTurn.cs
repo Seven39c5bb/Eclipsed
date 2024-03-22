@@ -9,10 +9,8 @@ public class Fight_PlayerTurn : FightUnit
         Debug.Log("Player Trun now");
         //显示轮到玩家回合动画
         //抽五张牌
-        for (int i = 0; i < 5; i++)
-        {
-            FightUI.instance.InstantiateCard(1);
-        }
+        //CardManager.instance.Draw(5);
+        FightUI.instance.InstantiateCard(7);
     }
     public override void OnUpdate()
     {
