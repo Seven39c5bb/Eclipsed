@@ -149,7 +149,8 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 死亡方法
     public virtual void Death()
     {
+        //先播放死亡动画
+        
         chessboardManager.RemoveChess(gameObject);
-        Destroy(gameObject);
     }
 }
