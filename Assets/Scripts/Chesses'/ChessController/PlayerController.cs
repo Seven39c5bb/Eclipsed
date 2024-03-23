@@ -15,5 +15,8 @@ public class PlayerController : ChessBase
         HP = 80;//当前生命值
         meleeAttackPower = 10;//近战攻击力
         chessboardManager.AddChess(this.gameObject, Location);
+
+        //将标签设置为玩家
+        this.gameObject.tag = "Player";
     }
 }

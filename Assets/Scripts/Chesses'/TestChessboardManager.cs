@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class TestChessboardManager : MonoBehaviour
 {
+    GameObject Enemy;
+    EnemyBase EnemyController;
     void Start()
     {
-        TestMoveControl();
+        //TestMoveControl();
+        Enemy = GameObject.FindGameObjectWithTag("Enemy");
+        EnemyController = Enemy.GetComponent<EnemyBase>();
     }
 
     void TestMoveControl()
@@ -14,10 +18,10 @@ public class TestChessboardManager : MonoBehaviour
         // 假设你已经有了一些游戏对象标记为Player和Enemy，并且棋盘已初始化
 
         // 测试案例1: 玩家向右移动3步
-        Debug.Log("测试案例1: 玩家向下移动");
+        /* Debug.Log("测试案例1: 玩家向下移动");
         var player = GameObject.FindGameObjectWithTag("Player");
         var playerScript = player.GetComponent<ChessBase>();
-        playerScript.Move(new Vector2Int(0, 4));
+        playerScript.Move(new Vector2Int(0, 4)); */
 
 
         /* // 测试案例2: 敌人向上移动4步
@@ -26,5 +30,15 @@ public class TestChessboardManager : MonoBehaviour
         var enemyScript = enemy.GetComponent<ChessBase>();
         enemyScript.Move(new Vector2Int(0, 4));
         // 添加更多测试用例，以覆盖各种边界情况和可能的障碍类型 */
+    }
+
+    public bool testButton = false;
+    void Update()
+    {
+        if (testButton)
+        {
+            testButton = false;
+            EnemyController.StartCoroutine(EnemyController.OnTurn());
+        }
     }
 }

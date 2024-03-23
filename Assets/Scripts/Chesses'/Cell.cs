@@ -20,6 +20,12 @@ public class Cell : MonoBehaviour
     Color originColor;
     private void Awake()
     {
+        if (state == StateType.Wall)
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            //设置为黑色
+            spriteRenderer.color = Color.gray;
+        }
         //记录当前颜色
         spriteRenderer = GetComponent<SpriteRenderer>();
         originColor = spriteRenderer.color;
