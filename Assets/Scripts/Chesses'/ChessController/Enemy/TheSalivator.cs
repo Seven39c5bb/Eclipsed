@@ -42,12 +42,12 @@ public class TheSalivator : EnemyBase
                 yield break;
             }
 
-            if(IsInRange(Location))//如果处在玩家周围偏好圈内，直接释放技能
+            if(IsInRange(PlayerController.instance.Location))//如果处在玩家周围偏好圈内，直接释放技能（防止怪物在偏好区内来回移动）
             {
                 break;
             }
 
-            if(path.Count == 1)//如果已经到达玩家周围，直接释放技能
+            if(path.Count == 1)//如果已经到达偏好区，直接释放技能，防止下面访问path[1]时越界(path[0]是自己当前位置)
             {
                 break;
             }
@@ -107,10 +107,15 @@ public class TheSalivator : EnemyBase
     public bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内
     {
         Vector2Int[] aimRange = CellsInRange(Location);
+
+        string aimRangeStr = string.Join(", ", aimRange.Select(v => v.ToString()));
+        Debug.Log(aimRangeStr);//打印出aimRange
+
         foreach (Vector2Int cell in aimRange)
         {
             if (cell == Location)
             {
+                Debug.Log("IsInRange");
                 return true;
             }
         }
@@ -118,40 +123,70 @@ public class TheSalivator : EnemyBase
         return false;
     }
 
-    public Vector2Int[] CellsInRange(Vector2Int Location)
+    public Vector2Int[] CellsInRange(Vector2Int Location)//Location为玩家的位置
     {
-        //返回7*7范围最外围的格子
+        //返回7*7范围最外围的格子(记得设置条件不要返回已经被占据的格子和墙)
         HashSet<Vector2Int> result = new HashSet<Vector2Int>();
-        int leftAxis = Location.x - 3 > 0 ? Location.x - 3 : 0;
-        int rightAxis = Location.x + 3 < 9 ? Location.x + 3 : 9;
-        int upAxis = Location.y - 3 > 0 ? Location.y - 3 : 0;
-        int downAxis = Location.y + 3 < 9 ? Location.y + 3 : 9;
+        int leftAxis = Location.x - 3;
+        int rightAxis = Location.x + 3;
+        int upAxis = Location.y - 3;
+        int downAxis = Location.y + 3;
         for (int i = leftAxis; i <= leftAxis; i++)
         {
             for (int j = upAxis; j <= downAxis; j++)
-            {
-                result.Add(new Vector2Int(i, j));
+            {   
+                if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         for (int i = rightAxis; i <= rightAxis; i++)
         {
             for (int j = upAxis; j <= downAxis; j++)
-            {
-                result.Add(new Vector2Int(i, j));
+            {   if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         for (int i = leftAxis; i <= rightAxis; i++)
         {
             for (int j = upAxis; j <= upAxis; j++)
             {
-                result.Add(new Vector2Int(i, j));
+                if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         for (int i = leftAxis; i <= rightAxis; i++)
         {
             for (int j = downAxis; j <= downAxis; j++)
             {
-                result.Add(new Vector2Int(i, j));
+                if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         
