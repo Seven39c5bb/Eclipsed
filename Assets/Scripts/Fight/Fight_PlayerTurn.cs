@@ -8,6 +8,8 @@ public class Fight_PlayerTurn : FightUnit
     {
         Debug.Log("Player Trun now");
         //显示轮到玩家回合动画
+        //恢复费用
+        costManager.instance.curCost = costManager.instance.maxCost;
         //抽五张牌
         CardManager.instance.Draw(1);//test
     }
