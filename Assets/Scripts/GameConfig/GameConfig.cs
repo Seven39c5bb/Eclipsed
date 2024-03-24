@@ -12,7 +12,7 @@ public class GameConfig
     {
         cardDeckData = new Dictionary<string, int>();
         //获取卡组文件txt 
-        deckAsset = Resources.Load<TextAsset>("TextAssets/testTxt");
+        deckAsset = Resources.Load<TextAsset>("TextAssets/Initial deck");
         //Debug.Log(deckAsset.text);
         string[] lines = deckAsset.text.Split('\n');
         

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,18 @@ public class Fight_EnemyTurn : FightUnit
     public override void Init()
     {
         Debug.Log("Enemy Turn Now");
+        //将手牌中的牌全部移除
+        //test
+
+        foreach(Card card in FightUI.cardList)
+        {
+            card.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.2f);
+            CardManager.discardDesk.Add(card.name);
+            //UseCard.instance.Discard(card.gameObject);
+            UseCard.instance.Invoke("RemoveAllCards", 0.2f);
+        }
+
+        //test
         enemyList = new List<EnemyBase>(ChessboardManager.instance.enemyControllerList);//获取所有当前敌人
         Debug.Log("Enemy Count: " + enemyList.Count);
         //打印当前所有敌人脚本的类
@@ -22,7 +35,7 @@ public class Fight_EnemyTurn : FightUnit
     public override void OnUpdate()//相当于Update
     {
         //调用第一个个敌人的OnTurn，并等待其完成，将之移出列表
-        Debug.Log("Enemy Count: " + enemyList.Count);
+        //Debug.Log("Enemy Count: " + enemyList.Count);
         if (enemyList.Count > 0)
         {
             if (currCoroutine == null)
