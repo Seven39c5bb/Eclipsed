@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3637748471846733681}
   - component: {fileID: 6456137317076895336}
+  - component: {fileID: 2427271130748165554}
   - component: {fileID: 7904412991309368530}
   - component: {fileID: 2462668057543499864}
   m_Layer: 0
@@ -48,6 +49,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasTf: {fileID: 0}
   uiList: []
+--- !u!114 &2427271130748165554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296773311249376265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a956c273608324da1cd56a014dd925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDesk:
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  - {fileID: 640071186294945773, guid: 6f93f22d178b7fb4682a4b96c952e764, type: 3}
+  handCards: []
+  test: 1
 --- !u!114 &7904412991309368530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +83,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5216343d430674d83c41e7437a1234, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardCount: {fileID: 0}
+  discardCount: {fileID: 0}
 --- !u!114 &2462668057543499864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,3 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39fe84c84fdc6a4190f0f9c7b750d3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curFightType: 

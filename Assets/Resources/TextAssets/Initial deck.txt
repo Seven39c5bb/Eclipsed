@@ -1,0 +1,9 @@
+卡牌名称 数量
+up*2
+down*2
+left*2
+right*2
+shield*3
+aoe*3
+farAttack*3
+wisdom*3

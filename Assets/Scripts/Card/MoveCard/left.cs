@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class up : Card
+public class left : Card
 {
     public Transform playerTransform;
     public Slider slider;
@@ -14,7 +14,7 @@ public class up : Card
         slider = this.GetComponentInChildren<Slider>();
     }
     private new void Start()
-    { 
+    {
         base.Start();
     }
     private new void Update()
@@ -23,7 +23,7 @@ public class up : Card
     }
     public override void CardFunc()
     {
-        PlayerController.instance.Move(new Vector2Int(0,-cost));
+        PlayerController.instance.Move(new Vector2Int(-cost, 0));
         costManager.instance.curCost -= cost;
     }
 }
