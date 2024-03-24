@@ -16,7 +16,6 @@ public class left : Card
     private new void Start()
     {
         base.Start();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     private new void Update()
     {
@@ -24,7 +23,7 @@ public class left : Card
     }
     public override void CardFunc()
     {
-        playerTransform.DOMove(new Vector3(playerTransform.position.x-cost, 0, 0), 0.5f);
+        PlayerController.instance.Move(new Vector2Int(-cost, 0));
         costManager.instance.curCost -= cost;
     }
 }

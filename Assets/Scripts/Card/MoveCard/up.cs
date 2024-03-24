@@ -23,7 +23,7 @@ public class up : Card
     }
     public override void CardFunc()
     {
-        playerTransform.DOMove(new Vector3(0, playerTransform.position.y + cost, 0), 0.5f);
+        PlayerController.instance.Move(new Vector2Int(0,-cost));
         costManager.instance.curCost -= cost;
     }
 }
