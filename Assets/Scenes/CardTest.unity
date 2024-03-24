@@ -1949,6 +1949,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 342606693}
     m_Modifications:
+    - target: {fileID: 85718028193760374, guid: 732d7551e5b67604c934138c40908828, type: 3}
+      propertyPath: m_Name
+      value: playerHealth
+      objectReference: {fileID: 0}
     - target: {fileID: 737651187322707358, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_Name
       value: FightUI

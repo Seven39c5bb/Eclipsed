@@ -1,23 +1,23 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
     public static CardManager instance;
-    public static List<Card> cardDesk;
-    public static List<Card> discardDesk;
-    public List<Card> handCards;
+    public static List<string> cardDesk;
+    public static List<string> discardDesk;
+    public List<string> handCards;
     public int test = 1;
 
     //test 
     public GameConfig gameConfig;
     //test
-    private void Awake()
+    private void Awake()    
     {
         instance = this;
-        cardDesk = new List<Card>();
-        discardDesk = new List<Card>();
+        cardDesk = new List<string>();
+        discardDesk = new List<string>();
         //��text�м���������Ϣ
         //......;0
 
@@ -28,10 +28,10 @@ public class CardManager : MonoBehaviour
         {
             string cardName=ele.Key;
             int cardCount=ele.Value;
-            GameObject card = Resources.Load("Prefabs/Card/" + cardName) as GameObject;
+            //GameObject card = Resources.Load("Prefabs/Card/" + cardName) as GameObject;
             for(int i = 0; i < cardCount; i++)///test 5 �Ļ�(int)cardCount
             {
-                cardDesk.Add(card.GetComponent<Card>());
+                cardDesk.Add(cardName);
             }      
         }
         //test
@@ -41,15 +41,18 @@ public class CardManager : MonoBehaviour
     {
         for(int i=0;i<num;i++)
         {
-            Card drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
-            //��resource���ҵ��ÿ��ƣ����������ɵ���������
-            FightUI.instance.InstantiateCard(1,drawCard.name);
+            string drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
+            //生成一张牌到手中
+            FightUI.instance.InstantiateCard(1,drawCard);
             cardDesk.Remove(drawCard);
         }  
     }
-    public void UPdateDesk()//���ÿ���
+    public void UPdateDesk()//更新牌组
     {
-        cardDesk = discardDesk;
+        cardDesk = new List<string>(discardDesk);
         discardDesk.Clear();
+        //将弃牌堆中隐藏的卡牌全部清除
+        GameObject handCardArea = GameObject.Find("handCardArea");
+        Transform hcAreaTF= handCardArea.transform;
     }
 }

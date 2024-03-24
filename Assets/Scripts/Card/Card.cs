@@ -51,7 +51,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         this.transform.localScale = new Vector3(1f, 1f, 1);
     }
     #endregion
-    #region ÍÏ×§¿¨ÅÆµÄÐ§¹û
+    #region ï¿½ï¿½×§ï¿½ï¿½ï¿½Æµï¿½Ð§ï¿½ï¿½
     public void OnBeginDrag(PointerEventData eventData)
     {
         startPos = this.transform.position;
@@ -70,7 +70,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         Debug.Log("enddrag");
     }
     #endregion
-    #region ¿¨ÅÆÐ§¹û
+    #region ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
     public virtual void CardFunc()
     {
 
