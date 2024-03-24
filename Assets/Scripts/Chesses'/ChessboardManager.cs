@@ -6,14 +6,15 @@ using UnityEngine.PlayerLoop;
 
 public class ChessboardManager : MonoBehaviour
 {
-    private Cell[,] cellStates = new Cell[10, 10];
+    public Cell[,] cellStates = new Cell[10, 10];
     public Vector2Int boardSize = new Vector2Int(10, 10);
 
     //敌方棋子列表
     public List<GameObject> enemyList;
-    public List<ChessBase> enemyControllerList;
+    public List<EnemyBase> enemyControllerList;
 
-    // Start is called before the first frame update
+    public static ChessboardManager instance;
+
     void Awake()
     {
         for (int i = 0; i < 10; i++)
@@ -30,8 +31,10 @@ public class ChessboardManager : MonoBehaviour
 
         foreach (GameObject enemy in enemyList)
         {
-            enemyControllerList.Add(enemy.GetComponent<ChessBase>());
+            enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
         }
+
+        instance = this;
     }
     
 
@@ -224,11 +227,12 @@ public class ChessboardManager : MonoBehaviour
     /// <param name="start">起点</param>
     /// <param name="end">终点</param>
     /// <param name="aimObject">目标对象</param>
-    /// <param name="areaFunc">计算范围的函数，该函数输入一个Vector2Int，输出一个Vector2Int数组</param>
-    /// <returns></returns>
+    /// <param name="areaFunc">计算范围的函数，该函数输入一个Vector2Int，输出一个Vector2Int数组。注意设计该函数时要排除墙和被占用的格子</param>
+    /// <returns>返回一整个路径，包括自身所在的起点以及终点</returns>
+    /// <remarks>!!!!  设计范围函数时记得排除墙和被占用的格子，防止出bug（不包括怪物自己所在格子，否则会反复横跳）  !!!!</remarks>
     public List<Vector2Int> FindPath(Vector2Int start, Vector2Int end, GameObject aimObject, Func<Vector2Int, Vector2Int[]> areaFunc = null)
     {
-        //创建一个Vector2Int数组，用于存储end周围的点
+        //创建一个Vector2Int数组，用于存储玩家周围的的怪物偏好区
         Vector2Int[] CellsInRange;
         if(areaFunc != null)
         {
@@ -308,7 +312,8 @@ public class ChessboardManager : MonoBehaviour
 
                 if (newX >= 0 && newX < boardSize.x && newY >= 0 && newY < boardSize.y 
                     && cellStates[newX, newY].state != Cell.StateType.Wall 
-                    && (cellStates[newX, newY].state != Cell.StateType.Occupied || cellStates[newX, newY].occupant == aimObject) && !visited[newX, newY])
+                    && (cellStates[newX, newY].state != Cell.StateType.Occupied || cellStates[newX, newY].occupant == aimObject) 
+                    && !visited[newX, newY])//判断是否越界、是否是墙、是否被占用(玩家的占用不算，否则会找不到路径)、是否被访问过
                 {
                     visited[newX, newY] = true;
                     Nodes[newX, newY].Parent = node;
@@ -370,7 +375,7 @@ public class ChessboardManager : MonoBehaviour
         enemyControllerList.Clear();
         foreach (GameObject enemy in enemyList)
         {
-            enemyControllerList.Add(enemy.GetComponent<ChessBase>());
+            enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
         }
     }
 
@@ -394,7 +399,7 @@ public class ChessboardManager : MonoBehaviour
             enemyControllerList.Clear();
             foreach (GameObject enemy in enemyList)
             {
-                enemyControllerList.Add(enemy.GetComponent<ChessBase>());
+                enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
             }
             return true;
         }

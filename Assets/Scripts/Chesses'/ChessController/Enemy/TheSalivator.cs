@@ -5,7 +5,7 @@ using UnityEngine;
 using System.Linq;
 
 public class TheSalivator : EnemyBase
-{
+{//泌涎者
     void Start()
     {
         // 初始化敌人棋子
@@ -30,53 +30,14 @@ public class TheSalivator : EnemyBase
     {
         //该敌人回合
 
-        //用BFS算法找到前往玩家的最短路径
-        for (int i = 0; i < mobility; i++)
-        {
-            List<Vector2Int> path = chessboardManager.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
-            //向玩家附近移动
-
-            if (path == null || path.Count == 0)//防止越界
-            {
-                Debug.LogError("Path is too short");
-                yield break;
-            }
-
-            if(IsInRange(Location))//如果处在玩家周围偏好圈内，直接释放技能
-            {
-                break;
-            }
-
-            if(path.Count == 1)//如果已经到达玩家周围，直接释放技能
-            {
-                break;
-            }
-            else
-            {
-
-                Vector2Int nextDirection = (path[1] - Location) * moveModel;
-                //在移动前，还需要判断目标位置是否玩家已经进入射程，怪物会与玩家保持一定距离
-                /* Vector2Int nextLocation = Location + nextDirection;
-                while (WillIsPlayerInRange(nextLocation))
-                {
-                    int norm = Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y);
-                    if (norm == 0)//如果无法移动
-                    {
-                        break;
-                    }
-                    nextDirection = nextDirection * (norm - 1) / norm;//缩短移动距离
-                    nextLocation = Location + nextDirection;
-                } */
-                Debug.Log("nextDirection: " + nextDirection);
-                Move(nextDirection);
-                //等待nextDirection的模*0.5f的时间后，再继续循环
-                float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y));
-                yield return new WaitForSeconds(delay);
-            }
-        }
+        //用BFS算法移动
+        yield return base.OnTurn();
+        
 
         //释放技能
         Salivate();
+
+        yield return new WaitForSeconds(0.3f);
     }
 
     public void Salivate()//唾液攻击
@@ -104,13 +65,16 @@ public class TheSalivator : EnemyBase
     }
 
 
-    public bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内
+    public override bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内
     {
         Vector2Int[] aimRange = CellsInRange(Location);
+
+
         foreach (Vector2Int cell in aimRange)
         {
             if (cell == Location)
             {
+                Debug.Log("IsInRange");
                 return true;
             }
         }
@@ -118,40 +82,70 @@ public class TheSalivator : EnemyBase
         return false;
     }
 
-    public Vector2Int[] CellsInRange(Vector2Int Location)
+    public override Vector2Int[] CellsInRange(Vector2Int Location)//Location为玩家的位置
     {
-        //返回7*7范围最外围的格子
+        //返回7*7范围最外围的格子(记得设置条件不要返回已经被占据的格子和墙)
         HashSet<Vector2Int> result = new HashSet<Vector2Int>();
-        int leftAxis = Location.x - 3 > 0 ? Location.x - 3 : 0;
-        int rightAxis = Location.x + 3 < 9 ? Location.x + 3 : 9;
-        int upAxis = Location.y - 3 > 0 ? Location.y - 3 : 0;
-        int downAxis = Location.y + 3 < 9 ? Location.y + 3 : 9;
+        int leftAxis = Location.x - 3;
+        int rightAxis = Location.x + 3;
+        int upAxis = Location.y - 3;
+        int downAxis = Location.y + 3;
         for (int i = leftAxis; i <= leftAxis; i++)
         {
             for (int j = upAxis; j <= downAxis; j++)
-            {
-                result.Add(new Vector2Int(i, j));
+            {   
+                if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         for (int i = rightAxis; i <= rightAxis; i++)
         {
             for (int j = upAxis; j <= downAxis; j++)
-            {
-                result.Add(new Vector2Int(i, j));
+            {   if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         for (int i = leftAxis; i <= rightAxis; i++)
         {
             for (int j = upAxis; j <= upAxis; j++)
             {
-                result.Add(new Vector2Int(i, j));
+                if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         for (int i = leftAxis; i <= rightAxis; i++)
         {
             for (int j = downAxis; j <= downAxis; j++)
             {
-                result.Add(new Vector2Int(i, j));
+                if(i >= 0 && i < 10 && j >= 0 && j < 10)
+                {
+                    if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
+                    && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)//不返回已经被占据的格子和墙(会返回自己所在的格子)
+                    {
+                        result.Add(new Vector2Int(i, j));
+                    }
+                }
             }
         }
         
