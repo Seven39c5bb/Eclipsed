@@ -123,12 +123,14 @@ public class ChessBase : MonoBehaviour //棋子基类
             sequence.Append(transform.DOMove(targetPosition, moveDuration));
             //添加返回原始位置的动画
             sequence.Append(transform.DOMove(originalPosition, moveDuration));
+            //在动画播放完毕后执行近战伤害判断
+            sequence.OnComplete(() => {
+                AttackedChess.TakeDamage(MeleeAttackPower);
+                int injury = AttackedChess.MeleeAttackPower;
+                TakeDamage(injury);
+            });
             //开始动画
             sequence.Play();
-
-            AttackedChess.TakeDamage(MeleeAttackPower);
-            int injury = AttackedChess.MeleeAttackPower;
-            TakeDamage(injury);
     }
 
     // 受伤方法
@@ -139,6 +141,7 @@ public class ChessBase : MonoBehaviour //棋子基类
         if (damageTaken > 0)
         {
             HP -= damageTaken;
+            Debug.Log(gameObject.name + "受到了" + damageTaken + "点伤害");
             if (HP <= 0)
             {
                 Death();
@@ -150,6 +153,8 @@ public class ChessBase : MonoBehaviour //棋子基类
     public virtual void Death()
     {
         //先播放死亡动画
+
+        Debug.Log(gameObject.name + "死了");
         
         chessboardManager.RemoveChess(gameObject);
     }
