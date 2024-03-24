@@ -28,5 +28,6 @@ public class aoe : Card
                 ChessboardManager.instance.CheckCell(pos).TakeDamage(damage);
             }
         }
+        costManager.instance.curCost -= cost;
     }
 }

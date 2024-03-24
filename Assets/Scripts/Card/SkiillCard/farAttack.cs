@@ -41,6 +41,6 @@ public class farAttack : Card
         {
             ChessboardManager.instance.CheckCell(enemyPos).TakeDamage(damage);
         }
-
+        costManager.instance.curCost -= cost;
     }
 }
