@@ -16,7 +16,6 @@ public class up : Card
     private new void Start()
     { 
         base.Start();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     private new void Update()
     {

@@ -7,20 +7,20 @@ public class Fight_PlayerTurn : FightUnit
     public override void Init()
     {
         Debug.Log("Player Trun now");
-        //ÏÔÊ¾ÂÖµ½Íæ¼Ò»ØºÏ¶¯»­
-        //»Ö¸´·ÑÓÃ
+        //ï¿½ï¿½Ê¾ï¿½Öµï¿½ï¿½ï¿½Ò»ØºÏ¶ï¿½ï¿½ï¿½
+        //ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½
         costManager.instance.curCost = costManager.instance.maxCost;
-        //³éÎåÕÅÅÆ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         CardManager.instance.Draw(1);//test
     }
     public override void OnUpdate()
     {
-        //¿ÉÒÔ½øÐÐ²Ù×÷
-        //Èç¹ûÅÆ¿âÃ»ÓÐÅÆ£¬½«ÆúÅÆ¶ÑµÄÅÆÈ«²¿·ÅÈë¿¨×éÖÐ
+        //ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½Æ¿ï¿½Ã»ï¿½ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶Ñµï¿½ï¿½ï¿½È«ï¿½ï¿½ï¿½ï¿½ï¿½ë¿¨ï¿½ï¿½ï¿½ï¿½
         if(CardManager.cardDesk.Count == 0)
         {
             CardManager.instance.UPdateDesk();
         }
-        //½«³öÅÆÇø¿¨ÅÆÖÃÈëÆúÅÆÇø
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     }
 }

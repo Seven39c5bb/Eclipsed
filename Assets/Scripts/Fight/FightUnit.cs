@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//Õ½¶·µ¥Ôª£¬×÷Îª»ùÀà
+//æˆ˜æ–—å•å…ƒï¼Œä½œä¸ºåŸºç±»
 public class FightUnit
 {
-   public virtual void Init()//³õÊ¼»¯
+   public virtual void Init()//åˆå§‹åŒ–
     {
 
     }
-    public virtual void OnUpdate()//Ã¿Ö¡µ÷ÓÃ
+    public virtual void OnUpdate()//æ¯å¸§è°ƒç”¨
     {
 
     }

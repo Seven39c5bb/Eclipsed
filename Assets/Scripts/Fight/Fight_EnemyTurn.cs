@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ public class Fight_EnemyTurn : FightUnit
     {
         Debug.Log("Enemy Turn Now");
     }
-    public override void OnUpdate()
+    public override void OnUpdate()//相当于Update
     {
         
     }

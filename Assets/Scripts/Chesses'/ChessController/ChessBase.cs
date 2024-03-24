@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
-    ChessboardManager chessboardManager;
+    public ChessboardManager chessboardManager;
 
     // 共有属性
     public int MaxHp = 10;//最大生命值
@@ -16,14 +16,14 @@ public class ChessBase : MonoBehaviour //棋子基类
         set { hp = Mathf.Clamp(value, 0, MaxHp); }
     }
 
-    private int barrier = 0;//护盾值
+    public int barrier = 0;//护盾值
     public int Barrier
     {
         get { return barrier; }
         set { barrier = Mathf.Max(0, value); }
     }
 
-    private int meleeAttackPower = 2;//近战攻击力
+    public int meleeAttackPower = 2;//近战攻击力
     public int MeleeAttackPower
     {
         get { return meleeAttackPower; }
@@ -85,46 +85,14 @@ public class ChessBase : MonoBehaviour //棋子基类
                     if(this.gameObject.tag == "Player")
                     {
                         //攻击敌人
-                        ChessBase EnemyChess = roadblockObject.GetComponent<ChessBase>();
-
-                        Vector2 originalPosition = transform.position;  //保存原始位置
-                        Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  //目标位置
-                        float moveDuration = 1f;  //移动所需的时间
-                        //创建一个序列
-                        Sequence sequence = DOTween.Sequence();
-                        //添加前往目标位置的动画
-                        sequence.Append(transform.DOMove(targetPosition, moveDuration));
-                        //添加返回原始位置的动画
-                        sequence.Append(transform.DOMove(originalPosition, moveDuration));
-                        //开始动画
-                        sequence.Play();
-
-                        EnemyChess.TakeDamage(MeleeAttackPower);
-                        int injury = EnemyChess.MeleeAttackPower;
-                        TakeDamage(injury);
+                        MeleeAttack(roadblockObject);
                     }
                     break;
                 case "Player":
                     if(this.gameObject.tag == "Enemy")
                     {
                         //攻击玩家
-                        ChessBase PlayerChess = roadblockObject.GetComponent<ChessBase>();
-
-                        Vector2 originalPosition = transform.position;  //保存原始位置
-                        Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  //目标位置
-                        float moveDuration = 1f;  //移动所需的时间
-                        //创建一个序列
-                        Sequence sequence = DOTween.Sequence();
-                        //添加前往目标位置的动画
-                        sequence.Append(transform.DOMove(targetPosition, moveDuration));
-                        //添加返回原始位置的动画
-                        sequence.Append(transform.DOMove(originalPosition, moveDuration));
-                        //开始动画
-                        sequence.Play();
-
-                        PlayerChess.TakeDamage(MeleeAttackPower);
-                        int injury = PlayerChess.MeleeAttackPower;
-                        TakeDamage(injury);
+                        MeleeAttack(roadblockObject);
                     }
                     break;
                 default:
@@ -135,10 +103,32 @@ public class ChessBase : MonoBehaviour //棋子基类
 
     }
 
-    //近战攻击方法
-    public virtual void MeleeAttack()
+
+    /// <summary>
+    /// 近战攻击方法
+    /// </summary>
+    /// <param name="roadblockObject">攻击对象对象。</param>
+    /// <remarks>在子类中需要添加攻击动画。</remarks>
+    public virtual void MeleeAttack(GameObject roadblockObject)
     {
         //近战攻击
+            ChessBase AttackedChess = roadblockObject.GetComponent<ChessBase>();
+
+            Vector2 originalPosition = transform.position;  //保存原始位置
+            Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  //目标位置
+            float moveDuration = 0.7f;  //移动所需的时间
+            //创建一个序列
+            Sequence sequence = DOTween.Sequence();
+            //添加前往目标位置的动画
+            sequence.Append(transform.DOMove(targetPosition, moveDuration));
+            //添加返回原始位置的动画
+            sequence.Append(transform.DOMove(originalPosition, moveDuration));
+            //开始动画
+            sequence.Play();
+
+            AttackedChess.TakeDamage(MeleeAttackPower);
+            int injury = AttackedChess.MeleeAttackPower;
+            TakeDamage(injury);
     }
 
     // 受伤方法
@@ -159,7 +149,8 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 死亡方法
     public virtual void Death()
     {
+        //先播放死亡动画
+        
         chessboardManager.RemoveChess(gameObject);
-        Destroy(gameObject);
     }
 }

@@ -14,15 +14,15 @@ public class UseCard : MonoBehaviour,IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
-        //»ñÈ¡µ±Ç°Ê£Óà
-        //Èç¹û·ÑÓÃ²»¹»£¬·µ»Ø¡£
+        //ï¿½ï¿½È¡ï¿½ï¿½Ç°Ê£ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¡ï¿½
         
-        GameObject curCard = eventData.pointerDrag;//»ñÈ¡ÕıÔÚÍÏ×§µÄ¿¨ÅÆ¶ÔÏó
+        GameObject curCard = eventData.pointerDrag;//è·å–æ­£åœ¨æ‹–æ‹½çš„å¡ç‰Œå¯¹è±¡
         usingCard=curCard; 
 
 
-        //»ñÈ¡»¬¶¯ÌõÉÏ¸Ã¿¨ÅÆcost
-        //Èç¹ûcurCost²»¹»ÊÍ·Å£¬·µ»Ø
+        //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸Ã¿ï¿½ï¿½ï¿½cost
+        //ï¿½ï¿½ï¿½curCostï¿½ï¿½ï¿½ï¿½ï¿½Í·Å£ï¿½ï¿½ï¿½ï¿½ï¿½
 
         if (costManager.instance.curCost < curCard.GetComponent<Card>().cost) {
             curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);
@@ -32,7 +32,7 @@ public class UseCard : MonoBehaviour,IDropHandler
         curCard.GetComponent<Card>().CardFunc();
 
 
-        //ÒÆ¶¯µ½ÆúÅÆ¶Ñ¶¯»­£¬È»ºóÏú»Ù
+        //ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶Ñ¶ï¿½ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         FightUI.cardList.Remove(curCard.GetComponent<Card>());
         FightUI.instance.OnUpdateCardsPos();
         curCard.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.5f);

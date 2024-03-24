@@ -18,7 +18,7 @@ public class CardManager : MonoBehaviour
         instance = this;
         cardDesk = new List<Card>();
         discardDesk = new List<Card>();
-        //´ÓtextÖĞ¼ÓÔØÅÆ×éĞÅÏ¢
+        //ï¿½ï¿½textï¿½Ğ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         //......;0
 
         //test
@@ -29,25 +29,25 @@ public class CardManager : MonoBehaviour
             string cardName=ele.Key;
             int cardCount=ele.Value;
             GameObject card = Resources.Load("Prefabs/Card/" + cardName) as GameObject;
-            for(int i = 0; i < cardCount; i++)///test 5 ¸Ä»Ø(int)cardCount
+            for(int i = 0; i < cardCount; i++)///test 5 ï¿½Ä»ï¿½(int)cardCount
             {
                 cardDesk.Add(card.GetComponent<Card>());
             }      
         }
         //test
     }
-    //³é¿¨
+    //æŠ½å¡
     public void Draw(int num)
     {
         for(int i=0;i<num;i++)
         {
             Card drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
-            //´ÓresourceÖĞÕÒµ½¸Ã¿¨ÅÆ£¬²¢½«ÆäÉú³Éµ½ÊÖÅÆÇøÖĞ
+            //ï¿½ï¿½resourceï¿½ï¿½ï¿½Òµï¿½ï¿½Ã¿ï¿½ï¿½Æ£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             FightUI.instance.InstantiateCard(1,drawCard.name);
             cardDesk.Remove(drawCard);
         }  
     }
-    public void UPdateDesk()//ÖØÖÃ¿¨×é
+    public void UPdateDesk()//ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½
     {
         cardDesk = discardDesk;
         discardDesk.Clear();

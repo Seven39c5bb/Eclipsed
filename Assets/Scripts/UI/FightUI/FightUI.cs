@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,7 +7,7 @@ using TMPro;
 using System;
 public class FightUI : UIBase
 {
-    public static List<Card> cardList;//ÊÖÅÆÖĞµÄÅÆ
+    public static List<Card> cardList;//ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½
     public static FightUI instance;
     public TextMeshProUGUI cardCount;
     public TextMeshProUGUI discardCount;
@@ -20,7 +20,7 @@ public class FightUI : UIBase
 
         cardList = new List<Card>();
         instance = this;
-        //Õ½¶·³õÊ¼»¯  
+        //æˆ˜æ–—åˆå§‹åŒ–  
         Register("endTurnButton").onClick = onClickEndTurn;
         Register("cardDesk").onClick = onClickCardDeck;
     }
@@ -36,13 +36,12 @@ public class FightUI : UIBase
     }
     private void onClickEndTurn(GameObject obj,PointerEventData eventData)
     {
-        //²âÊÔ£º£ºÇĞ»»µ½µĞÈË»ØºÏ
-        FightManager.instance.ChangeType(FightType.Enemy);
-        //²»ÄÜ¼ÌĞø½øĞĞĞĞ¶¯
+        //æµ‹è¯•ï¼šï¼šåˆ‡æ¢åˆ°æ•Œäººå›åˆ
+        FightManager.instance.ChangeType(FightType.Enemy);           
     }
     private void onClickCardDeck(GameObject obj, PointerEventData data)
     {
-        //ÏÔÊ¾¿¨×éÄÚÊ£ÓàÅÆ
+        //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ï¿½ï¿½ï¿½
         if(!deckPanelFlag)
         {
             deckPanel.GetComponent<RectTransform>().DOAnchorPos(new Vector2(deckPanelStartPos.x - 105, deckPanelStartPos.y), 0.7f);
@@ -61,10 +60,10 @@ public class FightUI : UIBase
         {
             count=CardManager.cardDesk.Count;
         }
-        for(int i = 0; i < count; i++)//Éú³É¿¨ÅÆ
+        for(int i = 0; i < count; i++)//ç”Ÿæˆå¡ç‰Œ
         {
             //
-            GameObject obj=Instantiate(Resources.Load("Prefabs/Card/"+cardName),GameObject.Find("handCardArea").transform) as GameObject;//test Ö»Éú³Éup
+            GameObject obj=Instantiate(Resources.Load("Prefabs/Card/"+cardName),GameObject.Find("handCardArea").transform) as GameObject;//test Ö»ï¿½ï¿½ï¿½ï¿½up
             //Debug.Log("instantiate A card");
             obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.x,
                 GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.y+100f);
