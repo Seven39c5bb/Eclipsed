@@ -75,7 +75,10 @@ public class ChessboardManager : MonoBehaviour
                     //调整棋格状态
                     cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
                     cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                    cellStates[x , y].state = Cell.StateType.Empty;
+                    if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
+                    {
+                        cellStates[x , y].state = Cell.StateType.Empty;
+                    }
                     break;
                 }
 
@@ -91,7 +94,10 @@ public class ChessboardManager : MonoBehaviour
                         //调整棋格状态
                         cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
                         cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                        cellStates[x , y].state = Cell.StateType.Empty;
+                        if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
+                        {
+                            cellStates[x , y].state = Cell.StateType.Empty;
+                        }
                         break;
                     }
 
@@ -101,7 +107,10 @@ public class ChessboardManager : MonoBehaviour
                         {
                             cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
                             cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                            cellStates[x , y].state = Cell.StateType.Empty;
+                            if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
+                            {
+                                cellStates[x , y].state = Cell.StateType.Empty;
+                            }
                             roadblockType = "Enemy";
                             roadblockObject = cellStates[x + i * step, y].occupant;
                             break;
@@ -111,7 +120,10 @@ public class ChessboardManager : MonoBehaviour
                             target_location = new Vector2Int(x + (i - 1) * step, y);
                             cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
                             cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                            cellStates[x , y].state = Cell.StateType.Empty;
+                            if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
+                            {
+                                cellStates[x , y].state = Cell.StateType.Empty;
+                            }
                             roadblockType = "Player";
                             roadblockObject = cellStates[x + i * step, y].occupant;
                             break;
@@ -142,7 +154,10 @@ public class ChessboardManager : MonoBehaviour
                     roadblockType = "Wall";
                     cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
                     cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                    cellStates[x , y].state = Cell.StateType.Empty;
+                    if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
+                    {
+                        cellStates[x , y].state = Cell.StateType.Empty;
+                    }
                     break;
                 }
 
@@ -154,7 +169,10 @@ public class ChessboardManager : MonoBehaviour
                         roadblockType = "Wall";
                         cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
                         cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                        cellStates[x , y].state = Cell.StateType.Empty;
+                        if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
+                        {
+                            cellStates[x , y].state = Cell.StateType.Empty;
+                        }
                         break;
                     }
                     if(cellStates[x, y + i * step].state == Cell.StateType.Occupied)
@@ -163,7 +181,10 @@ public class ChessboardManager : MonoBehaviour
                         {
                             cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
                             cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                            cellStates[x , y].state = Cell.StateType.Empty;
+                            if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
+                            {
+                                cellStates[x , y].state = Cell.StateType.Empty;
+                            }
                             roadblockType = "Enemy";
                             roadblockObject = cellStates[x, y + i * step].occupant;
                             break;
@@ -173,7 +194,10 @@ public class ChessboardManager : MonoBehaviour
                             target_location = new Vector2Int(x, y + (i - 1) * step);
                             cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
                             cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                            cellStates[x , y].state = Cell.StateType.Empty;
+                            if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
+                            {
+                                cellStates[x , y].state = Cell.StateType.Empty;
+                            }
                             roadblockType = "Player";
                             roadblockObject = cellStates[x, y + i * step].occupant;
                             break;
