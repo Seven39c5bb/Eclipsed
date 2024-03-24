@@ -8,5 +8,6 @@ public class shield : Card
     public override void CardFunc()
     {
         PlayerController.instance.Barrier += 10;
+        costManager.instance.curCost -= cost;
     }
 }
