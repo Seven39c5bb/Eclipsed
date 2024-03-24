@@ -51,6 +51,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         this.transform.localScale = new Vector3(1f, 1f, 1);
     }
     #endregion
+    #region 拖拽卡牌的效果
     public void OnBeginDrag(PointerEventData eventData)
     {
         startPos = this.transform.position;
@@ -68,6 +69,12 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         canvasGroup.blocksRaycasts = true;
         Debug.Log("enddrag");
     }
+    #endregion
+    #region 卡牌效果
+    public virtual void CardFunc()
+    {
 
-    
+    }
+    #endregion
+
 }
