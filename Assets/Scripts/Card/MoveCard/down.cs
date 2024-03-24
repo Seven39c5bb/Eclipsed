@@ -2,10 +2,16 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class down : Card
 {
     public Transform playerTransform;
+    public Slider slider;
+    private void Awake()
+    {
+        slider = this.GetComponentInChildren<Slider>();
+    }
     private new void Start()
     {
         base.Start();
@@ -13,10 +19,11 @@ public class down : Card
     }
     private new void Update()
     {
-
+        cost = (int)slider.value;
     }
-    public void MoveDown()
+    public override void CardFunc()
     {
-        playerTransform.DOMove(new Vector3(0, playerTransform.position.y - 1, 0), 0.5f);
+        playerTransform.DOMove(new Vector3(0, playerTransform.position.y - cost, 0), 0.5f);
+        costManager.instance.curCost -= cost;
     }
 }

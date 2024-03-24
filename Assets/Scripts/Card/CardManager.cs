@@ -5,29 +5,49 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     public static CardManager instance;
-    public List<Card> cardDesk;
-    public List<Card> discardDesk;
+    public static List<Card> cardDesk;
+    public static List<Card> discardDesk;
     public List<Card> handCards;
     public int test = 1;
+
+    //test 
+    public GameConfig gameConfig;
+    //test
     private void Awake()
     {
         instance = this;
-        //cardDesk = new List<Card>();
+        cardDesk = new List<Card>();
         discardDesk = new List<Card>();
-        Debug.Log(cardDesk.Count);
         //从text中加载牌组信息
-        //......;
+        //......;0
+
+        //test
+        gameConfig= new GameConfig();
+        gameConfig.Init();
+        foreach(KeyValuePair<string,int> ele in gameConfig.cardDeckData)
+        {
+            string cardName=ele.Key;
+            int cardCount=ele.Value;
+            GameObject card = Resources.Load("Prefabs/Card/" + cardName) as GameObject;
+            for(int i = 0; i < cardCount; i++)///test 5 改回(int)cardCount
+            {
+                cardDesk.Add(card.GetComponent<Card>());
+            }      
+        }
+        //test
     }
     //抽卡
     public void Draw(int num)
     {
-        Card drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
-        //从resource中找到该卡牌，并将其生成到手牌区中
-        //InstantiateCard(drawCard.name);
-        FightUI.instance.InstantiateCard(num);//test
-        cardDesk.Remove(drawCard);
+        for(int i=0;i<num;i++)
+        {
+            Card drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
+            //从resource中找到该卡牌，并将其生成到手牌区中
+            FightUI.instance.InstantiateCard(1,drawCard.name);
+            cardDesk.Remove(drawCard);
+        }  
     }
-    public void UPdateDesk()
+    public void UPdateDesk()//重置卡组
     {
         cardDesk = discardDesk;
         discardDesk.Clear();

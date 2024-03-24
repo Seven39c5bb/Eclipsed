@@ -8,20 +8,23 @@ using UnityEngine.UI;
 public class up : Card
 {
     public Transform playerTransform;
-    private new void Start()
+    public Slider slider;
+    private void Awake()
     {
+        slider = this.GetComponentInChildren<Slider>();
+    }
+    private new void Start()
+    { 
         base.Start();
         playerTransform = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     private new void Update()
     {
-        
+        cost = (int)slider.value;
     }
-    public void MoveUp()
+    public override void CardFunc()
     {
-        Slider slider = this.GetComponentInChildren<Slider>();
-        cost= (int)slider.value;
-        playerTransform.DOMove(new Vector3(0, playerTransform.position.y+cost, 0), 0.5f);
+        playerTransform.DOMove(new Vector3(0, playerTransform.position.y + cost, 0), 0.5f);
         costManager.instance.curCost -= cost;
     }
 }
