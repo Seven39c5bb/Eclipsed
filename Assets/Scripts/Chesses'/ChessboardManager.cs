@@ -389,18 +389,15 @@ public class ChessboardManager : MonoBehaviour
                 {
                     cellStates[i, j].state = Cell.StateType.Empty;
                     cellStates[i, j].occupant = null;
+                    //更新敌方棋子列表和敌方控制器列表中中删除
+                    enemyList.Remove(deleteObject);
+                    enemyControllerList.Remove(deleteObject.GetComponent<EnemyBase>());
                     Destroy(deleteObject);
                 }
             }
         }
 
-        //更新敌方棋子列表
-        enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-        enemyControllerList.Clear();
-        foreach (GameObject enemy in enemyList)
-        {
-            enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
-        }
+        
     }
 
     /// <summary>
@@ -419,11 +416,15 @@ public class ChessboardManager : MonoBehaviour
             addObject.transform.position = cellStates[Location.x, Location.y].transform.position + new Vector3(0, 0.7f, 0);
 
             //更新敌方棋子列表
+            enemyList.Clear();
             enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
             enemyControllerList.Clear();
-            foreach (GameObject enemy in enemyList)
+            foreach (GameObject enemy in enemyList)//要考虑List中的对象可能已经被销毁
             {
-                enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
+                if(!UnityEngine.Object.Equals(enemy, null))
+                {
+                    enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
+                }
             }
             return true;
         }
