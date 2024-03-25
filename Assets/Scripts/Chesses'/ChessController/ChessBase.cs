@@ -12,6 +12,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     public Canvas HPBarCanvasInstance;//血条画布实例
 
     // 共有属性
+    public string chessName = "Chess";//棋子名称
     public int MaxHp = 10;//最大生命值
     public int hp = 10;
     public int HP//当前生命值

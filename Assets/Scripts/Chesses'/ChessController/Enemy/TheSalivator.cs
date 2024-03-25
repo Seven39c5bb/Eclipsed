@@ -11,10 +11,11 @@ public class TheSalivator : EnemyBase
         // 初始化敌人棋子
         MaxHp = 40;//最大生命值
         HP = 40;//当前生命值
-        meleeAttackPower = 5;//近战攻击力
+        MeleeAttackPower = 5;//近战攻击力
         mobility = 1;//行动力
         moveModel = 1;//移动模式
         this.gameObject.tag = "Enemy";
+        chessName = "泌涎者";//棋子名称
 
         base.Start();//添加血条
         chessboardManager.AddChess(this.gameObject, Location);

@@ -9,10 +9,11 @@ public class Flesh : EnemyBase
         // 初始化敌人棋子
         MaxHp = 30;//最大生命值
         HP = 30;//当前生命值
-        meleeAttackPower = 8;//近战攻击力
+        MeleeAttackPower = 8;//近战攻击力
         mobility = 1;//行动力
         moveModel = 3;//移动模式
         this.gameObject.tag = "Enemy";
+        chessName = "模糊血肉";//棋子名称
         
         base.Start();//添加血条
         chessboardManager.AddChess(this.gameObject, Location);
