@@ -36,7 +36,7 @@ public class Fight_EnemyTurn : FightUnit
     public override void OnUpdate()//相当于Update
     {
         //调用第一个个敌人的OnTurn，并等待其完成，将之移出列表
-        Debug.Log("Enemy Count: " + enemyList.Count);
+        //Debug.Log("Enemy Count: " + enemyList.Count);
         if (enemyList.Count > 0)
         {
             if (currCoroutine == null)
