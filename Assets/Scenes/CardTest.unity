@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 31524363}
   - component: {fileID: 31524362}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: TheSalivator
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,13 +230,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 31524360}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.38268343, z: 0.92387956, w: 0}
+  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 12.39, y: 1.86, z: 0.017821837}
-  m_LocalScale: {x: 0.89589244, y: 0.62354106, z: 0.89589244}
+  m_LocalScale: {x: 0.08, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236023261}
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!114 &31524362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,8 +298,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.52068555, g: 0.9433962, b: 0.45093146, a: 1}
+  m_Sprite: {fileID: -6705720467443903677, guid: ffaf4d968444496419feaa24311cf4ce, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1473,8 +1473,8 @@ Transform:
   m_GameObject: {fileID: 218992384}
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 12.454, y: -0.9786, z: 0.017821837}
-  m_LocalScale: {x: 0.5306337, y: 1.009566, z: 0.7914}
+  m_LocalPosition: {x: 12.44, y: -1.18, z: 0.017821837}
+  m_LocalScale: {x: 0.08, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236023261}
@@ -1540,7 +1540,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 9012760714436954521, guid: 0add14320a424de459bdfc9d6b570296, type: 3}
   m_Color: {r: 0.8018868, g: 0.6944354, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -7461,8 +7461,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.8962264, g: 0.36074516, b: 0.39357236, a: 1}
+  m_Sprite: {fileID: 8756131382280630494, guid: 693ea72c3a1ed9e488bf4bce93464227, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7481,8 +7481,8 @@ Transform:
   m_GameObject: {fileID: 1285088928}
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: 12.45, y: -4, z: 0.017821837}
-  m_LocalScale: {x: 3.3309524, y: 6.3986635, z: 7.307925}
+  m_LocalPosition: {x: 12.46, y: -4.19, z: 0.017821837}
+  m_LocalScale: {x: 0.08385237, y: 0.08385237, z: 0.08385237}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236023261}
@@ -12660,8 +12660,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0.084905684, g: 0.06861171, b: 0.011747947, a: 1}
+  m_Sprite: {fileID: -1265603847936272755, guid: d0c35ec0e4a92654ba6725b684564c05, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -12680,8 +12680,8 @@ Transform:
   m_GameObject: {fileID: 2074936337}
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: -0.77, y: 0.35, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: -0.7782, y: -0.3719, z: 0}
+  m_LocalScale: {x: 0.079454064, y: 0.085121706, z: 0.15890813}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

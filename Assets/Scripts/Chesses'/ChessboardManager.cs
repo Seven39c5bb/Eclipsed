@@ -214,7 +214,7 @@ public class ChessboardManager : MonoBehaviour
                 }
             }
         }
-        target_position = cellStates[(int)target_location.x, (int)target_location.y].transform.position + new Vector3(0, 0.7f, 0);
+        target_position = cellStates[(int)target_location.x, (int)target_location.y].transform.position ;
 
         return (target_position, target_location, roadblockType, roadblockObject);
     }
@@ -413,7 +413,7 @@ public class ChessboardManager : MonoBehaviour
         {
             cellStates[Location.x, Location.y].state = Cell.StateType.Occupied;
             cellStates[Location.x, Location.y].occupant = addObject;
-            addObject.transform.position = cellStates[Location.x, Location.y].transform.position + new Vector3(0, 0.7f, 0);
+            addObject.transform.position = cellStates[Location.x, Location.y].transform.position ;
 
             //更新敌方棋子列表
             enemyList.Clear();
