@@ -5,6 +5,9 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
 using System;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
+
 public class FightUI : UIBase
 {
     public static List<Card> cardList;//手牌中的牌
@@ -13,6 +16,11 @@ public class FightUI : UIBase
     public TextMeshProUGUI discardCount;
     public TextMeshProUGUI health;
     public GameObject deckPanel;private bool deckPanelFlag = false;private Vector2 deckPanelStartPos;
+    //test
+    public GameObject deckViewer;
+    Dictionary<string, int> cardDic = new Dictionary<string, int>();
+    List<CardBoard> boardList;
+    //test
     private void Awake()
     {
         cardCount=GameObject.Find("cardCount").GetComponent<TextMeshProUGUI>();
@@ -20,7 +28,10 @@ public class FightUI : UIBase
         deckPanel = GameObject.Find("deckPanel");deckPanelStartPos = deckPanel.GetComponent<RectTransform>().anchoredPosition;
         health = GameObject.Find("playerHealth").GetComponent<TextMeshProUGUI>();
 
+
         cardList = new List<Card>();
+        cardDic=new Dictionary<string, int>();
+        boardList = new List<CardBoard>();
         instance = this;
         //战斗初始化  
         Register("endTurnButton").onClick = onClickEndTurn;
@@ -28,16 +39,17 @@ public class FightUI : UIBase
     }
 
     private void Start()
-    {
+    {        
         FightManager.instance.ChangeType(FightType.Init);
     }
     private void Update()
     {
+        //card and discardcard
         cardCount.text=CardManager.cardDesk.Count.ToString();
         discardCount.text=CardManager.discardDesk.Count.ToString();
 
         //health
-        health.text = PlayerController.instance.HP.ToString() + "/" + PlayerController.instance.MaxHp.ToString();
+        health.text = PlayerController.instance.HP.ToString() + "/" + PlayerController.instance.MaxHp.ToString();    
     }
     private void onClickEndTurn(GameObject obj,PointerEventData eventData)
     {
@@ -104,6 +116,67 @@ public class FightUI : UIBase
                 
             }
             
+        }
+    }
+
+
+    public void InitDeckPanel()
+    {
+        for (int i = 0; i < CardManager.cardDesk.Count; i++)
+        {
+            cardDic[CardManager.cardDesk[i]] = 0;//初始化卡组为0
+        }
+        Vector3 offset = new Vector3(0, -25, 0);
+        int times = 0;
+        foreach(var ele in cardDic)//初始化生成cardBoard
+        {
+            GameObject cardBoard = Instantiate(Resources.Load("Prefabs/UI/cardBoard"), GameObject.Find("Content").transform) as GameObject;
+            //往下移动offset
+            cardBoard.transform.position += offset*times;
+            cardBoard.GetComponent<CardBoard>().cardNameText.text = ele.Key;
+            boardList.Add(cardBoard.GetComponent<CardBoard>());
+            times++;
+        }        
+    }
+    public void UpdateDeckPanel()
+    {
+        //test
+        //遍历卡组，每遍历到一次该卡，该卡数量++
+        for (int i = 0; i < CardManager.cardDesk.Count; i++)
+        {
+            cardDic[CardManager.cardDesk[i]] = 0;//初始化卡组为0
+        }
+        
+
+        for (int i = 0;i<CardManager.cardDesk.Count ; i++)
+        {
+            cardDic[CardManager.cardDesk[i]]++;
+        }
+        foreach(var ele in cardDic)
+        {
+            //实例化一个cardBoard，调整cardboard位置
+            GameObject cardBoard = Resources.Load<GameObject>("Prefabs/UI/cardBoard");
+
+            //从预制体中获取卡牌费用
+            GameObject obj = Resources.Load<GameObject>("Prefabs/Card/" + ele.Key);
+            //Debug.Log(ele.Key);
+            //遍历board列表
+            foreach(var cboard in boardList)
+            {
+                Debug.Log("cboard.cardnametxt:"+ cboard.cardNameText.text);
+                if(cboard.cardNameText.text == ele.Key)
+                {
+                    Debug.Log("yes");
+                    cboard.costText.text = obj.GetComponent<Card>().cost.ToString();
+                    //获取名字
+                    cboard.cardNameText.text = ele.Key;
+                    //获取费用
+                    cboard.cardNumTxt.text = ele.Value.ToString();
+                }
+            }
+            
+
+        //test
         }
     }
 }

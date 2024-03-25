@@ -21,8 +21,8 @@ public class CardManager : MonoBehaviour
         //��text�м���������Ϣ
         //......;0
 
-        //test
-        gameConfig= new GameConfig();
+        #region gameConfig
+        gameConfig = new GameConfig();
         gameConfig.Init();
         foreach(KeyValuePair<string,int> ele in gameConfig.cardDeckData)
         {
@@ -34,7 +34,10 @@ public class CardManager : MonoBehaviour
                 cardDesk.Add(cardName);
             }      
         }
-        //test
+        #endregion
+        #region
+        FightUI.instance.InitDeckPanel();
+        #endregion
     }
     //抽卡
     public void Draw(int num)
@@ -49,6 +52,8 @@ public class CardManager : MonoBehaviour
             //生成一张牌到手中
             FightUI.instance.InstantiateCard(1,drawCard);
             cardDesk.Remove(drawCard);
+            //更新卡组卡牌显示
+            FightUI.instance.UpdateDeckPanel();
         }  
     }
     public void UPdateDesk()//更新牌组

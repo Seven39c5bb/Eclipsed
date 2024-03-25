@@ -6,7 +6,7 @@ using System.Linq;
 
 public class TheSalivator : EnemyBase
 {//泌涎者
-    void Start()
+    public new void Start()
     {
         // 初始化敌人棋子
         MaxHp = 40;//最大生命值
