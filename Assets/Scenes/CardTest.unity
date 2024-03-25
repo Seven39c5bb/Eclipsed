@@ -232,7 +232,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 12.39, y: 1.86, z: 0.017821837}
-  m_LocalScale: {x: 0.08, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236023261}
@@ -250,6 +250,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
+  HPBar: {fileID: 0}
+  YellowHPBar: {fileID: 0}
+  HPBarCanvasPrefab: {fileID: 0}
+  HPBarCanvasInstance: {fileID: 0}
   MaxHp: 10
   hp: 10
   barrier: 0
@@ -1474,7 +1478,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: -0, z: -0, w: 0.92387956}
   m_LocalPosition: {x: 12.44, y: -1.18, z: 0.017821837}
-  m_LocalScale: {x: 0.08, y: 0.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236023261}
@@ -1492,6 +1496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
+  HPBar: {fileID: 0}
+  YellowHPBar: {fileID: 0}
+  HPBarCanvasPrefab: {fileID: 0}
+  HPBarCanvasInstance: {fileID: 0}
   MaxHp: 10
   hp: 10
   barrier: 0
@@ -7413,6 +7421,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
+  HPBar: {fileID: 0}
+  YellowHPBar: {fileID: 0}
+  HPBarCanvasPrefab: {fileID: 0}
+  HPBarCanvasInstance: {fileID: 0}
   MaxHp: 10
   hp: 10
   barrier: 0
@@ -7482,7 +7494,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: -0, z: -0, w: 0.92387956}
   m_LocalPosition: {x: 12.46, y: -4.19, z: 0.017821837}
-  m_LocalScale: {x: 0.08385237, y: 0.08385237, z: 0.08385237}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1236023261}
@@ -12323,7 +12335,7 @@ Transform:
   m_GameObject: {fileID: 2031392131}
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: -0, z: -0, w: 0.92387956}
-  m_LocalPosition: {x: -0.77, y: -9.78, z: -8.42}
+  m_LocalPosition: {x: -0.778, y: -9.78, z: -8.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12681,7 +12693,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: -0.7782, y: -0.3719, z: 0}
-  m_LocalScale: {x: 0.079454064, y: 0.085121706, z: 0.15890813}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -12699,6 +12711,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
+  HPBar: {fileID: 0}
+  YellowHPBar: {fileID: 0}
+  HPBarCanvasPrefab: {fileID: 0}
+  HPBarCanvasInstance: {fileID: 0}
   MaxHp: 80
   hp: 80
   barrier: 0

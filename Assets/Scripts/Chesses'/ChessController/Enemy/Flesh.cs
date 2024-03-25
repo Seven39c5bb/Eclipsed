@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Flesh : EnemyBase
 {//模糊血肉
-    void Start()
+    public override void Start()
     {
         // 初始化敌人棋子
         MaxHp = 30;//最大生命值
@@ -12,8 +12,11 @@ public class Flesh : EnemyBase
         meleeAttackPower = 8;//近战攻击力
         mobility = 1;//行动力
         moveModel = 3;//移动模式
-        chessboardManager.AddChess(this.gameObject, Location);
         this.gameObject.tag = "Enemy";
+        
+        base.Start();//添加血条
+        chessboardManager.AddChess(this.gameObject, Location);
+        
     }
 
     public override IEnumerator OnTurn()

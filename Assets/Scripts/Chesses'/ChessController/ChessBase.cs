@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Microsoft.Unity.VisualStudio.Editor;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
     public ChessboardManager chessboardManager;
+    public UnityEngine.UI.Image HPBar;//血条
+    public UnityEngine.UI.Image YellowHPBar;//护盾条
+    public Canvas HPBarCanvasPrefab;//血条画布
+    public Canvas HPBarCanvasInstance;//血条画布实例
 
     // 共有属性
     public int MaxHp = 10;//最大生命值
@@ -50,6 +57,27 @@ public class ChessBase : MonoBehaviour //棋子基类
     void Awake()
     {
         chessboardManager = GameObject.Find("Chessboard").GetComponent<ChessboardManager>();
+    }
+
+    public virtual void Start()
+    {
+        GameObject HPBarPrefab = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
+
+        // 创建血条画布实例
+        GameObject HPBarInstance = Instantiate(HPBarPrefab, transform.position, Quaternion.identity, transform);
+        HPBarCanvasInstance = HPBarInstance.GetComponent<Canvas>();
+
+        // 设置血条画布的位置
+        RectTransform rt = HPBarCanvasInstance.GetComponent<RectTransform>();
+        rt.anchoredPosition = new Vector2(0, 1); // 这里的值可能需要根据你的游戏进行调整
+
+        // 获取血条
+        HPBar = HPBarCanvasInstance.transform.Find("Bar").GetComponent<UnityEngine.UI.Image>();
+        YellowHPBar = HPBarCanvasInstance.transform.Find("YellowBar").GetComponent<UnityEngine.UI.Image>();
+
+        // 初始化血条的形状
+        HPBar.fillAmount = (float)hp / MaxHp;
+        YellowHPBar.fillAmount = (float)hp / MaxHp;
     }
 
 
@@ -118,7 +146,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  //目标位置
             float moveDuration = 0.7f;  //移动所需的时间
             //创建一个序列
-            Sequence sequence = DOTween.Sequence();
+            DG.Tweening.Sequence sequence = DG.Tweening.DOTween.Sequence();
             //添加前往目标位置的动画
             sequence.Append(transform.DOMove(targetPosition, moveDuration));
             //添加返回原始位置的动画
@@ -141,12 +169,26 @@ public class ChessBase : MonoBehaviour //棋子基类
         if (damageTaken > 0)
         {
             HP -= damageTaken;
+            // 更新红色血条的形状
+            HPBar.fillAmount = (float)HP / MaxHp;
+            // 延迟更新黄色血条的形状
+            Invoke("UpdateYellowHPBar", 0.5f); // 延迟0.5秒
             Debug.Log(gameObject.name + "受到了" + damageTaken + "点伤害");
+            
+        }
+    }
+
+    // 黄色血条动画
+    public void UpdateYellowHPBar()
+    {
+        YellowHPBar.DOFillAmount((float)HP / MaxHp, 0.5f) // 使用DoTween创建血条填充动画，动画持续0.5秒
+        .OnComplete(() => // 在动画结束后执行以下代码
+        {
             if (HP <= 0)
             {
                 Death();
             }
-        }
+        });
     }
 
     // 死亡方法
