@@ -5,7 +5,8 @@ public class ChessBase : MonoBehaviour //棋子基类
 {
     public ChessboardManager chessboardManager;
     public UnityEngine.UI.Image HPBar;//血条
-    public UnityEngine.UI.Image YellowHPBar;//护盾条
+    public UnityEngine.UI.Image YellowHPBar;//黄色血条
+    public UnityEngine.UI.Image BarrierBar;//护盾条
     public Canvas HPBarCanvasPrefab;//血条画布
     public Canvas HPBarCanvasInstance;//血条画布实例
 
@@ -22,7 +23,10 @@ public class ChessBase : MonoBehaviour //棋子基类
     public int Barrier
     {
         get { return barrier; }
-        set { barrier = Mathf.Max(0, value); }
+        set { 
+                barrier = Mathf.Max(0, value);
+                BarrierBar.DOFillAmount((float)Barrier / MaxHp, 0.5f);
+            }
     }
 
     public int meleeAttackPower = 2;//近战攻击力
@@ -69,10 +73,12 @@ public class ChessBase : MonoBehaviour //棋子基类
         // 获取血条
         HPBar = HPBarCanvasInstance.transform.Find("Bar").GetComponent<UnityEngine.UI.Image>();
         YellowHPBar = HPBarCanvasInstance.transform.Find("YellowBar").GetComponent<UnityEngine.UI.Image>();
+        BarrierBar = HPBarCanvasInstance.transform.Find("BarrierBar").GetComponent<UnityEngine.UI.Image>();
 
         // 初始化血条的形状
-        HPBar.fillAmount = (float)hp / MaxHp;
-        YellowHPBar.fillAmount = (float)hp / MaxHp;
+        HPBar.fillAmount = (float)HP / MaxHp;
+        YellowHPBar.fillAmount = (float)HP / MaxHp;
+        BarrierBar.fillAmount = (float)Barrier / MaxHp;
     }
 
 
