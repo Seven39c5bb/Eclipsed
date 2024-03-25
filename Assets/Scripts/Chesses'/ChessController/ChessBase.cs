@@ -1,5 +1,6 @@
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
@@ -100,6 +101,10 @@ public class ChessBase : MonoBehaviour //棋子基类
         //计算Location和aimLocation之间的距离
         int moveDistance = Mathf.Abs(aimLocation.x - Location.x) + Mathf.Abs(aimLocation.y - Location.y);
 
+        //计算剩余移动数
+        int residualDistance = Mathf.Abs(Mathf.Abs(direction.x) + Mathf.Abs(direction.y) - moveDistance);
+
+        //更新Location
         Location = aimLocation;
 
         //将该棋子移动到目标位置aimPosition（尝试使用DOTween），需要判断何时移动完成
@@ -114,14 +119,14 @@ public class ChessBase : MonoBehaviour //棋子基类
                     if(this.gameObject.tag == "Player")
                     {
                         //攻击敌人
-                        MeleeAttack(roadblockObject);
+                        MeleeAttack(roadblockObject, residualDistance);
                     }
                     break;
                 case "Player":
                     if(this.gameObject.tag == "Enemy")
                     {
                         //攻击玩家
-                        MeleeAttack(roadblockObject);
+                        MeleeAttack(roadblockObject, residualDistance);
                     }
                     break;
                 default:
@@ -137,8 +142,9 @@ public class ChessBase : MonoBehaviour //棋子基类
     /// 近战攻击方法
     /// </summary>
     /// <param name="roadblockObject">攻击对象对象。</param>
+    /// <param name="residualDistance">剩余移动数。(用于计算造成近战伤害的次数）</param>
     /// <remarks>在子类中需要添加攻击动画。</remarks>
-    public virtual void MeleeAttack(GameObject roadblockObject)
+    public virtual void MeleeAttack(GameObject roadblockObject, int residualDistance)
     {
         //近战攻击
             ChessBase AttackedChess = roadblockObject.GetComponent<ChessBase>();
@@ -154,7 +160,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             sequence.Append(transform.DOMove(originalPosition, moveDuration));
             //在动画播放完毕后执行近战伤害判断
             sequence.OnComplete(() => {
-                AttackedChess.TakeDamage(MeleeAttackPower);
+                AttackedChess.TakeDamage(MeleeAttackPower * residualDistance);//攻击伤害 = 攻击力 * 剩余移动数
                 int injury = AttackedChess.MeleeAttackPower;
                 TakeDamage(injury);
             });
