@@ -16,6 +16,8 @@ public class FightUI : UIBase
     public TextMeshProUGUI discardCount;
     public TextMeshProUGUI health;
     public GameObject deckPanel;private bool deckPanelFlag = false;private Vector2 deckPanelStartPos;
+    //是否在敌人回合
+    public bool isEnemyTurn = false;
     //test
     public GameObject deckViewer;
     Dictionary<string, int> cardDic = new Dictionary<string, int>();
@@ -25,7 +27,7 @@ public class FightUI : UIBase
     {
         cardCount=GameObject.Find("cardCount").GetComponent<TextMeshProUGUI>();
         discardCount=GameObject.Find("discardCount").GetComponent <TextMeshProUGUI>();
-        deckPanel = GameObject.Find("deckPanel");deckPanelStartPos = deckPanel.GetComponent<RectTransform>().anchoredPosition;
+        deckPanel = GameObject.Find("Scroll View");deckPanelStartPos = deckPanel.GetComponent<RectTransform>().anchoredPosition;
         health = GameObject.Find("playerHealth").GetComponent<TextMeshProUGUI>();
 
 
@@ -54,7 +56,11 @@ public class FightUI : UIBase
     private void onClickEndTurn(GameObject obj,PointerEventData eventData)
     {
         //测试：：切换到敌人回合
-        FightManager.instance.ChangeType(FightType.Enemy);           
+        if (!isEnemyTurn)
+        {
+            FightManager.instance.ChangeType(FightType.Enemy);   
+        }
+                
     }
     private void onClickCardDeck(GameObject obj, PointerEventData data)
     {
@@ -132,7 +138,7 @@ public class FightUI : UIBase
         {
             GameObject cardBoard = Instantiate(Resources.Load("Prefabs/UI/cardBoard"), GameObject.Find("Content").transform) as GameObject;
             //往下移动offset
-            cardBoard.transform.position += offset*times;
+            cardBoard.transform.position += offset / GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor * times;
             cardBoard.GetComponent<CardBoard>().cardNameText.text = ele.Key;
             boardList.Add(cardBoard.GetComponent<CardBoard>());
             times++;
@@ -163,10 +169,10 @@ public class FightUI : UIBase
             //遍历board列表
             foreach(var cboard in boardList)
             {
-                Debug.Log("cboard.cardnametxt:"+ cboard.cardNameText.text);
+                //Debug.Log("cboard.cardnametxt:"+ cboard.cardNameText.text);
                 if(cboard.cardNameText.text == ele.Key)
                 {
-                    Debug.Log("yes");
+                    //Debug.Log("yes");
                     cboard.costText.text = obj.GetComponent<Card>().cost.ToString();
                     //获取名字
                     cboard.cardNameText.text = ele.Key;

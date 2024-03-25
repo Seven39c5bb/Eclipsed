@@ -9,6 +9,7 @@ public class Fight_EnemyTurn : FightUnit
 
     public override void Init()
     {
+        FightUI.instance.isEnemyTurn = true;
         Debug.Log("Enemy Turn Now");
         //将手牌中的牌全部移除
         //test
