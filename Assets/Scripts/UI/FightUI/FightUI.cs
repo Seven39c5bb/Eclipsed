@@ -14,7 +14,6 @@ public class FightUI : UIBase
     public static FightUI instance;
     public TextMeshProUGUI cardCount;
     public TextMeshProUGUI discardCount;
-    public TextMeshProUGUI health;
     public GameObject deckPanel;private bool deckPanelFlag = false;private Vector2 deckPanelStartPos;
     //test
     public GameObject deckViewer;
@@ -26,7 +25,6 @@ public class FightUI : UIBase
         cardCount=GameObject.Find("cardCount").GetComponent<TextMeshProUGUI>();
         discardCount=GameObject.Find("discardCount").GetComponent <TextMeshProUGUI>();
         deckPanel = GameObject.Find("deckPanel");deckPanelStartPos = deckPanel.GetComponent<RectTransform>().anchoredPosition;
-        health = GameObject.Find("playerHealth").GetComponent<TextMeshProUGUI>();
 
 
         cardList = new List<Card>();
@@ -48,8 +46,6 @@ public class FightUI : UIBase
         cardCount.text=CardManager.cardDesk.Count.ToString();
         discardCount.text=CardManager.discardDesk.Count.ToString();
 
-        //health
-        health.text = PlayerController.instance.HP.ToString() + "/" + PlayerController.instance.MaxHp.ToString();    
     }
     private void onClickEndTurn(GameObject obj,PointerEventData eventData)
     {

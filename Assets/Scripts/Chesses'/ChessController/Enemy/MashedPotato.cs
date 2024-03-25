@@ -13,6 +13,7 @@ public class MashedPotato : EnemyBase
         mobility = 2;//行动力
         moveModel = 1;//移动模式
         this.gameObject.tag = "Enemy";
+        chessName = "土豆泥";//棋子名称
 
         base.Start();//添加血条
         chessboardManager.AddChess(this.gameObject, Location);
