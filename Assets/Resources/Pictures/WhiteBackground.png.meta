@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0add14320a424de459bdfc9d6b570296
+guid: eb0c9379931d4054b9ccc818ed022b0d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9012760714436954521
-    second: MashedPotato_0
+      213: 3419579445345109759
+    second: WhiteBackground_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -98,22 +98,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MashedPotato_0
+      name: WhiteBackground_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        width: 1421
+        height: 1033
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9994c9d3e12c31d70800000000000000
-      internalID: 9012760714436954521
+      spriteID: ff6c5094369c47f20800000000000000
+      internalID: 3419579445345109759
       vertices: []
       indices: 
       edges: []
@@ -121,15 +121,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ccd6128fe89208244b2eaae3445ac23a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      MashedPotato_0: 9012760714436954521
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

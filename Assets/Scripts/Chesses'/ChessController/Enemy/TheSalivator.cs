@@ -14,8 +14,11 @@ public class TheSalivator : EnemyBase
         meleeAttackPower = 5;//近战攻击力
         mobility = 1;//行动力
         moveModel = 1;//移动模式
-        chessboardManager.AddChess(this.gameObject, Location);
         this.gameObject.tag = "Enemy";
+
+        base.Start();//添加血条
+        chessboardManager.AddChess(this.gameObject, Location);
+        
     }
 
     /// <summary>
