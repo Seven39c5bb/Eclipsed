@@ -90,8 +90,18 @@ public class FightUI : UIBase
         {
             if (cardList[i] != null)
             {
-                cardList[i].GetComponent<RectTransform>().DOAnchorPos(startPos, 0.7f);
+                Tween moveCard = cardList[i].GetComponent<RectTransform>().DOAnchorPos(startPos, 0.7f);
+                moveCard.OnComplete(() =>
+                {
+                    for (int i = 0; i < cardList.Count; i++)//遍历手牌中的卡，将初始位置设定为当前所在位置
+                    {
+                        cardList[i].startPos = cardList[i].transform.position;
+                        //Debug.Log(cardList[i].name+"now startPos :"+cardList[i].transform.position);
+                    }                                           
+                });
+                moveCard.Play();
                 startPos.x += offset;
+                
             }
             
         }

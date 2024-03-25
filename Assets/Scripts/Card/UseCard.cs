@@ -31,12 +31,12 @@ public class UseCard : MonoBehaviour,IDropHandler
 
         if (costManager.instance.curCost < curCard.GetComponent<Card>().cost)
         {
-            curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);
+            curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);            
             Debug.Log("no more cost");
             return;
         }
         curCard.GetComponent<Card>().CardFunc();
-
+        curCard.GetComponent<Card>().isUsed = true;
 
         //将使用的牌移至弃牌堆
         Discard(curCard);

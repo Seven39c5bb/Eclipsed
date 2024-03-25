@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -25,7 +26,11 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     //获取Canvas
     public Canvas canvas;
     //获取打出手牌时位置
-    public Vector3 startPos;
+    public Vector2 startPos;public bool isDrag = false;
+    //获取hover卡牌的位置
+    public Vector2 hoverPos;
+    //是否被使用
+    public bool isUsed = false;
     private void Awake()
     {
         
@@ -44,17 +49,34 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //减去和手牌区的相对位置
+        //startPos = this.transform.position;
+        Debug.Log(this.name + " startPos: " + startPos);
+        if(isDrag)
+        {
+            return;
+        }
         this.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+        hoverPos = this.GetComponent<RectTransform>().anchoredPosition;
+        this.GetComponent<RectTransform>().DOAnchorPos(new Vector2(this.GetComponent<RectTransform>().anchoredPosition.x,
+            hoverPos.y+10f), 0.1f);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        if(isDrag)
+        {
+            return;
+        }
         this.transform.localScale = new Vector3(1f, 1f, 1);
+        this.GetComponent<RectTransform>().DOAnchorPos(new Vector2(this.GetComponent<RectTransform>().anchoredPosition.x,
+            hoverPos.y), 0.1f);
     }
     #endregion
     #region ��ק���Ƶ�Ч��
     public void OnBeginDrag(PointerEventData eventData)
     {
-        startPos = this.transform.position;
+        isDrag = true;
+        //startPos = this.transform.position;
         canvasGroup.blocksRaycasts = false;
         Debug.Log("onbegindrag");
     }
@@ -66,8 +88,14 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     public void OnEndDrag(PointerEventData eventData)
     {
         //如果没有释放，回到初始位置
+        if(!isUsed)
+        {
+            this.GetComponent<RectTransform>().DOMove(this.GetComponent<Card>().startPos, 0.5f);
+        }
         canvasGroup.blocksRaycasts = true;
+        this.transform.localScale=new Vector3(1f, 1f, 1);
         Debug.Log("enddrag");
+        Invoke("EndDrag", 0.5f);
     }
     #endregion
     #region ����Ч��
@@ -76,5 +104,6 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
 
     }
     #endregion
+    public void EndDrag() { isDrag = false; }
 
 }

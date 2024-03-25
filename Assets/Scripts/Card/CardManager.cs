@@ -41,6 +41,10 @@ public class CardManager : MonoBehaviour
     {
         for(int i=0;i<num;i++)
         {
+            if(cardDesk.Count<=0)
+            {
+                UPdateDesk();
+            }
             string drawCard = cardDesk[Random.Range(0, cardDesk.Count - 1)];
             //生成一张牌到手中
             FightUI.instance.InstantiateCard(1,drawCard);
