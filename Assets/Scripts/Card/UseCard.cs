@@ -21,8 +21,8 @@ public class UseCard : MonoBehaviour,IDropHandler
     {
         //��ȡ��ǰʣ��
         //������ò��������ء�
-
         GameObject curCard = eventData.pointerDrag;//获取正在拖拽的卡牌对象
+        if (curCard.GetComponent<Card>()==null ) { return; }
         usingCard = curCard;
 
 
@@ -30,7 +30,9 @@ public class UseCard : MonoBehaviour,IDropHandler
         //���curCost�����ͷţ�����
 
         if (costManager.instance.curCost < curCard.GetComponent<Card>().cost)
+            
         {
+            Debug.Log("curcardcost: " + curCard.GetComponent<Card>().cost.ToString());
             curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);            
             Debug.Log("no more cost");
             return;
@@ -47,20 +49,27 @@ public class UseCard : MonoBehaviour,IDropHandler
     {
         FightUI.cardList.Remove(curCard.GetComponent<Card>());
         FightUI.instance.OnUpdateCardsPos();
-        curCard.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.5f);
-        Invoke("DestroyCard", 0.5f);
+        CardManager.discardDesk.Add(curCard.GetComponent<Card>().name);
+        curCard.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.5f).OnComplete(() =>
+        {
+            Destroy(curCard);
+        });
     }
 
-    public void DestroyCard() {CardManager.discardDesk.Add(usingCard.name); usingCard.SetActive(false);  }
+    //public void DestroyCard() {CardManager.discardDesk.Add(usingCard.name); usingCard.SetActive(false);  }
     public void RemoveAllCards()
     {
         //Debug.Log("touch!");//test
 
         for (int i=0;i<FightUI.cardList.Count;i++)
+        {            
+            FightUI.cardList.Remove(FightUI.cardList[i]); 
+        }
+        Transform handCardArea = GameObject.Find("handCardArea").GetComponent<Transform>();
+        for(int i=0; i < handCardArea.childCount; i++)
         {
-            FightUI.cardList[i].gameObject.SetActive(false);
-            FightUI.cardList[i].enabled = false;
-            FightUI.cardList.Remove(FightUI.cardList[i]);
+            Transform childT = handCardArea.GetChild(i);
+            Destroy(childT.gameObject);
         }
     }
 }

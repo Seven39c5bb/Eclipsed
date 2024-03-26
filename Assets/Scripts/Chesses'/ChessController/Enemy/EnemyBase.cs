@@ -7,6 +7,9 @@ public class EnemyBase : ChessBase
 {
     public int mobility;//行动力
     public int moveMode;//移动模式
+
+    public bool isActed = false;
+
     public virtual IEnumerator OnTurn()
     {
         //用BFS算法找到前往玩家的最短路径

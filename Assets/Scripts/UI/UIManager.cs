@@ -4,10 +4,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
+using TMPro;
 public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
-    public Transform canvasTf;//???
+    public Transform canvasTf;
     public List<UIBase> uiList;//存储加载的界面的集合
     private void Awake()
     {
@@ -93,5 +95,28 @@ public class UIManager : MonoBehaviour
             return ui.GetComponent<T>();
         }
         return null;
+    }
+    //提示轮到玩家回合
+    public void ShowTip(string msg,Color color,System.Action callback=null)
+    {
+        GameObject obj=Instantiate(Resources.Load("Prefabs/UI/PlayerTurnTip"),canvasTf) as GameObject;
+        TextMeshProUGUI text=GameObject.Find("tipMsg").GetComponent<TextMeshProUGUI>();
+        Debug.Log(text.text);
+        text.color = color;
+        text.text = msg;
+        Tween scale1 = obj.transform.DOScale(1, 0.2f);
+        Tween scale2 = obj.transform.DOScale(0, 0.2f);
+        DG.Tweening.Sequence seq = DOTween.Sequence();
+        seq.Append(scale1);
+        seq.AppendInterval(0.5f);
+        seq.Append(scale2);
+        seq.AppendCallback(delegate ()
+        {
+            if (callback != null)
+            {
+                callback();
+            }
+        });
+        MonoBehaviour.Destroy(obj, 1f);
     }
 }

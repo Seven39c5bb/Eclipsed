@@ -14,11 +14,11 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 共有属性
     public string chessName = "Chess";//棋子名称
     public int MaxHp = 10;//最大生命值
-    public int hp = 10;
+    public int Hp = 10;
     public int HP//当前生命值
     {
-        get { return hp; }
-        set { hp = Mathf.Clamp(value, 0, MaxHp); }
+        get { return Hp; }
+        set { Hp = Mathf.Clamp(value, 0, MaxHp); }
     }
 
     public int barrier = 0;//护盾值

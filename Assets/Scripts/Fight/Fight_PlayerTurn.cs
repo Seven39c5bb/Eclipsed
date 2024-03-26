@@ -7,11 +7,16 @@ public class Fight_PlayerTurn : FightUnit
     public override void Init()
     {
         Debug.Log("Player Trun now");
+        UIManager.Instance.ShowTip("Player Turn", Color.green, delegate ()
+        {
+            Debug.Log("抽卡");
+        });
         //��ʾ�ֵ���һغ϶���
         //update the cost
         costManager.instance.curCost = costManager.instance.maxCost;
         //draw card
         CardManager.instance.Draw(5);//test
+        FightUI.instance.isEnemyTurn = false;
     }
     public override void OnUpdate()
     {
