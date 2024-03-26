@@ -10,7 +10,7 @@ public class FightManager : MonoBehaviour
 {
     public static FightManager instance;
     public FightUnit fightUnit;
-    public string curFightType;
+    public FightType curFightType;
     private void Awake()
     {
         instance = this;
@@ -30,18 +30,23 @@ public class FightManager : MonoBehaviour
                 break; 
             case FightType.Init:
                 fightUnit=new FightInit();
+                curFightType = FightType.Init;
                 break;
             case FightType.Player:
                 fightUnit=new Fight_PlayerTurn();
+                curFightType=FightType.Player;
                 break;
             case FightType.Enemy:
                 fightUnit=new Fight_EnemyTurn();
+                curFightType = FightType.Enemy;
                 break;
             case FightType.Win:
                 fightUnit = new Fight_win();
+                curFightType=FightType.Win;
                 break;
             case FightType.Loss:
                 fightUnit=new Fight_Loss();
+                curFightType = FightType.Loss;
                 break;
         }
         fightUnit.Init();//初始化该战斗单元

@@ -7,9 +7,11 @@ public class GameConfig
 {
     public TextAsset deckAsset;
     public Dictionary<string, int> cardDeckData;
+    public static GameConfig instance;
     
     public void Init()
     {
+        instance = this;
         cardDeckData = new Dictionary<string, int>();
         //获取卡组文件txt 
         deckAsset = Resources.Load<TextAsset>("TextAssets/Initial deck");

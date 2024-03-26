@@ -7,6 +7,7 @@ using TMPro;
 using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using System.Reflection;
 
 public class FightUI : UIBase
 {
@@ -15,6 +16,8 @@ public class FightUI : UIBase
     public TextMeshProUGUI cardCount;
     public TextMeshProUGUI discardCount;
     public GameObject deckPanel;private bool deckPanelFlag = false;private Vector2 deckPanelStartPos;
+    //是否在敌人回合
+    public bool isEnemyTurn = false;
     //test
     public GameObject deckViewer;
     Dictionary<string, int> cardDic = new Dictionary<string, int>();
@@ -50,7 +53,11 @@ public class FightUI : UIBase
     private void onClickEndTurn(GameObject obj,PointerEventData eventData)
     {
         //测试：：切换到敌人回合
-        FightManager.instance.ChangeType(FightType.Enemy);           
+        if (!isEnemyTurn)
+        {
+            FightManager.instance.ChangeType(FightType.Enemy);   
+        }
+                
     }
     private void onClickCardDeck(GameObject obj, PointerEventData data)
     {
@@ -90,6 +97,7 @@ public class FightUI : UIBase
         }
         OnUpdateCardsPos();
     }
+    //更新卡牌在手牌区中的位置
     public void OnUpdateCardsPos()
     {
         float offset=400f/cardList.Count;
@@ -115,7 +123,7 @@ public class FightUI : UIBase
         }
     }
 
-
+    //初始化记牌器
     public void InitDeckPanel()
     {
         for (int i = 0; i < CardManager.cardDesk.Count; i++)
@@ -128,29 +136,41 @@ public class FightUI : UIBase
         {
             GameObject cardBoard = Instantiate(Resources.Load("Prefabs/UI/cardBoard"), GameObject.Find("Content").transform) as GameObject;
             //往下移动offset
-            cardBoard.transform.position += offset*times;
+            cardBoard.transform.position += offset / GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor * times;
             cardBoard.GetComponent<CardBoard>().cardNameText.text = ele.Key;
             boardList.Add(cardBoard.GetComponent<CardBoard>());
             times++;
         }        
     }
+    //更新记牌器
     public void UpdateDeckPanel()
     {
         //test
+        
         //遍历卡组，每遍历到一次该卡，该卡数量++
-        for (int i = 0; i < CardManager.cardDesk.Count; i++)
+        foreach (var ele in GameConfig.instance.cardDeckData)
         {
-            cardDic[CardManager.cardDesk[i]] = 0;//初始化卡组为0
+            cardDic[ele.Key] = 0;
         }
+        //for (int i = 0; i < CardManager.cardDesk.Count; i++)
+        //{
+        //    cardDic[CardManager.cardDesk[i]] = 0;//初始化卡组为0
+        //}
         
 
         for (int i = 0;i<CardManager.cardDesk.Count ; i++)
         {
+            if (CardManager.cardDesk[i].Contains("("))//去除clone
+            {
+                int index = CardManager.cardDesk[i].IndexOf("(");
+                CardManager.cardDesk[i] = CardManager.cardDesk[i].Substring(0, index);
+            }
+            //Debug.Log(CardManager.cardDesk[i]);
             cardDic[CardManager.cardDesk[i]]++;
         }
         foreach(var ele in cardDic)
         {
-            //实例化一个cardBoard，调整cardboard位置
+            //遍历每个board
             GameObject cardBoard = Resources.Load<GameObject>("Prefabs/UI/cardBoard");
 
             //从预制体中获取卡牌费用
@@ -159,10 +179,9 @@ public class FightUI : UIBase
             //遍历board列表
             foreach(var cboard in boardList)
             {
-                Debug.Log("cboard.cardnametxt:"+ cboard.cardNameText.text);
                 if(cboard.cardNameText.text == ele.Key)
                 {
-                    Debug.Log("yes");
+                    //Debug.Log(obj.name + " cost:" + obj.GetComponent<Card>().cost.ToString() + "num:" + ele.Value.ToString());
                     cboard.costText.text = obj.GetComponent<Card>().cost.ToString();
                     //获取名字
                     cboard.cardNameText.text = ele.Key;
@@ -173,6 +192,22 @@ public class FightUI : UIBase
             
 
         //test
+        }
+    }
+
+    //初始化EnemyStateBoard
+    public void InitEnemyStateBoard()
+    {
+        //设定间隔
+        Vector3 offset = new Vector3(0, -65, 0);
+        int times = 0;
+        //遍历敌人列表
+        foreach(var enemy in ChessboardManager.instance.enemyControllerList)
+        {
+            GameObject stateBoard = Instantiate(Resources.Load("Prefabs/UI/enemyStateBoard"), GameObject.Find("StateBoardAssem").transform) as GameObject;
+            stateBoard.transform.position += offset * times;
+            stateBoard.GetComponent<enemyStateBoard>().thisEnemy = enemy;//把敌人enemybase赋给enemyStateBoard
+            times++;
         }
     }
 }

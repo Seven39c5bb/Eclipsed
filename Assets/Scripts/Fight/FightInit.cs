@@ -8,6 +8,7 @@ public class FightInit : FightUnit
     public override void Init()
     {
         Debug.Log("this init fightunit init");
+        FightUI.instance.InitEnemyStateBoard();
         //test:添加几张牌进牌组
         //GameObject obj= Resources.Load("Prefabs/Card/up") as GameObject;
         //CardManager.instance.cardDesk.Add(obj.GetComponent<Card>());

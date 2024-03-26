@@ -59,9 +59,10 @@ public class CardManager : MonoBehaviour
     public void UPdateDesk()//更新牌组
     {
         cardDesk = new List<string>(discardDesk);
-        discardDesk.Clear();
+        discardDesk.Clear(); 
         //将弃牌堆中隐藏的卡牌全部清除
         GameObject handCardArea = GameObject.Find("handCardArea");
         Transform hcAreaTF= handCardArea.transform;
+        
     }
 }
