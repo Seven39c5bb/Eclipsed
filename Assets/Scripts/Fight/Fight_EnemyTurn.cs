@@ -16,10 +16,13 @@ public class Fight_EnemyTurn : FightUnit
 
         foreach(Card card in FightUI.cardList)
         {
-            card.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.2f);
             CardManager.discardDesk.Add(card.name);
+            card.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.2f).OnComplete(() =>
+            {
+                UseCard.instance.RemoveAllCards();
+            });            
             //UseCard.instance.Discard(card.gameObject);
-            UseCard.instance.Invoke("RemoveAllCards", 0.2f);
+            
         }
 
         //test
@@ -57,8 +60,10 @@ public class Fight_EnemyTurn : FightUnit
 
     IEnumerator OnTurnCoroutine(EnemyBase enemy)
     {
+        enemyList[0].isActed = true;
         Debug.Log("Current Enemy Turn Started");
         yield return enemy.OnTurn();
+        enemyList[0].isActed = false;
         Debug.Log("Current Enemy Turn Finished");
         enemyList.RemoveAt(0);
         currCoroutine = null;
