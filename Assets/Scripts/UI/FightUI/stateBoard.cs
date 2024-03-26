@@ -19,7 +19,7 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     public TextMeshProUGUI chessName;
     public TextMeshProUGUI detailedState;
     public TextMeshProUGUI CardDescription;
-    public CanvasGroup healthCanvasGroup;
+    public UnityEngine.UI.Image healthImage;
     public GameObject turnTip;
 
 
@@ -33,6 +33,7 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         //float healthAlpha = PlayerController.instance.HP / PlayerController.instance.MaxHp;
         //healthCanvasGroup.alpha = healthAlpha;
         chessHealth.text=PlayerController.instance.Hp.ToString();//test
+        healthImage.DOFillAmount((float)PlayerController.instance.Hp / PlayerController.instance.MaxHp, 0.5f);
         if (FightManager.instance.curFightType == FightType.Player)
         {
             turnTip.GetComponent<CanvasGroup>().DOFade(1, 0.2f);

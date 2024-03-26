@@ -20,7 +20,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI chessName;
     public TextMeshProUGUI detailedState;
     public TextMeshProUGUI CardDescription;
-    public CanvasGroup healthCanvasGroup;
+    public UnityEngine.UI.Image healthImage;
     public GameObject turnTip;
 
 
@@ -33,11 +33,12 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
     }
     private void Update()
     {
-        //提示回合
+        //锟斤拷示锟截猴拷
         if(thisEnemy.isActed) { turnTip.GetComponent<CanvasGroup>().DOFade(1, 0.2f); }
         if (!thisEnemy.isActed && turnTip.GetComponent<CanvasGroup>().alpha == 1) { turnTip.GetComponent<CanvasGroup>().DOFade(0, 0.2f); }
-        //血量变化
+        //血锟斤拷锟戒化
         chessHealth.text = thisEnemy.HP.ToString();
+        healthImage.DOFillAmount((float)thisEnemy.HP / thisEnemy.MaxHp, 0.5f);
         
     }
 

@@ -13,7 +13,7 @@ public class PlayerController : ChessBase
         instance = this;
         MaxHp = 80;//最大生命值
         HP = 80;//当前生命值
-        meleeAttackPower = 10;//近战攻击力
+        MeleeAttackPower = 10;//近战攻击力
         chessName = "魔女";//棋子名称
 
         base.Start();//添加血条
