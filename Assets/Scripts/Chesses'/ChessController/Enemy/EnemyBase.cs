@@ -6,7 +6,7 @@ using System.Linq;
 public class EnemyBase : ChessBase
 {
     public int mobility;//行动力
-    public int moveModel;//移动模式
+    public int moveMode;//移动模式
     public virtual IEnumerator OnTurn()
     {
         //用BFS算法找到前往玩家的最短路径
@@ -33,7 +33,7 @@ public class EnemyBase : ChessBase
             else
             {
 
-                Vector2Int nextDirection = (path[1] - Location) * moveModel;
+                Vector2Int nextDirection = (path[1] - Location) * moveMode;
                 //在移动前，还需要判断目标位置是否玩家已经进入射程，怪物会与玩家保持一定距离
                 /* Vector2Int nextLocation = Location + nextDirection;
                 while (WillIsPlayerInRange(nextLocation))
