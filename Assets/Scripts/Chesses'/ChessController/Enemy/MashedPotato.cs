@@ -9,9 +9,9 @@ public class MashedPotato : EnemyBase
         // 初始化敌人棋子
         MaxHp = 50;//最大生命值
         HP = 50;//当前生命值
-        meleeAttackPower = 13;//近战攻击力
+        MeleeAttackPower = 13;//近战攻击力
         mobility = 2;//行动力
-        moveModel = 1;//移动模式
+        moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "土豆泥";//棋子名称
 

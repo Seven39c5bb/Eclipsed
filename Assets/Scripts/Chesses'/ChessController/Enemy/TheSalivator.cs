@@ -13,7 +13,7 @@ public class TheSalivator : EnemyBase
         HP = 40;//当前生命值
         MeleeAttackPower = 5;//近战攻击力
         mobility = 1;//行动力
-        moveModel = 1;//移动模式
+        moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "泌涎者";//棋子名称
 

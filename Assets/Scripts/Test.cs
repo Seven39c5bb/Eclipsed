@@ -5,18 +5,23 @@ using UnityEngine.EventSystems;
 
 public class Test : MonoBehaviour
 {
-    public SpriteRenderer Renderer;
+    //public SpriteRenderer Renderer;
     private void Start()
     {
-        Renderer = GetComponent<SpriteRenderer>();
+        //Renderer = GetComponent<SpriteRenderer>();
     }
     private void OnMouseEnter()
     {
-        Renderer.color = Color.red;
+        //Renderer.color = Color.red;
     }
     private void OnMouseExit()
     {
-        Renderer.color = Color.white;
+        //Renderer.color = Color.white;
+    }
+
+    public void Try()
+    {
+        Debug.Log("Try");
     }
 
 }
