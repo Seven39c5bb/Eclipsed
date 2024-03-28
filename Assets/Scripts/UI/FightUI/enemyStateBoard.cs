@@ -53,7 +53,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
         chessHealth.text = thisEnemy.HP.ToString();
         if(healthImage.fillAmount != (float)thisEnemy.HP / thisEnemy.MaxHp) { healthImage.DOFillAmount((float)thisEnemy.HP / thisEnemy.MaxHp, 0.5f); }
 
-        if(isClicked)
+        if(isClicked && thisEnemy != null)
         {
             chessName.text = thisEnemy.name;
             HealthText.text = "currHealth: " + thisEnemy.HP;
@@ -69,18 +69,19 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
     bool isClicked = false;
     public void OnPointerClick(PointerEventData eventData)
     {
-        //detailedPanel.SetActive(!detailedPanel.activeSelf);
-        if (detailedPanel.GetComponent<CanvasGroup>().alpha == 0) 
+        if(thisEnemy != null)
         {
-            detailedPanel.GetComponent<CanvasGroup>().alpha = 1;
-            isClicked = true;
-        } 
-        else 
-        {
-            detailedPanel.GetComponent<CanvasGroup>().alpha = 0;
-            isClicked = false;
+            if (detailedPanel.GetComponent<CanvasGroup>().alpha == 0) 
+            {
+                detailedPanel.GetComponent<CanvasGroup>().alpha = 1;
+                isClicked = true;
+            } 
+            else 
+            {
+                detailedPanel.GetComponent<CanvasGroup>().alpha = 0;
+                isClicked = false;
+            }
+            detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);
         }
-        detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);
-        //Debug.Log(thisEnemy.name+" + "+ thisEnemy.HP);
     }
 }

@@ -131,36 +131,32 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
 
     public void OnHealthEnter()
     {
-        Debug.Log("Health");
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
         {ShowTooltip("This is the detailed explanation of health", "Health");}
     }
 
     public void OnBarrierEnter()
     {
-        Debug.Log("Barrier");
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
         {ShowTooltip("This is the detailed explanation of barrier", "Barrier");}
     }
 
     public void OnMobilityEnter()
     {
-        Debug.Log("Mobility");
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
         {ShowTooltip("This is the detailed explanation of mobility", "Mobility");}
     }
 
     public void OnMoveModeEnter()
     {
-        Debug.Log("Move Mode");
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
         {ShowTooltip("This is the detailed explanation of move mode", "Move Mode");}
     }
 
     public void OnMeleeAttackEnter()
     {
-        Debug.Log("Melee Attack");
-        if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1) ShowTooltip("This is the detailed explanation of melee attack", "Melee Attack");
+        if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1) 
+        ShowTooltip("This is the detailed explanation of melee attack", "Melee Attack");
     }
 
 
