@@ -199,13 +199,13 @@ public class FightUI : UIBase
     public void InitEnemyStateBoard()
     {
         //设定间隔
-        Vector3 offset = new Vector3(0, -65, 0);
+        Vector3 offset = new Vector3(0, -120, 0);
         int times = 0;
         //遍历敌人列表
         foreach(var enemy in ChessboardManager.instance.enemyControllerList)
         {
             GameObject stateBoard = Instantiate(Resources.Load("Prefabs/UI/enemyStateBoard"), GameObject.Find("StateBoardAssem").transform) as GameObject;
-            stateBoard.transform.position += offset * times;
+            stateBoard.transform.position += offset/ GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor * times;
             stateBoard.GetComponent<enemyStateBoard>().thisEnemy = enemy;//把敌人enemybase赋给enemyStateBoard
             times++;
         }
