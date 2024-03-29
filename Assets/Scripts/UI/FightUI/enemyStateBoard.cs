@@ -66,7 +66,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
         
     }
 
-    bool isClicked = false;
+    public bool isClicked = false;
     public void OnPointerClick(PointerEventData eventData)
     {
         if(thisEnemy != null)
@@ -74,12 +74,24 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
             if (detailedPanel.GetComponent<CanvasGroup>().alpha == 0) 
             {
                 detailedPanel.GetComponent<CanvasGroup>().alpha = 1;
+                detailedPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
                 isClicked = true;
             } 
-            else 
+            else if(isClicked == true)
             {
                 detailedPanel.GetComponent<CanvasGroup>().alpha = 0;
+                detailedPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
                 isClicked = false;
+            }
+            else//此面板未被点击，但具体信息面板被激活，说明其他面板被点击，将其他面板的点击状态设为false
+            {
+                enemyStateBoard[] enemyStateBoards = GameObject.FindObjectsOfType<enemyStateBoard>();
+                foreach (enemyStateBoard board in enemyStateBoards)
+                {
+                    board.isClicked = false;
+                }
+                stateBoard.instance.isClicked = false;
+                isClicked = true;
             }
             detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);
         }
