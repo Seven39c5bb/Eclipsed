@@ -6,7 +6,8 @@ public class ChessBase : MonoBehaviour //棋子基类
 {
     public ChessboardManager chessboardManager;
     public UnityEngine.UI.Image HPBar;//血条
-    public UnityEngine.UI.Image YellowHPBar;//黄色血条
+    public UnityEngine.UI.Image DamageHPBar;//受伤血条
+    public UnityEngine.UI.Image CureHPBar;//治疗血条
     public UnityEngine.UI.Image BarrierBar;//护盾条
     public Canvas HPBarCanvasPrefab;//血条画布
     public Canvas HPBarCanvasInstance;//血条画布实例
@@ -75,12 +76,13 @@ public class ChessBase : MonoBehaviour //棋子基类
 
         // 获取血条
         HPBar = HPBarCanvasInstance.transform.Find("Bar").GetComponent<UnityEngine.UI.Image>();
-        YellowHPBar = HPBarCanvasInstance.transform.Find("YellowBar").GetComponent<UnityEngine.UI.Image>();
+        DamageHPBar = HPBarCanvasInstance.transform.Find("DamageBar").GetComponent<UnityEngine.UI.Image>();
         BarrierBar = HPBarCanvasInstance.transform.Find("BarrierBar").GetComponent<UnityEngine.UI.Image>();
+        CureHPBar = HPBarCanvasInstance.transform.Find("CureBar").GetComponent<UnityEngine.UI.Image>();
 
         // 初始化血条的形状
         HPBar.fillAmount = (float)HP / MaxHp;
-        YellowHPBar.fillAmount = (float)HP / MaxHp;
+        DamageHPBar.fillAmount = (float)HP / MaxHp;
         BarrierBar.fillAmount = (float)Barrier / MaxHp;
     }
 
@@ -180,23 +182,45 @@ public class ChessBase : MonoBehaviour //棋子基类
             HP -= damageTaken;
             // 更新红色血条的形状
             HPBar.fillAmount = (float)HP / MaxHp;
+            // 更新绿色血条的形状
+            CureHPBar.fillAmount = (float)HP / MaxHp;
             // 延迟更新黄色血条的形状
-            Invoke("UpdateYellowHPBar", 0.5f); // 延迟0.5秒
+            Invoke("UpdateDamageHPBar", 0.5f); // 延迟0.5秒
             Debug.Log(gameObject.name + "受到了" + damageTaken + "点伤害");
             
         }
     }
 
     // 黄色血条动画
-    public void UpdateYellowHPBar()
+    public void UpdateDamageHPBar()
     {
-        YellowHPBar.DOFillAmount((float)HP / MaxHp, 0.5f) // 使用DoTween创建血条填充动画，动画持续0.5秒
+        DamageHPBar.DOFillAmount((float)HP / MaxHp, 0.5f) // 使用DoTween创建血条填充动画，动画持续0.5秒
         .OnComplete(() => // 在动画结束后执行以下代码
         {
             if (HP <= 0)
             {
                 Death();
             }
+        });
+    }
+
+    // 治疗方法
+    public virtual void Cure(int cureValue)
+    {
+        HP += cureValue;
+        // 更新绿色血条的形状
+        CureHPBar.fillAmount = (float)HP / MaxHp;
+        // 延迟更新蓝色血条的形状
+        Invoke("UpdateHPBar", 0.5f); // 延迟0.5秒
+        Debug.Log(gameObject.name + "受到了" + cureValue + "点治疗");
+    }
+
+    // 治疗时红色血条动画,治疗完成后更新血条
+    public void UpdateHPBar()
+    {
+        HPBar.DOFillAmount((float)HP / MaxHp, 0.5f).OnComplete(() =>
+        {
+            DamageHPBar.fillAmount = (float)HP / MaxHp;
         });
     }
 

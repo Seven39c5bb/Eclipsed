@@ -254,7 +254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
   HPBar: {fileID: 0}
-  YellowHPBar: {fileID: 0}
+  DamageHPBar: {fileID: 0}
+  CureHPBar: {fileID: 0}
   BarrierBar: {fileID: 0}
   HPBarCanvasPrefab: {fileID: 0}
   HPBarCanvasInstance: {fileID: 0}
@@ -470,6 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &55955787
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -589,6 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &73256343
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1000,6 +1003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &172550711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1160,6 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &184360885
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1279,6 +1284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &199905784
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1398,6 +1404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &210133931
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1497,7 +1504,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
   HPBar: {fileID: 0}
-  YellowHPBar: {fileID: 0}
+  DamageHPBar: {fileID: 0}
+  CureHPBar: {fileID: 0}
   BarrierBar: {fileID: 0}
   HPBarCanvasPrefab: {fileID: 0}
   HPBarCanvasInstance: {fileID: 0}
@@ -1629,6 +1637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &232369562
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1748,6 +1757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &267205028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1867,6 +1877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &283027225
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1986,6 +1997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &287299014
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2172,7 +2184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873997418388549185, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 97.90873
+      value: 97.90948
       objectReference: {fileID: 0}
     - target: {fileID: 2660247976005304229, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2284,6 +2296,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4960297766746840639, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960297766746840639, guid: 732d7551e5b67604c934138c40908828, type: 3}
+      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5058087497763477222, guid: 732d7551e5b67604c934138c40908828, type: 3}
@@ -2549,6 +2565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &347525442
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2668,6 +2685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &350332273
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2787,6 +2805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &471870240
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2987,6 +3006,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &516872852
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3106,6 +3126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &581316034
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3225,6 +3246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &618188066
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3428,6 +3450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &654438929
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3547,6 +3570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &697297813
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4052,6 +4076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &736383013
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4171,6 +4196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &742107569
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4290,6 +4316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &743407226
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4409,6 +4436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &760105106
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4528,6 +4556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &780845204
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4815,6 +4844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &827776845
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4934,6 +4964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &836442651
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5053,6 +5084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &881418552
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5172,6 +5204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &896630340
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5291,6 +5324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &903072295
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5410,6 +5444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &915956863
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5529,6 +5564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &943140972
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5648,6 +5684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &946605959
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5767,6 +5804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &963153542
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5970,6 +6008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &984802688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6089,6 +6128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1009600286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6208,6 +6248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1046618783
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6411,6 +6452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1056921968
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6530,6 +6572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1106353902
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6649,6 +6692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1121111510
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6768,6 +6812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1135982148
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6918,6 +6963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!65 &1149202028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7090,6 +7136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1209448839
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7209,6 +7256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1212096519
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7328,6 +7376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1212992732
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7481,6 +7530,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1270145736
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7565,7 +7615,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
   HPBar: {fileID: 0}
-  YellowHPBar: {fileID: 0}
+  DamageHPBar: {fileID: 0}
+  CureHPBar: {fileID: 0}
   BarrierBar: {fileID: 0}
   HPBarCanvasPrefab: {fileID: 0}
   HPBarCanvasInstance: {fileID: 0}
@@ -7712,6 +7763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1297949688
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7831,6 +7883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1313446122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7950,6 +8003,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1325976504
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8245,6 +8299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1388360420
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8364,6 +8419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1423042572
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8651,6 +8707,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1446441031
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8810,6 +8867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1485326320
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8929,6 +8987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1487322434
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9172,6 +9231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1504879489
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9446,6 +9506,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1526785273
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9565,6 +9626,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1530555763
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9684,6 +9746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1541146147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9803,6 +9866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1547900530
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -9922,6 +9986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1554206497
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10041,6 +10106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1559114532
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10160,6 +10226,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1636256786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10279,6 +10346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1646233516
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10398,6 +10466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1672110071
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10517,6 +10586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1725312053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10636,6 +10706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1735677548
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10755,6 +10826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1803756994
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10874,6 +10946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1810822865
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10993,6 +11066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1824526970
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11112,6 +11186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1827200647
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11315,6 +11390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1860494613
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11434,6 +11510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1868320575
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11592,6 +11669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1881937233
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11711,6 +11789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1904981727
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11830,6 +11909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1913918416
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12033,6 +12113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1926246258
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12152,6 +12233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1932937152
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12271,6 +12353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1947533696
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12477,6 +12560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &1975580556
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12580,6 +12664,7 @@ GameObject:
   - component: {fileID: 2031392134}
   - component: {fileID: 2031392133}
   - component: {fileID: 2031392132}
+  - component: {fileID: 2031392135}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12661,6 +12746,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+--- !u!114 &2031392135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031392131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!1 &2032229570
 GameObject:
   m_ObjectHideFlags: 0
@@ -12812,6 +12910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &2032390534
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13206,7 +13305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chessboardManager: {fileID: 0}
   HPBar: {fileID: 0}
-  YellowHPBar: {fileID: 0}
+  DamageHPBar: {fileID: 0}
+  CureHPBar: {fileID: 0}
   BarrierBar: {fileID: 0}
   HPBarCanvasPrefab: {fileID: 0}
   HPBarCanvasInstance: {fileID: 0}
@@ -13284,6 +13384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &2089047756
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13403,6 +13504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &2134050708
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13522,6 +13624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52f3f88e13ab184ea9ca858c2fd0fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cureButton: 0
 --- !u!212 &2144107569
 SpriteRenderer:
   m_ObjectHideFlags: 0

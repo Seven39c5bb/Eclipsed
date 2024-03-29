@@ -10,6 +10,15 @@ public class Test : MonoBehaviour
     {
         //Renderer = GetComponent<SpriteRenderer>();
     }
+    public bool cureButton = false;
+    private void Update()
+    {
+        if(cureButton)
+        {
+            PlayerController.instance.Cure(20);
+            cureButton = false;
+        }
+    }
     private void OnMouseEnter()
     {
         //Renderer.color = Color.red;
