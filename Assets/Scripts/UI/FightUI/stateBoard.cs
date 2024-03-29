@@ -73,13 +73,13 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
 
         if (isClicked)
         {
-            chessName.text = PlayerController.instance.name;
+            chessName.text = PlayerController.instance.chessName;
             CardDescription.text = description;
-            HealthText.text = "currHealth: " + PlayerController.instance.Hp;
-            BarrierText.text = "Barrier: " + PlayerController.instance.Barrier;
-            MobilityText.text = "Mobility: --";
-            MoveModeText.text = "MoveMode: --";
-            MeleeAttackText.text = "MeleeAttack: " + PlayerController.instance.MeleeAttackPower;
+            HealthText.text = "生命值: " + PlayerController.instance.Hp;
+            BarrierText.text = "护盾值: " + PlayerController.instance.Barrier;
+            MobilityText.text = "行动力: --";
+            MoveModeText.text = "行为模式: --";
+            MeleeAttackText.text = "近战伤害: " + PlayerController.instance.MeleeAttackPower;
         }
 
         if (isTooltipActive)
@@ -132,31 +132,31 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     public void OnHealthEnter()
     {
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
-        {ShowTooltip("This is the detailed explanation of health", "Health");}
+        {ShowTooltip("角色所拥有的生命力数值。当生命值跌落至0或以下时，该角色将会死亡。", "生命值");}
     }
 
     public void OnBarrierEnter()
     {
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
-        {ShowTooltip("This is the detailed explanation of barrier", "Barrier");}
+        {ShowTooltip("用于抵挡即将受到的伤害，会优先于生命值扣除。", "护盾值");}
     }
 
     public void OnMobilityEnter()
     {
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
-        {ShowTooltip("This is the detailed explanation of mobility", "Mobility");}
+        {ShowTooltip("决定该角色在自己回合能进行移动的次数。如：行动力为2的角色，则它的回合内可以进行2次移动。", "行动力");}
     }
 
     public void OnMoveModeEnter()
     {
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
-        {ShowTooltip("This is the detailed explanation of move mode", "Move Mode");}
+        {ShowTooltip("决定该角色每次移动行动的格数，有：行走（每次走一格）、跳跃（每次走三格）、工具（每次走两格）、飞行（每次走四格）、特殊（根据怪物特性决定）等。", "行动模式");}
     }
 
     public void OnMeleeAttackEnter()
     {
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1) 
-        ShowTooltip("This is the detailed explanation of melee attack", "Melee Attack");
+        ShowTooltip("角色的近战伤害数值决定角色对敌人进行碰撞时造成的伤害。角色进行行动与敌人发生碰撞时，会停在行动方向上、被碰撞目标的身前一格，并对被碰撞目标造成 “自身近战伤害 × 发生碰撞时本该移动的格数” 的伤害，且自身受到一次敌方的近战伤害。", "近战伤害");
     }
 
 

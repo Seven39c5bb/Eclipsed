@@ -55,12 +55,12 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
 
         if(isClicked && thisEnemy != null)
         {
-            chessName.text = thisEnemy.name;
-            HealthText.text = "currHealth: " + thisEnemy.HP;
-            BarrierText.text = "Barrier: " + thisEnemy.Barrier;
-            MobilityText.text = "Mobility: " + thisEnemy.mobility;
-            MoveModeText.text = "MoveMode: " + thisEnemy.moveMode;
-            MeleeAttackText.text = "MeleeAttack: " + thisEnemy.MeleeAttackPower;
+            chessName.text = thisEnemy.chessName;
+            HealthText.text = "生命值: " + thisEnemy.HP;
+            BarrierText.text = "护盾值: " + thisEnemy.Barrier;
+            MobilityText.text = "行动力: " + thisEnemy.mobility;
+            MoveModeText.text = "行为模式: " + thisEnemy.moveMode;
+            MeleeAttackText.text = "近战伤害: " + thisEnemy.MeleeAttackPower;
             CardDescription.text = description;
         }
         
