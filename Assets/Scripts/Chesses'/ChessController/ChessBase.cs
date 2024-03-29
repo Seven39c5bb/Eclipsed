@@ -71,6 +71,7 @@ public class ChessBase : MonoBehaviour //棋子基类
         // 设置血条画布的位置
         RectTransform rt = HPBarCanvasInstance.GetComponent<RectTransform>();
         rt.anchoredPosition = new Vector2(0, 1); // 这里的值可能需要根据你的游戏进行调整
+        rt.localScale = new Vector3(1 / transform.localScale.x, 1 / transform.localScale.y, 1 / transform.localScale.z);
 
         // 获取血条
         HPBar = HPBarCanvasInstance.transform.Find("Bar").GetComponent<UnityEngine.UI.Image>();

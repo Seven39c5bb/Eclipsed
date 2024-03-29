@@ -28,11 +28,14 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     private TextMeshProUGUI MoveModeText;
     private TextMeshProUGUI MeleeAttackText;
     
+    public static stateBoard instance;
 
 
 
     private void Awake()
     {
+        instance = this;
+
         detailedPanel = GameObject.Find("detailedStatePanel");
         chessName=GameObject.Find("chessName").GetComponent<TextMeshProUGUI>();
         CardDescription = GameObject.Find("CardDescription").GetComponent<TextMeshProUGUI>();
@@ -88,19 +91,31 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         }
     }
 
-    bool isClicked = false;
+    public bool isClicked = false;
     public void OnPointerClick(PointerEventData eventData)
     {
         //detailedPanel.SetActive(!detailedPanel.activeSelf);
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 0) 
         {
             detailedPanel.GetComponent<CanvasGroup>().alpha = 1;
+            detailedPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
             isClicked = true;
         } 
-        else 
+        else if(isClicked == true)
         {
             detailedPanel.GetComponent<CanvasGroup>().alpha = 0;
+            detailedPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
             isClicked = false;
+        }
+        else//此面板未被点击，但具体信息面板已被打开，说明其他面板被点击，将其关闭
+        {
+            //查询所有的enemyStateBoard，将其isClicked设为false
+            enemyStateBoard[] enemyStateBoards = GameObject.FindObjectsOfType<enemyStateBoard>();
+            foreach (enemyStateBoard enemyStateBoard in enemyStateBoards)
+            {
+                enemyStateBoard.isClicked = false;
+            }
+            isClicked = true;
         }
         detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);
         //Debug.Log(thisEnemy.name+" + "+ thisEnemy.HP);
