@@ -15,6 +15,7 @@ public class Cell : MonoBehaviour
     public StateType state = StateType.Empty;
     public GameObject occupant = null;
     
+    public bool isBloodPool = false;//是否是血池
 
     SpriteRenderer spriteRenderer;
     Color originColor;
@@ -32,8 +33,9 @@ public class Cell : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        // 将颜色设置为红色
-        spriteRenderer.color = new Color(1, 0, 0, 0.05f);
+        // 将颜色设置为透明
+        originColor = spriteRenderer.color;
+        spriteRenderer.color = new Color(0, 0, 0, 0.05f);
     }
     private void OnMouseExit()
     {
