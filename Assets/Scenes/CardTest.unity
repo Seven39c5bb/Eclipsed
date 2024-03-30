@@ -1978,7 +1978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873997418388549185, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 97.908585
+      value: 97.90883
       objectReference: {fileID: 0}
     - target: {fileID: 2660247976005304229, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13377,6 +13377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MashedPotato
       objectReference: {fileID: 0}
+    - target: {fileID: 7358497788306116073, guid: 95a65de205443dd4d9728a450c8c3b87, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13499,6 +13503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flesh
       objectReference: {fileID: 0}
+    - target: {fileID: 5131637616410256055, guid: 0857fb6eff241af4fb233851c96f3845, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13515,6 +13523,10 @@ PrefabInstance:
     - target: {fileID: 4163354338495783456, guid: 84646c1383db9094f842114ff4495858, type: 3}
       propertyPath: m_Name
       value: TheSalivator
+      objectReference: {fileID: 0}
+    - target: {fileID: 4163354338495783456, guid: 84646c1383db9094f842114ff4495858, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6519588367439359724, guid: 84646c1383db9094f842114ff4495858, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13572,6 +13584,10 @@ PrefabInstance:
     - target: {fileID: 3646671108097370929, guid: aa42a7ab63eae8447a5d1957407913f2, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3646671108097370929, guid: aa42a7ab63eae8447a5d1957407913f2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3848905390634608224, guid: aa42a7ab63eae8447a5d1957407913f2, type: 3}
       propertyPath: m_LocalPosition.x
