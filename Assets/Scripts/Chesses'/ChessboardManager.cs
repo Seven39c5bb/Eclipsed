@@ -27,14 +27,23 @@ public class ChessboardManager : MonoBehaviour
             }
         }
 
-        enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-
-        foreach (GameObject enemy in enemyList)
-        {
-            enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
-        }
+        UpdateEnemyControllerList();
 
         instance = this;
+    }
+
+    public void UpdateEnemyControllerList()
+    {
+        enemyList.Clear();
+        enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
+        enemyControllerList.Clear();
+        foreach (GameObject enemy in enemyList)//要考虑List中的对象可能已经被销毁
+        {
+            if(!UnityEngine.Object.Equals(enemy, null))
+            {
+                enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
+            }
+        }
     }
     
 
