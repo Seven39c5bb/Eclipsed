@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
+using DG.Tweening;
 public class MapNode : MonoBehaviour
 {
     // 是否被锁定
     public bool isLocked;
 
     // id
-    public Vector3Int nodeId;
+    public Vector2Int nodeId;
     
     // 相邻节点
-    public MapNode preNode;//先驱节点
-    public MapNode nextNode;//后继节点
+    public List<MapNode> nextNodes;//后继节点们
+
+    //左右节点意味着与当前节点同层的节点
     public MapNode leftNode;//左侧节点
     public MapNode rightNode;//右侧节点
 
@@ -20,16 +22,109 @@ public class MapNode : MonoBehaviour
     public enum NodeType
     {
         Origin,
+
+        // 该部分为随机节点
         Fight,
         Elite,
-        Shop,
+        Hunting,
         Event,
+
+        // 该部分为固定分节点
+        Plot,
+        Shop,
+
+        // 该部分为固定终节点
         Boss
     }
 
+    public NodeType nodeType; 
+
     // 储存战斗类节点关卡信息的Txt文件
-    public TextAsset fightNodeInfo;
+    private TextAsset fightNodeInfo;//根据当前节点id确定位置，随机抽取对应战斗布置
 
     // 跳转的场景
-    public string sceneName;
+    private string sceneName;//将会从存档文件中读取
+
+    public SpriteRenderer Renderer;
+
+
+    void Start()
+    {
+        Renderer = GetComponent<SpriteRenderer>();
+
+        MapManager.Instance.mapNodes[nodeId.x][nodeId.y] = this;
+
+        // 以父对象的位置为中心，半径为1的范围，随机旋转一个位置作为自己的新位置
+        float angle = Random.Range(0, 360);
+        float radius = Random.Range(0.2f, 1);
+        this.transform.position = this.transform.parent.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+
+        // 生成路径
+        //PathGenerate();
+    }
+
+    private void OnMouseEnter()
+    {
+        if (isLocked)
+            return;
+        
+        // 放大节点
+        this.transform.localScale = this.transform.localScale * 1.2f;
+
+    }
+
+    private void OnMouseOver()
+    {
+        if (isLocked)
+            return;
+
+        // 玩家点击该节点时
+        if (Input.GetMouseButtonDown(0))
+        {
+            // 先将节点调成黄色，然后再调整回来
+            Renderer.DOColor(Color.yellow, 0.05f).OnComplete(() =>
+            {
+                Renderer.DOColor(Color.white, 0.05f);
+            });
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        if (isLocked)
+            return;
+
+        // 还原节点的大小
+        this.transform.localScale = this.transform.localScale / 1.2f;
+    }
+
+
+
+
+
+    public void PathGenerate()
+    {
+        // 在该节点和该节点的后继节点之间生成虚线
+        foreach (MapNode nextNode in nextNodes)
+        {
+            GameObject lineObj = new GameObject();
+            lineObj.transform.position = this.transform.position;
+            LineRenderer line = lineObj.AddComponent<LineRenderer>();
+            
+            // 设置线的属性
+            line.material = new Material(Shader.Find("Sprites/Default")); // 设置材质
+            line.startColor = line.endColor = Color.grey; // 设置颜色
+            line.startWidth = line.endWidth = 0.15f; // 设置宽度
+            line.sortingOrder = -1; // 设置渲染顺序
+
+            // 设置虚线
+            line.textureMode = LineTextureMode.Tile;
+            line.material.mainTextureScale = new Vector2(0.1f, 1f); // 调整这个值可以改变虚线的样式
+
+            // 设置线的位置
+            line.positionCount = 2;
+            line.SetPosition(0, this.transform.position);
+            line.SetPosition(1, nextNode.transform.position);
+        }
+    }
 }
