@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using DG.Tweening;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class FightInit : FightUnit
     private Dictionary<string, List<Vector2Int>> enemyPositions = new Dictionary<string, List<Vector2Int>>();//储存敌人与位置的字典
     private Vector2Int playerInitPos;//玩家初始位置
     private string chessboardSettingName;//棋盘设置文件名
+    private CanvasGroup blackCanvas;//黑幕
     public override void Init()
     {
         Debug.Log("this init fightunit init");
@@ -85,6 +87,17 @@ public class FightInit : FightUnit
         ChessboardManager.instance.UpdateEnemyControllerList();
 
         FightUI.instance.InitEnemyStateBoard();
+
+        //使用Dotween黑幕淡出
+        /* blackCanvas = GameObject.Find("BlackCanvas").GetComponent<CanvasGroup>();
+        blackCanvas.DOFade(0, 0.5f).OnComplete(() =>
+        {
+            //初始化完成后切换到玩家回合
+            //FightManager.instance.ChangeType(FightType.Player);
+        }); */
+        
+        
+
         //test:添加几张牌进牌组
         //GameObject obj= Resources.Load("Prefabs/Card/up") as GameObject;
         //CardManager.instance.cardDesk.Add(obj.GetComponent<Card>());
