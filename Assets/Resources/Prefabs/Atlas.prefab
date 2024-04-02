@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 9, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 1, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 10, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 9, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 10, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 7, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -1674,7 +1674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 11, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -1814,7 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 3, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -1954,7 +1954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 6, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -2094,7 +2094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 10, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -2234,7 +2234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 11, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -2459,7 +2459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 5, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -2854,7 +2854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 8, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -3079,7 +3079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 12, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -3146,7 +3146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3553642816938583117}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -3294,7 +3294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 6, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -3519,7 +3519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 11, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -3829,7 +3829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 1, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -4054,7 +4054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 6, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -4194,7 +4194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 5, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -4674,7 +4674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 3, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -4899,7 +4899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 2, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -5039,7 +5039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 5, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -5179,7 +5179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 7, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -5319,7 +5319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 3, y: 2}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -6054,7 +6054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 2, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -6279,7 +6279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 9, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -6504,7 +6504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 1, y: 0}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -6644,7 +6644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 7, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -6784,7 +6784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 2, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}
@@ -7009,7 +7009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ec6f745f07408a438df19987c015f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
+  isLocked: 1
   nodeId: {x: 4, y: 1}
   nextNodes: []
   leftNode: {fileID: 0}

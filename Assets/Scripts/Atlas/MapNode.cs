@@ -6,7 +6,7 @@ using DG.Tweening;
 public class MapNode : MonoBehaviour
 {
     // 是否被锁定
-    public bool isLocked;
+    public bool isLocked = true;
 
     // id
     public Vector2Int nodeId;
@@ -21,7 +21,6 @@ public class MapNode : MonoBehaviour
     // 节点类型
     public enum NodeType
     {
-        Origin,
 
         // 该部分为随机节点
         Fight,
@@ -47,10 +46,12 @@ public class MapNode : MonoBehaviour
 
     public SpriteRenderer Renderer;
 
+    private Vector3 originLocalScale;
 
     void Start()
     {
         Renderer = GetComponent<SpriteRenderer>();
+        originLocalScale = this.transform.localScale;
 
         MapManager.Instance.mapNodes[nodeId.x][nodeId.y] = this;
 
@@ -58,6 +59,17 @@ public class MapNode : MonoBehaviour
         float angle = Random.Range(0, 360);
         float radius = Random.Range(0.2f, 1);
         this.transform.position = this.transform.parent.position + new Vector3(Mathf.Cos(angle) * radius, Mathf.Sin(angle) * radius, 0);
+
+        // 被锁定的节点设置为灰色
+        if (isLocked)
+        {
+            Renderer.color = new Color(75f/255f, 75f/255f, 75f/255f, 1);
+        }
+        // 未被锁定的节点设置为白色
+        else
+        {
+            Renderer.color = new Color(198f/255f, 157f/255f, 1, 1);
+        }
 
         // 生成路径
         //PathGenerate();
@@ -84,7 +96,30 @@ public class MapNode : MonoBehaviour
             // 先将节点调成黄色，然后再调整回来
             Renderer.DOColor(Color.yellow, 0.05f).OnComplete(() =>
             {
-                Renderer.DOColor(Color.white, 0.05f);
+                Renderer.DOColor(Color.white, 0.05f);// 将已经探索过的节点调成白色
+                this.transform.localScale = originLocalScale;// 还原节点的大小
+                // 将本层的节点（左右节点一直访问直到为空）全部锁定
+                MapNode tempNode = this;
+                while (tempNode != null)
+                {
+                    tempNode.isLocked = true;
+                    tempNode.Renderer.color = new Color(75f/255f, 75f/255f, 75f/255f, 1);
+                    tempNode = tempNode.leftNode;
+                }
+                tempNode = this.rightNode;
+                while (tempNode != null)
+                {
+                    tempNode.isLocked = true;
+                    tempNode.Renderer.color = new Color(75f/255f, 75f/255f, 75f/255f, 1);
+                    tempNode = tempNode.rightNode;
+                }
+
+                // 将nextNodes中的节点解锁
+                foreach (MapNode nextNode in nextNodes)
+                {
+                    nextNode.isLocked = false;
+                    nextNode.Renderer.color = new Color(198f/255f, 157f/255f, 1, 1);
+                }
             });
         }
     }
@@ -95,7 +130,7 @@ public class MapNode : MonoBehaviour
             return;
 
         // 还原节点的大小
-        this.transform.localScale = this.transform.localScale / 1.2f;
+        this.transform.localScale = originLocalScale;
     }
 
 
@@ -125,6 +160,35 @@ public class MapNode : MonoBehaviour
             line.positionCount = 2;
             line.SetPosition(0, this.transform.position);
             line.SetPosition(1, nextNode.transform.position);
+        }
+    }
+
+    public void SetNodeSprite()
+    {
+        // 根据节点类型设置节点的图片
+        switch (nodeType)
+        {
+            case NodeType.Fight:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Fight");
+                break;
+            case NodeType.Elite:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Elite");
+                break;
+            case NodeType.Hunting:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Hunting");
+                break;
+            case NodeType.Event:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Event");
+                break;
+            case NodeType.Plot:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Plot");
+                break;
+            case NodeType.Shop:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Shop");
+                break;
+            case NodeType.Boss:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Boss");
+                break;
         }
     }
 }
