@@ -163,4 +163,36 @@ public class MapNode : MonoBehaviour
             line.SetPosition(1, nextNode.transform.position);
         }
     }
+
+    public void SetNodeSprite()
+    {
+        // 根据节点类型设置节点的图片
+        switch (nodeType)
+        {
+            case NodeType.Origin:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Origin");
+                break;
+            case NodeType.Fight:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Fight");
+                break;
+            case NodeType.Elite:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Elite");
+                break;
+            case NodeType.Hunting:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Hunting");
+                break;
+            case NodeType.Event:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Event");
+                break;
+            case NodeType.Plot:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Plot");
+                break;
+            case NodeType.Shop:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Shop");
+                break;
+            case NodeType.Boss:
+                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Boss");
+                break;
+        }
+    }
 }

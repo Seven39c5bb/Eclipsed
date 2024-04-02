@@ -7,11 +7,27 @@ public class MapManager : MonoBehaviour
 {
     public static MapManager Instance;
     public MapNode[][] mapNodes;
+    public bool isHunted;
+
+    public enum AtlasID
+    {
+        Atlas_1,
+        Atlas_2,
+        Atlas_3,
+        Atlas_4
+    }
+
+    public AtlasID currAtlasID = AtlasID.Atlas_1;
+
 
     private void Awake()
     {
         Instance = this;
-        mapNodes = new MapNode[13][];
+
+        // 从存档中读取当前地区
+        // currAtlasID = .......
+
+        mapNodes = new MapNode[14][];
         for (int i = 0; i < mapNodes.Length; i++)
         {
             mapNodes[i] = new MapNode[3];
@@ -43,10 +59,13 @@ public class MapManager : MonoBehaviour
                 }
             }
 
-            // (12,1)为终点，其前驱节点为(11,0),(11,1),(11,2)
+            // (12,1)为前商店，其前驱节点为(11,0),(11,1),(11,2)
             mapNodes[11][0].nextNodes.Add(mapNodes[12][1]);
             mapNodes[11][1].nextNodes.Add(mapNodes[12][1]);
             mapNodes[11][2].nextNodes.Add(mapNodes[12][1]);
+
+            // (13,1)为终点，其前驱节点为(12,1)
+            mapNodes[12][1].nextNodes.Add(mapNodes[13][1]);
 
             // 除已确定后继的节点，其他节点的后继节点为下一层的同行节点
             for (int i = 1; i < 11; i++)
@@ -114,6 +133,268 @@ public class MapManager : MonoBehaviour
                     // 生成岔路
                     startNode.nextNodes.Add(endNode);
                 }
+
+            }
+
+            // 针对地区一二三，有不同的节点类型分配方案
+            // 区域1为 (1,0)-(3,2)
+            // 区域2为 (5,0)-(7,2)
+            // 区域3为 (9,0)-(11,2)
+            List<MapNode.NodeType> nodeTypes = new List<MapNode.NodeType>();
+            switch (currAtlasID)
+            {
+                case AtlasID.Atlas_1:
+                    // 为每个节点分配类型
+                    // 每个region有不同的分配方案
+                    // region 1
+                    // Hunting * 1 , Event * (1 ~ 3) , 剩下的是Fight;
+                    // 创建一个列表，其中包含所有的节点类型
+
+                    // 添加Hunting节点
+                    nodeTypes.Add(MapNode.NodeType.Hunting);
+
+                    // 随机添加1到3个Event节点
+                    int numEvents = Random.Range(1, 4);
+                    for (int i = 0; i < numEvents; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Event);
+                    }
+
+                    // 剩下的都是Fight节点
+                    while (nodeTypes.Count < 7)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Fight);
+                    }
+
+                    // 为该区域每个节点随机分配一个类型
+                    for (int row = 1; row <= 3; row++)
+                    {
+                        for (int col = 0; col <= 2; col++)
+                        {
+                            MapNode node = mapNodes[row][col];
+                            if (row == 1) // 如果是第一层，设置为战斗
+                            {
+                                node.nodeType = MapNode.NodeType.Fight;
+                            }
+                            else
+                            {
+                                int index = Random.Range(0, nodeTypes.Count);
+                                node.nodeType = nodeTypes[index];
+                                nodeTypes.RemoveAt(index);
+                            }
+                        }
+                    }
+                    
+                    // region 2
+                    // Hunting * 1 , Elite * (1 ~ 2) , Event * (1 ~ 2) , 剩下的是Fight;
+                    nodeTypes.Clear();
+                    nodeTypes.Add(MapNode.NodeType.Hunting);
+                    int numElites = Random.Range(1, 3);
+                    for (int i = 0; i < numElites; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Elite);
+                    }
+                    int numEvents2 = Random.Range(1, 3);
+                    for (int i = 0; i < numEvents2; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Event);
+                    }
+                    while (nodeTypes.Count < 7)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Fight);
+                    }
+                    for (int row = 5; row <= 7; row++)
+                    {
+                        for (int col = 0; col <= 2; col++)
+                        {
+                            MapNode node = mapNodes[row][col];
+                            if (row == 5) // 如果是第一层，设置为战斗
+                            {
+                                node.nodeType = MapNode.NodeType.Fight;
+                            }
+                            else
+                            {
+                                int index = Random.Range(0, nodeTypes.Count);
+                                node.nodeType = nodeTypes[index];
+                                nodeTypes.RemoveAt(index);
+                            }
+                        }
+                    }
+
+                    // region 3
+                    // Hunting * 1 , Elite * 2 , Event * (1 ~ 2) , 剩下的是Fight;
+                    nodeTypes.Clear();
+                    nodeTypes.Add(MapNode.NodeType.Hunting);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Elite);
+                    }
+                    int numEvents3 = Random.Range(1, 3);
+                    for (int i = 0; i < numEvents3; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Event);
+                    }
+                    while (nodeTypes.Count < 7)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Fight);
+                    }
+                    for (int row = 9; row <= 11; row++)
+                    {
+                        for (int col = 0; col <= 2; col++)
+                        {
+                            MapNode node = mapNodes[row][col];
+                            if (row == 9) // 如果是第一层，设置为战斗
+                            {
+                                node.nodeType = MapNode.NodeType.Fight;
+                            }
+                            else
+                            {
+                                int index = Random.Range(0, nodeTypes.Count);
+                                node.nodeType = nodeTypes[index];
+                                nodeTypes.RemoveAt(index);
+                            }
+                        }
+                    }
+
+                    //(0,1)为Plot节点,(4,1)和(8,1)为Shop节点,(12,1)为Boss节点
+                    mapNodes[0][1].nodeType = MapNode.NodeType.Plot;
+                    mapNodes[4][1].nodeType = MapNode.NodeType.Shop;
+                    mapNodes[8][1].nodeType = MapNode.NodeType.Plot;
+                    mapNodes[12][1].nodeType = MapNode.NodeType.Shop;
+                    mapNodes[13][1].nodeType = MapNode.NodeType.Boss;
+                    break;
+
+                case AtlasID.Atlas_2:
+                case AtlasID.Atlas_3:
+                    // 为每个节点分配类型
+                    // 每个region有不同的分配方案
+                    // 若isHunted，则Hunting节点变为Elite节点
+
+                    // region 1
+                    // Hunting * 1 , Elite * 1 , Event * (1 ~ 3) , 剩下的是Fight;
+                    if (isHunted) nodeTypes.Add(MapNode.NodeType.Elite);
+                    else nodeTypes.Add(MapNode.NodeType.Hunting);
+
+                    nodeTypes.Add(MapNode.NodeType.Elite);
+
+                    int numEvents4 = Random.Range(1, 4);
+                    for (int i = 0; i < numEvents4; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Event);
+                    }
+
+                    while (nodeTypes.Count < 7)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Fight);
+                    }
+
+                    for (int row = 1; row <= 3; row++)
+                    {
+                        for (int col = 0; col <= 2; col++)
+                        {
+                            MapNode node = mapNodes[row][col];
+                            if (row == 1) // 如果是第一层，设置为战斗
+                            {
+                                node.nodeType = MapNode.NodeType.Fight;
+                            }
+                            else
+                            {
+                                int index = Random.Range(0, nodeTypes.Count);
+                                node.nodeType = nodeTypes[index];
+                                nodeTypes.RemoveAt(index);
+                            }
+                        }
+                    }
+
+                    // region 2
+                    // Hunting * 1 , Elite * (1 ~ 2) , Event * (1 ~ 2) , 剩下的是Fight;
+                    nodeTypes.Clear();
+                    if (isHunted) nodeTypes.Add(MapNode.NodeType.Elite);
+                    else nodeTypes.Add(MapNode.NodeType.Hunting);
+
+                    int numElites2 = Random.Range(1, 3);
+
+                    for (int i = 0; i < numElites2; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Elite);
+                    }
+
+                    int numEvents5 = Random.Range(1, 3);
+                    for (int i = 0; i < numEvents5; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Event);
+                    }
+
+                    while (nodeTypes.Count < 7)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Fight);
+                    }
+
+                    for (int row = 5; row <= 7; row++)
+                    {
+                        for (int col = 0; col <= 2; col++)
+                        {
+                            MapNode node = mapNodes[row][col];
+                            if (row == 5) // 如果是第一层，设置为战斗
+                            {
+                                node.nodeType = MapNode.NodeType.Fight;
+                            }
+                            else
+                            {
+                                int index = Random.Range(0, nodeTypes.Count);
+                                node.nodeType = nodeTypes[index];
+                                nodeTypes.RemoveAt(index);
+                            }
+                        }
+                    }
+
+                    // region 3
+                    // Hunting * 1 , Elite * 2 , Event * (1 ~ 2) , 剩下的是Fight;
+                    nodeTypes.Clear();
+                    if (isHunted) nodeTypes.Add(MapNode.NodeType.Elite);
+                    else nodeTypes.Add(MapNode.NodeType.Hunting);
+
+                    for (int i = 0; i < 2; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Elite);
+                    }
+
+                    int numEvents6 = Random.Range(1, 3);
+                    for (int i = 0; i < numEvents6; i++)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Event);
+                    }
+
+                    while (nodeTypes.Count < 7)
+                    {
+                        nodeTypes.Add(MapNode.NodeType.Fight);
+                    }
+
+                    for (int row = 9; row <= 11; row++)
+                    {
+                        for (int col = 0; col <= 2; col++)
+                        {
+                            MapNode node = mapNodes[row][col];
+                            if (row == 9) // 如果是第一层，设置为战斗
+                            {
+                                node.nodeType = MapNode.NodeType.Fight;
+                            }
+                            else
+                            {
+                                int index = Random.Range(0, nodeTypes.Count);
+                                node.nodeType = nodeTypes[index];
+                                nodeTypes.RemoveAt(index);
+                            }
+                        }
+                    }
+
+                    //(0,1)为Plot节点,(4,1)和(8,1)为Shop节点,(12,1)为Boss节点
+                    mapNodes[0][1].nodeType = MapNode.NodeType.Plot;
+                    mapNodes[4][1].nodeType = MapNode.NodeType.Shop;
+                    mapNodes[8][1].nodeType = MapNode.NodeType.Plot;
+                    mapNodes[12][1].nodeType = MapNode.NodeType.Shop;
+                    mapNodes[13][1].nodeType = MapNode.NodeType.Boss;
+                    break;
             }
 
 
@@ -125,6 +406,9 @@ public class MapManager : MonoBehaviour
                     if (mapNodes[i][j] == null)
                         continue;
                     mapNodes[i][j].PathGenerate();
+
+                    // 根据节点类型分配精灵
+                    mapNodes[i][j].SetNodeSprite();
                 }
             }
         }
