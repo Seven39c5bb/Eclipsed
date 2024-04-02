@@ -21,7 +21,6 @@ public class MapNode : MonoBehaviour
     // 节点类型
     public enum NodeType
     {
-        Origin,
 
         // 该部分为随机节点
         Fight,
@@ -169,9 +168,6 @@ public class MapNode : MonoBehaviour
         // 根据节点类型设置节点的图片
         switch (nodeType)
         {
-            case NodeType.Origin:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Origin");
-                break;
             case NodeType.Fight:
                 //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Fight");
                 break;
