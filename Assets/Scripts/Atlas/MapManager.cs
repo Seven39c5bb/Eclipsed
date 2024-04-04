@@ -8,7 +8,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance;
     public MapNode[][] mapNodes;
     public bool isHunted;
-
+    public bool MapBeCreated = false;
     public enum AtlasID
     {
         Atlas_1,
@@ -32,16 +32,23 @@ public class MapManager : MonoBehaviour
         {
             mapNodes[i] = new MapNode[3];
         }
+
+        //LoadMap();
+        //在这里加载地图
     }
 
-    private bool MapBeCreated = false;
+    private void Start()
+    {
+        //SaveManager.instance.Load();
+    }
 
     void Update()
     {
         if (!MapBeCreated)
         {
             MapBeCreated = true;
-            
+
+
             // 生成地图
             // (0,1)为起点，其后继节点为(1,0),(1,1),(1,2)
             mapNodes[0][1].nextNodes.Add(mapNodes[1][0]);
@@ -411,8 +418,8 @@ public class MapManager : MonoBehaviour
                     mapNodes[i][j].SetNodeSprite();
                 }
             }
+            //保存一次
         }
     }
 
-    
 }
