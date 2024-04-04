@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+
+[System.Serializable]
 public class MapNode : MonoBehaviour
 {
     // 是否被锁定
