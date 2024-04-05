@@ -1,0 +1,4 @@
+玩家位置: 4,5
+敌人种类: GunMan,MashedPotato
+GunMan: 4,0
+MashedPotato: 6,3

@@ -15,11 +15,20 @@ public class FightManager : MonoBehaviour
     {
         instance = this;
     }
+    public bool isCheckingVictory = false;//是否正在检查胜利(会在战斗初始化时设为true)
     private void Update()
     {
         if(fightUnit != null)
         {
             fightUnit.OnUpdate();
+        }
+        if (isCheckingVictory)
+        {
+            if (ChessboardManager.instance.enemyList.Count == 0)
+            {
+                ChangeType(FightType.Win);
+                isCheckingVictory = false;
+            }
         }
     }
     public void ChangeType(FightType type)

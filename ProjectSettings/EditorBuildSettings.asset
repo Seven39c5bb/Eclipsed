@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CardTest.unity
     guid: c29cda4db6bf4b04093349adb9a0db9b
+  - enabled: 1
+    path: Assets/Scenes/Atlas_1.unity
+    guid: bca4b15d99cbd1146a42fd8b8ea95b2a
   m_configObjects: {}

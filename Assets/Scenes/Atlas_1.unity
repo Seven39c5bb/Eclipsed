@@ -291,7 +291,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1872917784}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 1
@@ -732,7 +732,9 @@ MonoBehaviour:
   nextNodes: []
   leftNode: {fileID: 0}
   rightNode: {fileID: 0}
+  backAtlasID: 1
   nodeType: 1
+  battleNodeInfoName: 
   Renderer: {fileID: 0}
 --- !u!212 &907340213
 SpriteRenderer:
@@ -1095,7 +1097,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1872917784}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
         m_MethodName: Load
         m_Mode: 1
@@ -1150,50 +1152,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1374128665711100417, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
   m_PrefabInstance: {fileID: 954635731755089833}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1872917783
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1872917785}
-  - component: {fileID: 1872917784}
-  m_Layer: 0
-  m_Name: SaveManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1872917784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872917783}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1d2b025a5019f24e8feef5f7543e05a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1872917785
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872917783}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.2434716, y: 1.0005721, z: 2.6862252}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &954635731755089833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1202,6 +1160,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 726782333907721709, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
+      propertyPath: CreateDone
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 726782333907721709, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
+      propertyPath: MapBeCreated
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1374128665711100417, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1246,6 +1212,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Atlas
       objectReference: {fileID: 0}
+    - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
+      propertyPath: nextNodes.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5819650482228333427, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.11
@@ -1265,5 +1235,4 @@ SceneRoots:
   - {fileID: 998954950}
   - {fileID: 612676389}
   - {fileID: 954635731755089833}
-  - {fileID: 1872917785}
   - {fileID: 618168664}

@@ -1,0 +1,4 @@
+玩家位置: 4,5
+敌人种类: MashedPotato,Flesh
+MashedPotato: 7,5
+Flesh: 1,5
