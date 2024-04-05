@@ -1,0 +1,5 @@
+玩家位置: 4,5
+敌人种类: Flesh,TheSalivator,MashedPotato
+Flesh: 2,2
+TheSalivator: 7,7
+MashedPotato: 2,7

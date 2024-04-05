@@ -11,6 +11,7 @@ public class GameStartUI : UIBase
     }
     public void LoadSceneCardTest(GameObject obj, PointerEventData eventData)
     {
-        UIManager.Instance.LoadScene("CardTest");
+        //SaveManager.instance.DeleteSave();//删档重来
+        UIManager.Instance.LoadScene("Atlas_1");
     }
 }

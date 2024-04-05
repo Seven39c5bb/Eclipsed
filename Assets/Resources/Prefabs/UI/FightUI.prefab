@@ -982,6 +982,7 @@ MonoBehaviour:
   CardDescription: {fileID: 684606681736431128}
   healthImage: {fileID: 8035776527518216932}
   turnTip: {fileID: 222494774670458154}
+  isClicked: 0
   tooltipPanel: {fileID: 3958183627342352877}
   EntryNameText: {fileID: 5140940508562675040}
   EntryExplanationText: {fileID: 3687956064833801455}
@@ -1239,8 +1240,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2418162894773731967}
   m_HandleRect: {fileID: 4960297766746840639}
   m_Direction: 2
-  m_Value: -0.000009039142
-  m_Size: 0
+  m_Value: -0.0000021818619
+  m_Size: 0.7408483
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1681,7 +1682,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 97.90951}
+  m_AnchoredPosition: {x: 0, y: 97.90883}
   m_SizeDelta: {x: 0, y: 377.8086}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &2939708157899813946
@@ -2662,7 +2663,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7574912429286638169}
   m_HandleRect: {fileID: 7937723043856676303}
   m_Direction: 2
-  m_Value: 1.000007
+  m_Value: 0.99999976
   m_Size: 0.61037797
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -4689,7 +4690,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &7653065100296813928
 GameObject:
@@ -4760,7 +4761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00083512557}
+  m_AnchoredPosition: {x: 0, y: 0.000038146973}
   m_SizeDelta: {x: 0, y: 320.913}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &7880548343661827880

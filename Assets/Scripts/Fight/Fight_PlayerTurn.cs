@@ -7,7 +7,7 @@ public class Fight_PlayerTurn : FightUnit
     public override void Init()
     {
         Debug.Log("Player Trun now");
-        UIManager.Instance.ShowTip("Player Turn", Color.green, delegate ()
+        UIManager.Instance.ShowTip("我的回合", Color.green, delegate ()
         {
             Debug.Log("抽卡");
         });
