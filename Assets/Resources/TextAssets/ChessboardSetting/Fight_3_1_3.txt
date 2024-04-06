@@ -1,0 +1,4 @@
+玩家位置: 3,5
+敌人种类: Villager,Bull
+Villager: 9,3
+Bull: 0,5

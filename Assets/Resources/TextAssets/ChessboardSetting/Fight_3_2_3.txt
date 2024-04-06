@@ -1,0 +1,4 @@
+玩家位置: 3,5
+敌人种类: Bull,Tower
+Bull: 3,6
+Tower: 8,3

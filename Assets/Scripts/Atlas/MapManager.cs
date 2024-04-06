@@ -8,7 +8,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance;
     public MapNode[][] mapNodes;
     public bool isHunted;
-    public bool MapBeCreated = false;//是否已经创建地图信息
+    //public bool MapBeCreated = false;//是否已经创建地图信息
     public bool CreateDone = false;//是否已经生成地图场景
     //public bool isBackFromBattle = false;//是否从战斗场景返回
     public enum AtlasID
@@ -42,16 +42,18 @@ public class MapManager : MonoBehaviour
     {
         // 节点将在自己的start中被传入mapNodes，因此不要在这里使用mapNodes，否则会出现空指针异常
 
-        MapBeCreated = SaveManager.instance.jsonData.mapData.mapBeCreated;
+        //MapBeCreated = SaveManager.instance.jsonData.mapData.mapBeCreated;
     }
 
     void Update()
     {
         if (!CreateDone)//初始化地图
         {
-            if (!MapBeCreated)
+            CreateDone = true;
+
+            if (!SaveManager.instance.jsonData.mapData.mapBeCreated)
             {
-                MapBeCreated = true;
+                //MapBeCreated = true;
                 SaveManager.instance.jsonData.mapData.mapBeCreated = true;
 
 
@@ -510,7 +512,6 @@ public class MapManager : MonoBehaviour
                 SaveManager.instance.Load();
             }
 
-            CreateDone = true;
             if (SaveManager.instance.isBackFromNodeScene)
             {
                 // 从战斗场景返回时，将刚刚的节点设置为已探索
@@ -536,7 +537,7 @@ public class MapManager : MonoBehaviour
     }
 
 
-    public int AtlasIDToInt(AtlasID id)
+    public static int AtlasIDToInt(AtlasID id)
     {
         switch (id)
         {

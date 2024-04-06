@@ -56,7 +56,7 @@ public class SaveManager : MonoBehaviour
 
     }
     //初始化数据
-    void InitJsonData()
+    public void InitJsonData()
     {
         jsonData = new JsonData();
         jsonData.mapData = new MapData();
@@ -82,10 +82,6 @@ public class SaveManager : MonoBehaviour
         string json = JsonUtility.ToJson(jsonData, true);
         File.WriteAllText(JsonPath(), json);
         Debug.Log("保存成功");
-        //clearlist,防止添加两次数据
-        //jsonData.mapData.mapNodes.Clear();
-        //jsonData.mapData.lockedNodes.Clear();
-        jsonData.mapData.mapNodes.Clear();
     }
     //读取数据
     public void Load()
@@ -103,7 +99,7 @@ public class SaveManager : MonoBehaviour
         }
     }
     //更新本脚本当前数据
-    private void UpdateCurDate()
+    private void UpdateCurDate()//记得添加数据前记得清空list，防止重复添加！！！！！！！！！
     {
         //如果MapManager.Instance存在
         if (MapManager.Instance != null)
@@ -111,6 +107,7 @@ public class SaveManager : MonoBehaviour
             //jsonData.mapData.mapBeCreated = MapManager.Instance.MapBeCreated;//地图是否被创建
 
             jsonData.mapData.currAtlasID = MapManager.Instance.currAtlasID;//当前地图ID
+            jsonData.mapData.mapNodes.Clear();
 
             foreach(var nodes in MapManager.Instance.mapNodes)//从当前地图中更新节点数据
             {
@@ -164,13 +161,7 @@ public class SaveManager : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            //读取地图数据
-            string json = File.ReadAllText(JsonPath());
-            JsonData tempJsonData = JsonUtility.FromJson<JsonData>(json);
-            jsonData.mapData = tempJsonData.mapData;
-        }
+
     }
     //更新数据
     private void UpdateInfo()
@@ -229,6 +220,8 @@ public class SaveManager : MonoBehaviour
             MapManager.Instance.currAtlasID = jsonData.mapData.currAtlasID;
         }
     }
+
+
     //是否存在json文件
     public bool ExistJson()
     {
@@ -239,11 +232,15 @@ public class SaveManager : MonoBehaviour
         }
         return File.Exists(JsonPath());
     }
+
+
     //json文件路径
     private string JsonPath()
     {
         return Path.Combine(Application.persistentDataPath, "Data.json");
     }
+
+
     //删除存档文件
     public void DeleteSave()
     {

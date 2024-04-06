@@ -1,0 +1,4 @@
+玩家位置: 1,5
+敌人种类: BlindFaithful,Ecclesiastic
+BlindFaithful: 3,3;3,7
+Ecclesiastic: 3,5

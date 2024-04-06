@@ -7,11 +7,18 @@ public class GameStartUI : UIBase
 {
     private void Awake()
     {
-        Register("Start").onClick = LoadSceneCardTest;
+        Register("Start").onClick = LoadSceneAtlas_1;
+        Register("Continue").onClick = LoadSceneContinue;
     }
-    public void LoadSceneCardTest(GameObject obj, PointerEventData eventData)
+    void LoadSceneAtlas_1(GameObject obj, PointerEventData eventData)
     {
-        //SaveManager.instance.DeleteSave();//删档重来
+        SaveManager.instance.DeleteSave();//删档重来
+        SaveManager.instance.InitJsonData();
         UIManager.Instance.LoadScene("Atlas_1");
+    }
+    void LoadSceneContinue(GameObject obj, PointerEventData eventData)
+    {
+        SaveManager.instance.Load();
+        UIManager.Instance.LoadScene("Atlas_" + MapManager.AtlasIDToInt(SaveManager.instance.jsonData.mapData.currAtlasID));
     }
 }

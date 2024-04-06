@@ -1,0 +1,4 @@
+玩家位置: 3,5
+敌人种类: ColorSummoner,Bull
+ColorSummoner: 6,5
+Bull: 5,4;5,6
