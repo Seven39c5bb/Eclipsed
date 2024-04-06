@@ -1,0 +1,4 @@
+玩家位置: 1,5
+敌人种类: Abbe,BlindFaithful
+BlindFaithful: 8,1;6,3
+Abbe: 3,8

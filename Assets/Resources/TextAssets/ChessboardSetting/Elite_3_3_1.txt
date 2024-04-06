@@ -1,0 +1,4 @@
+玩家位置: 3,5
+敌人种类: WisdomWorm,ColorSummoner
+WisdomWorm: 6,5
+ColorSummoner: 7,3

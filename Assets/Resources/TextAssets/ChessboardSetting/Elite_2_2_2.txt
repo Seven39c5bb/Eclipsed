@@ -1,0 +1,4 @@
+玩家位置: 1,5
+敌人种类: Shrieker,Ecclesiastic
+Shrieker: 8,5
+Ecclesiastic:7,4;7,6

@@ -1,0 +1,4 @@
+玩家位置: 3,5
+敌人种类: WisdomWorm,Tower
+WisdomWorm:0,9
+Tower:9,0
