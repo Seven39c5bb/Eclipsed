@@ -57,7 +57,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     {
         //减去和手牌区的相对位置
         //startPos = this.transform.position;
-        Debug.Log(this.name + " startPos: " + startPos);
+        //Debug.Log(this.name + " startPos: " + startPos);
         if(isDrag)
         {
             return;

@@ -128,15 +128,17 @@ public class FightUI : UIBase
     {
         for (int i = 0; i < CardManager.cardDesk.Count; i++)
         {
+            Debug.Log(CardManager.cardDesk[i]);
             cardDic[CardManager.cardDesk[i]] = 0;//初始化卡组为0
         }
-        Vector3 offset = new Vector3(0, -25, 0);
+        
         int times = 0;
         foreach(var ele in cardDic)//初始化生成cardBoard
         {
             GameObject cardBoard = Instantiate(Resources.Load("Prefabs/UI/cardBoard"), GameObject.Find("Content").transform) as GameObject;
             //往下移动offset
-            cardBoard.transform.position += offset / GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor * times;
+            Vector3 offset = new Vector3(0,-Screen.height*0.07f, 0);
+            cardBoard.transform.position += offset * times;
             cardBoard.GetComponent<CardBoard>().cardNameText.text = ele.Key;
             boardList.Add(cardBoard.GetComponent<CardBoard>());
             times++;
@@ -148,9 +150,10 @@ public class FightUI : UIBase
         //test
         
         //遍历卡组，每遍历到一次该卡，该卡数量++
-        foreach (var ele in GameConfig.instance.cardDeckData)
+        foreach (var ele in SaveManager.instance.jsonData.playerData.playerDeck)
         {
-            cardDic[ele.Key] = 0;
+            //Debug.Log(ele);
+            cardDic[ele] = 0;
         }
         //for (int i = 0; i < CardManager.cardDesk.Count; i++)
         //{
@@ -199,13 +202,13 @@ public class FightUI : UIBase
     public void InitEnemyStateBoard()
     {
         //设定间隔
-        Vector3 offset = new Vector3(0, -120, 0);
+        Vector3 offset = new Vector3(0, -Screen.height * 0.09f, 0);
         int times = 0;
         //遍历敌人列表
         foreach(var enemy in ChessboardManager.instance.enemyControllerList)
         {
             GameObject stateBoard = Instantiate(Resources.Load("Prefabs/UI/enemyStateBoard"), GameObject.Find("StateBoardAssem").transform) as GameObject;
-            stateBoard.transform.position += offset/ GameObject.Find("Canvas").GetComponent<Canvas>().scaleFactor * times;
+            stateBoard.transform.position += offset* times;
             stateBoard.GetComponent<enemyStateBoard>().thisEnemy = enemy;//把敌人enemybase赋给enemyStateBoard
             times++;
         }

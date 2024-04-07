@@ -37,6 +37,11 @@ public class PlayerData
 {
     public int MaxHP = 80;
     public int HP = 80;//当前生命值,在战斗胜利时更新,在进入战斗场景后的读取
+
+    public List<string> playerDeck;//玩家卡组
+
+    public int coin;
+    public int fingerBone;//金币
 }
 public class SaveManager : MonoBehaviour
 {
@@ -61,16 +66,28 @@ public class SaveManager : MonoBehaviour
         jsonData = new JsonData();
         jsonData.mapData = new MapData();
         jsonData.playerData = new PlayerData();
-        //jsonData.mapData.mapNodes= new List<MapNode>();
-        //jsonData.mapData.lockedNodes = new List<bool>();
         jsonData.mapData.mapNodes = new List<NodesListUnit>();
+        jsonData.playerData.playerDeck = new List<string>();
+        #region 初始化初始卡组
+        GameConfig gameConfig = new GameConfig();
+        gameConfig.Init();
+        foreach (KeyValuePair<string, int> ele in gameConfig.cardDeckData)
+        {
+            string cardName = ele.Key;
+            int cardCount = ele.Value;
+            for (int i = 0; i < cardCount; i++)///test 5 �Ļ�(int)cardCount
+            {
+                jsonData.playerData.playerDeck.Add(cardName);
+            }
+        }
+        #endregion
+        //test 初始化金币为100
+        jsonData.playerData.coin = 100;
+        //test
     }
     //保存数据到json文件
     public void Save()
     {
-        //test
-        Debug.Log(MapManager.Instance.mapNodes[0][1].nodeId);
-        //test
         UpdateCurDate();
         
         if (!ExistJson())
@@ -219,6 +236,7 @@ public class SaveManager : MonoBehaviour
 
             MapManager.Instance.currAtlasID = jsonData.mapData.currAtlasID;
         }
+    
     }
 
 
