@@ -7,12 +7,12 @@ public class CardManager : MonoBehaviour
     public static CardManager instance;
     public static List<string> cardDesk;
     public static List<string> discardDesk;
+    public List<string> CardList;
     public List<string> handCards;
     public int test = 1;
 
-    //test 
+    //
     public GameConfig gameConfig;
-    //test
     private void Awake()    
     {
         instance = this;
@@ -35,9 +35,16 @@ public class CardManager : MonoBehaviour
             }      
         }
         #endregion
-        #region
+        #region 初始化记牌器
         FightUI.instance.InitDeckPanel();
         #endregion
+    }
+    //Start
+    private void Start()
+    {
+        //如果有存档，从存档中读取卡组信息
+        //cardDeck=new List<string>(SaveManager.instance.jsonData.cardDeckData);
+        //如果没有存档，读取初始卡组信息
     }
     //抽卡
     public void Draw(int num)

@@ -11,10 +11,16 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     //枚举卡牌的种类
     public enum cardType
     {
-        action,skill,trap
+        action,skill,rites
     }
     //卡牌的种类
     public cardType type;
+    //稀有度
+    public enum rareType
+    {
+        common,rare,legend
+    }
+    public rareType rare;
     //卡牌描述
     public string discription;
     //卡牌的费用

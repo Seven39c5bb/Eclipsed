@@ -8,6 +8,8 @@ public class PlayerController : ChessBase
 {
     public static PlayerController instance;
     public int initHp;
+    public int coins;
+    public int fingerBones;
     public override void Start()
     {
         // 从存档中读取玩家初始生命值
