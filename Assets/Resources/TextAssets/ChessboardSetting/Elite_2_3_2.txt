@@ -1,0 +1,5 @@
+玩家位置: 1,5
+敌人种类: Shrieker,BlindFaithful,Ecclesiastic
+Shrieker: 7,2
+BlindFaithful: 6,1;6,3
+Ecclesiastic: 8,1;8,3

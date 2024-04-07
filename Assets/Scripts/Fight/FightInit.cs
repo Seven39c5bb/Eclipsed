@@ -18,7 +18,8 @@ public class FightInit : FightUnit
         Debug.Log("this init fightunit init");
 
         //从日志文件中读取储存该场地信息的txt文件所在路径，并加载该txt文件
-        chessboardSettingName = "chessTestTxt";//记得修改为从日志文件中读取文件名!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //chessboardSettingName = "chessTestTxt";//记得修改为从日志文件中读取文件名!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        chessboardSettingName = SaveManager.instance.jsonData.mapData.currBattleNodeInfoName;
         fightNodeInfo = Resources.Load<TextAsset>("TextAssets/ChessboardSetting/" + chessboardSettingName);
 
         //初始化棋盘
@@ -85,6 +86,9 @@ public class FightInit : FightUnit
 
         //让ChessboardManager更新敌人控制器列表
         ChessboardManager.instance.UpdateEnemyControllerList();
+
+        //开始检测胜利条件
+        FightManager.instance.isCheckingVictory = true;
 
         FightUI.instance.InitEnemyStateBoard();
 

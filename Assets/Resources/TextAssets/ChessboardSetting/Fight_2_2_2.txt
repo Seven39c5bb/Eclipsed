@@ -1,0 +1,4 @@
+玩家位置: 1,5
+敌人种类: BlindFaithful,Gargoyle
+BlindFaithful: 5,2;5,7
+Gargoyle: 5,1;5,8;

@@ -1,0 +1,4 @@
+玩家位置: 3,5
+敌人种类: Bull,Villager
+Bull: 0,5;8,5
+Villager: 5,7;4,2

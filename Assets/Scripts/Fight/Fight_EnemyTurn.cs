@@ -54,7 +54,7 @@ public class Fight_EnemyTurn : FightUnit
         {
             Debug.Log("All Enemy Turn Finished");
             //isInit = false;
-            FightManager.instance.ChangeType(FightType.Player);
+            if (currCoroutine == null) FightManager.instance.ChangeType(FightType.Player);
         }
     }
 

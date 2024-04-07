@@ -82,6 +82,7 @@ public class ChessBase : MonoBehaviour //棋子基类
 
         // 初始化血条的形状
         HPBar.fillAmount = (float)HP / MaxHp;
+        CureHPBar.fillAmount = (float)HP / MaxHp;
         DamageHPBar.fillAmount = (float)HP / MaxHp;
         BarrierBar.fillAmount = (float)Barrier / MaxHp;
     }

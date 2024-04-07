@@ -1,0 +1,4 @@
+玩家位置: 4,5
+敌人种类: MashedPotato,TheSalivator
+MashedPotato: 2,5
+TheSalivator: 1,5
