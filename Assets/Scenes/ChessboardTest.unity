@@ -721,6 +721,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GunMan
       objectReference: {fileID: 0}
+    - target: {fileID: 4236196391477894477, guid: 34600a90526728d428412edff6fa6601, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5461006144061567065, guid: 34600a90526728d428412edff6fa6601, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.393827

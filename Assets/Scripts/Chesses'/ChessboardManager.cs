@@ -424,17 +424,7 @@ public class ChessboardManager : MonoBehaviour
             cellStates[Location.x, Location.y].occupant = addObject;
             addObject.transform.position = cellStates[Location.x, Location.y].transform.position ;
 
-            //更新敌方棋子列表
-            enemyList.Clear();
-            enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-            enemyControllerList.Clear();
-            foreach (GameObject enemy in enemyList)//要考虑List中的对象可能已经被销毁
-            {
-                if(!UnityEngine.Object.Equals(enemy, null))
-                {
-                    enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
-                }
-            }
+            UpdateEnemyControllerList();
             return true;
         }
         else

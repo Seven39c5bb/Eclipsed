@@ -6,6 +6,7 @@ public class Fight_PlayerTurn : FightUnit
 {
     public override void Init()
     {
+        FightManager.instance.turnCounter++;//回合数+1
         Debug.Log("Player Trun now");
         UIManager.Instance.ShowTip("我的回合", Color.green, delegate ()
         {
