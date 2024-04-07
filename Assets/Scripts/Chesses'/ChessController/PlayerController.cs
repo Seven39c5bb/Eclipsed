@@ -11,15 +11,15 @@ public class PlayerController : ChessBase
     public override void Start()
     {
         // 从存档中读取玩家初始生命值
-        if (SaveManager.instance.jsonData.playerData.HP == 0)
+        /* if (SaveManager.instance.jsonData.playerData.HP == 0)
         {
             initHp = 80;
         }
         else
         {
             initHp = SaveManager.instance.jsonData.playerData.HP;
-        }
-        //initHp = 80;
+        } */
+        initHp = 80;
 
         // 初始化玩家棋子
         instance = this;
