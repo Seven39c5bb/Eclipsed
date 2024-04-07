@@ -5,7 +5,19 @@ using System.Linq;
 
 public class GunMan : EnemyBase
 {
-    override public void Start()
+    /* void Awake()
+    {
+        // 初始化敌人棋子
+        MaxHp = 50;//最大生命值
+        HP = 50;//当前生命值
+        MeleeAttackPower = 5;//近战攻击力
+        mobility = 3;//行动力
+        moveMode = 1;//移动模式
+        this.gameObject.tag = "Enemy";
+        chessName = "枪手";//棋子名称
+        ChessboardManager.instance.enemyControllerList.Add(this);
+    } */
+    public new void Start()
     {
         // 初始化敌人棋子
         MaxHp = 50;//最大生命值
@@ -60,7 +72,7 @@ public class GunMan : EnemyBase
         {
             //特效加在这里
             player.TakeDamage(shotDamage);
-            shotDamage += 5;
+            shotDamage += 3;
         }
     }
 
