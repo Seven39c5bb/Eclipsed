@@ -288,6 +288,21 @@ public class ChessboardManager : MonoBehaviour
             CellsInRange[0] = end;
         }
 
+        Debug.Log("start: " + start);
+        //找到CellsInRange中离当前节点最近的点
+        foreach (Vector2Int cell in CellsInRange)
+        {
+            //找出CellsInRange中离当前节点最近的点
+            //计算当前节点到cell的距离
+            int distance = Math.Abs(cell.x - start.x)^2 + Math.Abs(cell.y - start.y)^2;
+            int minDistance = 9999;
+            if(distance < minDistance)//找到最近的点
+            {
+                minDistance = distance;
+                end = cell;
+            }
+        }
+        Debug.Log("end: " + end);
 
         Node[,] Nodes = new Node[boardSize.x, boardSize.y];//创建一个节点数组，用于BFS
         for (int i = 0; i < boardSize.x; i++)
@@ -310,21 +325,6 @@ public class ChessboardManager : MonoBehaviour
             Node node = queue.Dequeue();
 
             //判断是否找到终点(终点可能是一整个范围)
-
-            //找到CellsInRange中离当前节点最近的点
-            foreach (Vector2Int cell in CellsInRange)
-            {
-                //找出CellsInRange中离当前节点最近的点
-                //计算当前节点到cell的距离
-                int distance = Math.Abs(cell.x - node.X) + Math.Abs(cell.y - node.Y);
-                int minDistance = 9999;
-                if(distance < minDistance)//找到最近的点
-                {
-                    minDistance = distance;
-                    end = cell;
-                }
-                
-            }
 
             if (node.X == end.x && node.Y == end.y)//找到终点,返回路径
             {
@@ -435,17 +435,7 @@ public class ChessboardManager : MonoBehaviour
             cellStates[Location.x, Location.y].occupant = addObject;
             addObject.transform.position = cellStates[Location.x, Location.y].transform.position ;
 
-            //更新敌方棋子列表
-            enemyList.Clear();
-            enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
-            enemyControllerList.Clear();
-            foreach (GameObject enemy in enemyList)//要考虑List中的对象可能已经被销毁
-            {
-                if(!UnityEngine.Object.Equals(enemy, null))
-                {
-                    enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
-                }
-            }
+            UpdateEnemyControllerList();
             return true;
         }
         else

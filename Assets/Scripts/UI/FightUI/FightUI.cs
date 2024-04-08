@@ -41,10 +41,18 @@ public class FightUI : UIBase
 
     private void Start()
     {        
-        FightManager.instance.ChangeType(FightType.Init);
+        
     }
+
+    bool isInit = false;
     private void Update()
     {
+        if (!isInit)
+        {
+            isInit = true;
+            FightManager.instance.ChangeType(FightType.Init);
+        }
+
         //card and discardcard
         cardCount.text=CardManager.cardDesk.Count.ToString();
         discardCount.text=CardManager.discardDesk.Count.ToString();

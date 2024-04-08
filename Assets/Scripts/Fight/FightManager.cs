@@ -23,6 +23,7 @@ public class FightManager : MonoBehaviour
     }
     public FightUnit fightUnit;
     public FightType curFightType;
+    public int turnCounter = 0;
     private void Awake()
     {
         f_instance = this;
