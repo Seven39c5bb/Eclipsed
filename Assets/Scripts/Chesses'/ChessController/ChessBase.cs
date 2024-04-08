@@ -165,16 +165,16 @@ public class ChessBase : MonoBehaviour //棋子基类
             sequence.Append(transform.DOMove(originalPosition, moveDuration));
             //在动画播放完毕后执行近战伤害判断
             sequence.OnComplete(() => {
-                AttackedChess.TakeDamage(MeleeAttackPower * residualDistance);//攻击伤害 = 攻击力 * 剩余移动数
+                AttackedChess.TakeDamage(MeleeAttackPower * residualDistance, this);//攻击伤害 = 攻击力 * 剩余移动数
                 int injury = AttackedChess.MeleeAttackPower;
-                TakeDamage(injury);
+                TakeDamage(injury, AttackedChess);
             });
             //开始动画
             sequence.Play();
     }
 
     // 受伤方法
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage, ChessBase attacker)
     {
         int damageTaken = damage - Barrier;
         Barrier -= damage;

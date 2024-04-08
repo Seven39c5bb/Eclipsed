@@ -25,7 +25,7 @@ public class aoe : Card
             Debug.Log(pos);
             if (ChessboardManager.instance.cellStates[pos.x, pos.y].state == Cell.StateType.Occupied) 
             {
-                ChessboardManager.instance.CheckCell(pos).TakeDamage(damage);
+                ChessboardManager.instance.CheckCell(pos).TakeDamage(damage, PlayerController.instance);
             }
         }
         costManager.instance.curCost -= cost;

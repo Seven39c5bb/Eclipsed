@@ -59,7 +59,7 @@ public class TheSalivator : EnemyBase
                 if (currCellObject != null && currCellObject.tag == "Player")
                 {
                     player = currCellObject;
-                    player.TakeDamage(7);
+                    player.TakeDamage(7, this);
                     Debug.Log("泌涎者攻击了玩家，玩家受到了7点伤害");
                 }
             }

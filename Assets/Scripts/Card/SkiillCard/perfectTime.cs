@@ -9,11 +9,11 @@ public class perfectTime :Card
     public override void CardFunc()
     {
         Vector2Int playerPos = PlayerController.instance.Location;
-        //Èç¹ûÍæ¼ÒÇ°·½ËÄ¸ñ£¬ÏòÉÏÈý¸ñ×ÓÓÐµÐÈË£¬¶ÔÆäÔì³ÉÉËº¦
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ëºï¿½
         if(ChessboardManager.instance.cellStates[playerPos.x+3, playerPos.y].state == Cell.StateType.Occupied)
         {
             Vector2Int pos = new Vector2Int(playerPos.x + 3, playerPos.y);
-            ChessboardManager.instance.CheckCell(pos).TakeDamage(damage);
+            ChessboardManager.instance.CheckCell(pos).TakeDamage(damage, PlayerController.instance);
         }
         costManager.instance.curCost -= cost;
     }

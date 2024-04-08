@@ -68,14 +68,14 @@ public class MotorGangster : EnemyBase
         {
             //对玩家造成伤害
             //特效加在这里
-            player.TakeDamage(15);
+            player.TakeDamage(15, this);
         }
     }
 
     private bool isInjured = false;
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, ChessBase attacker)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(damage, attacker);
         isInjured = true;
     }
 }

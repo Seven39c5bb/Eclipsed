@@ -59,7 +59,7 @@ public class GunMan : EnemyBase
         if (player != null)
         {
             //特效加在这里
-            player.TakeDamage(shotDamage);
+            player.TakeDamage(shotDamage, this);
             shotDamage += 3;
         }
     }
