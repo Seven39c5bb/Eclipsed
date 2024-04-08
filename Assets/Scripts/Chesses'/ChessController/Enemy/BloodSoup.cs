@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BloodSoup : EnemyBase
 {
-    public new void Start()
+    void Awake()
     {
         // 初始化敌人棋子
         MaxHp = 120;//最大生命值
@@ -16,6 +16,6 @@ public class BloodSoup : EnemyBase
         chessName = "血汤";//棋子名称
 
         base.Start();//添加血条
-        chessboardManager.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, Location);
     }
 }

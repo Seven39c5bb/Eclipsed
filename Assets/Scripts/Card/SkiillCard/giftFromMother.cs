@@ -7,10 +7,10 @@ public class giftFromMother : Card
     public int damage;
     public override void CardFunc()
     {
-        //╤ткФ╩З3╦Ж╣пхктЛЁиик╨╕
+        //О©╫О©╫О©╫О©╫О©╫3О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫к╨О©╫
         for (int i = 0; i < 3; i++)
         {
-            ChessboardManager.instance.enemyControllerList[Random.Range(0, ChessboardManager.instance.enemyControllerList.Count)].TakeDamage(damage);
+            ChessboardManager.instance.enemyControllerList[Random.Range(0, ChessboardManager.instance.enemyControllerList.Count)].TakeDamage(damage, PlayerController.instance);
         }
         costManager.instance.curCost -= cost;
     }

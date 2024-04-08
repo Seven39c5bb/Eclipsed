@@ -14,6 +14,15 @@ public class PlayerController : ChessBase
             if (player_instance == null)
             {
                 player_instance = GameObject.FindObjectOfType<PlayerController>();
+                if (SaveManager.instance.jsonData.playerData.HP == 0)
+                {
+                    player_instance.initHp = 80;
+                }
+                else
+                {
+                    player_instance.initHp = SaveManager.instance.jsonData.playerData.HP;
+                }
+                player_instance.Hp = player_instance.initHp;
             }
             return player_instance;
         }
@@ -24,15 +33,15 @@ public class PlayerController : ChessBase
     public override void Start()
     {
         // 从存档中读取玩家初始生命值
-        /* if (SaveManager.instance.jsonData.playerData.HP == 0)
+        if (SaveManager.instance.jsonData.playerData.HP == 0)
         {
             initHp = 80;
         }
         else
         {
             initHp = SaveManager.instance.jsonData.playerData.HP;
-        } */
-        initHp = 80;
+        }
+        //initHp = 80;
 
         // 初始化玩家棋子
         player_instance = this;
@@ -42,7 +51,7 @@ public class PlayerController : ChessBase
         chessName = "魔女";//棋子名称
 
         base.Start();//添加血条
-        chessboardManager.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, Location);
 
         //将标签设置为玩家
         this.gameObject.tag = "Player";

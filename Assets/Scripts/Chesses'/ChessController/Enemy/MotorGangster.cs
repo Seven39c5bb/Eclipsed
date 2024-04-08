@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MotorGangster : EnemyBase
 {
-    public new void Start()
+    void Awake()
     {
         // 初始化敌人棋子
         MaxHp = 70;//最大生命值
@@ -14,9 +14,7 @@ public class MotorGangster : EnemyBase
         moveMode = 2;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "摩托暴徒";//棋子名称
-
-        base.Start();//添加血条
-        chessboardManager.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, Location);
     }
 
     public int upMobility = 3;
@@ -57,7 +55,7 @@ public class MotorGangster : EnemyBase
         {
             for (int j = upAxis; j <= downAxis; j++)
             {
-                ChessBase currCellObject = chessboardManager.CheckCell(new Vector2Int(i, j));
+                ChessBase currCellObject = ChessboardManager.instance.CheckCell(new Vector2Int(i, j));
                 if (currCellObject != null && currCellObject.gameObject.tag == "Player")
                 {
                     player = currCellObject;
@@ -70,14 +68,14 @@ public class MotorGangster : EnemyBase
         {
             //对玩家造成伤害
             //特效加在这里
-            player.TakeDamage(15);
+            player.TakeDamage(15, this);
         }
     }
 
     private bool isInjured = false;
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(int damage, ChessBase attacker)
     {
-        base.TakeDamage(damage);
+        base.TakeDamage(damage, attacker);
         isInjured = true;
     }
 }

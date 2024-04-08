@@ -44,7 +44,7 @@ public class TestChessboardManager : MonoBehaviour
         if (testEnemyInjury)
         {
             testEnemyInjury = false;
-            EnemyController.TakeDamage(10);
+            EnemyController.TakeDamage(10, PlayerController.instance);
             
         }
     }

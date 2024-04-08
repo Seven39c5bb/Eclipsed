@@ -39,7 +39,7 @@ public class farAttack : Card
         }
         if(enemyPos!=null)
         {
-            ChessboardManager.instance.CheckCell(enemyPos).TakeDamage(damage);
+            ChessboardManager.instance.CheckCell(enemyPos).TakeDamage(damage, PlayerController.instance);
         }
         costManager.instance.curCost -= cost;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Flesh : EnemyBase
 {//模糊血肉
-    public override void Start()
+    void Awake()
     {
         // 初始化敌人棋子
         MaxHp = 30;//最大生命值
@@ -15,8 +15,7 @@ public class Flesh : EnemyBase
         this.gameObject.tag = "Enemy";
         chessName = "模糊血肉";//棋子名称
         
-        base.Start();//添加血条
-        chessboardManager.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, Location);
         
     }
 
