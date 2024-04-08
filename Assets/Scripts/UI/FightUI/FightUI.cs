@@ -138,7 +138,7 @@ public class FightUI : UIBase
             GameObject cardBoard = Instantiate(Resources.Load("Prefabs/UI/cardBoard"), GameObject.Find("Content").transform) as GameObject;
             //往下移动offset
             Vector3 offset = new Vector3(0,-Screen.height*0.07f, 0);
-            cardBoard.transform.position += offset * times;
+            //cardBoard.transform.position += offset * times;
             cardBoard.GetComponent<CardBoard>().cardNameText.text = ele.Key;
             boardList.Add(cardBoard.GetComponent<CardBoard>());
             times++;
@@ -208,9 +208,27 @@ public class FightUI : UIBase
         foreach(var enemy in ChessboardManager.instance.enemyControllerList)
         {
             GameObject stateBoard = Instantiate(Resources.Load("Prefabs/UI/enemyStateBoard"), GameObject.Find("StateBoardAssem").transform) as GameObject;
-            stateBoard.transform.position += offset* times;
+            //stateBoard.transform.position += offset* times;
             stateBoard.GetComponent<enemyStateBoard>().thisEnemy = enemy;//把敌人enemybase赋给enemyStateBoard
             times++;
+        }
+    }
+    //增加对应敌人状态面板
+    public void AddEnemyStateBoard(EnemyBase enemyBase)
+    {
+        GameObject stateBoard = Instantiate(Resources.Load("Prefabs/UI/enemyStateBoard"), GameObject.Find("StateBoardAssem").transform) as GameObject;
+        stateBoard.GetComponent<enemyStateBoard>().thisEnemy = enemyBase;
+    }
+    //删除对应敌人状态面板
+    public void DeleteEnemyStateBoard(EnemyBase enemyBase)
+    {
+        enemyStateBoard[] enemyStateBoards = GameObject.FindObjectsOfType<enemyStateBoard>();
+        foreach (enemyStateBoard board in enemyStateBoards)
+        {
+            if(board.thisEnemy == enemyBase)
+            {
+                Destroy(board.gameObject);
+            }
         }
     }
 }

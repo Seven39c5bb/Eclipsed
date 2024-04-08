@@ -8,13 +8,25 @@ public class ShopManager : MonoBehaviour
     public Sprite salemanSprite;
     //商店物品列表
     public List<ShopItem> shopItems;
-    public static ShopManager instance;
+    //单例
+    public static ShopManager Shop_instance;
+    public static ShopManager instance
+    {
+        get
+        {
+            if(Shop_instance== null)
+            {
+                Shop_instance=GameObject.FindObjectOfType<ShopManager>();
+            }
+            return Shop_instance;
+        }
+    }
     public List<Transform> slotTR;//总共有10个槽位
     //特殊卡牌购买次数
     public int specialCardBuyTimes;
     private void Awake()
     {
-        instance = this;
+        Shop_instance = this;
     }
     //初始化商店
     public void InitShop()
@@ -30,6 +42,8 @@ public class ShopManager : MonoBehaviour
     //返回地图
     public void BackToAltas()
     {
+        //保存json文件
+        SaveManager.instance.Save();
         switch (SaveManager.instance.jsonData.mapData.backAtlasID)
         {
             case MapManager.AtlasID.Atlas_1:

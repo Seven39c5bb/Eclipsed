@@ -10,9 +10,9 @@ public class perfectTime :Card
     {
         Vector2Int playerPos = PlayerController.instance.Location;
         //如果玩家前方四格，向上三格子有敌人，对其造成伤害
-        if(ChessboardManager.instance.cellStates[playerPos.x+4, playerPos.y-3].state == Cell.StateType.Occupied)
+        if(ChessboardManager.instance.cellStates[playerPos.x+3, playerPos.y].state == Cell.StateType.Occupied)
         {
-            Vector2Int pos = new Vector2Int(playerPos.x + 4, playerPos.y - 3);
+            Vector2Int pos = new Vector2Int(playerPos.x + 3, playerPos.y);
             ChessboardManager.instance.CheckCell(pos).TakeDamage(damage);
         }
         costManager.instance.curCost -= cost;

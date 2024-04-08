@@ -248,7 +248,7 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
-  damage: 0
+  damage: 50
 --- !u!1 &6559481299459116633
 GameObject:
   m_ObjectHideFlags: 0

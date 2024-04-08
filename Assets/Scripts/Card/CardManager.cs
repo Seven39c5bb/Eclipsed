@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public static CardManager instance;
+    public static CardManager c_instance;
+    public static CardManager instance
+    {
+        get
+        {
+            if(c_instance == null)
+            {
+                c_instance=GameObject.FindObjectOfType<CardManager>();
+            }
+            return c_instance;
+        }
+    }
     public static List<string> cardDesk;
     public static List<string> discardDesk;
     public List<string> handCards;
@@ -14,7 +25,7 @@ public class CardManager : MonoBehaviour
     public GameConfig gameConfig;
     private void Awake()    
     {
-        instance = this;
+        c_instance = this;
         cardDesk = new List<string>();
         discardDesk = new List<string>();
         //��text�м���������Ϣ

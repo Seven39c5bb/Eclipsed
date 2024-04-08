@@ -47,10 +47,21 @@ public class SaveManager : MonoBehaviour
 {
     public bool isBackFromNodeScene;//是否从节点场景返回,在战斗胜利时将之设为true,在加载回Atlas场景之前!!!!!!!!!!!!!!!!!!!!
     public JsonData jsonData;
-    public static SaveManager instance;
+    private static SaveManager S_instance;
+    public static SaveManager instance
+    {
+        get
+        {
+            if(S_instance == null)
+            {
+                S_instance = GameObject.FindObjectOfType<SaveManager>();
+            }
+            return S_instance;
+        }
+    }
     private void Awake()
     {
-        instance = this;
+        S_instance = this;
         InitJsonData();
         DontDestroyOnLoad(this);
 

@@ -13,7 +13,18 @@ public class ChessboardManager : MonoBehaviour
     public List<GameObject> enemyList;
     public List<EnemyBase> enemyControllerList;
 
-    public static ChessboardManager instance;
+    public static ChessboardManager Chess_instance;
+    public static ChessboardManager instance
+    {
+        get
+        {
+            if(Chess_instance== null)
+            {
+                Chess_instance = GameObject.FindObjectOfType<ChessboardManager>();
+            }
+            return Chess_instance;
+        }
+    }
 
     void Awake()
     {
@@ -29,7 +40,7 @@ public class ChessboardManager : MonoBehaviour
 
         UpdateEnemyControllerList();
 
-        instance = this;
+        Chess_instance = this;
     }
 
     public void UpdateEnemyControllerList()
