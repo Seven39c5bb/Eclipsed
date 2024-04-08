@@ -6,7 +6,7 @@ using System.Linq;
 
 public class TheSalivator : EnemyBase
 {//泌涎者
-    public new void Start()
+    void Awake()
     {
         // 初始化敌人棋子
         MaxHp = 40;//最大生命值
@@ -16,9 +16,7 @@ public class TheSalivator : EnemyBase
         moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "泌涎者";//棋子名称
-
-        base.Start();//添加血条
-        chessboardManager.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, Location);
         
     }
 
@@ -57,11 +55,11 @@ public class TheSalivator : EnemyBase
         {
             for (int j = upAxis; j <= downAxis; j++)
             {
-                ChessBase currCellObject = chessboardManager.CheckCell(new Vector2Int(i, j));
+                ChessBase currCellObject = ChessboardManager.instance.CheckCell(new Vector2Int(i, j));
                 if (currCellObject != null && currCellObject.tag == "Player")
                 {
                     player = currCellObject;
-                    player.TakeDamage(7);
+                    player.TakeDamage(7, this);
                     Debug.Log("泌涎者攻击了玩家，玩家受到了7点伤害");
                 }
             }
@@ -103,8 +101,8 @@ public class TheSalivator : EnemyBase
                 {   
                     if(i >= 0 && i < 10 && j >= 0 && j < 10)
                     {
-                        if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
-                        && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)
+                        if((ChessboardManager.instance.cellStates[i, j].state != Cell.StateType.Occupied || ChessboardManager.instance.cellStates[i, j].occupant == this.gameObject)
+                        && ChessboardManager.instance.cellStates[i, j].state != Cell.StateType.Wall)
                         {
                             result.Add(new Vector2Int(i, j));
                         }
@@ -115,16 +113,16 @@ public class TheSalivator : EnemyBase
             {
                 if(upAxis >= 0 && upAxis < 10 && i >= 0 && i < 10)
                 {
-                    if((chessboardManager.cellStates[i, upAxis].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, upAxis].occupant == this.gameObject)
-                    && chessboardManager.cellStates[i, upAxis].state != Cell.StateType.Wall)
+                    if((ChessboardManager.instance.cellStates[i, upAxis].state != Cell.StateType.Occupied || ChessboardManager.instance.cellStates[i, upAxis].occupant == this.gameObject)
+                    && ChessboardManager.instance.cellStates[i, upAxis].state != Cell.StateType.Wall)
                     {
                         result.Add(new Vector2Int(i, upAxis));
                     }
                 }
                 if(downAxis >= 0 && downAxis < 10 && i >= 0 && i < 10)
                 {
-                    if((chessboardManager.cellStates[i, downAxis].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, downAxis].occupant == this.gameObject)
-                    && chessboardManager.cellStates[i, downAxis].state != Cell.StateType.Wall)
+                    if((ChessboardManager.instance.cellStates[i, downAxis].state != Cell.StateType.Occupied || ChessboardManager.instance.cellStates[i, downAxis].occupant == this.gameObject)
+                    && ChessboardManager.instance.cellStates[i, downAxis].state != Cell.StateType.Wall)
                     {
                         result.Add(new Vector2Int(i, downAxis));
                     }

@@ -21,6 +21,17 @@ public class ChessboardManager : MonoBehaviour
             if(Chess_instance== null)
             {
                 Chess_instance = GameObject.FindObjectOfType<ChessboardManager>();
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        string cellName = $"Cell ({i},{j})";
+                        GameObject CellObject = GameObject.Find(cellName);
+                        ChessboardManager.Chess_instance.cellStates[i, j] = CellObject.GetComponent<Cell>();
+                    }
+                }
+
+                ChessboardManager.Chess_instance.UpdateEnemyControllerList();
             }
             return Chess_instance;
         }
@@ -46,12 +57,14 @@ public class ChessboardManager : MonoBehaviour
     public void UpdateEnemyControllerList()
     {
         enemyList.Clear();
-        enemyList = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
         enemyControllerList.Clear();
-        foreach (GameObject enemy in enemyList)//要考虑List中的对象可能已经被销毁
+        GameObject[] allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in allEnemies)
         {
-            if(!UnityEngine.Object.Equals(enemy, null))
+            if(enemy != null && enemy.activeInHierarchy)
             {
+                enemyList.Add(enemy);
                 enemyControllerList.Add(enemy.GetComponent<EnemyBase>());
             }
         }
@@ -413,11 +426,17 @@ public class ChessboardManager : MonoBehaviour
                     enemyList.Remove(deleteObject);
                     enemyControllerList.Remove(deleteObject.GetComponent<EnemyBase>());
                     Destroy(deleteObject);
+                    StartCoroutine(DelayedUpdate());
                 }
             }
-        }
-
-        
+        }        
+    }
+    private IEnumerator DelayedUpdate()
+    {
+        //等待当前帧结束
+        yield return new WaitForEndOfFrame();
+        //然后更新敌人列表
+        UpdateEnemyControllerList();
     }
 
     /// <summary>

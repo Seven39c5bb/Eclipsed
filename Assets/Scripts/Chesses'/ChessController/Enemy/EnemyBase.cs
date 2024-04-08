@@ -15,7 +15,7 @@ public class EnemyBase : ChessBase
         //用BFS算法找到前往玩家的最短路径
         for (int i = 0; i < mobility; i++)
         {
-            List<Vector2Int> path = chessboardManager.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
+            List<Vector2Int> path = ChessboardManager.instance.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
             //向玩家附近移动
 
             if (path == null || path.Count == 0)//防止越界
