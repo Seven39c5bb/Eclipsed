@@ -186,7 +186,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             // 更新绿色血条的形状
             CureHPBar.fillAmount = (float)HP / MaxHp;
             // 延迟更新黄色血条的形状
-            Invoke("UpdateDamageHPBar", 0.5f); // 延迟0.5秒
+            Invoke("UpdateDamageHPBar", 0.4f); // 延迟0.4秒
             Debug.Log(gameObject.name + "受到了" + damageTaken + "点伤害");
             
         }
@@ -195,7 +195,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 黄色血条动画
     public void UpdateDamageHPBar()
     {
-        DamageHPBar.DOFillAmount((float)HP / MaxHp, 0.5f) // 使用DoTween创建血条填充动画，动画持续0.5秒
+        DamageHPBar.DOFillAmount((float)HP / MaxHp, 0.39f) // 使用DoTween创建血条填充动画，动画持续0.39秒
         .OnComplete(() => // 在动画结束后执行以下代码
         {
             if (HP <= 0)

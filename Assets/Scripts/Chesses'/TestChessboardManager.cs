@@ -32,13 +32,20 @@ public class TestChessboardManager : MonoBehaviour
         // 添加更多测试用例，以覆盖各种边界情况和可能的障碍类型 */
     }
 
-    public bool testButton = false;
+    public bool testEnemyOnTurn = false;
+    public bool testEnemyInjury = false;
     void Update()
     {
-        if (testButton)
+        if (testEnemyOnTurn)
         {
-            testButton = false;
+            testEnemyOnTurn = false;
             EnemyController.StartCoroutine(EnemyController.OnTurn());
+        }
+        if (testEnemyInjury)
+        {
+            testEnemyInjury = false;
+            EnemyController.TakeDamage(10);
+            
         }
     }
 }

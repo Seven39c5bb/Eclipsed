@@ -36,7 +36,8 @@ public class Fight_EnemyTurn : FightUnit
         }
     }
 
-    private Coroutine currCoroutine = null;
+    private Coroutine currCoroutine = null;//用于检测当前怪物是否已经完成了行动
+    private float timer = 0.8f;
     public override void OnUpdate()//相当于Update
     {
         //调用第一个个敌人的OnTurn，并等待其完成，将之移出列表
@@ -49,6 +50,11 @@ public class Fight_EnemyTurn : FightUnit
                 currCoroutine = ChessboardManager.instance.StartCoroutine(OnTurnCoroutine(enemyList[0]));//通过下面的协程来调用敌人的OnTurn
                 Debug.Log("Current Enemy Turn Started");
             }
+            timer = 0.8f;
+        }
+        else if(timer >= 0)
+        {
+            if (currCoroutine == null) timer -= Time.deltaTime;//等待所有动画播放完毕
         }
         else
         {
