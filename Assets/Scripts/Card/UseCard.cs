@@ -52,7 +52,15 @@ public class UseCard : MonoBehaviour,IDropHandler
         curCard.GetComponent<Card>().isUsed = true;
 
         //将使用的牌移至弃牌堆
-        Discard(curCard);
+        //如果不是仪式卡
+        if (curCard.GetComponent<Card>().type != Card.cardType.rites)
+        {
+            Discard(curCard);
+        }
+        else
+        {
+            Destroy(curCard);
+        }
 
     }
 
