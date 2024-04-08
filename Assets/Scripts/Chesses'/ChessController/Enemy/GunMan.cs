@@ -5,19 +5,7 @@ using System.Linq;
 
 public class GunMan : EnemyBase
 {
-    /* void Awake()
-    {
-        // 初始化敌人棋子
-        MaxHp = 50;//最大生命值
-        HP = 50;//当前生命值
-        MeleeAttackPower = 5;//近战攻击力
-        mobility = 3;//行动力
-        moveMode = 1;//移动模式
-        this.gameObject.tag = "Enemy";
-        chessName = "枪手";//棋子名称
-        ChessboardManager.instance.enemyControllerList.Add(this);
-    } */
-    public new void Start()
+    void Awake()
     {
         // 初始化敌人棋子
         MaxHp = 50;//最大生命值
@@ -29,7 +17,7 @@ public class GunMan : EnemyBase
         chessName = "枪手";//棋子名称
 
         base.Start();//添加血条
-        chessboardManager.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, Location);
     }
 
     public override IEnumerator OnTurn()
@@ -59,7 +47,7 @@ public class GunMan : EnemyBase
         {
             for (int j = upAxis; j <= downAxis; j++)
             {
-                ChessBase currCellObject = chessboardManager.CheckCell(new Vector2Int(i, j));
+                ChessBase currCellObject = ChessboardManager.instance.CheckCell(new Vector2Int(i, j));
                 if (currCellObject != null && currCellObject.gameObject.tag == "Player")
                 {
                     player = currCellObject;
@@ -110,8 +98,8 @@ public class GunMan : EnemyBase
                 {   
                     if(i >= 0 && i < 10 && j >= 0 && j < 10)
                     {
-                        if((chessboardManager.cellStates[i, j].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, j].occupant == this.gameObject)
-                        && chessboardManager.cellStates[i, j].state != Cell.StateType.Wall)
+                        if((ChessboardManager.instance.cellStates[i, j].state != Cell.StateType.Occupied || ChessboardManager.instance.cellStates[i, j].occupant == this.gameObject)
+                        && ChessboardManager.instance.cellStates[i, j].state != Cell.StateType.Wall)
                         {
                             result.Add(new Vector2Int(i, j));
                         }
@@ -122,16 +110,16 @@ public class GunMan : EnemyBase
             {
                 if(upAxis >= 0 && upAxis < 10 && i >= 0 && i < 10)
                 {
-                    if((chessboardManager.cellStates[i, upAxis].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, upAxis].occupant == this.gameObject)
-                    && chessboardManager.cellStates[i, upAxis].state != Cell.StateType.Wall)
+                    if((ChessboardManager.instance.cellStates[i, upAxis].state != Cell.StateType.Occupied || ChessboardManager.instance.cellStates[i, upAxis].occupant == this.gameObject)
+                    && ChessboardManager.instance.cellStates[i, upAxis].state != Cell.StateType.Wall)
                     {
                         result.Add(new Vector2Int(i, upAxis));
                     }
                 }
                 if(downAxis >= 0 && downAxis < 10 && i >= 0 && i < 10)
                 {
-                    if((chessboardManager.cellStates[i, downAxis].state != Cell.StateType.Occupied || chessboardManager.cellStates[i, downAxis].occupant == this.gameObject)
-                    && chessboardManager.cellStates[i, downAxis].state != Cell.StateType.Wall)
+                    if((ChessboardManager.instance.cellStates[i, downAxis].state != Cell.StateType.Occupied || ChessboardManager.instance.cellStates[i, downAxis].occupant == this.gameObject)
+                    && ChessboardManager.instance.cellStates[i, downAxis].state != Cell.StateType.Wall)
                     {
                         result.Add(new Vector2Int(i, downAxis));
                     }

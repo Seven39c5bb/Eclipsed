@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MashedPotato : EnemyBase
 {//土豆泥
-    public override void Start()
+    void Awake()
     {
         // 初始化敌人棋子
         MaxHp = 50;//最大生命值
@@ -15,8 +15,7 @@ public class MashedPotato : EnemyBase
         this.gameObject.tag = "Enemy";
         chessName = "土豆泥";//棋子名称
 
-        base.Start();//添加血条
-        chessboardManager.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, Location);
         
     }
 

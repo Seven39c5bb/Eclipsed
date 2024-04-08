@@ -4,7 +4,7 @@ using System;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
-    public ChessboardManager chessboardManager;
+    //public ChessboardManager chessboardManager;
     public UnityEngine.UI.Image HPBar;//血条
     public UnityEngine.UI.Image DamageHPBar;//受伤血条
     public UnityEngine.UI.Image CureHPBar;//治疗血条
@@ -58,7 +58,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 方法
     void Awake()
     {
-        chessboardManager = GameObject.Find("Chessboard").GetComponent<ChessboardManager>();
+        //chessboardManager = GameObject.Find("Chessboard").GetComponent<ChessboardManager>();
     }
 
     public virtual void Start()
@@ -101,7 +101,7 @@ public class ChessBase : MonoBehaviour //棋子基类
 
         //移动
         (Vector2 aimPosition, Vector2Int aimLocation, string roadblockType, GameObject roadblockObject) = 
-        chessboardManager.MoveControl(gameObject, Location, direction);
+        ChessboardManager.instance.MoveControl(gameObject, Location, direction);
 
         //计算Location和aimLocation之间的距离
         int moveDistance = Mathf.Abs(aimLocation.x - Location.x) + Mathf.Abs(aimLocation.y - Location.y);
@@ -232,6 +232,6 @@ public class ChessBase : MonoBehaviour //棋子基类
 
         Debug.Log(gameObject.name + "死了");
         
-        chessboardManager.RemoveChess(gameObject);
+        ChessboardManager.instance.RemoveChess(gameObject);
     }
 }
