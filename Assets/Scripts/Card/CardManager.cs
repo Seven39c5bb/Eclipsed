@@ -19,7 +19,6 @@ public class CardManager : MonoBehaviour
     public static List<string> cardDesk;
     public static List<string> discardDesk;
     public List<string> handCards;
-    public int test = 1;
 
     //
     public GameConfig gameConfig;
@@ -61,7 +60,7 @@ public class CardManager : MonoBehaviour
             cardDesk.Remove(drawCard);
             //更新卡组卡牌显示
             FightUI.instance.UpdateDeckPanel();
-        }  
+        }
     }
     public void UPdateDesk()//更新牌组
     {
