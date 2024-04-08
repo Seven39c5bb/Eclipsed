@@ -11,10 +11,16 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     //枚举卡牌的种类
     public enum cardType
     {
-        action,skill,trap
+        action,skill,rites
     }
     //卡牌的种类
     public cardType type;
+    //稀有度
+    public enum rareType
+    {
+        common,rare,legend
+    }
+    public rareType rare;
     //卡牌描述
     public string discription;
     //卡牌的费用
@@ -51,7 +57,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     {
         //减去和手牌区的相对位置
         //startPos = this.transform.position;
-        Debug.Log(this.name + " startPos: " + startPos);
+        //Debug.Log(this.name + " startPos: " + startPos);
         if(isDrag)
         {
             return;

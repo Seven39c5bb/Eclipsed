@@ -7,11 +7,22 @@ using DG.Tweening;
 
 public class UseCard : MonoBehaviour,IDropHandler
 {
-    public GameObject usingCard;
-    public static UseCard instance;
+    public GameObject usingCard;    
+    public static UseCard UseCard_Instance;
+    public static UseCard instance
+    {
+        get
+        {
+            if (UseCard_Instance == null)
+            {
+                UseCard_Instance = GameObject.FindObjectOfType<UseCard>();
+            }
+            return UseCard_Instance;
+        }
+    }
     private void Awake()
     {
-        instance = this;
+        UseCard_Instance = this;
     }
     private void Start()
     {

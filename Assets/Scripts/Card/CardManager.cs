@@ -4,40 +4,47 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-    public static CardManager instance;
+    public static CardManager c_instance;
+    public static CardManager instance
+    {
+        get
+        {
+            if(c_instance == null)
+            {
+                c_instance=GameObject.FindObjectOfType<CardManager>();
+            }
+            return c_instance;
+        }
+    }
     public static List<string> cardDesk;
     public static List<string> discardDesk;
     public List<string> handCards;
     public int test = 1;
 
-    //test 
+    //
     public GameConfig gameConfig;
-    //test
     private void Awake()    
     {
-        instance = this;
+        c_instance = this;
         cardDesk = new List<string>();
         discardDesk = new List<string>();
         //��text�м���������Ϣ
         //......;0
 
-        #region gameConfig
-        gameConfig = new GameConfig();
-        gameConfig.Init();
-        foreach(KeyValuePair<string,int> ele in gameConfig.cardDeckData)
-        {
-            string cardName=ele.Key;
-            int cardCount=ele.Value;
-            //GameObject card = Resources.Load("Prefabs/Card/" + cardName) as GameObject;
-            for(int i = 0; i < cardCount; i++)///test 5 �Ļ�(int)cardCount
-            {
-                cardDesk.Add(cardName);
-            }      
-        }
+        #region gameConfig 从json文档中读取卡组信息
+        cardDesk=new List<string>(SaveManager.instance.jsonData.playerData.playerDeck);
         #endregion
-        #region
+        
+    }
+    //Start
+    private void Start()
+    {
+        #region 初始化记牌器
         FightUI.instance.InitDeckPanel();
         #endregion
+        //如果有存档，从存档中读取卡组信息
+        //cardDeck=new List<string>(SaveManager.instance.jsonData.cardDeckData);
+        //如果没有存档，读取初始卡组信息
     }
     //抽卡
     public void Draw(int num)

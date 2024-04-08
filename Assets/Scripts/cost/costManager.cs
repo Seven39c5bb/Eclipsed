@@ -5,7 +5,18 @@ using TMPro;
 public class costManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static costManager instance;
+    public static costManager cost_instance;
+    public static costManager instance
+    {
+        get
+        {
+            if (cost_instance == null)
+            {
+                cost_instance= GameObject.FindObjectOfType<costManager>();
+            }
+            return cost_instance;
+        }
+    }
     public int curCost;
     public int maxCost;
     public int oriCost = 4;
@@ -13,7 +24,7 @@ public class costManager : MonoBehaviour
     public TextMeshProUGUI textMeshPro;
     private void Awake()
     {
-        instance = this;
+        cost_instance = this;
     }
     void Start()
     {

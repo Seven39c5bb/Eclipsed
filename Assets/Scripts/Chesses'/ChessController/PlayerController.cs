@@ -6,8 +6,21 @@ using UnityEngine;
 
 public class PlayerController : ChessBase
 {
-    public static PlayerController instance;
+    public static PlayerController player_instance;
+    public static PlayerController instance
+    {
+        get
+        {
+            if (player_instance == null)
+            {
+                player_instance = GameObject.FindObjectOfType<PlayerController>();
+            }
+            return player_instance;
+        }
+    }
     public int initHp;
+    public int coins;
+    public int fingerBones;
     public override void Start()
     {
         // 从存档中读取玩家初始生命值
@@ -22,7 +35,7 @@ public class PlayerController : ChessBase
         initHp = 80;
 
         // 初始化玩家棋子
-        instance = this;
+        player_instance = this;
         MaxHp = 80;//最大生命值
         HP = initHp;//当前生命值
         MeleeAttackPower = 10;//近战攻击力

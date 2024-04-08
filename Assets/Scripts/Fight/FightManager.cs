@@ -8,13 +8,25 @@ public enum FightType
 }
 public class FightManager : MonoBehaviour
 {
-    public static FightManager instance;
+    private static FightManager f_instance;
+
+    public static FightManager instance
+    {
+        get
+        {
+            if(f_instance == null)
+            {
+                f_instance=GameObject.FindObjectOfType<FightManager>();
+            }
+            return f_instance;
+        }
+    }
     public FightUnit fightUnit;
     public FightType curFightType;
     public int turnCounter = 0;
     private void Awake()
     {
-        instance = this;
+        f_instance = this;
     }
     public bool isCheckingVictory = false;//是否正在检查胜利(会在战斗初始化时设为true)
     private void Update()
