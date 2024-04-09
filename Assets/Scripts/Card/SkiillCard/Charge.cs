@@ -32,21 +32,86 @@ public class Charge : Card
             Debug.Log("Wrong direction");
             return;
         }
+        
         if (selectedCellPos.x - PlayerController.instance.Location.x > 0)
         {
-            PlayerController.instance.Move(new Vector2Int(10, 0));
+            Vector2Int aimDirection = new Vector2Int(0, 0);
+            Vector2Int aimPos = new Vector2Int(0, 0);
+            for (int i = 1; i <= 10; i++)
+            {
+                if (PlayerController.instance.Location.x + i > 9)
+                {
+                    aimPos = new Vector2Int(9, PlayerController.instance.Location.y);
+                    break;
+                }
+                if (ChessboardManager.instance.CheckCell(new Vector2Int(PlayerController.instance.Location.x + i, PlayerController.instance.Location.y)) != null)
+                {
+                    aimPos = new Vector2Int(PlayerController.instance.Location.x + i, PlayerController.instance.Location.y);
+                    break;
+                }
+            }
+            aimDirection = aimPos - PlayerController.instance.Location;
+            PlayerController.instance.Move(aimDirection);
         }
         else if (selectedCellPos.x - PlayerController.instance.Location.x < 0)
         {
-            PlayerController.instance.Move(new Vector2Int(-10, 0));
+            Vector2Int aimDirection = new Vector2Int(0, 0);
+            Vector2Int aimPos = new Vector2Int(0, 0);
+            for (int i = 1; i <= 10; i++)
+            {
+                if (PlayerController.instance.Location.x - i < 0)
+                {
+                    aimPos = new Vector2Int(0, PlayerController.instance.Location.y);
+                    break;
+                }
+                if (ChessboardManager.instance.CheckCell(new Vector2Int(PlayerController.instance.Location.x - i, PlayerController.instance.Location.y)) != null)
+                {
+                    aimPos = new Vector2Int(PlayerController.instance.Location.x - i, PlayerController.instance.Location.y);
+                    break;
+                }
+            }
+            aimDirection = aimPos - PlayerController.instance.Location;
+            PlayerController.instance.Move(aimDirection);
         }
         else if (selectedCellPos.y - PlayerController.instance.Location.y > 0)
         {
-            PlayerController.instance.Move(new Vector2Int(0, 10));
+            Vector2Int aimDirection = new Vector2Int(0, 0);
+            Vector2Int aimPos = new Vector2Int(0, 0);
+            for (int i = 1; i <= 10; i++)
+            {
+                if (PlayerController.instance.Location.y + i > 9)
+                {
+                    aimPos = new Vector2Int(PlayerController.instance.Location.x, 9);
+                    break;
+                }
+                if (ChessboardManager.instance.CheckCell(new Vector2Int(PlayerController.instance.Location.x, PlayerController.instance.Location.y + i)) != null)
+                {
+                    aimPos = new Vector2Int(PlayerController.instance.Location.x, PlayerController.instance.Location.y + i);
+                    break;
+                }
+            }
+            aimDirection = aimPos - PlayerController.instance.Location;
+            PlayerController.instance.Move(aimDirection);
         }
         else if (selectedCellPos.y - PlayerController.instance.Location.y < 0)
         {
-            PlayerController.instance.Move(new Vector2Int(0, -10));
+            Vector2Int aimDirection = new Vector2Int(0, 0);
+            Vector2Int aimPos = new Vector2Int(0, 0);
+            for (int i = 1; i <= 10; i++)
+            {
+                if (PlayerController.instance.Location.y - i < 0)
+                {
+                    aimPos = new Vector2Int(PlayerController.instance.Location.x, 0);
+                    break;
+                }
+                if (ChessboardManager.instance.CheckCell(new Vector2Int(PlayerController.instance.Location.x, PlayerController.instance.Location.y - i)) != null)
+                {
+                    aimPos = new Vector2Int(PlayerController.instance.Location.x, PlayerController.instance.Location.y - i);
+                    break;
+                }
+            }
+            aimDirection = aimPos - PlayerController.instance.Location;
+            PlayerController.instance.Move(aimDirection);
         }
         costManager.instance.curCost -= cost;
     }
