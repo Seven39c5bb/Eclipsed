@@ -6,14 +6,14 @@ public class EnegyInjectionBuff : BuffBase
 {
     public override int OnCrash(int damage, ChessBase target)
     {
-        Debug.Log("´¥·¢OnCarsh");
-        /*ÄãÏÂ´ÎÅö×²Ôì³É½üÕ½ÉËº¦Ê±£¬»á¶ÔËùÓĞµĞÈËÔì³É¶îÍâ½üÕ½ÉËº¦¡£*/
+        Debug.Log("è§¦å‘OnCarsh");
+        /*ä½ ä¸‹æ¬¡ç¢°æ’é€ æˆè¿‘æˆ˜ä¼¤å®³æ—¶ï¼Œä¼šå¯¹æ‰€æœ‰æ•Œäººé€ æˆé¢å¤–è¿‘æˆ˜ä¼¤å®³ã€‚*/
         foreach(var enemy in ChessboardManager.instance.enemyControllerList)
         {
             enemy.TakeDamage(damage, enemy);
         }
-        //Ïú»Ù¸Ãbuff
-        BuffManager.instance.DeleteBuff(this.name,PlayerController.instance);
+        //é”€æ¯è¯¥buff
+        BuffManager.instance.DeleteBuff(this.buffName,PlayerController.instance);
         return damage;
     }
 

@@ -7,7 +7,12 @@ public class ArmedBuff : BuffBase
     public override void OnAdd()
     {
         this.chessBase=PlayerController.instance;
-        Debug.Log("Ôö¼Ó¹¥»÷Á¦");
+        Debug.Log("å¢åŠ æ”»å‡»åŠ›");
         PlayerController.instance.meleeAttackPower += 10;
+    }
+    public override void OnRemove()
+    {
+        Debug.Log("å‡å°‘æ”»å‡»åŠ›");
+        PlayerController.instance.meleeAttackPower -= 10;
     }
 }
