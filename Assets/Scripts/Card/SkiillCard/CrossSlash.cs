@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CrossSlash : Card
 {
-    //¶Ô5*5Ê®×Ö¸ñ×ÓÄÚµÄµĞÈËÔì³É»ùÓÚÄã½üÕ½ÉËº¦ÊıÖµµÄÉËº¦
+    //å¯¹5*5åå­—æ ¼å­å†…çš„æ•Œäººé€ æˆåŸºäºä½ è¿‘æˆ˜ä¼¤å®³æ•°å€¼çš„ä¼¤å®³
     public override void CardFunc()
     {
-        //»ñÈ¡µ±Ç°Î»ÖÃ
+        //è·å–å½“å‰ä½ç½®
         Vector2Int playerPos = PlayerController.instance.Location;
-        //»ñÈ¡Ê®×Ö¸ñ×ÓÄÚµÄµĞÈË
+        //è·å–åå­—æ ¼å­å†…çš„æ•Œäºº
         List<Vector2Int> posList = new List<Vector2Int>();
         for(int i=-5; i<=5; i++)
         {
