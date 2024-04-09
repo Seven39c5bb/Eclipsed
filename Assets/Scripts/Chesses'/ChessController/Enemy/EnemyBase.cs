@@ -13,7 +13,8 @@ public class EnemyBase : ChessBase
     public virtual IEnumerator OnTurn()
     {
         //用BFS算法找到前往玩家的最短路径
-        for (int i = 0; i < mobility; i++)
+        int originMobility = mobility;//记录初始行动力，行动力可能会在移动过程中因碰撞或各种原因减少
+        for (int i = 0; i < originMobility; i++)
         {
             List<Vector2Int> path = ChessboardManager.instance.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
             //向玩家附近移动

@@ -7,6 +7,7 @@ public class BuffDriveMotor_MotorGangster : BuffBase
     void Awake()
     {
         buffName = "BuffDriveMotor_MotorGangster";
+        buffNameCN = "飞驰急行";
         durationTurn = 10;
         buffType = BuffType.Buff;
         description = "摩托暴徒的行动力+1";

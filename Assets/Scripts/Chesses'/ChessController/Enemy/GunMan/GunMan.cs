@@ -69,7 +69,7 @@ public class GunMan : EnemyBase
         {
             //特效加在这里
             player.TakeDamage(shotDamage, this);
-            BuffManager.instance.AddBuff("BuffConcentration_GunMan", this);
+            BuffManager.instance.AddBuff("BuffConcentration_GunMan", this);//添加全神贯注buff
         }
     }
 
