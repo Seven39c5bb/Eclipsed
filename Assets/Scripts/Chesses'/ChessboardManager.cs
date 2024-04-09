@@ -8,6 +8,8 @@ public class ChessboardManager : MonoBehaviour
 {
     public Cell[,] cellStates = new Cell[10, 10];
     public Vector2Int boardSize = new Vector2Int(10, 10);
+    //选中的cell
+    public Cell curCell;
 
     //敌方棋子列表
     public List<GameObject> enemyList;
