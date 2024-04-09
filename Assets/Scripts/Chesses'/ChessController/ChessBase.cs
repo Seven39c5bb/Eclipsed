@@ -167,8 +167,28 @@ public class ChessBase : MonoBehaviour //棋子基类
             sequence.Append(transform.DOMove(originalPosition, moveDuration));
             //在动画播放完毕后执行近战伤害判断
             sequence.OnComplete(() => {
-                AttackedChess.TakeDamage(MeleeAttackPower * residualDistance, this);//攻击伤害 = 攻击力 * 剩余移动数
+                //计算撞击伤害
+                int crashDamage = MeleeAttackPower * residualDistance;//撞击伤害 = 攻击力 * 剩余移动数
+                foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
+                {
+                    crashDamage = buff.OnCrash(crashDamage, AttackedChess);
+                }
+                foreach (BuffBase buff in AttackedChess.buffList)//根据被撞者buff列表对伤害进行处理
+                {
+                    crashDamage = buff.BeCrashed(crashDamage, this);
+                }
+                AttackedChess.TakeDamage(crashDamage, this);
+
+                //计算受反击伤害
                 int injury = AttackedChess.MeleeAttackPower;
+                foreach (BuffBase buff in AttackedChess.buffList)//根据被撞者buff列表对伤害进行处理
+                {
+                    injury = buff.OnCrash(injury, this);
+                }
+                foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
+                {
+                    injury = buff.BeCrashed(injury, AttackedChess);
+                }
                 TakeDamage(injury, AttackedChess);
             });
             //开始动画
@@ -178,6 +198,15 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 受伤方法
     public virtual void TakeDamage(int damage, ChessBase attacker)
     {
+        foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
+        {
+            damage = buff.OnHurt(damage, attacker);
+        }
+        foreach (BuffBase buff in attacker.buffList)//根据攻击者buff列表对伤害进行处理
+        {
+            damage = buff.OnHit(damage, this);
+        }
+
         int damageTaken = damage - Barrier;
         Barrier -= damage;
         if (damageTaken > 0)
