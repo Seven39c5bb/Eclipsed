@@ -47,4 +47,17 @@ public class BuffManager : MonoBehaviour
         }
        
     }
+    //É¾³ýbuff
+    public void DeleteBuff(string buffName,ChessBase buffTaker)
+    {
+        Debug.Log("´¥·¢deleteBuff");
+        foreach(var buff in buffTaker.buffList)
+        {
+            if (buff.name == buffName)
+            {
+                buffTaker.buffList.Remove(buff);
+                Destroy(buff.gameObject);
+            }
+        }
+    }
 }
