@@ -23,6 +23,10 @@ public class GunMan : EnemyBase
     public override IEnumerator OnTurn()
     {
         //该敌人回合
+        foreach (BuffBase buff in buffList)
+        {
+            buff.OnTurnStart();
+        }
 
         //用BFS算法移动
         yield return base.OnTurn();
@@ -31,6 +35,11 @@ public class GunMan : EnemyBase
         Shot();
 
         yield return new WaitForSeconds(0.3f);
+
+        foreach (BuffBase buff in buffList)
+        {
+            buff.OnTurnEnd();
+        }
     }
 
     public int shotDamage = 5;//射击伤害
