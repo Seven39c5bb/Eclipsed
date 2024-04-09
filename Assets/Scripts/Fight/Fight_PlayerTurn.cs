@@ -6,6 +6,12 @@ public class Fight_PlayerTurn : FightUnit
 {
     public override void Init()
     {
+        //检查玩家buff
+        foreach(var buff in PlayerController.instance.buffList)
+        {
+            buff.OnTurnStart();
+        }
+
         FightManager.instance.turnCounter++;//回合数+1
         Debug.Log("Player Trun now");
         UIManager.Instance.ShowTip("我的回合", Color.green, delegate ()

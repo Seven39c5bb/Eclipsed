@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ArmedBuff : BuffBase
 {
-    private void Start()
+    public override void OnAdd()
     {
+        this.chessBase=PlayerController.instance;
         Debug.Log("增加攻击力");
         PlayerController.instance.meleeAttackPower += 10;
     }
-    //当持续
 }
