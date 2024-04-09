@@ -24,14 +24,16 @@ public class BuffBase : MonoBehaviour
     public string description;
 
     //造成伤害时触发
-    public virtual void OnHit()
+    public virtual int OnHit(int damage, ChessBase target)
     {
         //子类实现
+        return damage;
     }
     //受到伤害时触发
-    public virtual void OnHurt()
+    public virtual int OnHurt(int damage, ChessBase attacker)
     {
         //子类实现
+        return damage;
     }
     //回合开始时触发
     public virtual void OnTurnStart()
@@ -44,12 +46,19 @@ public class BuffBase : MonoBehaviour
         //子类实现
     }
     //碰撞时触发
-    public virtual void OnCrash()
+    public virtual int OnCrash(int damage, ChessBase target)
     {
         //子类实现
+        return damage;
     }
     //被碰撞时触发
-    public virtual void BeCrashed()
+    public virtual int BeCrashed(int damage, ChessBase attacker)
+    {
+        //子类实现
+        return damage;
+    }
+    //死亡时触发
+    public virtual void OnDie()
     {
         //子类实现
     }
