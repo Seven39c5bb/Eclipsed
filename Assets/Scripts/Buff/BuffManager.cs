@@ -19,42 +19,52 @@ public class BuffManager : MonoBehaviour
     }
     public void AddBuff(string buffName,ChessBase buffTaker)
     {
-        BuffBase buff= Resources.Load("Prefabs/Buff/" + buffName).GetComponent<BuffBase>();
-        if (buffTaker.buffList.Contains(buff))
+        BuffBase currBuff = null;
+        bool isBuffExist = false;
+        foreach(var buff in buffTaker.buffList)//éå†buffåˆ—è¡¨ï¼Œæ£€æŸ¥buffæ˜¯å¦å­˜åœ¨
         {
-            //²éÑ¯ÊÇ·ñ¿Éµş¼Ó
-            if (buff.canBeLayed)
+            if (buff.buffName == buffName)
             {
-                buff.layer += 1;
-                buff.OnAdd();
-                //Ë¢ĞÂ³ÖĞøÊ±¼ä
+                currBuff = buff;
+                isBuffExist = true;
+            }
+        }
+        if (isBuffExist)
+        {
+            //æŸ¥è¯¢æ˜¯å¦å¯å åŠ 
+            if (currBuff.canBeLayed)
+            {
+                currBuff.layer += 1;
+                currBuff.OnAdd();
+                //åˆ·æ–°æŒç»­æ—¶é—´
             }
             else
             {
-                //Ë¢ĞÂ³ÖĞøÊ±¼ä
+                //åˆ·æ–°æŒç»­æ—¶é—´
             }
         }
         else
         {
-            //ÊµÀı»¯buff
-            GameObject buffObj = Instantiate(Resources.Load("Prefabs/Buff/" + buff.name)) as GameObject;    
-            //ÉèÖÃbuffµÄ³ÖÓĞÕß
+            //å®ä¾‹åŒ–buff
+            GameObject buffObj = Instantiate(Resources.Load("Prefabs/Buff/" + buffName)) as GameObject;    
+            //è®¾ç½®buffçš„æŒæœ‰è€…
             buffObj.GetComponent<BuffBase>().chessBase=buffTaker;
-            //Ìí¼Óµ½buffÁĞ±í
+            //æ·»åŠ åˆ°buffåˆ—è¡¨
             buffTaker.buffList.Add(buffObj.GetComponent<BuffBase>());
-            //´¥·¢buffµÄOnAdd
+            //è§¦å‘buffçš„OnAdd
             buffObj.GetComponent<BuffBase>().OnAdd();
         }
        
     }
-    //É¾³ıbuff
+    //åˆ é™¤buff
     public void DeleteBuff(string buffName,ChessBase buffTaker)
     {
-        Debug.Log("´¥·¢deleteBuff");
+        Debug.Log("è§¦å‘deleteBuff");
         foreach(var buff in buffTaker.buffList)
         {
-            if (buff.name == buffName)
+            if (buff.buffName == buffName)
             {
+                buff.OnRemove();
                 buffTaker.buffList.Remove(buff);
                 Destroy(buff.gameObject);
             }

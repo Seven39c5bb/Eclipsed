@@ -25,7 +25,7 @@ public class BuffBase : MonoBehaviour
     //是否可叠加
     public bool canBeLayed;
     //buff层数
-    public int layer;
+    public int layer = 1;
 
     //造成伤害时触发
     public virtual int OnHit(int damage, ChessBase target)
