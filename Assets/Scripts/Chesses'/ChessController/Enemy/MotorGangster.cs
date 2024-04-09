@@ -22,6 +22,10 @@ public class MotorGangster : EnemyBase
     public override IEnumerator OnTurn()
     {
         //该敌人回合
+        foreach (BuffBase buff in buffList)
+        {
+            buff.OnTurnStart();
+        }
 
         if (isInjured)//如果受伤，则不增加行动力
         {
@@ -40,6 +44,11 @@ public class MotorGangster : EnemyBase
         //释放技能
         RangeInjury();
         yield return new WaitForSeconds(0.3f);
+
+        foreach (BuffBase buff in buffList)
+        {
+            buff.OnTurnEnd();
+        }
     }
 
     public void RangeInjury()//范围伤害
