@@ -1,10 +1,11 @@
 using UnityEngine;
 using DG.Tweening;
 using System;
+using System.Collections.Generic;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
-    //public ChessboardManager chessboardManager;
+    // 血条组件
     public UnityEngine.UI.Image HPBar;//血条
     public UnityEngine.UI.Image DamageHPBar;//受伤血条
     public UnityEngine.UI.Image CureHPBar;//治疗血条
@@ -14,6 +15,7 @@ public class ChessBase : MonoBehaviour //棋子基类
 
     // 共有属性
     public string chessName = "Chess";//棋子名称
+    public List<BuffBase> buffList = new List<BuffBase>();//buff列表
     public int MaxHp = 10;//最大生命值
     public int Hp = 10;
     public int HP//当前生命值
