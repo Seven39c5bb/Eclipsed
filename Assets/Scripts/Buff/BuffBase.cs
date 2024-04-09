@@ -23,7 +23,43 @@ public class BuffBase : MonoBehaviour
     //buff描述
     public string description;
 
-    public virtual void InovkeBuff()
+    //造成伤害时触发
+    public virtual void OnHit()
+    {
+        //子类实现
+    }
+    //受到伤害时触发
+    public virtual void OnHurt()
+    {
+        //子类实现
+    }
+    //回合开始时触发
+    public virtual void OnTurnStart()
+    {
+        //子类实现
+    }
+    //回合结束时触发
+    public virtual void OnTurnEnd()
+    {
+        //子类实现
+    }
+    //碰撞时触发
+    public virtual void OnCrash()
+    {
+        //子类实现
+    }
+    //被碰撞时触发
+    public virtual void BeCrashed()
+    {
+        //子类实现
+    }
+    //buff添加的时候触发
+    public virtual void OnAdd()
+    {
+        //子类实现
+    }
+    //buff移除的时候触发
+    public virtual void OnRemove()
     {
         //子类实现
     }
