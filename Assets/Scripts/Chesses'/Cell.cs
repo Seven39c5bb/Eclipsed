@@ -14,6 +14,8 @@ public class Cell : MonoBehaviour
 
     public StateType state = StateType.Empty;
     public GameObject occupant = null;
+    //是否被鼠标选中
+    public bool isSelected = false;
     
     public bool isBloodPool = false;//是否是血池
 
@@ -33,12 +35,16 @@ public class Cell : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        isSelected = true;
+        ChessboardManager.instance.curCell = this;
         // 将颜色设置为透明
         originColor = spriteRenderer.color;
         spriteRenderer.color = new Color(0, 0, 0, 0.05f);
     }
     private void OnMouseExit()
     {
+        ChessboardManager.instance.curCell = null;
+        isSelected = false;
         // 将颜色设置为原始颜色
         spriteRenderer.color = originColor;
     }

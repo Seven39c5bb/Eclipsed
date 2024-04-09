@@ -48,8 +48,10 @@ public class UseCard : MonoBehaviour,IDropHandler
             Debug.Log("no more cost");
             return;
         }
-        curCard.GetComponent<Card>().CardFunc();
         curCard.GetComponent<Card>().isUsed = true;
+        curCard.GetComponent<Card>().CardFunc();
+
+        if (curCard.GetComponent<Card>().isUsed == false) { return; }
 
         //将使用的牌移至弃牌堆
         //如果不是仪式卡
@@ -59,6 +61,7 @@ public class UseCard : MonoBehaviour,IDropHandler
         }
         else
         {
+            FightUI.cardList.Remove(curCard.GetComponent<Card>());
             Destroy(curCard);
         }
 

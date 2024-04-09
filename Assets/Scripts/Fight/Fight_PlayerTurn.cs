@@ -31,7 +31,7 @@ public class Fight_PlayerTurn : FightUnit
         //when deck count<=0,then update the deck
         if(CardManager.cardDesk.Count <= 0)
         {
-            Debug.Log("update the deck");
+            //Debug.Log("update the deck");
             CardManager.instance.UPdateDesk();
         }
         //����������������������

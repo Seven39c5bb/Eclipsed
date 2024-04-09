@@ -8,5 +8,6 @@ public class Armed : Card
     public override void CardFunc()
     {
         BuffManager.instance.AddBuff("ArmedBuff", PlayerController.instance);
+        costManager.instance.curCost -= cost;
     }
 }
