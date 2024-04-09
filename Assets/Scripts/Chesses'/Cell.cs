@@ -17,7 +17,80 @@ public class Cell : MonoBehaviour
     //是否被鼠标选中
     public bool isSelected = false;
     
-    public bool isBloodPool = false;//是否是血池
+
+
+    #region 血池效果
+    public enum CellCondition
+    {
+        Normal,
+        BloodPool_Shallow,
+        BloodPool_Deep
+    }
+    public CellCondition cellCondition = CellCondition.Normal;
+    public int sustainTurn = 0;
+    public void OnPlayerTurnBegin()//血池效果
+    {
+        switch (cellCondition)
+        {
+            case CellCondition.BloodPool_Shallow:
+                if (state == StateType.Occupied && occupant.tag == "Player")
+                {
+                    BloodSoup.Instance.OnBloodPool(6);
+                }
+                break;
+            case CellCondition.BloodPool_Deep:
+                if (state == StateType.Occupied && occupant.tag == "Player")
+                {
+                    BloodSoup.Instance.OnBloodPool(9);
+                }
+                break;
+        }
+    }
+    private GameObject bloodPool;//血池图像
+    public void SetBloodPool(CellCondition condition)//设置血池
+    {
+        cellCondition = condition;
+        switch (cellCondition)
+        {
+            case CellCondition.BloodPool_Shallow:
+                if (cellCondition != CellCondition.BloodPool_Shallow)
+                {
+                    Destroy(bloodPool);
+                    sustainTurn = 2;
+                    //从预制件中实例化血池
+                    bloodPool = Instantiate(Resources.Load<GameObject>("Prefabs/BloodPool_Shallow"), transform);
+                }
+                else
+                {
+                    Destroy(bloodPool);
+                    sustainTurn = 2;
+                    //从预制件中实例化血池
+                    bloodPool = Instantiate(Resources.Load<GameObject>("Prefabs/BloodPool_Shallow"), transform);
+                }
+                break;
+            case CellCondition.BloodPool_Deep:
+                if (cellCondition != CellCondition.BloodPool_Deep)
+                {
+                    Destroy(bloodPool);
+                    sustainTurn = 2;
+                    //从预制件中实例化血池
+                    bloodPool = Instantiate(Resources.Load<GameObject>("Prefabs/BloodPool_Deep"), transform);
+                }
+                else
+                {
+                    Destroy(bloodPool);
+                    sustainTurn = 2;
+                    //从预制件中实例化血池
+                    bloodPool = Instantiate(Resources.Load<GameObject>("Prefabs/BloodPool_Deep"), transform);
+                }
+                break;
+            case CellCondition.Normal:
+                Destroy(bloodPool);
+                break;
+        }
+    }
+    #endregion
+
 
     SpriteRenderer spriteRenderer;
     Color originColor;

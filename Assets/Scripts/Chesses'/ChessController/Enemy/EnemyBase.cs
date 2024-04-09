@@ -38,18 +38,6 @@ public class EnemyBase : ChessBase
             {
 
                 Vector2Int nextDirection = (path[1] - Location) * moveMode;
-                //在移动前，还需要判断目标位置是否玩家已经进入射程，怪物会与玩家保持一定距离
-                /* Vector2Int nextLocation = Location + nextDirection;
-                while (WillIsPlayerInRange(nextLocation))
-                {
-                    int norm = Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y);
-                    if (norm == 0)//如果无法移动
-                    {
-                        break;
-                    }
-                    nextDirection = nextDirection * (norm - 1) / norm;//缩短移动距离
-                    nextLocation = Location + nextDirection;
-                } */
                 Debug.Log("nextDirection: " + nextDirection);
                 Move(nextDirection);
                 //等待nextDirection的模*0.5f的时间后，再继续循环

@@ -5,6 +5,18 @@ using System.Linq;
 
 public class BloodSoup : EnemyBase
 {
+    private static BloodSoup instance;
+    public static BloodSoup Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = GameObject.FindObjectOfType<BloodSoup>();
+            }
+            return instance;
+        }
+    }
     void Awake()
     {
         // 初始化敌人棋子
@@ -19,10 +31,34 @@ public class BloodSoup : EnemyBase
 
         base.Start();//添加血条
         ChessboardManager.instance.AddChess(this.gameObject, Location);
+
+        //将以自己为中心3*3的格子设置为血池
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (Location.x + i >= 0 && Location.x + i < 10 && Location.y + j >= 0 && Location.y + j < 10)
+                {
+                    ChessboardManager.instance.cellStates[Location.x + i, Location.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Deep);
+                }
+            }
+        }
     }
 
     public override IEnumerator OnTurn()
     {
+        // 检查所有棋格，如果cellCondition为BloodPool_Shallow，其持续回合-1，如果为0，将其设置为Normal
+        foreach (var cell in ChessboardManager.instance.cellStates)
+        {
+            if (cell.cellCondition == Cell.CellCondition.BloodPool_Shallow)
+            {
+                cell.sustainTurn--;
+                if (cell.sustainTurn == 0)
+                {
+                    cell.SetBloodPool(Cell.CellCondition.Normal);
+                }
+            }
+        }
         //该敌人回合
         foreach (BuffBase buff in buffList)
         {
@@ -30,7 +66,60 @@ public class BloodSoup : EnemyBase
         }
 
         //用BFS算法移动
-        yield return base.OnTurn();
+        List<Vector2Int> path = ChessboardManager.instance.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
+        Vector2Int nextDirection = path[1] - Location;
+        for (int i = 0; i < moveMode; i++)
+        {
+            //向玩家附近移动
+
+            if (path == null || path.Count == 0)//防止越界
+            {
+                Debug.LogError("Path is too short");
+                yield break;
+            }
+
+            if(IsInRange(PlayerController.instance.Location))//如果处在玩家周围偏好圈内，直接释放技能（防止怪物在偏好区内来回移动）
+            {
+                break;
+            }
+
+            if(path.Count == 1)//如果已经到达偏好区，直接释放技能，防止下面访问path[1]时越界(path[0]是自己当前位置)
+            {
+                break;
+            }
+            else
+            {
+                Vector2Int preLocation = Location;
+                Move(nextDirection);
+                //等待nextDirection的模*0.5f的时间后，再继续循环
+                float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y));
+                yield return new WaitForSeconds(delay);
+
+                //在此处更新棋格血池状态
+                //将以原先位置为中心3*3的格子设置为浅血池
+                for (int k = -1; k <= 1; k++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (preLocation.x + k >= 0 && preLocation.x + k < 10 && preLocation.y + j >= 0 && preLocation.y + j < 10)
+                        {
+                            ChessboardManager.instance.cellStates[preLocation.x + k, preLocation.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Shallow);
+                        }
+                    }
+                }
+                //将以自己为中心3*3的格子设置为深血池
+                for (int k = -1; k <= 1; k++)
+                {
+                    for (int j = -1; j <= 1; j++)
+                    {
+                        if (Location.x + k >= 0 && Location.x + k < 10 && Location.y + j >= 0 && Location.y + j < 10)
+                        {
+                            ChessboardManager.instance.cellStates[Location.x + k, Location.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Deep);
+                        }
+                    }
+                }
+            }
+        }
 
         yield return new WaitForSeconds(0.3f);
 
@@ -38,6 +127,11 @@ public class BloodSoup : EnemyBase
         {
             buff.OnTurnEnd();
         }
+    }
+
+    public void OnBloodPool(int damage)//血池效果
+    {
+        PlayerController.instance.TakeDamage(damage, this);
     }
 
     public override bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内
