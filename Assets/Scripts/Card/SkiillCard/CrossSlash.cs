@@ -23,6 +23,7 @@ public class CrossSlash : Card
             Debug.Log(pos);
             if (ChessboardManager.instance.cellStates[pos.x, pos.y].state == Cell.StateType.Occupied)
             {
+                if (ChessboardManager.instance.CheckCell(pos).GetComponent<EnemyBase>() != null)
                 ChessboardManager.instance.CheckCell(pos).TakeDamage(PlayerController.instance.meleeAttackPower,PlayerController.instance);
             }
         }

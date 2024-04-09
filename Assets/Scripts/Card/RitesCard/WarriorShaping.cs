@@ -7,6 +7,7 @@ public class WarriorShaping : Card
     public override void CardFunc()
     {
         BuffManager.instance.AddBuff("WarriorShapingBuff", PlayerController.instance);
+        costManager.instance.curCost -= cost;
     }
     
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerEnterHandler,IPointerExitHandler
 {
@@ -37,9 +38,11 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     public Vector2 hoverPos;
     //是否被使用
     public bool isUsed = false;
+    //卡牌初始颜色
+    public Color startColor;
     private void Awake()
     {
-        
+        startColor=this.GetComponent<Image>().color;
     }
     public void Start()
     {
@@ -62,8 +65,9 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         {
             return;
         }
-        this.transform.localScale = new Vector3(1.1f, 1.1f, 1);
         hoverPos = this.GetComponent<RectTransform>().anchoredPosition;
+        this.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+        
         this.GetComponent<RectTransform>().DOAnchorPos(new Vector2(this.GetComponent<RectTransform>().anchoredPosition.x,
             hoverPos.y+10f), 0.1f);
     }
