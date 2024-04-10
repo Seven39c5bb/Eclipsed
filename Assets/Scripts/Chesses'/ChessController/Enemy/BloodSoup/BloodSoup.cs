@@ -70,54 +70,53 @@ public class BloodSoup : EnemyBase
 
         //用BFS算法移动
         List<Vector2Int> path = ChessboardManager.instance.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
-        Vector2Int nextDirection = path[1] - Location;
-        for (int i = 0; i < moveMode; i++)
+        if(path.Count == 1 || path == null || path.Count == 0)//如果已经到达偏好区，直接释放技能，防止下面访问path[1]时越界(path[0]是自己当前位置)
         {
-            //向玩家附近移动
-
-            if (path == null || path.Count == 0)//防止越界
+            Debug.Log("无需移动");
+        }
+        else
+        {
+            Vector2Int nextDirection = path[1] - Location;
+            for (int i = 0; i < moveMode; i++)
             {
-                Debug.LogError("Path is too short");
-                yield break;
-            }
+                //向玩家附近移动
 
-            if(IsInRange(PlayerController.instance.Location))//如果处在玩家周围偏好圈内，直接释放技能（防止怪物在偏好区内来回移动）
-            {
-                break;
-            }
 
-            if(path.Count == 1)//如果已经到达偏好区，直接释放技能，防止下面访问path[1]时越界(path[0]是自己当前位置)
-            {
-                break;
-            }
-            else
-            {
-                Vector2Int preLocation = Location;
-                Move(nextDirection);
-                //等待nextDirection的模*0.5f的时间后，再继续循环
-                float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y));
-                yield return new WaitForSeconds(delay);
-
-                //在此处更新棋格血池状态
-                //将以原先位置为中心3*3的格子设置为浅血池
-                for (int k = -1; k <= 1; k++)
+                if(IsInRange(PlayerController.instance.Location))//如果处在玩家周围偏好圈内，直接释放技能（防止怪物在偏好区内来回移动）
                 {
-                    for (int j = -1; j <= 1; j++)
+                    break;
+                }
+
+                
+                else
+                {
+                    Vector2Int preLocation = Location;
+                    Move(nextDirection);
+                    //等待nextDirection的模*0.5f的时间后，再继续循环
+                    float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y));
+                    yield return new WaitForSeconds(delay);
+
+                    //在此处更新棋格血池状态
+                    //将以原先位置为中心3*3的格子设置为浅血池
+                    for (int k = -1; k <= 1; k++)
                     {
-                        if (preLocation.x + k >= 0 && preLocation.x + k < 10 && preLocation.y + j >= 0 && preLocation.y + j < 10)
+                        for (int j = -1; j <= 1; j++)
                         {
-                            ChessboardManager.instance.cellStates[preLocation.x + k, preLocation.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Shallow);
+                            if (preLocation.x + k >= 0 && preLocation.x + k < 10 && preLocation.y + j >= 0 && preLocation.y + j < 10)
+                            {
+                                ChessboardManager.instance.cellStates[preLocation.x + k, preLocation.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Shallow);
+                            }
                         }
                     }
-                }
-                //将以自己为中心3*3的格子设置为深血池
-                for (int k = -1; k <= 1; k++)
-                {
-                    for (int j = -1; j <= 1; j++)
+                    //将以自己为中心3*3的格子设置为深血池
+                    for (int k = -1; k <= 1; k++)
                     {
-                        if (Location.x + k >= 0 && Location.x + k < 10 && Location.y + j >= 0 && Location.y + j < 10)
+                        for (int j = -1; j <= 1; j++)
                         {
-                            ChessboardManager.instance.cellStates[Location.x + k, Location.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Deep);
+                            if (Location.x + k >= 0 && Location.x + k < 10 && Location.y + j >= 0 && Location.y + j < 10)
+                            {
+                                ChessboardManager.instance.cellStates[Location.x + k, Location.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Deep);
+                            }
                         }
                     }
                 }

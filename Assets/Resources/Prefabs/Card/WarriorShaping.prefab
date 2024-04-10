@@ -106,7 +106,7 @@ MonoBehaviour:
   type: 2
   rare: 2
   discription: 
-  cost: 0
+  cost: 4
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}
@@ -114,6 +114,7 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1713507643058399450
 GameObject:
   m_ObjectHideFlags: 0
