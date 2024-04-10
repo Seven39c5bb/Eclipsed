@@ -35,13 +35,13 @@ public class Cell : MonoBehaviour
             case CellCondition.BloodPool_Shallow:
                 if (state == StateType.Occupied && occupant.tag == "Player")
                 {
-                    BloodSoup.Instance.OnBloodPool(6);
+                    BloodSoup.Instance.OnBloodPool(9);
                 }
                 break;
             case CellCondition.BloodPool_Deep:
                 if (state == StateType.Occupied && occupant.tag == "Player")
                 {
-                    BloodSoup.Instance.OnBloodPool(9);
+                    BloodSoup.Instance.OnBloodPool(15);
                 }
                 break;
         }
