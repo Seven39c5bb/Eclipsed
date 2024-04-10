@@ -43,6 +43,8 @@ public class BloodSoup : EnemyBase
                 }
             }
         }
+        BuffManager.instance.AddBuff("BuffCure_BloodSoup", this);
+        StartCoroutine(CheckBossHealth());//检查boss生命值，第一次低于一半时触发灵魂尖啸
     }
 
     public override IEnumerator OnTurn()
@@ -64,6 +66,7 @@ public class BloodSoup : EnemyBase
         {
             buff.OnTurnStart();
         }
+        BuffManager.instance.AddBuff("BuffCure_BloodSoup", this);
 
         //用BFS算法移动
         List<Vector2Int> path = ChessboardManager.instance.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
@@ -123,6 +126,8 @@ public class BloodSoup : EnemyBase
 
         yield return new WaitForSeconds(0.3f);
 
+        BuffManager.instance.AddBuff("BuffFleshLoad_BloodSoup", this);
+
         foreach (BuffBase buff in buffList)
         {
             buff.OnTurnEnd();
@@ -132,6 +137,24 @@ public class BloodSoup : EnemyBase
     public void OnBloodPool(int damage)//血池效果
     {
         PlayerController.instance.TakeDamage(damage, this);
+    }
+
+    //灵魂尖啸
+    IEnumerator CheckBossHealth()
+    {
+        bool hasTriggered = false;
+        while (true)
+        {
+            if (!hasTriggered && HP <= MaxHp / 2)
+            {
+                hasTriggered = true;
+                // 在这里触发你的效果
+                BuffManager.instance.AddBuff("BuffPsychasthenia_BloodSoup", PlayerController.instance);
+                Debug.Log("啊啊啊啊啊啊啊啊啊啊啊啊!");
+                yield break; // 停止当前协程
+            }
+            yield return new WaitForSeconds(0.5f); // 每隔0.5秒检查一次
+        }
     }
 
     public override bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内

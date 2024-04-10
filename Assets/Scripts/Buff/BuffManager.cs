@@ -60,14 +60,24 @@ public class BuffManager : MonoBehaviour
     public void DeleteBuff(string buffName,ChessBase buffTaker)
     {
         Debug.Log("触发deleteBuff");
+        List<BuffBase> buffsToRemove = new List<BuffBase>();
         foreach(var buff in buffTaker.buffList)
         {
             if (buff.buffName == buffName)
             {
                 buff.OnRemove();
-                buffTaker.buffList.Remove(buff);
+                buffsToRemove.Add(buff);
                 Destroy(buff.gameObject);
             }
+        }
+        StartCoroutine(RemoveBuffsNextFrame(buffsToRemove, buffTaker));
+    }
+    IEnumerator RemoveBuffsNextFrame(List<BuffBase> buffsToRemove, ChessBase buffTaker)
+    {
+        yield return null; // 等待下一帧
+        foreach(var buff in buffsToRemove)
+        {
+            buffTaker.buffList.Remove(buff);
         }
     }
 }
