@@ -35,7 +35,7 @@ public class MotorGangster : EnemyBase
         //释放技能
         RangeInjury();
         yield return new WaitForSeconds(0.3f);
-        BuffManager.instance.AddBuff("BuffDriveMotor_MotorGangster", this);
+        BuffManager.instance.AddBuff("BuffDriveMotor_MotorGangster", this);//刷新驾驶buff
 
         foreach (BuffBase buff in buffList)
         {

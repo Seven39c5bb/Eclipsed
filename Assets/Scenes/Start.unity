@@ -594,57 +594,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 409774044}
   m_CullTransparentMesh: 1
---- !u!1 &632787131
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 632787133}
-  - component: {fileID: 632787132}
-  m_Layer: 0
-  m_Name: BuffDriveMotor_MotorGangster
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &632787132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632787131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ee7eb7cb9feff43a8a25281051cdb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buffName: BuffDriveMotor_MotorGangster
-  durationTurn: 0
-  chessBase: {fileID: 0}
-  buffType: 0
-  description: 
-  canBeLayed: 0
-  layer: 1
---- !u!4 &632787133
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 632787131}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.161146, y: 0.093928844, z: 0.449294}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879907285
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,4 +1046,3 @@ SceneRoots:
   - {fileID: 879907288}
   - {fileID: 155579071}
   - {fileID: 90699417}
-  - {fileID: 632787133}
