@@ -533,6 +533,8 @@ public class MapManager : MonoBehaviour
                     }
                 }
             }
+
+            SaveManager.instance.Save();
         }
     }
 
