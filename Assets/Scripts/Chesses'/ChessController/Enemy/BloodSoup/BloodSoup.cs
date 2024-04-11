@@ -177,10 +177,10 @@ public class BloodSoup : EnemyBase
     {
         //返回9*9范围最外围的格子(记得设置条件不要返回已经被占据的格子和墙)
         HashSet<Vector2Int> result = new HashSet<Vector2Int>();
-        int leftAxis = Location.x - 1;
-        int rightAxis = Location.x + 1;
-        int upAxis = Location.y - 1;
-        int downAxis = Location.y + 1;
+        int leftAxis = Location.x - 3;
+        int rightAxis = Location.x + 3;
+        int upAxis = Location.y - 3;
+        int downAxis = Location.y + 3;
 
         for (int i = leftAxis; i <= rightAxis; i++)
         {
