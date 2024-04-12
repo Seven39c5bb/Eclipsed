@@ -1,6 +1,0 @@
-卡牌名称 数量
-up*5
-down*5
-right*5
-left*5
-aoe*5

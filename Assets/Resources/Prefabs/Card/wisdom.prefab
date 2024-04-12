@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: draw 2 cards
+  m_text: "\u62BD\u4E24\u5F20\u724C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
+  m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -238,7 +238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  discription: 
+  rare: 0
+  cardName: wisdom
+  discription: "\u62BD\u4E24\u5F20\u724C"
   cost: 1
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -247,6 +249,7 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &8652063846191355620
 GameObject:
   m_ObjectHideFlags: 0

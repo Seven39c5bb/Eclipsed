@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BF9\u4F4D\u4E8E\u4F60\u524D\u65B9\u56DB\u683C\u3001\u5411\u4E0A\u4E09\u4E2A\u7684\u4E00\u4E2A\u654C\u4EBA\u9020\u6210\u9AD8\u989D\u4F24\u5BB3\u3002"
+  m_text: "\u5BF9\u4F4D\u4E8E\u4F60\u524D\u65B9\u4E09\u4E2A\u7684\u4E00\u4E2A\u654C\u4EBA\u9020\u6210\u9AD8\u989D\u4F24\u5BB3\u3002"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}
@@ -239,7 +239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   rare: 2
-  discription: 
+  cardName: "\u5B8C\u7F8E\u65F6\u673A"
+  discription: "\u5BF9\u4F4D\u4E8E\u4F60\u524D\u65B9\u4E09\u4E2A\u7684\u4E00\u4E2A\u654C\u4EBA\u9020\u6210\u9AD8\u989D\u4F24\u5BB3\u3002"
   cost: 1
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -248,6 +249,7 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   damage: 50
 --- !u!1 &6559481299459116633
 GameObject:

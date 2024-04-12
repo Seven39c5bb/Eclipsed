@@ -241,7 +241,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  discription: 
+  rare: 0
+  cardName: farAttack
+  discription: take 5 damage to a 5*5 area enemy
   cost: 1
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -250,6 +252,7 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   damage: 12
 --- !u!1 &9200797088705667564
 GameObject:

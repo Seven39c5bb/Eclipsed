@@ -239,7 +239,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   rare: 1
-  discription: 
+  cardName: "\u6CE8\u80FD"
+  discription: "\u4F60\u4E0B\u6B21\u78B0\u649E\u9020\u6210\u8FD1\u6218\u4F24\u5BB3\u65F6\uFF0C\u4F1A\u5BF9\u6240\u6709\u654C\u4EBA\u9020\u6210\u989D\u5916\u8FD1\u6218\u4F24\u5BB3\u3002"
   cost: 0
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -248,6 +249,7 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &6420612581759686130
 GameObject:
   m_ObjectHideFlags: 0
