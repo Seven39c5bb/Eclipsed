@@ -14,6 +14,7 @@ public class BuffBase : MonoBehaviour
     }
     //buff名字
     public string buffName;
+    public string buffNameCN;//用于面板显示的中文名字
     //buff持续回合数
     public int durationTurn;
     //确定挂在哪个棋子上
@@ -25,7 +26,7 @@ public class BuffBase : MonoBehaviour
     //是否可叠加
     public bool canBeLayed;
     //buff层数
-    public int layer;
+    public int layer = 1;
 
     //造成伤害时触发
     public virtual int OnHit(int damage, ChessBase target)
