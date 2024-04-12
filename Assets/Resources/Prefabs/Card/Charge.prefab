@@ -373,7 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rare: 1
-  discription: 
+  cardName: "\u51B2\u950B"
+  discription: "\u9009\u62E9\u4E00\u4E2A\u65B9\u5411\u8FDB\u884C\u79FB\u52A8\uFF0C\u76F4\u5230\u4E0E\u4E00\u4E2A\u602A\u7269\u8FDB\u884C\u78B0\u649E\u6216\u89E6\u78B0\u5230\u969C\u788D\u3002\u78B0\u649E\u65F6\u5BF9\u602A\u7269\u9020\u6210\u57FA\u7840\u8FD1\u6218\u4F24\u5BB3"
   cost: 2
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -382,3 +383,4 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}

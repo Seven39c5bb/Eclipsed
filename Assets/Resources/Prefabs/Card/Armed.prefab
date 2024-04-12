@@ -373,7 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   rare: 0
-  discription: 
+  cardName: "\u6B66\u88C5"
+  discription: "\u589E\u52A0\u4E00\u70B9\u8FD1\u6218\u4F24\u5BB3"
   cost: 1
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -382,3 +383,4 @@ MonoBehaviour:
   isDrag: 0
   hoverPos: {x: 0, y: 0}
   isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}

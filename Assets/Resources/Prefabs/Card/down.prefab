@@ -104,12 +104,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  discription: 
+  rare: 0
+  cardName: down
+  discription: "\u5411\u4E0Bn\u683C"
   cost: 0
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}
-  startPos: {x: 0, y: 0, z: 0}
+  startPos: {x: 0, y: 0}
+  isDrag: 0
+  hoverPos: {x: 0, y: 0}
+  isUsed: 0
+  startColor: {r: 0, g: 0, b: 0, a: 0}
   playerTransform: {fileID: 0}
   slider: {fileID: 0}
 --- !u!1 &4984125488721874162
