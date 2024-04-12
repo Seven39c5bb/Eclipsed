@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventBase : MonoBehaviour
+public class EventBase
 {
-    // Start is called before the first frame update
-    void Start()
+    //选项描述
+    public string optionDescription;
+    //选项功能
+    public string optionFunc;
+    //选项数据
+    public string optionData;
+    //选项结果
+    public string optionResult;
+    public EventBase(string optionDescription,string optionResult, string optionFunc, string optionData)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.optionDescription = optionDescription;
+        this.optionResult = optionResult;
+        this.optionFunc = optionFunc;
+        this.optionData = optionData;
     }
 }

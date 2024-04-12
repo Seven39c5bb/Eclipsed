@@ -22,6 +22,8 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         common,rare,legend
     }
     public rareType rare;
+    //卡牌名称
+    public string cardName;
     //卡牌描述
     public string discription;
     //卡牌的费用
