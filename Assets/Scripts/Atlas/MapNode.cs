@@ -151,6 +151,7 @@ public class MapNode : MonoBehaviour
                             SaveManager.instance.jsonData.mapData.currBattleNodeInfoName = battleNodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
+                            SceneManager.LoadScene("CardTest");
                             break;
                 }
                 });

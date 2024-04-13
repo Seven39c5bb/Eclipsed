@@ -16,6 +16,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 共有属性
     public string chessName = "Chess";//棋子名称
     public List<BuffBase> buffList = new List<BuffBase>();//buff列表
+    public bool DontMeleeAttack = false;//是否不主动碰撞
     public int MaxHp = 10;//最大生命值
     public int Hp = 10;
     public int HP//当前生命值
@@ -119,27 +120,29 @@ public class ChessBase : MonoBehaviour //棋子基类
         transform.DOMove(aimPosition, moveDuration).OnComplete(() =>
         {
             //移动完成后执行的代码
-            //根据该棋子的不同分类，对不同的障碍物做出不同的处理
-            switch (roadblockType)
+            if (DontMeleeAttack == false && roadblockObject != null)
             {
-                case "Enemy":
-                    if(this.gameObject.tag == "Player")
-                    {
-                        //攻击敌人
-                        MeleeAttack(roadblockObject, residualDistance);
-                    }
-                    break;
-                case "Player":
-                    if(this.gameObject.tag == "Enemy")
-                    {
-                        //攻击玩家
-                        MeleeAttack(roadblockObject, residualDistance);
-                    }
-                    break;
-                default:
-                    break;
+                //根据该棋子的不同分类，对不同的障碍物做出不同的处理
+                switch (roadblockType)
+                {
+                    case "Enemy":
+                        if(this.gameObject.tag == "Player")
+                        {
+                            //攻击敌人
+                            MeleeAttack(roadblockObject, residualDistance);
+                        }
+                        break;
+                    case "Player":
+                        if(this.gameObject.tag == "Enemy")
+                        {
+                            //攻击玩家
+                            MeleeAttack(roadblockObject, residualDistance);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
-        
         });
 
     }

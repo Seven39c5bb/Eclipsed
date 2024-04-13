@@ -6,10 +6,11 @@ public class WarriorShapingBuff : BuffBase
 {
     public override void OnAdd()
     {
-        this.chessBase.HP += 20;
+        this.chessBase.MaxHp += 12;
+        this.chessBase.Cure(12);
     }
     public override void OnTurnStart()
     {
-        chessBase.meleeAttackPower += 10;
+        chessBase.meleeAttackPower += 1;
     }
 }

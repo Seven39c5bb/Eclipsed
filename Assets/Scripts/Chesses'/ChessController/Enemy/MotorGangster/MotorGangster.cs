@@ -15,6 +15,7 @@ public class MotorGangster : EnemyBase
         this.gameObject.tag = "Enemy";
         chessName = "摩托暴徒";//棋子名称
         ChessboardManager.instance.AddChess(this.gameObject, Location);
+        BuffManager.instance.AddBuff("BuffDriveMotor_MotorGangster", this);
     }
 
     public int upMobility = 3;
@@ -22,24 +23,24 @@ public class MotorGangster : EnemyBase
     public override IEnumerator OnTurn()
     {
         //该敌人回合
+        foreach (BuffBase buff in buffList)
+        {
+            buff.OnTurnStart();
+        }
 
-        if (isInjured)//如果受伤，则不增加行动力
-        {
-            mobility = originMobility;
-            isInjured = false;
-        }
-        else//否则增加行动力
-        {
-            mobility = upMobility;
-        }
         //用BFS算法移动
         yield return base.OnTurn();
-        isInjured = false;//自己回合结束后，重置受伤状态
 
         yield return new WaitForSeconds(0.2f);
         //释放技能
         RangeInjury();
         yield return new WaitForSeconds(0.3f);
+        BuffManager.instance.AddBuff("BuffDriveMotor_MotorGangster", this);//刷新驾驶buff
+
+        foreach (BuffBase buff in buffList)
+        {
+            buff.OnTurnEnd();
+        }
     }
 
     public void RangeInjury()//范围伤害
@@ -70,12 +71,5 @@ public class MotorGangster : EnemyBase
             //特效加在这里
             player.TakeDamage(15, this);
         }
-    }
-
-    private bool isInjured = false;
-    public override void TakeDamage(int damage, ChessBase attacker)
-    {
-        base.TakeDamage(damage, attacker);
-        isInjured = true;
     }
 }
