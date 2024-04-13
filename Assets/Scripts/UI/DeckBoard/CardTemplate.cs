@@ -51,11 +51,13 @@ public class CardTemplate : MonoBehaviour,IPointerClickHandler
     public void DeleteCard()
     {
         SaveManager.instance.jsonData.playerData.playerDeck.Remove(card_Name);
+        Debug.Log("删除了卡牌"+card_Name);
     }
     //添加该卡牌到卡组
     public void AddCard()
     {
         SaveManager.instance.jsonData.playerData.playerDeck.Add(card_Name);
+        Debug.Log("添加了卡牌"+card_Name);
     }
     
 }

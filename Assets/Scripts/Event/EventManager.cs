@@ -49,35 +49,51 @@ public class EventManager : MonoBehaviour
             optionText.text = eventList[i].optionDescription;
             //为button添加点击事件
             //判断该事件的功能
-            #region 为button添加点击事件,判断该事件的功能
-            if (eventList[i].optionFunc == "ChangeHealth")
+            string[] funcs= eventList[i].optionFunc.Split(',');
+            string[] datas= eventList[i].optionData.Split(',');
+            for(int j= 0;j < funcs.Length;j++)
             {
-                string healNum = eventList[i].optionData;
-                string eventResult= eventList[i].optionResult;
-                buttonObj.GetComponent<Button>().onClick.AddListener(() => ChangeHealth(healNum,eventResult));
+                #region 为button添加点击事件,判断该事件的功能
+                if (funcs[j] == "ChangeHealth")
+                {
+                    string healNum = datas[j];
+                    string eventResult = eventList[i].optionResult;
+                    buttonObj.GetComponent<Button>().onClick.AddListener(() => ChangeHealth(healNum, eventResult));
+                }
+                else if (funcs[j] == "ChangeCoin")
+                {
+                    string coinNum = datas[j];
+                    string eventResult = eventList[i].optionResult;
+                    buttonObj.GetComponent<Button>().onClick.AddListener(() => ChangeCoin(coinNum,eventResult));
+                }
+                else if (funcs[j] == "OptionPanel")
+                {
+                    //传入数据
+                    string panelType = datas[j];
+                    string eventResult = eventList[i].optionResult;
+                    string cardPool = datas[++j];
+                    buttonObj.GetComponent<Button>().onClick.AddListener(() => OpenOptionPanel(panelType, eventResult,cardPool));
+                }
+                else if (funcs[j] == "CardsPanel")
+                {
+                    string panelType = datas[j];
+                    string eventResult = eventList[i].optionResult;
+                    buttonObj.GetComponent<Button>().onClick.AddListener(() => OpenCardsPanel(panelType, eventResult));
+                }
+                else if (funcs[j] == "ChangeFB")
+                {
+                    string FbNum = datas[j];
+                    string eventResult = eventList[i].optionResult;
+                    buttonObj.GetComponent<Button>().onClick.AddListener(() => ChangeFB(FbNum, eventResult));
+                }
+                else if (funcs[j]=="CardAppend")
+                {
+                    string cardsData = datas[j];
+                    string eventResult = eventList[i].optionResult;
+                    buttonObj.GetComponent<Button>().onClick.AddListener(() => CardAppend(cardsData,eventResult));
+                }
+                #endregion
             }
-            else if (eventList[i].optionFunc == "ChangeCoin")
-            {
-                buttonObj.GetComponent<Button>().onClick.AddListener(() => ChangeCoin(eventList[i].optionData));
-            }
-            else if (eventList[i].optionFunc == "OptionPanel")
-            {
-                //传入数据
-                string panelType = eventList[i].optionData;
-                string eventResult = eventList[i].optionResult;
-                buttonObj.GetComponent<Button>().onClick.AddListener(() => OpenOptionPanel(panelType,eventResult));
-            }
-            else if (eventList[i].optionFunc == "CardsPanel") 
-            {
-                string panelType = eventList[i].optionData;
-                string eventResult = eventList[i].optionResult;
-                buttonObj.GetComponent<Button>().onClick.AddListener(() => OpenCardsPanel(panelType,eventResult));
-            }
-            else if (eventList[i].optionFunc == "ChangeFB")
-            {
-                buttonObj.GetComponent<Button>().onClick.AddListener(() => ChangeFB(eventList[i].optionData));
-            }
-            #endregion
         }
     }
 
@@ -123,27 +139,43 @@ public class EventManager : MonoBehaviour
         //更改事件描述为事件后续
         eventDescription.text = eventResult;
         //清空选项面板，替换为继续按钮
+        ClearOptionContinue();
     }
+
     //改变主角金币
-    public void ChangeCoin(string coinNum)
+    public void ChangeCoin(string coinNum, string eventResult)
     {
         //确定改变的金币
         Debug.Log("ChangeCoin");
         int coin = int.Parse(coinNum);
         SaveManager.instance.jsonData.playerData.coin += coin;
+        //更改事件描述为事件后续
+        eventDescription.text = eventResult;
+        //清空选项面板，替换为继续按钮
+        ClearOptionContinue();
     }
     //改变主角指骨
-    public void ChangeFB(string FbNum)
+    public void ChangeFB(string FbNum, string eventResult)
     {
         int fingerBone = int.Parse(FbNum);
         SaveManager.instance.jsonData.playerData.fingerBone += fingerBone;
+        //更改事件描述为事件后续
+        eventDescription.text = eventResult;
+        //清空选项面板，替换为继续按钮
+        ClearOptionContinue();
     }
     //打开OptionPanel
-    public void OpenOptionPanel(string panelType, string eventResult)
+    public void OpenOptionPanel(string panelType, string eventResult,string cardPool)
     {
         //确定CardsPanel的类型
         Debug.Log("OpenOptionPanel");
+        //清空选项面板，替换为继续按钮
+        ClearOptionContinue();
         Instantiate(Resources.Load("Prefabs/UI/OptionPanel"), GameObject.Find("Canvas").transform);
+        
+        //FindObjectOfType<OptionPanel>().cardPool = (TextAsset)Resources.Load("TextAssets/CardPool/Common");
+        //Debug.Log(cardPoolTextAsset.text);
+        //FindObjectOfType<OptionPanel>().cardPoolText = cardPoolTextAsset.text;
         if (panelType == "delete")
         {
             FindObjectOfType<OptionPanel>().type = OptionPanel.panelType.delete;
@@ -152,8 +184,13 @@ public class EventManager : MonoBehaviour
         {
             FindObjectOfType<OptionPanel>().type = OptionPanel.panelType.add;
         }
+        //给该OptionPanel传入卡池数据
+        FindObjectOfType<OptionPanel>().cardPool = Resources.Load<TextAsset>("TextAssets/CardPool/" + cardPool);
+        Debug.Log(Resources.Load<TextAsset>("TextAssets/CardPool/" + cardPool).text);
+        OptionPanel.instance.LoadPanel();
         //更改事件描述为事件后续
         eventDescription.text = eventResult;
+        
     }
     //打开CardsPanel
     public void OpenCardsPanel(string panelType, string eventResult)
@@ -171,12 +208,38 @@ public class EventManager : MonoBehaviour
         }
         //更改事件描述为事件后续
         eventDescription.text = eventResult;
+        //清空选项面板，替换为继续按钮
+        ClearOptionContinue();
+    }
+    //添加指定卡牌
+    public void CardAppend(string cardsData,string eventResult)
+    {
+        string[] cards = cardsData.Split(',');
+        foreach(var card in cards)
+        {
+            SaveManager.instance.jsonData.playerData.playerDeck.Add(card);
+        }
+        //更改事件描述为事件后续
+        eventDescription.text = eventResult;
+        //清空选项面板，替换为继续按钮
+        ClearOptionContinue();
     }
     public void Countinue()
     {
-        //如果是复合事件，跳转到复合事件
-
+        Debug.Log("Continue");
         //保存，回到地图
         SaveManager.instance.Save();
+    }
+    private void ClearOptionContinue()
+    {
+        for (int i = 0; i < GameObject.Find("choicePanel").transform.childCount; i++)
+        {
+            Destroy(GameObject.Find("choicePanel").transform.GetChild(i).gameObject);
+        }
+        if(!GameObject.Find("ContinueButton(Clone)"))
+        {
+            GameObject continueButton = Instantiate(Resources.Load("Prefabs/UI/ContinueButton"), GameObject.Find("Canvas").transform) as GameObject;
+            continueButton.GetComponent<Button>().onClick.AddListener(Countinue);
+        }
     }
 }
