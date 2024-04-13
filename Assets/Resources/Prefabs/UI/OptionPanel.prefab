@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1489956102313627754}
   - component: {fileID: 1463223121403774576}
   - component: {fileID: 2296484031428998096}
+  - component: {fileID: 7453806199386157149}
   m_Layer: 5
   m_Name: OptionPanel
   m_TagString: Untagged
@@ -115,4 +116,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardTemplates: []
   type: 0
-  cardPool: {fileID: 4900000, guid: 503f4a405082943499742c1d08bd9673, type: 3}
+  cardPool: {fileID: 0}
+  cardPoolText: 
+--- !u!225 &7453806199386157149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8842354860499061709}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
