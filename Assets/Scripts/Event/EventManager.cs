@@ -290,4 +290,16 @@ public class EventManager : MonoBehaviour
             continueButton.GetComponent<Button>().onClick.AddListener(Countinue);
         }
     }
+    private void ClearOptionContinue()
+    {
+        for (int i = 0; i < GameObject.Find("choicePanel").transform.childCount; i++)
+        {
+            Destroy(GameObject.Find("choicePanel").transform.GetChild(i).gameObject);
+        }
+        if(!GameObject.Find("ContinueButton(Clone)"))
+        {
+            GameObject continueButton = Instantiate(Resources.Load("Prefabs/UI/ContinueButton"), GameObject.Find("Canvas").transform) as GameObject;
+            continueButton.GetComponent<Button>().onClick.AddListener(Countinue);
+        }
+    }
 }
