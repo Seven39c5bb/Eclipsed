@@ -20,27 +20,29 @@ public class CardTemplate : MonoBehaviour,IPointerClickHandler
     /*检测卡牌面板和三选一面板的类型，确定点击该卡牌模板的效果*/
     public void OnPointerClick(PointerEventData eventData)
     {
-        //如果场景中有CardListPanel
-        if (FindObjectOfType<DeckBoard>())
+        //获取该物体的父物体
+
+        //如果场景中只有CardListPanel
+        if (this.transform.parent.GetComponent<DeckBoard>())
         {
-            if(FindObjectOfType<DeckBoard>().type==DeckBoard.boardType.copy)
+            if(this.transform.parent.GetComponent<DeckBoard>().type==DeckBoard.boardType.copy)
             {
                 AddCard();
             }
-            else if(FindObjectOfType<DeckBoard>().type==DeckBoard.boardType.delete)
+            else if(this.transform.parent.GetComponent<DeckBoard>().type==DeckBoard.boardType.delete)
             {
                 DeleteCard();
             }
             Destroy(GameObject.Find("CardListPanel(Clone)").gameObject);
         }
         //如果场景中有OptionPanel
-        if (FindObjectOfType<OptionPanel>())
+        if (this.transform.parent.GetComponent<OptionPanel>())
         {
-            if (FindObjectOfType<OptionPanel>().type == OptionPanel.panelType.delete)
+            if (this.transform.parent.GetComponent<OptionPanel>().type == OptionPanel.panelType.delete)
             {
                 DeleteCard();
             }
-            else if (FindObjectOfType<OptionPanel>().type == OptionPanel.panelType.add)
+            else if (this.transform.parent.GetComponent<OptionPanel>().type == OptionPanel.panelType.add)
             {
                 AddCard();
             }

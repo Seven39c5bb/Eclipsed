@@ -5,66 +5,55 @@ using UnityEngine.EventSystems;
 
 public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
 {
-    //ÎïÆ·Ãû³Æ
+    //ç‰©å“åç§°
     public string itemName;
-    //ÓÃÊ²Ã´¹ºÂò
+    //ç”¨ä»€ä¹ˆè´­ä¹°
     public enum buyItem { coin,fingerbone}
-    public enum itemType { card,deleteCard}
+    public enum itemType {fingerBone,Common,Rare,Legend}
     public itemType type;
     public buyItem buyType;
-    //ÎïÆ·¼Û¸ñ
+    //ç‰©å“ä»·æ ¼
     public int price;
-    //ÎïÆ·Í¼±ê
-    public Sprite itemSprite;
-    //ÎïÆ·ÃèÊö
-    public string itemDescription;
-    //ÎïÆ·¿É¹ºÂò´ÎÊı
+    //å¡ç‰Œâ€”â€”åå­—(ä½œä¸ºè¯†åˆ«é¢„åˆ¶ä½“ä¸­çš„å¡ç‰Œåå­—)
+    public string card_Name;
+    //å¡ç‰Œåå­—
+    public TMPro.TextMeshProUGUI cardName;
+    //å¡ç‰Œæè¿°
+    public TMPro.TextMeshProUGUI cardDescription;
+    //å¡ç‰ŒèŠ±è´¹
+    public TMPro.TextMeshProUGUI cardCost;
+    //å¡ç‰Œå›¾ç‰‡
+    public Sprite cardImage;
+    //ç‰©å“å¯è´­ä¹°æ¬¡æ•°
     public int buyTimes;
-    //Èç¹û¹ºÂò´ÎÊıµÈÓÚ0£¬²»¿ÉÔÙ´Î¹ºÂò
-    //¹ºÂò
-    void BUY_THIS()
-    {
-        //µ±Êó±êµã»÷¸ÄÎïÆ·Ê±
-        switch(this.type)
-        {
-            case itemType.card:
-                //¹ºÂò¿¨ÅÆ
-                //½«¹ºÂòµÄ¿¨ÅÆ·ÅÈë¿¨×é
-                BuyCard();
-                break;
-            case itemType.deleteCard:
-                //¹ºÂòÉ¾³ı¿¨ÅÆ
-                //´ò¿ªÉ¾³ı¿¨ÅÆµÄ½çÃæ
-                //É¾³ı¿¨ÅÆ
-                break;
-        }
-    }
+    //å¦‚æœè´­ä¹°æ¬¡æ•°ç­‰äº0ï¼Œä¸å¯å†æ¬¡è´­ä¹°
+    //è´­ä¹°
     public void BuyCard()
     {
-        //¸Ä±äÉÌÆ·ÎïÆ·ÑÕÉ«Îª»ÒÉ«£¬²¢±ê¼ÇÒÑ¹ºÂò
-        //¿ÛÇ®
+        //æ”¹å˜å•†å“ç‰©å“é¢œè‰²ä¸ºç°è‰²ï¼Œå¹¶æ ‡è®°å·²è´­ä¹°
+        //æ‰£é’±
         if (this.buyType == buyItem.coin)
         {
             if (SaveManager.instance.jsonData.playerData.coin >= price)
             {
                 SaveManager.instance.jsonData.playerData.coin-=price;
             }
-            else { Debug.Log("½ğ±Ò²»×ã"); }/*ÌáÊ¾½ğ±Ò²»×ã*/
+            else { Debug.Log("é‡‘å¸ä¸è¶³"); }/*æç¤ºé‡‘å¸ä¸è¶³*/
         }
         else
         {
             if (SaveManager.instance.jsonData.playerData.fingerBone >= price)
             { SaveManager.instance.jsonData.playerData.fingerBone -= price; }
-            else { }/*ÌáÊ¾¹ÇÍ·²»×ã*/
+            else { }/*æç¤ºéª¨å¤´ä¸è¶³*/
         }
-        //½«¿¨ÅÆ·ÅÈë¿¨×é
-        SaveManager.instance.jsonData.playerData.playerDeck.Add(this.name);
+        //å°†å¡ç‰Œæ”¾å…¥å¡ç»„
+        SaveManager.instance.jsonData.playerData.playerDeck.Add(this.card_Name);
         SaveManager.instance.Save();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //ÌáÊ¾ÊÇ·ñ¹ºÂò
+        //æç¤ºæ˜¯å¦è´­ä¹°
         Debug.Log("buy card");
         BuyCard();
     }

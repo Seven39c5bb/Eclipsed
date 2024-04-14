@@ -12,7 +12,6 @@ public class Fight_win : FightUnit
             //从预制件中实例化WinPanel
             GameObject winPanel = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/UI/WinPanel"), GameObject.Find("FightUI").transform);
             winPanel.transform.SetParent(GameObject.Find("FightUI").transform);
-
         });
     }
     public override void OnUpdate()
