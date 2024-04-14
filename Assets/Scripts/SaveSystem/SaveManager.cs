@@ -20,7 +20,7 @@ public class NodesListUnit
     public Color color;
     public MapNode.NodeType nodeType;
     public Vector2 position;
-    public string battleNodeInfoName;
+    public string NodeInfoName;
 }
 [System.Serializable]
 public class MapData
@@ -29,7 +29,7 @@ public class MapData
     public MapManager.AtlasID currAtlasID;//当前地图ID
     public MapManager.AtlasID backAtlasID;//返回地图ID
     public List<NodesListUnit> mapNodes;
-    public string currBattleNodeInfoName;//当前战斗节点信息文件名,用于进入战斗场景后的读取
+    public string currNodeInfoName;//当前战斗节点信息文件名,用于进入战斗场景后的读取
     public Vector2Int currNodeID;//当前节点ID,用于从其他场景返回时，将该节点设置为已探索，将其子节点解锁
 }
 [System.Serializable]
@@ -177,7 +177,7 @@ public class SaveManager : MonoBehaviour
 
                         nodesListUnit.position = node.transform.position;//位置
 
-                        nodesListUnit.battleNodeInfoName = node.battleNodeInfoName;//战斗节点信息文件名
+                        nodesListUnit.NodeInfoName = node.NodeInfoName;//战斗节点信息文件名
 
                         jsonData.mapData.mapNodes.Add(nodesListUnit);//添加节点数据
 
@@ -229,7 +229,7 @@ public class SaveManager : MonoBehaviour
                             MapManager.Instance.mapNodes[i][j].rightNode = null;
                         }
                         MapManager.Instance.mapNodes[i][j].nodeType = jsonData.mapData.mapNodes[i * 3 + j].nodeType;
-                        MapManager.Instance.mapNodes[i][j].battleNodeInfoName = jsonData.mapData.mapNodes[i * 3 + j].battleNodeInfoName;
+                        MapManager.Instance.mapNodes[i][j].NodeInfoName = jsonData.mapData.mapNodes[i * 3 + j].NodeInfoName;
                     }
                 }
             }

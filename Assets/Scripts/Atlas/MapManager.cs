@@ -190,7 +190,7 @@ public class MapManager : MonoBehaviour
                                 if (row == 1) // 如果是第一层，设置为战斗
                                 {
                                     node.nodeType = MapNode.NodeType.Fight;
-                                    node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 6));//最大文件id为5
+                                    node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 6));//最大文件id为5
                                 }
                                 else
                                 {
@@ -198,11 +198,11 @@ public class MapManager : MonoBehaviour
                                     node.nodeType = nodeTypes[index];
                                     if (node.nodeType == MapNode.NodeType.Fight)
                                     {
-                                        node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 6));//最大文件id为5
+                                        node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 6));//最大文件id为5
                                     }
                                     if (node.nodeType == MapNode.NodeType.Hunting)
                                     {
-                                        node.battleNodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
+                                        node.NodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
                                     }
                                     nodeTypes.RemoveAt(index);
                                 }
@@ -235,7 +235,7 @@ public class MapManager : MonoBehaviour
                                 if (row == 5) // 如果是第一层，设置为战斗
                                 {
                                     node.nodeType = MapNode.NodeType.Fight;
-                                    node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
+                                    node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
                                 }
                                 else
                                 {
@@ -243,15 +243,15 @@ public class MapManager : MonoBehaviour
                                     node.nodeType = nodeTypes[index];
                                     if (node.nodeType == MapNode.NodeType.Fight)
                                     {
-                                        node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
+                                        node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
                                     }
                                     if (node.nodeType == MapNode.NodeType.Hunting)
                                     {
-                                        node.battleNodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
+                                        node.NodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
                                     }
                                     if (node.nodeType == MapNode.NodeType.Elite)
                                     {
-                                        node.battleNodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 3));//最大文件id为2
+                                        node.NodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 3));//最大文件id为2
                                     }
                                     nodeTypes.RemoveAt(index);
                                 }
@@ -283,7 +283,7 @@ public class MapManager : MonoBehaviour
                                 if (row == 9) // 如果是第一层，设置为战斗
                                 {
                                     node.nodeType = MapNode.NodeType.Fight;
-                                    node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
+                                    node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
                                 }
                                 else
                                 {
@@ -291,15 +291,15 @@ public class MapManager : MonoBehaviour
                                     node.nodeType = nodeTypes[index];
                                     if (node.nodeType == MapNode.NodeType.Fight)
                                     {
-                                        node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
+                                        node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
                                     }
                                     if (node.nodeType == MapNode.NodeType.Hunting)
                                     {
-                                        node.battleNodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
+                                        node.NodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
                                     }
                                     if (node.nodeType == MapNode.NodeType.Elite)
                                     {
-                                        node.battleNodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
+                                        node.NodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
                                     }
                                     nodeTypes.RemoveAt(index);
                                 }
@@ -312,7 +312,29 @@ public class MapManager : MonoBehaviour
                         mapNodes[8][1].nodeType = MapNode.NodeType.Plot;
                         mapNodes[12][1].nodeType = MapNode.NodeType.Shop;
                         mapNodes[13][1].nodeType = MapNode.NodeType.Boss;
-                        mapNodes[13][1].battleNodeInfoName = GnerateBossNodeInfoName(AtlasIDToInt(currAtlasID), 1);//第一地区boss信息id为1
+                        mapNodes[13][1].NodeInfoName = GnerateBossNodeInfoName(AtlasIDToInt(currAtlasID), 1);//第一地区boss信息id为1
+
+                        //遍历所有事件节点，为其分配事件信息
+                        List<int> usedEventIds = new List<int>();
+                        for (int i = 1; i < 13; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                if (mapNodes[i][j] == null)
+                                    continue;
+                                if (mapNodes[i][j].nodeType == MapNode.NodeType.Event)
+                                {
+                                    int eventId;
+                                    do
+                                    {
+                                        eventId = Random.Range(1, 9);
+                                    } while (usedEventIds.Contains(eventId));
+
+                                    usedEventIds.Add(eventId);
+                                    mapNodes[i][j].NodeInfoName = GenerateEventNodeInfoName(AtlasIDToInt(currAtlasID), eventId);
+                                }
+                            }
+                        }
                         break;
 
                     case AtlasID.Atlas_2:
@@ -347,7 +369,7 @@ public class MapManager : MonoBehaviour
                                 if (row == 1) // 如果是第一层，设置为战斗
                                 {
                                     node.nodeType = MapNode.NodeType.Fight;
-                                    node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 4));//最大文件id为3
+                                    node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 4));//最大文件id为3
                                 }
                                 else
                                 {
@@ -355,15 +377,15 @@ public class MapManager : MonoBehaviour
                                     node.nodeType = nodeTypes[index];
                                     if (node.nodeType == MapNode.NodeType.Fight)
                                     {
-                                        node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 4));//最大文件id为3
+                                        node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 4));//最大文件id为3
                                     }
                                     if (node.nodeType == MapNode.NodeType.Hunting)
                                     {
-                                        node.battleNodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
+                                        node.NodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
                                     }
                                     if (node.nodeType == MapNode.NodeType.Elite)
                                     {
-                                        node.battleNodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 3));//最大文件id为2
+                                        node.NodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 1, Random.Range(1, 3));//最大文件id为2
                                     }
                                     nodeTypes.RemoveAt(index);
                                 }
@@ -402,7 +424,7 @@ public class MapManager : MonoBehaviour
                                 if (row == 5) // 如果是第一层，设置为战斗
                                 {
                                     node.nodeType = MapNode.NodeType.Fight;
-                                    node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
+                                    node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
                                 }
                                 else
                                 {
@@ -410,15 +432,15 @@ public class MapManager : MonoBehaviour
                                     node.nodeType = nodeTypes[index];
                                     if (node.nodeType == MapNode.NodeType.Fight)
                                     {
-                                        node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
+                                        node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 4));//最大文件id为3
                                     }
                                     if (node.nodeType == MapNode.NodeType.Hunting)
                                     {
-                                        node.battleNodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
+                                        node.NodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
                                     }
                                     if (node.nodeType == MapNode.NodeType.Elite)
                                     {
-                                        node.battleNodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 3));//最大文件id为2
+                                        node.NodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 2, Random.Range(1, 3));//最大文件id为2
                                     }
                                     nodeTypes.RemoveAt(index);
                                 }
@@ -455,7 +477,7 @@ public class MapManager : MonoBehaviour
                                 if (row == 9) // 如果是第一层，设置为战斗
                                 {
                                     node.nodeType = MapNode.NodeType.Fight;
-                                    node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
+                                    node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
                                 }
                                 else
                                 {
@@ -463,15 +485,15 @@ public class MapManager : MonoBehaviour
                                     node.nodeType = nodeTypes[index];
                                     if (node.nodeType == MapNode.NodeType.Fight)
                                     {
-                                        node.battleNodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
+                                        node.NodeInfoName = GenerateFightNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
                                     }
                                     if (node.nodeType == MapNode.NodeType.Hunting)
                                     {
-                                        node.battleNodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
+                                        node.NodeInfoName = GnerateHuntingNodeInfoName(AtlasIDToInt(currAtlasID));
                                     }
                                     if (node.nodeType == MapNode.NodeType.Elite)
                                     {
-                                        node.battleNodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
+                                        node.NodeInfoName = GnerateEliteNodeInfoName(AtlasIDToInt(currAtlasID), 3, Random.Range(1, 3));//最大文件id为2
                                     }
                                     nodeTypes.RemoveAt(index);
                                 }
@@ -484,7 +506,29 @@ public class MapManager : MonoBehaviour
                         mapNodes[8][1].nodeType = MapNode.NodeType.Plot;
                         mapNodes[12][1].nodeType = MapNode.NodeType.Shop;
                         mapNodes[13][1].nodeType = MapNode.NodeType.Boss;
-                        mapNodes[13][1].battleNodeInfoName = GnerateBossNodeInfoName(AtlasIDToInt(currAtlasID), 1);//地区boss信息id为1
+                        mapNodes[13][1].NodeInfoName = GnerateBossNodeInfoName(AtlasIDToInt(currAtlasID), 1);//地区boss信息id为1
+
+                        //遍历所有事件节点，为其分配事件信息
+                        List<int> usedEventIds2 = new List<int>();
+                        for (int i = 1; i < 13; i++)
+                        {
+                            for (int j = 0; j < 3; j++)
+                            {
+                                if (mapNodes[i][j] == null)
+                                    continue;
+                                if (mapNodes[i][j].nodeType == MapNode.NodeType.Event)
+                                {
+                                    int eventId;
+                                    do
+                                    {
+                                        eventId = Random.Range(1, 9);
+                                    } while (usedEventIds2.Contains(eventId));
+
+                                    usedEventIds2.Add(eventId);
+                                    mapNodes[i][j].NodeInfoName = GenerateEventNodeInfoName(AtlasIDToInt(currAtlasID), eventId);
+                                }
+                            }
+                        }
                         break;
                 }
 
@@ -574,5 +618,10 @@ public class MapManager : MonoBehaviour
     public string GnerateBossNodeInfoName(int atlasNumber, int infoId)
     {
         return string.Format("BOSS_{0}_{1}", atlasNumber, infoId);
+    }
+
+    public string GenerateEventNodeInfoName(int atlasNumber, int infoId)
+    {
+        return string.Format("Event_{0}_{1}", atlasNumber, infoId);
     }
 }
