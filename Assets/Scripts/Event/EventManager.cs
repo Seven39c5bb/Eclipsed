@@ -107,6 +107,7 @@ public class EventManager : MonoBehaviour
     public void HandleEventAsset()
     {
         //从eventAsset中读取事件信息
+        eventAsset = Resources.Load<TextAsset>("TextAssets/events/" + SaveManager.instance.jsonData.mapData.currNodeInfoName);
         string[] eventParts = eventAsset.text.Split('：');
         //事件名字
         string eventName = eventParts[1];
@@ -276,18 +277,6 @@ public class EventManager : MonoBehaviour
                 SaveManager.instance.isBackFromNodeScene = true;
                 UnityEngine.SceneManagement.SceneManager.LoadScene("Atlas_4");
                 break;
-        }
-    }
-    private void ClearOptionContinue()
-    {
-        for (int i = 0; i < GameObject.Find("choicePanel").transform.childCount; i++)
-        {
-            Destroy(GameObject.Find("choicePanel").transform.GetChild(i).gameObject);
-        }
-        if(!GameObject.Find("ContinueButton(Clone)"))
-        {
-            GameObject continueButton = Instantiate(Resources.Load("Prefabs/UI/ContinueButton"), GameObject.Find("Canvas").transform) as GameObject;
-            continueButton.GetComponent<Button>().onClick.AddListener(Countinue);
         }
     }
     private void ClearOptionContinue()

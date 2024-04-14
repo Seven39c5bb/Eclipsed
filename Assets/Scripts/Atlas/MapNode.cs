@@ -46,7 +46,7 @@ public class MapNode : MonoBehaviour
     public NodeType nodeType; 
 
     // 储存战斗类节点关卡信息的Txt文件
-    public string battleNodeInfoName;//根据当前节点id确定位置，随机抽取对应战斗布置
+    public string NodeInfoName;//根据当前节点id确定位置，随机抽取对应战斗布置
 
     // 跳转的场景
     private string sceneName;//将会从存档文件中读取
@@ -55,7 +55,7 @@ public class MapNode : MonoBehaviour
 
     private Vector3 originLocalScale;
 
-    void Start()
+    void Awake()
     {
         Renderer = GetComponent<SpriteRenderer>();
         originLocalScale = this.transform.localScale;
@@ -112,28 +112,30 @@ public class MapNode : MonoBehaviour
                     {
                         case NodeType.Fight:
                             // 进入战斗场景
-                            SaveManager.instance.jsonData.mapData.currBattleNodeInfoName = battleNodeInfoName;//用于战斗场景怪物的初始化
+                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;//用于战斗场景怪物的初始化
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;//用于战斗胜利后的返回
                             SaveManager.instance.Save();//保存存档
                             SceneManager.LoadScene("CardTest");
                             break;
                         case NodeType.Elite:
                             // 进入精英战斗场景
-                            SaveManager.instance.jsonData.mapData.currBattleNodeInfoName = battleNodeInfoName;
+                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("CardTest");
                             break;
                         case NodeType.Hunting:
                             // 进入狩猎场景
-                            SaveManager.instance.jsonData.mapData.currBattleNodeInfoName = battleNodeInfoName;
+                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
                             break;
                         case NodeType.Event:
                             // 进入事件场景
+                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
+                            SceneManager.LoadScene("Event");
                             break;
                         case NodeType.Plot:
                             // 进入剧情场景
@@ -148,7 +150,7 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Boss:
                             // 进入Boss战斗场景
-                            SaveManager.instance.jsonData.mapData.currBattleNodeInfoName = battleNodeInfoName;
+                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("CardTest");
