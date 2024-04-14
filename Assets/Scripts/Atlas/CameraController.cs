@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
         {
             Cursor.SetCursor(cursorHand, Vector2.zero, CursorMode.Auto);
 
-            Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse X"), -Input.GetAxis("Mouse Y"), 0);
+            Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse X"), 0, 0);
             float dampingFactor = 0.3f; // 阻尼系数，你可以根据需要调整
             this.gameObject.transform.Translate(mouseDelta * dampingFactor);
             cursorIsHand = true;
