@@ -92,6 +92,12 @@ public class EventManager : MonoBehaviour
                     string eventResult = eventList[i].optionResult;
                     buttonObj.GetComponent<Button>().onClick.AddListener(() => CardAppend(cardsData,eventResult));
                 }
+                //如果没有任何功能
+                else
+                {
+                    string eventResult = eventList[i].optionResult;
+                    buttonObj.GetComponent<Button>().onClick.AddListener(() =>  Leave(eventResult));
+                }
                 #endregion
             }
         }
@@ -113,12 +119,16 @@ public class EventManager : MonoBehaviour
         {
             //事件选项描述
             string optionDescription = eventParts[i];
+            //Debug.Log(optionDescription);
             //事件选项功能
             string optionFunc = eventParts[i + 2];
+            //Debug.Log(optionFunc);
             //事件选项功能数据
             string optionData = eventParts[i + 4];
+            //Debug.Log(optionData);
             //事件选项后续
             string optionResult = eventParts[i + 6];
+            //Debug.Log(optionResult);
             //创建一个EventBase
             EventBase eventBase = new EventBase(optionDescription, optionResult,optionFunc,optionData);
 
@@ -127,6 +137,12 @@ public class EventManager : MonoBehaviour
             //将eventBase加入eventList
             eventList.Add(eventBase);
         }
+    }
+    //不带任何效果
+    public void Leave(string eventResult)
+    {
+        eventDescription.text = eventResult; 
+        ClearOptionContinue();
     }
     //改变主角生命值
     public void ChangeHealth(string healNum,string eventResult)
@@ -185,8 +201,20 @@ public class EventManager : MonoBehaviour
             FindObjectOfType<OptionPanel>().type = OptionPanel.panelType.add;
         }
         //给该OptionPanel传入卡池数据
-        FindObjectOfType<OptionPanel>().cardPool = Resources.Load<TextAsset>("TextAssets/CardPool/" + cardPool);
-        Debug.Log(Resources.Load<TextAsset>("TextAssets/CardPool/" + cardPool).text);
+        if (cardPool == "Default")
+        {
+            string cardTxt = "";
+            foreach(string card in SaveManager.instance.jsonData.playerData.playerDeck)
+            {
+                cardTxt += card + ",";
+            }
+            FindObjectOfType<OptionPanel>().cardPoolText = cardTxt;
+        }
+        else
+        {
+            FindObjectOfType<OptionPanel>().cardPool = Resources.Load<TextAsset>("TextAssets/CardPool/" + cardPool);
+        }
+        //Debug.Log(Resources.Load<TextAsset>("TextAssets/CardPool/" + cardPool).text);
         OptionPanel.instance.LoadPanel();
         //更改事件描述为事件后续
         eventDescription.text = eventResult;
@@ -229,6 +257,26 @@ public class EventManager : MonoBehaviour
         Debug.Log("Continue");
         //保存，回到地图
         SaveManager.instance.Save();
+        //根据当前地图ID返回对应地图
+        switch (SaveManager.instance.jsonData.mapData.backAtlasID)
+        {
+            case MapManager.AtlasID.Atlas_1:
+                SaveManager.instance.isBackFromNodeScene = true;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Atlas_1");
+                break;
+            case MapManager.AtlasID.Atlas_2:
+                SaveManager.instance.isBackFromNodeScene = true;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Atlas_2");
+                break;
+            case MapManager.AtlasID.Atlas_3:
+                SaveManager.instance.isBackFromNodeScene = true;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Atlas_3");
+                break;
+            case MapManager.AtlasID.Atlas_4:
+                SaveManager.instance.isBackFromNodeScene = true;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Atlas_4");
+                break;
+        }
     }
     private void ClearOptionContinue()
     {

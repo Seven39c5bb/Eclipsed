@@ -43,6 +43,7 @@ public class OptionPanel : MonoBehaviour
             cardPoolText = cardPool.text;
         }
         
+
         string[] cards = cardPoolText.Split(',');
         
         List<int> usedIndexes = new List<int>(); // 用于存储已使用的索引

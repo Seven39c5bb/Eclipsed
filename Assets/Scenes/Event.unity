@@ -593,7 +593,7 @@ MonoBehaviour:
   eventName: {fileID: 1838264914}
   eventDescription: {fileID: 1590354033}
   playerImg: {fileID: 1964271445}
-  eventAsset: {fileID: 4900000, guid: c205e842b7d359a4888f8579a84bcd93, type: 3}
+  eventAsset: {fileID: 4900000, guid: 867d1dcf9ecff35448959b5e470b835b, type: 3}
 --- !u!4 &1058795473
 Transform:
   m_ObjectHideFlags: 0
@@ -1442,8 +1442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -302.8596, y: -33.062088}
-  m_SizeDelta: {x: -605.7191, y: -85.2118}
+  m_AnchoredPosition: {x: -299.27002, y: -90.66281}
+  m_SizeDelta: {x: -598.54, y: -176.8991}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1964271445
 MonoBehaviour:
@@ -1458,14 +1458,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 342554603, guid: e5d7b8fc9fe55be49bd3edeb84422fa6, type: 3}
+  m_Sprite: {fileID: -1488072912, guid: 7f7705b0087cdeb40804044823941053, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
