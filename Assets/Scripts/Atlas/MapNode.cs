@@ -55,7 +55,7 @@ public class MapNode : MonoBehaviour
 
     private Vector3 originLocalScale;
 
-    void Start()
+    void Awake()
     {
         Renderer = GetComponent<SpriteRenderer>();
         originLocalScale = this.transform.localScale;

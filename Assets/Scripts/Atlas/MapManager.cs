@@ -2,11 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using TMPro;
 
 public class MapManager : MonoBehaviour
 {
-    public static MapManager Instance;
+    public static MapManager instance;
+    public static MapManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<MapManager>();
+                // 如果找不到MapManager实例，那么返回null
+                if (instance == null)
+                {
+                    return null;
+                }
+                instance.mapNodes = new MapNode[14][];
+                for (int i = 0; i < instance.mapNodes.Length; i++)
+                {
+                    instance.mapNodes[i] = new MapNode[3];
+                }
+            }
+            return instance;
+        }
+    }
+
     public MapNode[][] mapNodes;
+    private TextMeshProUGUI HeartText;
+    private TextMeshProUGUI CardText;
+    private TextMeshProUGUI MoneyText;
+    private TextMeshProUGUI BoneText;
     public bool isHunted;
     //public bool MapBeCreated = false;//是否已经创建地图信息
     public bool CreateDone = false;//是否已经生成地图场景
@@ -24,13 +51,11 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
-
-        mapNodes = new MapNode[14][];
+        /* mapNodes = new MapNode[14][];
         for (int i = 0; i < mapNodes.Length; i++)
         {
             mapNodes[i] = new MapNode[3];
-        }
+        } */
 
         // 从存档中读取当前地图是否被创建(在进入新地图时，记得将其置为false)
         // MapBeCreated = SaveManager.instance.jsonData.mapData.mapBeCreated;
@@ -42,7 +67,19 @@ public class MapManager : MonoBehaviour
     {
         // 节点将在自己的start中被传入mapNodes，因此不要在这里使用mapNodes，否则会出现空指针异常
 
-        //MapBeCreated = SaveManager.instance.jsonData.mapData.mapBeCreated;
+        // 从场景中找到名为HeartText，CardText，MoneyText，BoneText的TMP组件
+        HeartText = GameObject.Find("Canvas/InfoBoard/HeartBackground/HeartText").GetComponent<TextMeshProUGUI>();
+        CardText = GameObject.Find("Canvas/InfoBoard/CardBackground/CardText").GetComponent<TextMeshProUGUI>();
+        MoneyText = GameObject.Find("Canvas/InfoBoard/MoneyBackground/MoneyText").GetComponent<TextMeshProUGUI>();
+        BoneText = GameObject.Find("Canvas/InfoBoard/BoneBackground/BoneText").GetComponent<TextMeshProUGUI>();
+
+        if (HeartText == null || CardText == null || MoneyText == null || BoneText == null)
+        {
+            Debug.LogError("Can't find TextMeshPro component");
+        }
+        // 从存档中读取玩家数据
+        HeartText.text = SaveManager.instance.jsonData.playerData.HP.ToString() + "/" + SaveManager.instance.jsonData.playerData.MaxHP.ToString();
+        CardText.text = SaveManager.instance.jsonData.playerData.playerDeck.Count.ToString();
     }
 
     void Update()

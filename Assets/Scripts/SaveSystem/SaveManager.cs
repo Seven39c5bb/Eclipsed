@@ -130,7 +130,7 @@ public class SaveManager : MonoBehaviour
     private void UpdateCurDate()//记得添加数据前记得清空list，防止重复添加！！！！！！！！！
     {
         //如果MapManager.Instance存在
-        if (MapManager.Instance != null)
+        if (MapManager.Instance != null )
         {
             //jsonData.mapData.mapBeCreated = MapManager.Instance.MapBeCreated;//地图是否被创建
 
