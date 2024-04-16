@@ -9,6 +9,11 @@ public class Fight_EnemyTurn : FightUnit
 
     public override void Init()
     {
+        //玩家回合结束时，检查玩家buff
+        foreach (var buff in PlayerController.instance.buffList)
+        {
+            buff.OnTurnEnd();
+        }
         FightUI.instance.isEnemyTurn = true;
         Debug.Log("Enemy Turn Now");
         //将手牌中的牌全部移除
