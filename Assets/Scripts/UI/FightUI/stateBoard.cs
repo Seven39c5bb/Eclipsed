@@ -29,8 +29,9 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     private TextMeshProUGUI MeleeAttackText;
     
     public static stateBoard instance;
+    public List<GameObject> buffBlockList = new List<GameObject>();
 
-
+    public GameObject buffBlockPrefab;
 
     private void Awake()
     {
@@ -51,6 +52,9 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         tooltipPanel = GameObject.Find("EntryExplanation");
         EntryNameText = GameObject.Find("EntryNameText").GetComponent<TextMeshProUGUI>();
         EntryExplanationText = GameObject.Find("EntryExplanationText").GetComponent<TextMeshProUGUI>();
+
+        //加载buffBlock预制体
+        buffBlockPrefab = Resources.Load<GameObject>("Prefabs/BuffBlock");
     }
     private void Update()
     {
@@ -97,8 +101,21 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         //detailedPanel.SetActive(!detailedPanel.activeSelf);
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 0) 
         {
+            foreach (var buff in buffBlockList)
+            {
+                Destroy(buff);
+            }
+            buffBlockList.Clear();
             detailedPanel.GetComponent<CanvasGroup>().alpha = 1;
             detailedPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            //从playerController中获取buff列表，逐一生成预制体BuffBlock并赋值
+            foreach (var buff in PlayerController.instance.buffList)
+            {
+                GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                buffBlockList.Add(buffBlock);
+                buffBlock.GetComponent<buffBoard>().buff = buff;
+            }
+
             isClicked = true;
         } 
         else if(isClicked == true)
@@ -114,6 +131,17 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
             foreach (enemyStateBoard enemyStateBoard in enemyStateBoards)
             {
                 enemyStateBoard.isClicked = false;
+            }
+            foreach (var buff in buffBlockList)
+            {
+                Destroy(buff);
+            }
+            buffBlockList.Clear();
+            foreach (var buff in PlayerController.instance.buffList)
+            {
+                GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                buffBlockList.Add(buffBlock);
+                buffBlock.GetComponent<buffBoard>().buff = buff;
             }
             isClicked = true;
         }

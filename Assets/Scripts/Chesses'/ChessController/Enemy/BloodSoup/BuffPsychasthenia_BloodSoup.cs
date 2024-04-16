@@ -11,6 +11,7 @@ public class BuffPsychasthenia_BloodSoup : BuffBase
         description = "尖啸贯穿心扉，精神衰弱，卡牌费用减少";
         durationTurn = 9999;
         buffType = BuffType.Debuff;
+        buffImgType = BuffImgType.Cost;
     }
     public override void OnAdd()
     {

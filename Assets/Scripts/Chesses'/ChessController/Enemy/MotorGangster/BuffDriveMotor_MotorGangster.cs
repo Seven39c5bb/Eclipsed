@@ -12,6 +12,8 @@ public class BuffDriveMotor_MotorGangster : BuffBase
         buffType = BuffType.Buff;
         description = "摩托暴徒的行动力+1";
         canBeLayed = false;
+        buffType = BuffType.Buff;
+        buffImgType = BuffImgType.Action;
     }
     public override void OnAdd()
     {
