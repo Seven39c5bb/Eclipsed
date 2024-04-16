@@ -98,6 +98,11 @@ public class FightUI : UIBase
             //
             Debug.Log("cardName you want to instantiate is :"+ cardName);
             GameObject obj=Instantiate(Resources.Load("Prefabs/Card/"+cardName),GameObject.Find("handCardArea").transform) as GameObject;//test ֻ����up
+            //抽卡时触发buff
+            foreach (var buff in PlayerController.instance.buffList)
+            {
+                buff.OnDrawCard(obj.GetComponent<Card>());
+            }
             //Debug.Log("instantiate A card");
             obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.x,
             GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.y+100f);

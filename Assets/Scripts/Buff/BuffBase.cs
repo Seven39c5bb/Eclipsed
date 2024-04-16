@@ -92,4 +92,9 @@ public class BuffBase : MonoBehaviour
     {
         //子类实现
     }
+    //抽卡的时候触发
+    public virtual void OnDrawCard(Card card)
+    {
+        //子类实现
+    }
 }

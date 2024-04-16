@@ -12,7 +12,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     //枚举卡牌的种类
     public enum cardType
     {
-        action,skill,rites
+        action,skill,rites,trap
     }
     //卡牌的种类
     public cardType type;
