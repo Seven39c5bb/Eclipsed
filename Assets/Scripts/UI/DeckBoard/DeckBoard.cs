@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,8 @@ public class DeckBoard : MonoBehaviour
     public enum boardType
     {
         copy,
-        delete
+        delete,
+        showOnly
     }
     public List<CardTemplate> cardTemplates;
     public List<string> cardNames;
@@ -18,6 +20,7 @@ public class DeckBoard : MonoBehaviour
     {
         LoadDeck();
     }
+
     public void LoadDeck()
     {
         //从存档中读取卡牌信息

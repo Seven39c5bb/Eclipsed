@@ -161,8 +161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -148.51807, y: -145.32187}
-  m_SizeDelta: {x: -303.4259, y: -297.3962}
+  m_AnchoredPosition: {x: -148.51807, y: -158.7264}
+  m_SizeDelta: {x: -303.4259, y: -324.2053}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &17308275
 MonoBehaviour:
@@ -403,6 +403,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &114257417
@@ -478,8 +479,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 19.389}
-  m_SizeDelta: {x: 0, y: -301.22}
+  m_AnchoredPosition: {x: 0, y: -13.642}
+  m_SizeDelta: {x: 0, y: -291.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &164340476
 MonoBehaviour:
@@ -496,7 +497,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 0
-    m_Top: 10
+    m_Top: 5
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
@@ -601,6 +602,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &214434700
@@ -833,6 +835,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &319174280
@@ -916,7 +919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 278.27557}
+  m_AnchoredPosition: {x: 0, y: 278.27515}
   m_SizeDelta: {x: 0, y: 727.7152}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &375491190
@@ -1284,6 +1287,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &443188673
@@ -1457,6 +1461,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &541721143
@@ -1664,7 +1669,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0020447, y: 97}
+  m_AnchoredPosition: {x: -0.0020447, y: 67}
   m_SizeDelta: {x: 418.98, y: 6.368}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &733432339
@@ -1871,6 +1876,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &785955532
@@ -1946,8 +1952,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -101.00007, y: 77}
-  m_SizeDelta: {x: 133.19202, y: 134.6306}
+  m_AnchoredPosition: {x: -81.2487, y: 57.035}
+  m_SizeDelta: {x: 93.6895, y: 94.701}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &805818970
 MonoBehaviour:
@@ -2058,6 +2064,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &809527274
@@ -2216,8 +2223,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 162.61}
-  m_SizeDelta: {x: 0, y: -325.22}
+  m_AnchoredPosition: {x: 0, y: 147.61}
+  m_SizeDelta: {x: 0, y: -295.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361724059
 MonoBehaviour:
@@ -2414,6 +2421,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &1425842022
@@ -2488,8 +2496,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.006012, y: -58.8128}
-  m_SizeDelta: {x: 418.99, y: 7.5475}
+  m_AnchoredPosition: {x: -0.006012, y: -94}
+  m_SizeDelta: {x: 418.99, y: 2.5729}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1492036391
 MonoBehaviour:
@@ -2677,6 +2685,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &1584613524
@@ -2751,8 +2760,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 63, y: 70}
-  m_SizeDelta: {x: 108.3354, y: 105.8857}
+  m_AnchoredPosition: {x: 72.19848, y: 61.009506}
+  m_SizeDelta: {x: 89.9384, y: 87.9047}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1616881895
 MonoBehaviour:
@@ -2966,8 +2975,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1988577960}
   m_HandleRect: {fileID: 1988577959}
   m_Direction: 2
-  m_Value: -0.0000013160028
-  m_Size: 0.6172216
+  m_Value: 0.0000003290007
+  m_Size: 0.61760426
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3173,6 +3182,7 @@ MonoBehaviour:
   cardName: {fileID: 0}
   cardDescription: {fileID: 0}
   cardCost: {fileID: 0}
+  cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
 --- !u!114 &1850000832

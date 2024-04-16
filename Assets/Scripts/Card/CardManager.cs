@@ -18,6 +18,9 @@ public class CardManager : MonoBehaviour
     }
     public static List<string> cardDesk;
     public static List<string> discardDesk;
+    //test
+    public List<string> d_discardDesk;
+    //test
     public List<string> handCards;
 
     //
@@ -44,6 +47,12 @@ public class CardManager : MonoBehaviour
         //如果有存档，从存档中读取卡组信息
         //cardDeck=new List<string>(SaveManager.instance.jsonData.cardDeckData);
         //如果没有存档，读取初始卡组信息
+    }
+    private void Update()
+    {
+        //test
+        //d_discardDesk = new List<string>(discardDesk);
+        //test
     }
     //抽卡
     public void Draw(int num)
