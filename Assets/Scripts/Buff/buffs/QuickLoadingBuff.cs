@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class QuickLoadingBuff : BuffBase
 {
+    void Awake()
+    {
+        buffName = "QuickLoadingBuff";
+        buffNameCN = "快速装填";
+        durationTurn = 1;
+        buffType = BuffType.Buff;
+        description = "该回合中，玩家技能牌消耗减少1点";
+        canBeLayed = true;
+        buffImgType = BuffImgType.Cost;
+    }
     public bool isActived = false;
     public override void OnTurnStart()
     {
@@ -22,7 +32,7 @@ public class QuickLoadingBuff : BuffBase
     {
         if(isActived)
         {
-            Destroy(this.gameObject);
+            BuffManager.instance.DeleteBuff(this.buffName, PlayerController.instance);
         }
         
     }

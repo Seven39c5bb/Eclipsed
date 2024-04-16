@@ -47,10 +47,6 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
 
         //加载buffBlock预制体
         buffBlockPrefab = Resources.Load<GameObject>("Prefabs/BuffBlock");
-        if (buffBlockPrefab == null)
-        {
-            Debug.LogError("Failed to load BuffBlock prefab from Resources.");
-        }
     }
     private void Update()
     {
