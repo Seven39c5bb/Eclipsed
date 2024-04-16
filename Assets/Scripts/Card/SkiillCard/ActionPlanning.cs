@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ActionPlanning : Card
 {
-    //±éÀú¿¨×é£¬½«ËùÓĞcardTypeÎªActionµÄ¿¨Æ¬¼ÓÈëµ½actionListÖĞ
+    //éå†å¡ç»„ï¼Œå°†æ‰€æœ‰cardTypeä¸ºActionçš„å¡ç‰‡åŠ å…¥åˆ°actionListä¸­
     public List<Card> actionList = new List<Card>();
     public override void CardFunc()
     {
@@ -23,9 +23,11 @@ public class ActionPlanning : Card
                 actionList.Add(Resources.Load("Prefabs/Card/" + cardName).GetComponent<Card>());
             }
         }
-        //½«actionListÖĞµÄ¿¨Æ¬Ëæ»úÒ»ÕÅ¼ÓÈëµ½ÊÖÅÆÖĞ
+        //å°†actionListä¸­çš„å¡ç‰‡éšæœºä¸€å¼ åŠ å…¥åˆ°æ‰‹ç‰Œä¸­
         string drawCard= actionList[Random.Range(0, actionList.Count - 1)].name;
         FightUI.instance.InstantiateCard(1, drawCard);
+        //ä»å¡ç»„ä¸­ç§»é™¤è¯¥å¡ç‰‡
+        CardManager.cardDesk.Remove(drawCard);
         costManager.instance.curCost -= cost;
     }
 }
