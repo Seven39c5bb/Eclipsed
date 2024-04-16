@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
@@ -46,36 +47,62 @@ public class ShopManager : MonoBehaviour
 
         //找到Common卡牌牌池，从中添加3张卡牌
 
-        string[] commonCards = Resources.Load<TextAsset>("TextAssets/CardPool/Common").text.Split(',');
+        UpdateCardFromPool("Common",3);
+        //找到Rare卡牌牌池，从中添加2张卡牌
+        UpdateCardFromPool("Rare",2);
+        //找到Legend卡牌牌池，从中添加1张卡牌
+        UpdateCardFromPool("Legend",1);
+    }
+
+    private void UpdateCardFromPool(string cardPool,int num)
+    {
+        string[] Cards = Resources.Load<TextAsset>("TextAssets/CardPool/"+cardPool).text.Split(',');
+        Debug.Log(Resources.Load<TextAsset>("TextAssets/CardPool/" + cardPool).text);
         List<int> usedIndexes = new List<int>(); // 用于存储已使用的索引
         //从牌池中随机挑选3张卡牌
         //加载3张卡牌模板挂在该物体上
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < num; i++)
         {
             int randomIndex;
             do
             {
-                randomIndex = Random.Range(0, commonCards.Length); // 随机生成索引
+                randomIndex = Random.Range(0, Cards.Length); // 随机生成索引
             } while (usedIndexes.Contains(randomIndex)); // 如果已使用的索引中包含该索引，则重新生成
             usedIndexes.Add(randomIndex); // 将索引添加到已使用列表中
 
             GameObject card = Instantiate(Resources.Load("Prefabs/ShopItem/ShopItem"), CardItemPanel.transform) as GameObject;
             ShopItem cardTemplate = card.GetComponent<ShopItem>();
-            GameObject cardMes = Resources.Load<GameObject>("Prefabs/Card/" + commonCards[randomIndex]);
+            GameObject cardMes = Resources.Load<GameObject>("Prefabs/Card/" + Cards[randomIndex]);
+            Debug.Log(Cards[randomIndex]);
             //获取cardMes上信息
             if (cardMes != null)
             {
                 cardTemplate.card_Name = cardMes.name;
+                Debug.Log(cardMes.name);
                 //Debug.Log(cardMes.transform.GetChild(0).name);
                 cardTemplate.cardName.text = cardMes.GetComponent<Card>().cardName;
                 cardTemplate.cardDescription.text = cardMes.GetComponent<Card>().discription;
+                //根据卡牌稀有度设置价格
+                Debug.Log(cardMes.GetComponent<Card>().rare);
+                switch (cardMes.GetComponent<Card>().rare)
+                {
+                    case Card.rareType.common:
+                        cardTemplate.price = 10;
+                        cardTemplate.cardPrice.text = "10";
+                        break;
+                    case Card.rareType.rare:
+                        cardTemplate.price = 20;
+                        cardTemplate.cardPrice.text = "20";
+                        break;
+                    case Card.rareType.legend:
+                        cardTemplate.price = 30;
+                        cardTemplate.cardPrice.text = "30";
+                        break;
+                }
             }
         }
-        //找到Rare卡牌牌池，从中添加2张卡牌
-
-        //找到Legend卡牌牌池，从中添加1张卡牌
-
     }
+
     //
     //返回地图
     public void BackToAltas()

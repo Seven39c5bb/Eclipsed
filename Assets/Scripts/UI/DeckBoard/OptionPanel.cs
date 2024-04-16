@@ -7,7 +7,8 @@ public class OptionPanel : MonoBehaviour
     public enum panelType
     {
         delete,
-        add
+        add,
+        win
     }
     public List<CardTemplate> cardTemplates;
     public panelType type;
@@ -25,10 +26,6 @@ public class OptionPanel : MonoBehaviour
             }
             return op_instance;
         }
-    }
-    private void Awake()
-    {
-        
     }
     public void LoadPanel()
     {

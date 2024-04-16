@@ -8,7 +8,7 @@ public class WinContinueButton : MonoBehaviour
     public static void BackToAtlas()
     {
         //更新存档玩家血量
-        SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;
+        //SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;
         SaveManager.instance.Save();
 
         //根据当前地图ID返回对应地图

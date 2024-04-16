@@ -22,6 +22,8 @@ public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     public TMPro.TextMeshProUGUI cardDescription;
     //卡牌花费
     public TMPro.TextMeshProUGUI cardCost;
+    //卡牌价格文字
+    public TMPro.TextMeshProUGUI cardPrice;
     //卡牌图片
     public Sprite cardImage;
     //物品可购买次数

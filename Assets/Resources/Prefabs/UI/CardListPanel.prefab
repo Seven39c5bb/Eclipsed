@@ -166,7 +166,7 @@ MonoBehaviour:
   cardTemplates: []
   cardNames: []
   cardTemplateParent: {fileID: 3388144046100271221}
-  type: 0
+  type: 2
 --- !u!1 &4506865188817411090
 GameObject:
   m_ObjectHideFlags: 0
