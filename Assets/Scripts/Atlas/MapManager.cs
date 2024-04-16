@@ -80,6 +80,8 @@ public class MapManager : MonoBehaviour
         // 从存档中读取玩家数据
         HeartText.text = SaveManager.instance.jsonData.playerData.HP.ToString() + "/" + SaveManager.instance.jsonData.playerData.MaxHP.ToString();
         CardText.text = SaveManager.instance.jsonData.playerData.playerDeck.Count.ToString();
+        MoneyText.text = SaveManager.instance.jsonData.playerData.coin.ToString();
+        BoneText.text = SaveManager.instance.jsonData.playerData.fingerBone.ToString();
     }
 
     void Update()

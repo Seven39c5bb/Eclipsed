@@ -147,6 +147,7 @@ public class MapNode : MonoBehaviour
                             // 进入商店场景
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
+                            SceneManager.LoadScene("Shop");
                             break;
                         case NodeType.Boss:
                             // 进入Boss战斗场景

@@ -29,6 +29,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
     private TextMeshProUGUI MeleeAttackText;
 
     public GameObject EntryExplanation;
+    public GameObject buffBlockPrefab;
 
     private void Awake()
     {
@@ -43,6 +44,9 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
         MobilityText = GameObject.Find("MobilityText").GetComponent<TextMeshProUGUI>();
         MoveModeText = GameObject.Find("MoveModeText").GetComponent<TextMeshProUGUI>();
         MeleeAttackText = GameObject.Find("MeleeAttackText").GetComponent<TextMeshProUGUI>();
+
+        //加载buffBlock预制体
+        buffBlockPrefab = Resources.Load<GameObject>("Prefabs/BuffBlock");
     }
     private void Update()
     {
@@ -73,8 +77,19 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
         {
             if (detailedPanel.GetComponent<CanvasGroup>().alpha == 0) 
             {
+                foreach(var buffBlock in stateBoard.instance.buffBlockList)
+                {
+                    Destroy(buffBlock);
+                }
+                stateBoard.instance.buffBlockList.Clear();
                 detailedPanel.GetComponent<CanvasGroup>().alpha = 1;
                 detailedPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+                foreach (var buff in thisEnemy.buffList)
+                {
+                    GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                    buffBlock.GetComponent<buffBoard>().buff = buff;
+                    stateBoard.instance.buffBlockList.Add(buffBlock);
+                }
                 isClicked = true;
             } 
             else if(isClicked == true)
@@ -90,7 +105,18 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
                 {
                     board.isClicked = false;
                 }
+                foreach (var buffBlock in stateBoard.instance.buffBlockList)
+                {
+                    Destroy(buffBlock);
+                }
+                stateBoard.instance.buffBlockList.Clear();
                 stateBoard.instance.isClicked = false;
+                foreach(var buff in thisEnemy.buffList)
+                {
+                    GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                    buffBlock.GetComponent<buffBoard>().buff = buff;
+                    stateBoard.instance.buffBlockList.Add(buffBlock);
+                }
                 isClicked = true;
             }
             detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);

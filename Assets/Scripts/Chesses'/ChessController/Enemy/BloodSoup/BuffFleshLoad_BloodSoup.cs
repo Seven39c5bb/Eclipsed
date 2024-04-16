@@ -10,6 +10,8 @@ public class BuffFleshLoad_BloodSoup : BuffBase
         buffNameCN = "血肉上膛";
         description = "血肉已经上膛，准备发射！";
         durationTurn = 9999;
+        buffType = BuffType.Buff;
+        buffImgType = BuffImgType.Damage;
     }
     public Vector2Int playerPrePos;
     public GameObject BloodSoup_AimBar;

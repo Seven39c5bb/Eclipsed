@@ -12,6 +12,21 @@ public class BuffBase : MonoBehaviour
         //减益
         Debuff
     }
+    public enum BuffImgType
+    {
+        //伤害
+        Damage,
+        //防御
+        Defense,
+        //生命
+        HP,
+        //行动力
+        Action,
+        //费用
+        Cost
+    }
+    //buff图标类型
+    public BuffImgType buffImgType;
     //buff名字
     public string buffName;
     public string buffNameCN;//用于面板显示的中文名字
