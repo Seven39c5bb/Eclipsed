@@ -26,7 +26,7 @@ public class Charge : Card
         Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
         //Debug.Log("seletedCell is:" + selectedCellPos+ int.Parse(selectedCell[8].ToString()));
         //如果选择错误的方向，弹回手牌
-        if (selectedCellPos.x != PlayerController.instance.Location.x && selectedCellPos.y != PlayerController.instance.Location.y)
+        if ((selectedCellPos.x != PlayerController.instance.Location.x && selectedCellPos.y != PlayerController.instance.Location.y) || selectedCellPos == PlayerController.instance.Location)
         {
             this.isUsed = false;
             Debug.Log("Wrong direction");

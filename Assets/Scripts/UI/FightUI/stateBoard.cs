@@ -32,6 +32,7 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     public List<GameObject> buffBlockList = new List<GameObject>();
 
     public GameObject buffBlockPrefab;
+    public int preBuffListCount = 0;
 
     private void Awake()
     {
@@ -87,6 +88,22 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
             MobilityText.text = "行动力: --";
             MoveModeText.text = "行为模式: --";
             MeleeAttackText.text = "近战伤害: " + PlayerController.instance.MeleeAttackPower;
+
+            if (preBuffListCount != PlayerController.instance.buffList.Count)
+            {
+                foreach (var buff in buffBlockList)
+                {
+                    Destroy(buff);
+                }
+                buffBlockList.Clear();
+                foreach (var buff in PlayerController.instance.buffList)
+                {
+                    GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                    buffBlockList.Add(buffBlock);
+                    buffBlock.GetComponent<buffBoard>().buff = buff;
+                }
+                preBuffListCount = PlayerController.instance.buffList.Count;
+            }
         }
 
         if (isTooltipActive)
@@ -115,6 +132,7 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
                 buffBlockList.Add(buffBlock);
                 buffBlock.GetComponent<buffBoard>().buff = buff;
             }
+            preBuffListCount = PlayerController.instance.buffList.Count;
 
             isClicked = true;
         } 
@@ -143,6 +161,8 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
                 buffBlockList.Add(buffBlock);
                 buffBlock.GetComponent<buffBoard>().buff = buff;
             }
+            preBuffListCount = PlayerController.instance.buffList.Count;
+
             isClicked = true;
         }
         detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);

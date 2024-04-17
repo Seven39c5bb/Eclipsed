@@ -305,12 +305,12 @@ public class ChessboardManager : MonoBehaviour
 
         Debug.Log("start: " + start);
         //找到CellsInRange中离当前节点最近的点
+        int minDistance = 9999;
         foreach (Vector2Int cell in CellsInRange)
         {
             //找出CellsInRange中离当前节点最近的点
             //计算当前节点到cell的距离
-            int distance = Math.Abs(cell.x - start.x)^2 + Math.Abs(cell.y - start.y)^2;
-            int minDistance = 9999;
+            int distance = (cell.x - start.x) * (cell.x - start.x) + (cell.y - start.y) * (cell.y - start.y); 
             if(distance < minDistance)//找到最近的点
             {
                 minDistance = distance;
