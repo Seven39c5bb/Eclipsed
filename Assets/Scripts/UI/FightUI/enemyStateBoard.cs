@@ -30,6 +30,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
 
     public GameObject EntryExplanation;
     public GameObject buffBlockPrefab;
+    private int preBuffListCount = 0;
 
     private void Awake()
     {
@@ -66,6 +67,22 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
             MoveModeText.text = "行为模式: " + thisEnemy.moveMode;
             MeleeAttackText.text = "近战伤害: " + thisEnemy.MeleeAttackPower;
             CardDescription.text = description;
+
+            if (preBuffListCount != thisEnemy.buffList.Count)
+            {
+                foreach (var buffBlock in stateBoard.instance.buffBlockList)
+                {
+                    Destroy(buffBlock);
+                }
+                stateBoard.instance.buffBlockList.Clear();
+                foreach (var buff in thisEnemy.buffList)
+                {
+                    GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                    buffBlock.GetComponent<buffBoard>().buff = buff;
+                    stateBoard.instance.buffBlockList.Add(buffBlock);
+                }
+                preBuffListCount = thisEnemy.buffList.Count;
+            }
         }
         
     }
@@ -90,6 +107,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
                     buffBlock.GetComponent<buffBoard>().buff = buff;
                     stateBoard.instance.buffBlockList.Add(buffBlock);
                 }
+                preBuffListCount = thisEnemy.buffList.Count;
                 isClicked = true;
             } 
             else if(isClicked == true)
@@ -117,6 +135,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
                     buffBlock.GetComponent<buffBoard>().buff = buff;
                     stateBoard.instance.buffBlockList.Add(buffBlock);
                 }
+                preBuffListCount = thisEnemy.buffList.Count;
                 isClicked = true;
             }
             detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);
