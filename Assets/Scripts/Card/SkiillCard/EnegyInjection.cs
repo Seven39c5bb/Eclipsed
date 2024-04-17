@@ -6,7 +6,7 @@ public class EnegyInjection : Card
 {
     public override void CardFunc()
     {
-        //添加一个注能buff
-        BuffManager.instance.AddBuff("EnegyInjectionBuff", PlayerController.instance);
+        //娣诲姞涓�涓敞鑳絙uff
+        BuffManager.instance.AddBuff("EnergyInjectionBuff", PlayerController.instance);
     }
 }

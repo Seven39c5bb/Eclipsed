@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f3acbfbfdfff354f99e8a8c4d220817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffName: 
+  buffName: ShadowVeil
   buffNameCN: 
   durationTurn: 0
   chessBase: {fileID: 0}

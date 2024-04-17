@@ -22,7 +22,7 @@ public class QuickLoadingBuff : BuffBase
     {
         if(isActived)
         {
-            Destroy(this.gameObject);
+            BuffManager.instance.DeleteBuff(this.buffName, PlayerController.instance);
         }
         
     }
