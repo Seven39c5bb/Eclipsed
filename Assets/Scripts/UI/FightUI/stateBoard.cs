@@ -29,8 +29,10 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     private TextMeshProUGUI MeleeAttackText;
     
     public static stateBoard instance;
+    public List<GameObject> buffBlockList = new List<GameObject>();
 
-
+    public GameObject buffBlockPrefab;
+    public int preBuffListCount = 0;
 
     private void Awake()
     {
@@ -51,6 +53,9 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         tooltipPanel = GameObject.Find("EntryExplanation");
         EntryNameText = GameObject.Find("EntryNameText").GetComponent<TextMeshProUGUI>();
         EntryExplanationText = GameObject.Find("EntryExplanationText").GetComponent<TextMeshProUGUI>();
+
+        //加载buffBlock预制体
+        buffBlockPrefab = Resources.Load<GameObject>("Prefabs/BuffBlock");
     }
     private void Update()
     {
@@ -83,6 +88,22 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
             MobilityText.text = "行动力: --";
             MoveModeText.text = "行为模式: --";
             MeleeAttackText.text = "近战伤害: " + PlayerController.instance.MeleeAttackPower;
+
+            if (preBuffListCount != PlayerController.instance.buffList.Count)
+            {
+                foreach (var buff in buffBlockList)
+                {
+                    Destroy(buff);
+                }
+                buffBlockList.Clear();
+                foreach (var buff in PlayerController.instance.buffList)
+                {
+                    GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                    buffBlockList.Add(buffBlock);
+                    buffBlock.GetComponent<buffBoard>().buff = buff;
+                }
+                preBuffListCount = PlayerController.instance.buffList.Count;
+            }
         }
 
         if (isTooltipActive)
@@ -97,8 +118,22 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         //detailedPanel.SetActive(!detailedPanel.activeSelf);
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 0) 
         {
+            foreach (var buff in buffBlockList)
+            {
+                Destroy(buff);
+            }
+            buffBlockList.Clear();
             detailedPanel.GetComponent<CanvasGroup>().alpha = 1;
             detailedPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+            //从playerController中获取buff列表，逐一生成预制体BuffBlock并赋值
+            foreach (var buff in PlayerController.instance.buffList)
+            {
+                GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                buffBlockList.Add(buffBlock);
+                buffBlock.GetComponent<buffBoard>().buff = buff;
+            }
+            preBuffListCount = PlayerController.instance.buffList.Count;
+
             isClicked = true;
         } 
         else if(isClicked == true)
@@ -115,6 +150,19 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
             {
                 enemyStateBoard.isClicked = false;
             }
+            foreach (var buff in buffBlockList)
+            {
+                Destroy(buff);
+            }
+            buffBlockList.Clear();
+            foreach (var buff in PlayerController.instance.buffList)
+            {
+                GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                buffBlockList.Add(buffBlock);
+                buffBlock.GetComponent<buffBoard>().buff = buff;
+            }
+            preBuffListCount = PlayerController.instance.buffList.Count;
+
             isClicked = true;
         }
         detailedPanel.GetComponent<CanvasGroup>().DOFade(detailedPanel.GetComponent<CanvasGroup>().alpha, 0.2f);

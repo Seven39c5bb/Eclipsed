@@ -21,6 +21,11 @@ public class WinPanel : MonoBehaviour
         OptionPanel.instance.cardPool = Resources.Load("TextAssets/CardPool/Common") as TextAsset;
         OptionPanel.instance.LoadPanel();
         Debug.Log("卡牌增加");
+        SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;
+        if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
+        {
+            SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
+        }
         tipsText.text = "*新增了卡牌*";
         winContinueBtm.SetActive(true);
         Destroy(HealBtm); Destroy(coinBtm); Destroy(cardAppendBtm);
@@ -32,6 +37,10 @@ public class WinPanel : MonoBehaviour
         Debug.Log("治疗");
         SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;
         SaveManager.instance.jsonData.playerData.HP += 20;
+        if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
+        {
+            SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
+        }
         tipsText.text = "*生命+20*";
         winContinueBtm.SetActive(true);
         SaveManager.instance.Save();
@@ -43,6 +52,11 @@ public class WinPanel : MonoBehaviour
         //如果点击了金币按钮，则增加金币
         Debug.Log("金币");
         SaveManager.instance.jsonData.playerData.coin += 10;
+        SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;
+        if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
+        {
+            SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
+        }
         tipsText.text = "*金币+10*";
         winContinueBtm.SetActive(true);
         Destroy(HealBtm); Destroy(coinBtm); Destroy(cardAppendBtm);

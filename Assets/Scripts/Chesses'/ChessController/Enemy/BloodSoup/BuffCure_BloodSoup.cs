@@ -10,6 +10,8 @@ public class BuffCure_BloodSoup : BuffBase
         buffNameCN = "血肉愈合";
         description = "血羹正在缓慢恢复生命";
         durationTurn = 9999;
+        buffType = BuffType.Buff;
+        buffImgType = BuffImgType.HP;
     }
     public override void OnTurnStart()
     {
