@@ -21,7 +21,8 @@ public class CardManager : MonoBehaviour
     //test
     public List<string> d_discardDesk;
     //test
-    public List<string> handCards;
+    public List<Card> handCards=new List<Card>();
+    public GameObject handCardArea;
 
     //
     public GameConfig gameConfig;
@@ -36,6 +37,8 @@ public class CardManager : MonoBehaviour
         #region gameConfig 从json文档中读取卡组信息
         cardDesk=new List<string>(SaveManager.instance.jsonData.playerData.playerDeck);
         #endregion
+
+        handCardArea = GameObject.Find("handCardArea");
         
     }
     //Start
@@ -52,6 +55,27 @@ public class CardManager : MonoBehaviour
     {
         //test
         //d_discardDesk = new List<string>(discardDesk);
+        //让handCardArea的所有子物体放进handCards
+        //如果手牌有变化，实时更新手牌
+
+
+        //如果处于玩家回合， 如果手牌数量发生变化，实时更新手牌
+        if (FightManager.instance.curFightType == FightType.Player)
+        {
+            if (handCardArea.transform.childCount != handCards.Count && handCardArea.transform.childCount>0)
+            {
+                handCards.Clear(); // 清空手牌列表
+                for (int i = 0; i < handCardArea.transform.childCount; i++)
+                {
+                    Transform child = handCardArea.transform.GetChild(i);
+                    if (child.GetComponent<Card>() != null)
+                    {
+                        handCards.Add(child.GetComponent<Card>());
+                    }
+                }
+            }
+        }
+
         //test
     }
     //抽卡
@@ -77,7 +101,13 @@ public class CardManager : MonoBehaviour
         discardDesk.Clear(); 
         //将弃牌堆中隐藏的卡牌全部清除
         GameObject handCardArea = GameObject.Find("handCardArea");
-        Transform hcAreaTF= handCardArea.transform;
-        
+        Transform hcAreaTF= handCardArea.transform;    
+    }
+
+    public void Discard(Card card)
+    {
+        //播放弃牌动画
+        //将卡牌放入弃牌堆
+        UseCard.instance.Discard(card.gameObject);
     }
 }

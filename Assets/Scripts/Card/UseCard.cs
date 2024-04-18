@@ -94,6 +94,7 @@ public class UseCard : MonoBehaviour,IDropHandler
             FightUI.cardList.Remove(FightUI.cardList[i]); 
         }
         Transform handCardArea = GameObject.Find("handCardArea").GetComponent<Transform>();
+        CardManager.instance.handCards.Clear();
         for(int i=0; i < handCardArea.childCount; i++)
         {
             Transform childT = handCardArea.GetChild(i);
