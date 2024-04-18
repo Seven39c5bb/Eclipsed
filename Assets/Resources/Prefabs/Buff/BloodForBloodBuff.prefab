@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76c2ad63b921424eba593b16a2b7602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffName: 
+  buffName: BloodForBlood
   buffNameCN: 
   durationTurn: 0
   chessBase: {fileID: 0}

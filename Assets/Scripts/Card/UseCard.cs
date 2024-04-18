@@ -51,6 +51,12 @@ public class UseCard : MonoBehaviour,IDropHandler
         curCard.GetComponent<Card>().isUsed = true;
         curCard.GetComponent<Card>().CardFunc();
 
+        //检测所有player上的buff，如果有buff触发条件为使用卡牌，则触发buff
+        foreach(var buff in PlayerController.instance.buffList)
+        {
+            buff.OnUseCard(curCard.GetComponent<Card>());
+        }
+
         if (curCard.GetComponent<Card>().isUsed == false) { return; }
 
         //将使用的牌移至弃牌堆
@@ -88,6 +94,7 @@ public class UseCard : MonoBehaviour,IDropHandler
             FightUI.cardList.Remove(FightUI.cardList[i]); 
         }
         Transform handCardArea = GameObject.Find("handCardArea").GetComponent<Transform>();
+        CardManager.instance.handCards.Clear();
         for(int i=0; i < handCardArea.childCount; i++)
         {
             Transform childT = handCardArea.GetChild(i);

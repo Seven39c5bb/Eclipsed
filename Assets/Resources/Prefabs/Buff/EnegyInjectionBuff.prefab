@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f44457a7672f841a2b7b8c23c91b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffName: 
+  buffName: EnergyInjection
+  buffNameCN: 
   durationTurn: 0
   chessBase: {fileID: 0}
   buffType: 0
