@@ -255,6 +255,30 @@ public class ChessboardManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 传送请求，检查并更改指定位置棋格以及请求棋子的信息，预传送
+    /// </summary>
+    /// <param name="requestObject">请求传送的棋子对象。</param>
+    /// <param name="Location">传送目标位置。</param>
+    /// <returns>返回是否传送成功。</returns>
+    /// <remarks>请求后就已经更改信息，需要在请求出更改棋子的世界position。</remarks>
+    public bool TeleportRequest(ChessBase requestObject, Vector2Int Location)
+    {
+        if(cellStates[Location.x, Location.y].state == Cell.StateType.Empty)
+        {
+            cellStates[Location.x, Location.y].state = Cell.StateType.Occupied;
+            cellStates[Location.x, Location.y].occupant = requestObject.gameObject;
+            cellStates[requestObject.Location.x, requestObject.Location.y].state = Cell.StateType.Empty;
+            requestObject.Location = Location;//更新请求棋子的Location
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
 
 
 
