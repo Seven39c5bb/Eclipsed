@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76c2ad63b921424eba593b16a2b7602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffImgType: 0
   buffName: BloodForBlood
-  buffNameCN: 
+  buffNameCN: "\u4EE5\u8840\u8FD8\u8840"
   durationTurn: 0
   chessBase: {fileID: 0}
   buffType: 0
-  description: 
+  description: "\u4F60\u7684\u4E0B\u6B21\u9020\u6210\u7684\u8FD1\u6218\u4F24\u5BB3\u4F1A\u6062\u590D\u7B49\u989D\u751F\u547D\u503C\u3002 "
   canBeLayed: 0
   layer: 1

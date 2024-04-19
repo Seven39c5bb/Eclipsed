@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3911e8033aba3b40b898e283bbcbe6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffImgType: 0
   buffName: QuickLoading
   buffNameCN: "\u5FEB\u901F\u4E0A\u819B"
   durationTurn: 0
   chessBase: {fileID: 0}
   buffType: 0
-  description: 
+  description: "\u4E0B\u56DE\u5408\u4F60\u7684\u6280\u80FD\u724C\u8D39\u7528-1\u3002"
   canBeLayed: 0
   layer: 1
   isActived: 0

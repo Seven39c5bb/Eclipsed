@@ -53,7 +53,7 @@ public class FocusFire : Card
         string selectedCell = ChessboardManager.instance.curCell.name;
         Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
         //如果selectedCellPos上没有怪物，弹回手牌
-        if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
+        if (ChessboardManager.instance.CheckCell(selectedCellPos)==null || ChessboardManager.instance.CheckCell(selectedCellPos)==PlayerController.instance)
         {
             this.isUsed = false;
             Debug.Log("No enemy in this cell");
@@ -76,5 +76,6 @@ public class FocusFire : Card
                 return;
             }
         }
+        costManager.instance.curCost -= cost;
     }
 }

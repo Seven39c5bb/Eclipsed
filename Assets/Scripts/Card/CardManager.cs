@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CardManager : MonoBehaviour
 {
@@ -108,6 +109,20 @@ public class CardManager : MonoBehaviour
     {
         //播放弃牌动画
         //将卡牌放入弃牌堆
-        UseCard.instance.Discard(card.gameObject);
+        Debug.Log(card.cardName);
+        FightUI.cardList.Remove(card.GetComponent<Card>());
+        FightUI.instance.OnUpdateCardsPos();
+        CardManager.discardDesk.Add(card.GetComponent<Card>().name);
+        foreach(var buff in PlayerController.instance.buffList)
+        {
+            buff.OnDisCardCard(card);
+        }
+        card.GetComponent<RectTransform>().DOMove(card.transform.position + new Vector3(0, 200, 0), 1f).OnComplete(() =>
+        {
+            card.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.5f).OnComplete(() =>
+            {
+                Destroy(card.gameObject);
+            });
+        });
     }
 }

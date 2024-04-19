@@ -10,7 +10,7 @@ public class farAttack : Card
     {
         Vector2Int playerPos = PlayerController.instance.Location;
         List<Vector2Int> posList = new List<Vector2Int>();
-        //
+        //遍历玩家+-5格的所有位置
         for (int i = -5; i <= 5; i++)
         {
             for (int j = -5; j <= 5; j++)
@@ -18,7 +18,7 @@ public class farAttack : Card
                 posList.Add(new Vector2Int(playerPos.x + i, playerPos.y + j));
             }
         }
-        Vector2Int enemyPos = new Vector2Int();
+        Vector2Int enemyPos = new Vector2Int(-111,-111);
         posList.Remove(playerPos);
         float minDistance = 999999f;
         foreach (var pos in posList)
@@ -37,9 +37,14 @@ public class farAttack : Card
                 Debug.Log(enemyPos+"distance:"+distance);
             }
         }
-        if(enemyPos!=null)
+        if(enemyPos!=new Vector2Int(-111,-111))
         {
+            Debug.Log(enemyPos);
             ChessboardManager.instance.CheckCell(enemyPos).TakeDamage(damage, PlayerController.instance);
+        }
+        else
+        {
+            isUsed = false;
         }
         costManager.instance.curCost -= cost;
     }
