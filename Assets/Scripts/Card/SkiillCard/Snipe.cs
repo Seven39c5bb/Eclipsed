@@ -24,7 +24,7 @@ public class Snipe : Card
         string selectedCell = ChessboardManager.instance.curCell.name;
         Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
         //如果当前cell没有敌人，弹回手牌、
-        if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
+        if (ChessboardManager.instance.CheckCell(selectedCellPos) == null || ChessboardManager.instance.CheckCell(selectedCellPos) == PlayerController.instance)
         {
             this.isUsed = false;
             Debug.Log("No enemy in this cell");

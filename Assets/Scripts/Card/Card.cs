@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,6 +29,8 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     public string discription;
     //卡牌的费用
     public int cost;
+    //卡牌上的费用显示
+    public TextMeshProUGUI costText;
     //获取该卡牌上的recttransform组件
     public RectTransform rtTransform;
     //获取CanvasGroup组件
@@ -45,6 +48,12 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     private void Awake()
     {
         startColor=this.GetComponent<Image>().color;
+        //找到该物体下的costText
+        if(this.transform.Find("cost") != null)
+        {
+            costText = this.transform.Find("cost").GetComponent<TextMeshProUGUI>();
+            costText.text = cost.ToString();
+        }   
     }
     public void Start()
     {
@@ -54,7 +63,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     }
     public void Update()
     {
-        
+        costText.text = cost.ToString();
     }
     #region 将鼠标放在卡牌上的效果
     

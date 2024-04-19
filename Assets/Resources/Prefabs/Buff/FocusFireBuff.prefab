@@ -44,12 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3187480eda8f6854785fc32a309d1723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffImgType: 0
   buffName: FocusFireBuff
-  buffNameCN: 
+  buffNameCN: "\u4E13\u6CE8\u5C04\u51FB"
   durationTurn: 0
   chessBase: {fileID: 0}
   buffType: 0
-  description: 
+  description: "\u6BCF\u6B21\u4F7F\u7528\u540E\u4E0B\u6B21\u4F24\u5BB3+5\u3002"
   canBeLayed: 0
   layer: 1
   buffDamage: 0
