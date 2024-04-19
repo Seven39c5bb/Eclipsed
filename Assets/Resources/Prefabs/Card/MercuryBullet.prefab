@@ -107,7 +107,7 @@ MonoBehaviour:
   rare: 1
   cardName: 
   discription: 
-  cost: 0
+  cost: 4
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}
