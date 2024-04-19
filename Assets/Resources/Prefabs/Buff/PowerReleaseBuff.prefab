@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5643308003224295161
+--- !u!1 &298482228669036461
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3033582477240891376}
-  - component: {fileID: 479657057000399359}
+  - component: {fileID: 2527949035842854327}
+  - component: {fileID: 312852445526597212}
   m_Layer: 0
-  m_Name: ArmedBuff
+  m_Name: PowerReleaseBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3033582477240891376
+--- !u!4 &2527949035842854327
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5643308003224295161}
+  m_GameObject: {fileID: 298482228669036461}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.94217, y: -1.5578089, z: -0.048066426}
@@ -32,24 +32,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &479657057000399359
+--- !u!114 &312852445526597212
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5643308003224295161}
+  m_GameObject: {fileID: 298482228669036461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d14787a4dd6137c4385cc84de240eff0, type: 3}
+  m_Script: {fileID: 11500000, guid: 88815a802d8a5f24bb23922094de137f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buffImgType: 0
-  buffName: ArmedBuff
-  buffNameCN: "\u6B66\u88C5"
-  durationTurn: 10
+  buffName: PowerReleaseBuff
+  buffNameCN: "\u529B\u91CF\u89E3\u7981"
+  durationTurn: 0
   chessBase: {fileID: 0}
   buffType: 0
-  description: "\u589E\u52A0\u8FD1\u6218\u4F24\u5BB3"
+  description: "\u4F60\u6BCF\u4E3B\u52A8\u5F03\u4E00\u5F20\u724C\uFF0C\u5C31\u5BF9\u6240\u6709\u654C\u4EBA\u9020\u62104\u70B9\u4F24\u5BB3\u3002"
   canBeLayed: 0
   layer: 1

@@ -44,11 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74f44457a7672f841a2b7b8c23c91b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffImgType: 0
   buffName: EnergyInjection
-  buffNameCN: 
+  buffNameCN: "\u6CE8\u80FD"
   durationTurn: 0
   chessBase: {fileID: 0}
   buffType: 0
-  description: 
+  description: "\u4F60\u4E0B\u6B21\u78B0\u649E\u9020\u6210\u8FD1\u6218\u4F24\u5BB3\u65F6\uFF0C\u4F1A\u5BF9\u6240\u6709\u654C\u4EBA\u9020\u6210\u989D\u5916\u8FD1\u6218\u4F24\u5BB3\u3002 "
   canBeLayed: 0
   layer: 0

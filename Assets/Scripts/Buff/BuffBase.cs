@@ -102,4 +102,10 @@ public class BuffBase : MonoBehaviour
     {
         //子类实现
     }
+
+    //当弃牌的时候触发
+    public virtual void OnDisCardCard(Card card)
+    {
+        //子类实现
+    }
 }
