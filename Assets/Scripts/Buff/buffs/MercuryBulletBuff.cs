@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class MercuryBulletBuff : BuffBase
 {
+    void Awake()
+    {
+        buffName = "MercuryBulletBuff";
+        buffNameCN = "水银弹夹";
+        description = "每当你使用一张技能牌后，射出水银子弹，使所有怪物受到的所有伤害+1";
+        durationTurn = 9999;
+        buffType = BuffType.Buff;
+        buffImgType = BuffImgType.Damage;
+    }
     //你每使用一张技能牌后，使怪物受到的所有伤害+1。
     public override void OnUseCard(Card card)
     {
@@ -32,6 +41,7 @@ public class MercuryBulletBuff : BuffBase
                         if (buff.buffName == "EnemyBruisingBuff")
                         {
                             buff.GetComponent<EnemyBruisingBuff>().brusingDmg++;
+                            buff.description = "该单位受到水银子弹的影响，受到的伤害+" + buff.GetComponent<EnemyBruisingBuff>().brusingDmg;
                         }
                     }
                 }
