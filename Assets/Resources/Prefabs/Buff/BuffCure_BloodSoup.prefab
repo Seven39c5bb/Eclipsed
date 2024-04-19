@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b313bc1a7e2fdc642b2326cbf066b7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffName: 
+  buffImgType: 0
+  buffName: BuffCure_BloodSoup
   buffNameCN: 
   durationTurn: 0
   chessBase: {fileID: 0}
