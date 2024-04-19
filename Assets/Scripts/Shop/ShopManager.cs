@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
+using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class ShopManager : MonoBehaviour
     public GameObject PBItemPanel;
     //金币卡牌购买面板
     public GameObject CardItemPanel;
+    //信息面板
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI fingerBoneText;
+    public TextMeshProUGUI CardDeckText;
     //单例
     public static ShopManager Shop_instance;
     public static ShopManager instance
@@ -34,6 +40,17 @@ public class ShopManager : MonoBehaviour
     {
         Shop_instance = this;
         InitShop();
+        healthText = GameObject.Find("healthText").GetComponent<TextMeshProUGUI>();
+        coinText = GameObject.Find("coinText").GetComponent<TextMeshProUGUI>();
+        fingerBoneText = GameObject.Find("fingerBoneText").GetComponent<TextMeshProUGUI>();
+        CardDeckText = GameObject.Find("CardDeckText").GetComponent<TextMeshProUGUI>();
+    }
+    void Update()
+    {
+        healthText.text = SaveManager.instance.jsonData.playerData.HP.ToString() + "/" + SaveManager.instance.jsonData.playerData.MaxHP.ToString();
+        coinText.text = SaveManager.instance.jsonData.playerData.coin.ToString();
+        fingerBoneText.text = SaveManager.instance.jsonData.playerData.fingerBone.ToString();
+        CardDeckText.text = SaveManager.instance.jsonData.playerData.playerDeck.Count.ToString();
     }
     //初始化商店
     public void InitShop()
