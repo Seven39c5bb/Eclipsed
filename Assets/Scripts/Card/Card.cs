@@ -66,21 +66,22 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         costText.text = cost.ToString();
     }
     #region 将鼠标放在卡牌上的效果
-    
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("enter");
         //减去和手牌区的相对位置
         //startPos = this.transform.position;
         //Debug.Log(this.name + " startPos: " + startPos);
-        if(isDrag)
+        if (isDrag)
         {
             return;
         }
-        hoverPos = this.GetComponent<RectTransform>().anchoredPosition;
-        this.transform.localScale = new Vector3(1.1f, 1.1f, 1);
-        
+        hoverPos = this.GetComponent<RectTransform>().anchoredPosition;        
+        // 将该卡牌的UI层级向上提高
+        this.transform.SetAsLastSibling();
+        this.transform.localScale = new Vector3(1.8f, 1.8f, 1);
         this.GetComponent<RectTransform>().DOAnchorPos(new Vector2(this.GetComponent<RectTransform>().anchoredPosition.x,
-            hoverPos.y+10f), 0.1f);
+            hoverPos.y + 30f), 0.1f);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -88,6 +89,8 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         {
             return;
         }
+        //将卡牌的UI层级恢复
+        this.transform.SetAsFirstSibling();
         this.transform.localScale = new Vector3(1f, 1f, 1);
         this.GetComponent<RectTransform>().DOAnchorPos(new Vector2(this.GetComponent<RectTransform>().anchoredPosition.x,
             hoverPos.y), 0.1f);
@@ -111,7 +114,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         //如果没有释放，回到初始位置
         if(!isUsed)
         {
-            this.GetComponent<RectTransform>().DOMove(this.GetComponent<Card>().startPos, 0.5f);
+            this.GetComponent<RectTransform>().DOAnchorPos(this.GetComponent<Card>().hoverPos, 0.5f);
         }
         canvasGroup.blocksRaycasts = true;
         this.transform.localScale=new Vector3(1f, 1f, 1);
