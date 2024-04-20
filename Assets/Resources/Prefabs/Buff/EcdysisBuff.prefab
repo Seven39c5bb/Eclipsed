@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5212020233777211127
+--- !u!1 &6427056258094263975
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2184201508483655535}
-  - component: {fileID: 8770249960226994624}
+  - component: {fileID: 6322418864117175157}
+  - component: {fileID: 5107515049168341581}
   m_Layer: 0
-  m_Name: BuffPsychasthenia_BloodSoup
+  m_Name: EcdysisBuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2184201508483655535
+--- !u!4 &6322418864117175157
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5212020233777211127}
+  m_GameObject: {fileID: 6427056258094263975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.254569, y: 1.2672995, z: 0.6435732}
+  m_LocalPosition: {x: 38.94217, y: -1.5578089, z: -0.048066426}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8770249960226994624
+--- !u!114 &5107515049168341581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5212020233777211127}
+  m_GameObject: {fileID: 6427056258094263975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bbf319400e582b4692672750603f53e, type: 3}
+  m_Script: {fileID: 11500000, guid: 53f4d154ae09ae14588c9c0b9767a74e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffImgType: 0
-  buffName: BuffPsychasthenia_BloodSoup
-  buffNameCN: 
+  buffImgType: 2
+  buffName: EcdysisBuff
+  buffNameCN: "\u8715\u76AE"
   durationTurn: 0
   chessBase: {fileID: 0}
-  buffType: 1
+  buffType: 0
   description: 
   canBeLayed: 0
   layer: 1

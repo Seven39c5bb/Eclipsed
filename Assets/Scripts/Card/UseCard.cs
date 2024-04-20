@@ -85,6 +85,7 @@ public class UseCard : MonoBehaviour,IDropHandler
     }
 
     //public void DestroyCard() {CardManager.discardDesk.Add(usingCard.name); usingCard.SetActive(false);  }
+    //将所有手牌移至弃牌堆
     public void RemoveAllCards()
     {
         //Debug.Log("touch!");//test
