@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
 {
@@ -36,21 +37,30 @@ public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
         //扣钱
         if (this.buyType == buyItem.coin)
         {
-            if (SaveManager.instance.jsonData.playerData.coin >= price)
+            if (SaveManager.instance.jsonData.playerData.coin >= price && buyTimes>0)
             {
                 SaveManager.instance.jsonData.playerData.coin-=price;
+                buyTimes -= 1;
+                //将卡牌放入卡组
+                SaveManager.instance.jsonData.playerData.playerDeck.Add(this.card_Name);
+                SaveManager.instance.Save();
             }
             else { Debug.Log("金币不足"); }/*提示金币不足*/
         }
         else
         {
             if (SaveManager.instance.jsonData.playerData.fingerBone >= price)
-            { SaveManager.instance.jsonData.playerData.fingerBone -= price; }
+            { SaveManager.instance.jsonData.playerData.fingerBone -= price;
+              //将卡牌放入卡组
+              SaveManager.instance.jsonData.playerData.playerDeck.Add(this.card_Name);
+              SaveManager.instance.Save();
+            }
             else { }/*提示骨头不足*/
         }
-        //将卡牌放入卡组
-        SaveManager.instance.jsonData.playerData.playerDeck.Add(this.card_Name);
-        SaveManager.instance.Save();
+        if(buyTimes<=0)
+        {
+            this.GetComponent<Image>().color=Color.gray;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
