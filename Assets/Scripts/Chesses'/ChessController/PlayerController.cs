@@ -56,4 +56,10 @@ public class PlayerController : ChessBase
         //将标签设置为玩家
         this.gameObject.tag = "Player";
     }
+
+    public override void Death()
+    {
+        FightManager.instance.ChangeType(FightType.Loss);
+        Time.timeScale = 0;
+    }
 }
