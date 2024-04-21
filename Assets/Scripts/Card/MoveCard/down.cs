@@ -22,7 +22,7 @@ public class down : Card
     }
     public override void CardFunc()
     {
-        PlayerController.instance.Move(new Vector2Int(0, cost));
+        PlayerController.instance.Move(new Vector2Int(0, cost+1));
         costManager.instance.curCost -= cost;
     }
 }

@@ -23,7 +23,7 @@ public class left : Card
     }
     public override void CardFunc()
     {
-        PlayerController.instance.Move(new Vector2Int(-cost, 0));
+        PlayerController.instance.Move(new Vector2Int(-cost-1, 0));
         costManager.instance.curCost -= cost;
     }
 }

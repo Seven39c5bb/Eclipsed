@@ -278,6 +278,7 @@ MonoBehaviour:
   cardName: up
   discription: "\u5411\u4E0A\u79FB\u52A8n\u683C"
   cost: 0
+  costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}
@@ -446,10 +447,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2553239964060744673}
   m_HandleRect: {fileID: 6585169619059662050}
   m_Direction: 2
-  m_MinValue: 1
-  m_MaxValue: 3
+  m_MinValue: 0
+  m_MaxValue: 2
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
