@@ -139,9 +139,10 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Plot:
                             // 进入剧情场景
+                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
-                            VisitNode();
+                            SceneManager.LoadScene("Plot");
                             break;
                         case NodeType.Shop:
                             // 进入商店场景
