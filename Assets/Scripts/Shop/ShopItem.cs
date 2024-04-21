@@ -53,9 +53,10 @@ public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
             { SaveManager.instance.jsonData.playerData.fingerBone -= price;
               //将卡牌放入卡组
               SaveManager.instance.jsonData.playerData.playerDeck.Add(this.card_Name);
-              SaveManager.instance.Save();
+              SaveManager.instance.jsonData.playerData.fbCardBuyTimes += 1;
+              SaveManager.instance.Save();             
             }
-            else { }/*提示骨头不足*/
+            else { Debug.Log("指骨不足"); }/*提示骨头不足*/
         }
         if(buyTimes<=0)
         {
@@ -72,11 +73,17 @@ public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("enter");
+        if (buyTimes > 0)
+        {
+            this.GetComponent<Image>().color = Color.yellow;
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("exit");
+        if(buyTimes > 0)
+        {
+            this.GetComponent<Image>().color = Color.white;
+        }
     }
 }

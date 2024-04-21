@@ -49,7 +49,7 @@ public class UseCard : MonoBehaviour,IDropHandler
             return;
         }
         curCard.GetComponent<Card>().isUsed = true;
-        curCard.GetComponent<Card>().CardFunc();
+        
 
         //检测所有player上的buff，如果有buff触发条件为使用卡牌，则触发buff
         foreach(var buff in PlayerController.instance.buffList)
@@ -58,7 +58,7 @@ public class UseCard : MonoBehaviour,IDropHandler
         }
 
         if (curCard.GetComponent<Card>().isUsed == false) { return; }
-
+        curCard.GetComponent<Card>().CardFunc();
         //将使用的牌移至弃牌堆
         //如果不是仪式卡
         if (curCard.GetComponent<Card>().type != Card.cardType.rites)

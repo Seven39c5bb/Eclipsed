@@ -42,6 +42,8 @@ public class PlayerData
 
     public int coin;
     public int fingerBone;//金币
+
+    public int fbCardBuyTimes;//指骨卡牌购买次数
 }
 public class SaveManager : MonoBehaviour
 {
@@ -94,6 +96,7 @@ public class SaveManager : MonoBehaviour
         #endregion
         //test 初始化金币为100
         jsonData.playerData.coin = 100;
+        jsonData.playerData.fbCardBuyTimes = 0;
         //test
     }
     //保存数据到json文件
