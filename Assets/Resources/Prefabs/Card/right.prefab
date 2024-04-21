@@ -158,10 +158,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 5041405810862597109}
   m_HandleRect: {fileID: 8751613327839969978}
   m_Direction: 2
-  m_MinValue: 1
-  m_MaxValue: 3
+  m_MinValue: 0
+  m_MaxValue: 2
   m_WholeNumbers: 1
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -273,6 +273,7 @@ MonoBehaviour:
   cardName: right
   discription: "\u5411\u53F3\u79FB\u52A8n\u683C"
   cost: 0
+  costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}
