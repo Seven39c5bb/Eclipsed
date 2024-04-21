@@ -99,6 +99,7 @@ public class ShopManager : MonoBehaviour
                 //Debug.Log(cardMes.transform.GetChild(0).name);
                 cardTemplate.cardName.text = cardMes.GetComponent<Card>().cardName;
                 cardTemplate.cardDescription.text = cardMes.GetComponent<Card>().discription;
+                cardTemplate.buyTimes = 1;
                 //根据卡牌稀有度设置价格
                 Debug.Log(cardMes.GetComponent<Card>().rare);
                 switch (cardMes.GetComponent<Card>().rare)
