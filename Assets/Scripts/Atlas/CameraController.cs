@@ -29,7 +29,12 @@ public class CameraController : MonoBehaviour
 
             Vector3 mouseDelta = new Vector3(-Input.GetAxis("Mouse X"), 0, 0);
             float dampingFactor = 0.3f; // 阻尼系数，你可以根据需要调整
-            this.gameObject.transform.Translate(mouseDelta * dampingFactor);
+            Vector3 newPosition = this.gameObject.transform.position + mouseDelta * dampingFactor;
+
+            // 限制新的位置的 x 坐标在 7 和 40 之间
+            newPosition.x = Mathf.Clamp(newPosition.x, -3.6f, 41);
+
+            this.gameObject.transform.position = newPosition;
             cursorIsHand = true;
         }
         else if(cursorIsHand)
