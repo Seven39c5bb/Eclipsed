@@ -3863,12 +3863,28 @@ PrefabInstance:
       value: Atlas
       objectReference: {fileID: 0}
     - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
+      propertyPath: nodeType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
+      propertyPath: NodeInfoName
+      value: Event_1_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: nextNodes.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5819650482228333427, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615868909204071913, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
+      propertyPath: nodeType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6615868909204071913, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
+      propertyPath: NodeInfoName
+      value: Event_1_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
