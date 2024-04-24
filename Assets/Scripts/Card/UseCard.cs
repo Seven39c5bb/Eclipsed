@@ -56,9 +56,9 @@ public class UseCard : MonoBehaviour,IDropHandler
         {
             buff.OnUseCard(curCard.GetComponent<Card>());
         }
-
-        if (curCard.GetComponent<Card>().isUsed == false) { return; }
         curCard.GetComponent<Card>().CardFunc();
+        if (curCard.GetComponent<Card>().isUsed == false) { return; }
+        
         //将使用的牌移至弃牌堆
         //如果不是仪式卡
         if (curCard.GetComponent<Card>().type != Card.cardType.rites)
