@@ -87,4 +87,9 @@ public class Test : MonoBehaviour
         Debug.Log("Try");
     }
 
+    public void OnParticleSystemStopped()
+    {
+        Debug.Log("OnParticleSystemStopped");
+    }
+
 }

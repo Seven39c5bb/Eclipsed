@@ -149,7 +149,7 @@ public class BloodSoup : EnemyBase
                 hasTriggered = true;
                 // 在这里触发你的效果
                 BuffManager.instance.AddBuff("BuffPsychasthenia_BloodSoup", PlayerController.instance);
-                Debug.Log("啊啊啊啊啊啊啊啊啊啊啊啊!");
+                Instantiate(Resources.Load("Prefabs/Particle/BloodSoup_BarkEffect"), this.transform.position, Quaternion.identity);
                 yield break; // 停止当前协程
             }
             yield return new WaitForSeconds(0.5f); // 每隔0.5秒检查一次

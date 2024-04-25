@@ -57,6 +57,15 @@ public class PlayerController : ChessBase
         this.gameObject.tag = "Player";
     }
 
+    void Update()
+    {
+        /* // 自定义轴，例如绕 Y 轴和 Z 轴的混合轴旋转
+        Vector3 axis = new Vector3(0, 1, 1).normalized; // 归一化确保旋转正常
+
+        // 在 Update 函数中每帧旋转180度
+        transform.RotateAround(transform.position + new Vector3(0, 1, 1), axis, 180 * Time.deltaTime); */
+    }
+
     public override void Death()
     {
         FightManager.instance.ChangeType(FightType.Loss);
