@@ -75,7 +75,7 @@ public class MapNode : MonoBehaviour
         // 未被锁定的节点设置为白色
         else
         {
-            Renderer.color = new Color(198f/255f, 157f/255f, 1, 1);
+            Renderer.color = Color.white;
         }
 
         // 生成路径
@@ -177,7 +177,7 @@ public class MapNode : MonoBehaviour
     // 战斗胜利时，更新存档中的某个bool变量
     public void VisitNode()
     {
-        Renderer.DOColor(Color.white, 0.05f);// 将已经探索过的节点调成白色
+        Renderer.DOColor(new Color(104f/255f, 42f/255f, 212f/255f), 0.05f);// 将已经探索过的节点调成白色
         // 将本层的节点（左右节点一直访问直到为空）全部锁定
         MapNode tempNode = this;
         while (tempNode != null)
@@ -198,7 +198,7 @@ public class MapNode : MonoBehaviour
         foreach (MapNode nextNode in nextNodes)
         {
             nextNode.isLocked = false;
-            nextNode.Renderer.color = new Color(198f/255f, 157f/255f, 1, 1);
+            nextNode.Renderer.color = Color.white;
         }
 
         SaveManager.instance.Save();//保存存档
@@ -218,14 +218,15 @@ public class MapNode : MonoBehaviour
             LineRenderer line = lineObj.AddComponent<LineRenderer>();
             
             // 设置线的属性
-            line.material = new Material(Shader.Find("Sprites/Default")); // 设置材质
+            line.material = new Material(Resources.Load<Material>("Material/BrokenLine")); // 设置材质
             line.startColor = line.endColor = Color.grey; // 设置颜色
-            line.startWidth = line.endWidth = 0.15f; // 设置宽度
+            line.startWidth = line.endWidth = 1f; // 设置宽度
             line.sortingOrder = -1; // 设置渲染顺序
 
             // 设置虚线
             line.textureMode = LineTextureMode.Tile;
-            line.material.mainTextureScale = new Vector2(0.1f, 1f); // 调整这个值可以改变虚线的样式
+            float length = Vector3.Distance(this.transform.position, nextNode.transform.position);
+            line.material.mainTextureScale = new Vector2(1f, 1f); // 调整这个值可以改变虚线的样式
 
             // 设置线的位置
             line.positionCount = 2;
@@ -236,29 +237,33 @@ public class MapNode : MonoBehaviour
 
     public void SetNodeSprite()
     {
+        // 加载所有的精灵
+        Sprite[] sprites = Resources.LoadAll<Sprite>("Pictures/Atlas/AtlasNodes");
         // 根据节点类型设置节点的图片
         switch (nodeType)
         {
             case NodeType.Fight:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Fight");
+                Renderer.sprite = sprites[3];
                 break;
             case NodeType.Elite:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Elite");
+                Renderer.sprite = sprites[1];
                 break;
             case NodeType.Hunting:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Hunting");
+                Renderer.sprite = sprites[4];
                 break;
             case NodeType.Event:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Event");
+                Renderer.sprite = sprites[2];
+                // 调整大小
+                this.transform.localScale = new Vector3(0.3f, 0.3f, 1);
                 break;
             case NodeType.Plot:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Plot");
+                Renderer.sprite = sprites[5];
                 break;
             case NodeType.Shop:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Shop");
+                Renderer.sprite = sprites[6];
                 break;
             case NodeType.Boss:
-                //Renderer.sprite = Resources.Load<Sprite>("Sprites/Atlas/Boss");
+                Renderer.sprite = sprites[0];
                 break;
         }
     }

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1265603847936272755, guid: d0c35ec0e4a92654ba6725b684564c05, type: 3}
+  m_Sprite: {fileID: -589672598, guid: c6a86f988eb288b47b986ea34e865c1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9ad9b2d8b2960646a9dc6af1dc4beca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessboardManager: {fileID: 0}
   HPBar: {fileID: 0}
   DamageHPBar: {fileID: 0}
   CureHPBar: {fileID: 0}
@@ -105,8 +104,13 @@ MonoBehaviour:
   HPBarCanvasPrefab: {fileID: 0}
   HPBarCanvasInstance: {fileID: 0}
   chessName: Chess
+  buffList: []
+  DontMeleeAttack: 0
   MaxHp: 80
   Hp: 10
   barrier: 0
   meleeAttackPower: 2
   location: {x: 4, y: 5}
+  initHp: 0
+  coins: 0
+  fingerBones: 0
