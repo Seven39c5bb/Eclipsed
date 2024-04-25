@@ -149,14 +149,25 @@ public class ChessBase : MonoBehaviour //棋子基类
 
     /// <summary>
     /// 传送方法，传送到指定位置，在子类中需要添加传送特效。
-    public virtual void Teleport(Vector2Int Location)
+    public virtual void Teleport(Vector2Int aimLocation)
     {
         //请求传送，这里棋子和棋盘的信息都会被更新
-        ChessboardManager.instance.TeleportRequest(this, Location);
+        bool success = ChessboardManager.instance.TeleportRequest(this, aimLocation);
         
         //传送特效写在子类中
 
-        gameObject.transform.position = ChessboardManager.instance.cellStates[location.x, location.y].transform.position;
+        if (success)
+        {
+            //传送成功
+            Debug.Log(gameObject.name + "传送到了" + aimLocation);
+            gameObject.transform.position = ChessboardManager.instance.cellStates[Location.x, Location.y].transform.position;
+        }
+        else
+        {
+            //传送失败
+            Debug.Log(gameObject.name + "传送失败");
+        }
+        
     }
 
 
