@@ -1,1 +1,1 @@
-WarriorShaping,EnergyInjection,Charge
+WarriorShaping,EnergyInjection,Charge,FocusFire,MercuryBullet,DiffusionFire

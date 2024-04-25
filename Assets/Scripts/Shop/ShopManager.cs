@@ -101,6 +101,7 @@ public class ShopManager : MonoBehaviour
                 cardTemplate.card_Name = cardMes.name;
                 Debug.Log(cardMes.name);
                 cardTemplate.cardName.text = cardMes.GetComponent<Card>().cardName;
+                cardTemplate.cardCost.text = cardMes.GetComponent<Card>().cost.ToString();
                 cardTemplate.cardDescription.text = cardMes.GetComponent<Card>().discription;
                 cardTemplate.buyTimes = 1;
                 cardTemplate.buyType= ShopItem.buyItem.fingerbone;
@@ -134,6 +135,7 @@ public class ShopManager : MonoBehaviour
             if (cardMes != null)
             {
                 cardTemplate.card_Name = cardMes.name;
+                cardTemplate.cardCost.text = cardMes.GetComponent<Card>().cost.ToString();
                 Debug.Log(cardMes.name);
                 //Debug.Log(cardMes.transform.GetChild(0).name);
                 cardTemplate.cardName.text = cardMes.GetComponent<Card>().cardName;
