@@ -244,6 +244,7 @@ public class SaveManager : MonoBehaviour
                     if (MapManager.Instance.mapNodes[i][j] != null)
                     {
                         MapManager.Instance.mapNodes[i][j].PathGenerate();
+                        MapManager.Instance.mapNodes[i][j].SetNodeSprite();
                     }
                 }
             }
