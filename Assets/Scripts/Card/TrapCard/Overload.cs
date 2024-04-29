@@ -15,6 +15,16 @@ public class Overload : Card
                 indexList.Add(i);
             }
         }
+        if(indexList.Count<2)
+        {
+            int index = Random.Range(0, indexList.Count);
+            Card card = CardManager.instance.handCards[indexList[index]];
+            indexList.RemoveAt(index);
+            CardManager.instance.Discard(card);
+            CardManager.instance.Draw(1);
+            costManager.instance.curCost -= cost;
+            return;
+        }
         for (int i = 0; i < 2; i++)
         {
             int index=Random.Range(0, indexList.Count);
@@ -22,7 +32,7 @@ public class Overload : Card
             indexList.RemoveAt(index);
             CardManager.instance.Discard(card);
             CardManager.instance.Draw(1);
-
         }
+        costManager.instance.curCost -= cost;
     }
 }
