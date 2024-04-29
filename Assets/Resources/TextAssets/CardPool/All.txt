@@ -1,0 +1,1 @@
+Armed,CrossSlash,BladeAndArmor,ActionPlanning,Snipe,ReserveMagazine,ContinuousFire,QuickLoading,Overload,PowerRelease,BloodForBlood,Trio,EmergencyEscape,ShadowVeil,WarriorShaping,EnergyInjection,Charge,FocusFire,MercuryBullet,DiffusionFire
