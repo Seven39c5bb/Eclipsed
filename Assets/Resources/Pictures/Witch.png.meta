@@ -110,27 +110,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Witch_0
-      rect:
-        serializedVersion: 2
-        x: 45
-        y: 2100
-        width: 1530
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 905fc8fbcec10f54cb5a67b422c5b45a
-      internalID: 1667244167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Witch_1
       rect:
         serializedVersion: 2
@@ -138,8 +117,8 @@ TextureImporter:
         y: 0
         width: 1531
         height: 2005
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 5
+      pivot: {x: 1, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
