@@ -51,13 +51,15 @@ public class WinPanel : MonoBehaviour
     {
         //如果点击了金币按钮，则增加金币
         Debug.Log("金币");
-        SaveManager.instance.jsonData.playerData.coin += 10;
+        int coin = Random.Range(20, 30);
+        SaveManager.instance.jsonData.playerData.coin += coin;
+        SaveManager.instance.jsonData.playerData.fingerBone += 1;
         SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;
         if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
         {
             SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
         }
-        tipsText.text = "*金币+10*";
+        tipsText.text = "*金币+"+coin.ToString()+" 指骨+1*";
         winContinueBtm.SetActive(true);
         Destroy(HealBtm); Destroy(coinBtm); Destroy(cardAppendBtm);
     }
