@@ -1825,11 +1825,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.9155521, y: 9.129659}
+    - - {x: 1.9221907, y: 14.628159}
       - {x: 1.8209181, y: -0.55319476}
-      - {x: 1.9682088, y: -0.6034583}
-      - {x: 64.37618, y: -0.41171193}
-      - {x: 64.23105, y: 9.278032}
+      - {x: 1.8492498, y: -5.3230324}
+      - {x: 1.8277211, y: -5.440437}
+      - {x: 64.5745, y: -5.209397}
+      - {x: 64.388596, y: 14.555517}
   m_UseDelaunayMesh: 0
 --- !u!1 &961631942
 GameObject:
@@ -1993,7 +1994,7 @@ Transform:
   m_GameObject: {fileID: 998954947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.634767, y: -0.19567704, z: -10}
+  m_LocalPosition: {x: -3.7091174, y: -0.018217564, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2163,7 +2164,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139780801}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4030,7 +4031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: NodeInfoName
-      value: Event_1_1
+      value: Plot_1_1
       objectReference: {fileID: 0}
     - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: nextNodes.Array.size
