@@ -64,18 +64,36 @@ public class ChessBase : MonoBehaviour //棋子基类
         //chessboardManager = GameObject.Find("Chessboard").GetComponent<ChessboardManager>();
     }
 
+    GameObject HPBarInstance;
     public virtual void Start()
     {
         GameObject HPBarPrefab = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
 
         // 创建血条画布实例
-        GameObject HPBarInstance = Instantiate(HPBarPrefab, transform.position, Quaternion.identity, transform);
+        HPBarInstance = Instantiate(HPBarPrefab, transform.position, Quaternion.identity, transform);
         HPBarCanvasInstance = HPBarInstance.GetComponent<Canvas>();
+
+        // 获取精灵的边界
+        Bounds spriteBounds = GetComponent<SpriteRenderer>().bounds;
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        Vector2 pivot = spriteRenderer.sprite.pivot;
+        float pivotY = pivot.y / spriteRenderer.sprite.rect.height;
+
+        // 获取精灵的宽度
+        float spriteWidth = spriteBounds.size.x;
+
+        // 计算血条应该放置的位置
+        float barPositionY = spriteBounds.size.y;
+        Debug.Log(name + "spriteBounds.min.y: " + spriteBounds.min.y + " spriteBounds.max.y: " + spriteBounds.max.y + " barPositionY: " + barPositionY + " pivotY " + pivotY); // "spriteBounds.min.y: -0.5 spriteBounds.max.y: 0.5 barPositionY: 0.5
 
         // 设置血条画布的位置
         RectTransform rt = HPBarCanvasInstance.GetComponent<RectTransform>();
-        rt.anchoredPosition = new Vector2(0, 1); // 这里的值可能需要根据你的游戏进行调整
+        rt.anchoredPosition = new Vector3(0, barPositionY + 0.25f - pivotY); // 这里的值可能需要根据你的游戏进行调整
         rt.localScale = new Vector3(1 / transform.localScale.x, 1 / transform.localScale.y, 1 / transform.localScale.z);
+
+        // 设置血条的宽度
+        rt.sizeDelta = new Vector2(spriteWidth * 1.1f, rt.sizeDelta.y);
 
         // 获取血条
         HPBar = HPBarCanvasInstance.transform.Find("Bar").GetComponent<UnityEngine.UI.Image>();
@@ -91,6 +109,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     }
 
 
+    private int originOrientation = -1;//初始朝向(左)
     /// <summary>
     /// 移动方法
     /// </summary>
@@ -115,36 +134,60 @@ public class ChessBase : MonoBehaviour //棋子基类
         //更新Location
         Location = aimLocation;
 
-        //将该棋子移动到目标位置aimPosition（尝试使用DOTween），需要判断何时移动完成
-        float moveDuration = 0.5f * moveDistance;  //移动所需的时间
-        transform.DOMove(aimPosition, moveDuration).OnComplete(() =>
-        {
-            //移动完成后执行的代码
-            if (DontMeleeAttack == false && roadblockObject != null)
-            {
-                //根据该棋子的不同分类，对不同的障碍物做出不同的处理
-                switch (roadblockType)
-                {
-                    case "Enemy":
-                        if(this.gameObject.tag == "Player")
-                        {
-                            //攻击敌人
-                            MeleeAttack(roadblockObject, residualDistance);
-                        }
-                        break;
-                    case "Player":
-                        if(this.gameObject.tag == "Enemy")
-                        {
-                            //攻击玩家
-                            MeleeAttack(roadblockObject, residualDistance);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        });
 
+        if (direction.x == 0 || Math.Sign(direction.x) == originOrientation) //如果是向上或者向下移动，或者是向左移动
+        {
+            MoveToTargetPosition();
+        }
+        else
+        {
+            //更新朝向
+            originOrientation = Math.Sign(direction.x);
+            //翻转棋子
+            if (direction.x < 0)
+            {
+                transform.DORotate(new Vector3(-45, 0, 0), 0.5f).OnComplete(MoveToTargetPosition);
+                HPBarInstance.transform.localRotation = Quaternion.Euler(-45, 0, 0);
+            }
+            else if (direction.x > 0)
+            {
+                transform.DORotate(new Vector3(45, 180, 0), 0.5f).OnComplete(MoveToTargetPosition);
+                HPBarInstance.transform.localRotation = Quaternion.Euler(45, 180, 0);
+            }
+        }
+
+        void MoveToTargetPosition()
+        {
+            //将该棋子移动到目标位置aimPosition（尝试使用DOTween），需要判断何时移动完成
+            float moveDuration = 0.5f * moveDistance;  //移动所需的时间
+            transform.DOMove(aimPosition, moveDuration).OnComplete(() =>
+            {
+                //移动完成后执行的代码
+                if (DontMeleeAttack == false && roadblockObject != null)
+                {
+                    //根据该棋子的不同分类，对不同的障碍物做出不同的处理
+                    switch (roadblockType)
+                    {
+                        case "Enemy":
+                            if(this.gameObject.tag == "Player")
+                            {
+                                //攻击敌人
+                                MeleeAttack(roadblockObject, residualDistance);
+                            }
+                            break;
+                        case "Player":
+                            if(this.gameObject.tag == "Enemy")
+                            {
+                                //攻击玩家
+                                MeleeAttack(roadblockObject, residualDistance);
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            });
+        }
     }
 
     /// <summary>
