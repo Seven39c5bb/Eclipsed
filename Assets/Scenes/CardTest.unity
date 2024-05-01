@@ -2693,6 +2693,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.7137255
       objectReference: {fileID: 0}
+    - target: {fileID: 2712825143389089493, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69bd900679e71384f99dfa6643f95492, type: 2}
     - target: {fileID: 2717591042070432949, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4567,7 +4571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873997418388549185, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 97.90857
+      value: 97.90873
       objectReference: {fileID: 0}
     - target: {fileID: 2312905069385607563, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchorMax.y
@@ -4619,7 +4623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2844032504253729868, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 125.034836
+      value: 125.03491
       objectReference: {fileID: 0}
     - target: {fileID: 3968230611318256076, guid: 732d7551e5b67604c934138c40908828, type: 3}
       propertyPath: m_Size
