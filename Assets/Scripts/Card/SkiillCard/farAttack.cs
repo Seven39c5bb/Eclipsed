@@ -45,6 +45,7 @@ public class farAttack : Card
         else
         {
             isUsed = false;
+            return;
         }
         costManager.instance.curCost -= cost;
     }

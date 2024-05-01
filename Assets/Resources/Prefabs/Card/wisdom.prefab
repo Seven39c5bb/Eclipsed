@@ -377,6 +377,7 @@ MonoBehaviour:
   cardName: "\u7075\u611F"
   discription: "\u62BD\u4E24\u5F20\u724C"
   cost: 1
+  costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}
