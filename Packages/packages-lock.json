@@ -188,7 +188,7 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "14.0.9",
+      "version": "15.0.6",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
@@ -215,7 +215,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.shadergraph": {
-      "version": "14.0.9",
+      "version": "15.0.6",
       "depth": 0,
       "source": "builtin",
       "dependencies": {

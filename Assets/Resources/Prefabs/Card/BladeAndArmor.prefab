@@ -104,11 +104,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 786ec5fc231815644b285fcff8c45800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
   rare: 0
   cardName: "\u5203\u4E0E\u80C4"
   discription: "\u83B7\u5F97\u57FA\u4E8E\u4F60\u8FD1\u6218\u4F24\u5BB3\u6570\u503C\u7684\u62A4\u76FE"
   cost: 1
+  costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}

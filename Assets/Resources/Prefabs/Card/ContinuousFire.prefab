@@ -377,6 +377,7 @@ MonoBehaviour:
   cardName: "\u8FDE\u7EED\u5C04\u51FB "
   discription: "\u5BF9\u4E00\u4E2A\u654C\u4EBA\u9020\u621018\u70B9\u4F24\u5BB3\u3002\u5982\u679C\u8FD9\u5F20\u724C\u6D88\u706D\u4E86\u4E00\u4E2A\u654C\u4EBA\uFF0C\u5219\u62BD\u4E00\u5F20\u724C\u3002 "
   cost: 2
+  costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}
