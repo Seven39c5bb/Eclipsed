@@ -18,8 +18,7 @@ public class MotorGangster : EnemyBase
         BuffManager.instance.AddBuff("BuffDriveMotor_MotorGangster", this);
     }
 
-    public int upMobility = 3;
-    public int originMobility = 2;
+
     public override IEnumerator OnTurn()
     {
         //该敌人回合

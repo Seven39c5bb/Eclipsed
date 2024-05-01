@@ -29,7 +29,7 @@ public class BloodSoup : EnemyBase
         chessName = "血羹";//棋子名称
         DontMeleeAttack = true;//不主动碰撞
 
-        base.Start();//添加血条
+        //base.Start();//添加血条
         ChessboardManager.instance.AddChess(this.gameObject, Location);
 
         //将以自己为中心3*3的格子设置为血池

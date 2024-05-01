@@ -103,7 +103,7 @@ public class MapNode : MonoBehaviour
             // 先将节点调成黄色，然后再调整回来
             Renderer.DOColor(Color.yellow, 0.05f).OnComplete(() =>
             {
-                Renderer.DOColor(new Color(198f/255f, 157f/255f, 1, 1), 0.05f).OnComplete(() =>
+                Renderer.DOColor(Color.white, 0.05f).OnComplete(() =>
                 {
                     this.transform.localScale = originLocalScale;// 还原节点的大小
                     SaveManager.instance.jsonData.mapData.currNodeID = nodeId;//将当前节点id存入存档
@@ -177,7 +177,7 @@ public class MapNode : MonoBehaviour
     // 战斗胜利时，更新存档中的某个bool变量
     public void VisitNode()
     {
-        Renderer.DOColor(new Color(104f/255f, 42f/255f, 212f/255f), 0.05f);// 将已经探索过的节点调成白色
+        Renderer.DOColor(new Color(104f/255f, 42f/255f, 212f/255f), 0.05f);// 将已经探索过的节点调成紫色
         // 将本层的节点（左右节点一直访问直到为空）全部锁定
         MapNode tempNode = this;
         while (tempNode != null)
