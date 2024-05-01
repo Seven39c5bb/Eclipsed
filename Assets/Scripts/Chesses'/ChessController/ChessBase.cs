@@ -118,7 +118,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     /// 子类实现注意事项：
     /// 1. 需要添加移动动画。
     /// </remarks>
-    public virtual void Move(Vector2Int direction)
+    public virtual (int residualDistance, bool isMeleeAttack) Move(Vector2Int direction)
     {
 
         //移动
@@ -133,6 +133,32 @@ public class ChessBase : MonoBehaviour //棋子基类
 
         //更新Location
         Location = aimLocation;
+
+        bool isMeleeAttack = false;
+        //判断是否发生近战攻击（不能放在回调函数中，因为回调函数是异步的）
+        if (DontMeleeAttack == false && roadblockObject != null)
+        {
+            //根据该棋子的不同分类，对不同的障碍物做出不同的处理
+            switch (roadblockType)
+            {
+                case "Enemy":
+                    if(this.gameObject.tag == "Player")
+                    {
+                        //攻击敌人
+                        isMeleeAttack = true;
+                    }
+                    break;
+                case "Player":
+                    if(this.gameObject.tag == "Enemy")
+                    {
+                        //攻击玩家
+                        isMeleeAttack = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
 
 
         if (direction.x == 0 || Math.Sign(direction.x) == originOrientation) //如果是向上或者向下移动，或者是向左移动
@@ -160,7 +186,7 @@ public class ChessBase : MonoBehaviour //棋子基类
         {
             //将该棋子移动到目标位置aimPosition（尝试使用DOTween），需要判断何时移动完成
             float moveDuration = 0.5f * moveDistance;  //移动所需的时间
-            transform.DOMove(aimPosition, moveDuration).OnComplete(() =>
+            transform.DOMove(aimPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
                 //移动完成后执行的代码
                 if (DontMeleeAttack == false && roadblockObject != null)
@@ -188,6 +214,8 @@ public class ChessBase : MonoBehaviour //棋子基类
                 }
             });
         }
+
+        return (residualDistance, isMeleeAttack);
     }
 
     /// <summary>
@@ -227,13 +255,25 @@ public class ChessBase : MonoBehaviour //棋子基类
 
             Vector2 originalPosition = transform.position;  //保存原始位置
             Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  //目标位置
-            float moveDuration = 0.7f;  //移动所需的时间
+            float moveDuration = 0.5f;  //移动所需的时间
+
+            // 计算攻击方向
+            Vector3 attackDirection = (roadblockObject.transform.position - transform.position).normalized;
             //创建一个序列
             DG.Tweening.Sequence sequence = DG.Tweening.DOTween.Sequence();
             //添加前往目标位置的动画
-            sequence.Append(transform.DOMove(targetPosition, moveDuration));
+            sequence.Append(transform.DOMove(targetPosition, moveDuration).SetEase(Ease.InCubic).OnComplete(() => {
+                // 添加被撞方抖动的动画，抖动的方向是攻击方向
+                Vector3 shakePosition = roadblockObject.transform.position + attackDirection * 0.15f;
+                DG.Tweening.Sequence sequence1 = DG.Tweening.DOTween.Sequence();
+                sequence1.Append(roadblockObject.transform.DOMove(shakePosition, 0.15f).SetEase(Ease.OutCubic).SetDelay(0.1f));
+                sequence1.Append(roadblockObject.transform.DOMove(roadblockObject.transform.position, 0.15f).SetEase(Ease.InCubic));
+                sequence1.Play();
+                //在被撞方处实例化粒子特效
+                GameObject hitEffect = Instantiate(Resources.Load<GameObject>("Prefabs/Particle/CrashParticle"), roadblockObject.transform.position, Quaternion.identity);
+            }));
             //添加返回原始位置的动画
-            sequence.Append(transform.DOMove(originalPosition, moveDuration));
+            sequence.Append(transform.DOMove(originalPosition, moveDuration).SetEase(Ease.OutCubic));
             //在动画播放完毕后执行近战伤害判断
             sequence.OnComplete(() => {
                 //计算撞击伤害
