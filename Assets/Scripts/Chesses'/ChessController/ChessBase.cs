@@ -262,18 +262,18 @@ public class ChessBase : MonoBehaviour //棋子基类
             //创建一个序列
             DG.Tweening.Sequence sequence = DG.Tweening.DOTween.Sequence();
             //添加前往目标位置的动画
-            sequence.Append(transform.DOMove(targetPosition, moveDuration).OnComplete(() => {
+            sequence.Append(transform.DOMove(targetPosition, moveDuration).SetEase(Ease.InCubic).OnComplete(() => {
                 // 添加被撞方抖动的动画，抖动的方向是攻击方向
                 Vector3 shakePosition = roadblockObject.transform.position + attackDirection * 0.15f;
                 DG.Tweening.Sequence sequence1 = DG.Tweening.DOTween.Sequence();
-                sequence1.Append(roadblockObject.transform.DOMove(shakePosition, 0.15f).SetEase(Ease.OutQuad).SetDelay(0.1f));
-                sequence1.Append(roadblockObject.transform.DOMove(roadblockObject.transform.position, 0.15f).SetEase(Ease.InQuad));
+                sequence1.Append(roadblockObject.transform.DOMove(shakePosition, 0.15f).SetEase(Ease.OutCubic).SetDelay(0.1f));
+                sequence1.Append(roadblockObject.transform.DOMove(roadblockObject.transform.position, 0.15f).SetEase(Ease.InCubic));
                 sequence1.Play();
                 //在被撞方处实例化粒子特效
                 GameObject hitEffect = Instantiate(Resources.Load<GameObject>("Prefabs/Particle/CrashParticle"), roadblockObject.transform.position, Quaternion.identity);
             }));
             //添加返回原始位置的动画
-            sequence.Append(transform.DOMove(originalPosition, moveDuration));
+            sequence.Append(transform.DOMove(originalPosition, moveDuration).SetEase(Ease.OutCubic));
             //在动画播放完毕后执行近战伤害判断
             sequence.OnComplete(() => {
                 //计算撞击伤害
