@@ -46,6 +46,8 @@ public class MotorGangster : EnemyBase
     {
         //获取周围的敌人
         ChessBase player = null;
+        //实例化旋风斩特效
+        GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/Particle/Whirlwind Slash Effect"), transform.position, Quaternion.identity);
         //向ChessboardManager查询以自身为中心3*3范围内是否有玩家
         int leftAxis = Location.x - 1 > 0 ? Location.x - 1 : 0;
         int rightAxis = Location.x + 1 < 9 ? Location.x + 1 : 9;

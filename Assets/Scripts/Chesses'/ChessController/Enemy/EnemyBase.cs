@@ -16,6 +16,7 @@ public class EnemyBase : ChessBase
         int originMobility = mobility;//记录初始行动力，行动力可能会在移动过程中因碰撞或各种原因减少
         for (int i = 0; i < originMobility; i++)
         {
+
             List<Vector2Int> path = ChessboardManager.instance.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
             //向玩家附近移动
 
@@ -39,10 +40,29 @@ public class EnemyBase : ChessBase
 
                 Vector2Int nextDirection = (path[1] - Location) * moveMode;
                 Debug.Log("nextDirection: " + nextDirection);
-                Move(nextDirection);
+                (int residualDistance, bool isMeleeAttack, bool isRotate) = Move(nextDirection);
+                float attackDelay = 0;
+                if (isMeleeAttack)
+                {
+                    Debug.Log("Melee Attack Delay");
+                    attackDelay = 1.11f;
+                }
+                float rotateDelay = 0;
+                if (isRotate)
+                {
+                    Debug.Log("Rotate Delay");
+                    rotateDelay = 0.5f;
+                }
                 //等待nextDirection的模*0.5f的时间后，再继续循环
-                float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y));
+                float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y) - residualDistance) + attackDelay + rotateDelay + 0.3f;
                 yield return new WaitForSeconds(delay);
+
+                // 在每次移动之后都检查怪物是否已经死亡
+                if (HP <= 0)
+                {
+                    //结束协程
+                    yield break;
+                }
             }
         }
     }

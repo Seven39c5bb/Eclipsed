@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
@@ -118,7 +119,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     /// 子类实现注意事项：
     /// 1. 需要添加移动动画。
     /// </remarks>
-    public virtual void Move(Vector2Int direction)
+    public virtual (int residualDistance, bool isMeleeAttack, bool isRotate) Move(Vector2Int direction)
     {
 
         //移动
@@ -134,7 +135,33 @@ public class ChessBase : MonoBehaviour //棋子基类
         //更新Location
         Location = aimLocation;
 
+        bool isMeleeAttack = false;
+        //判断是否发生近战攻击（不能放在回调函数中，因为回调函数是异步的）
+        if (DontMeleeAttack == false && roadblockObject != null)
+        {
+            //根据该棋子的不同分类，对不同的障碍物做出不同的处理
+            switch (roadblockType)
+            {
+                case "Enemy":
+                    if(this.gameObject.tag == "Player")
+                    {
+                        //攻击敌人
+                        isMeleeAttack = true;
+                    }
+                    break;
+                case "Player":
+                    if(this.gameObject.tag == "Enemy")
+                    {
+                        //攻击玩家
+                        isMeleeAttack = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
 
+        bool isRotate = false;
         if (direction.x == 0 || Math.Sign(direction.x) == originOrientation) //如果是向上或者向下移动，或者是向左移动
         {
             MoveToTargetPosition();
@@ -146,11 +173,13 @@ public class ChessBase : MonoBehaviour //棋子基类
             //翻转棋子
             if (direction.x < 0)
             {
+                isRotate = true;
                 transform.DORotate(new Vector3(-45, 0, 0), 0.5f).OnComplete(MoveToTargetPosition);
                 HPBarInstance.transform.localRotation = Quaternion.Euler(-45, 0, 0);
             }
             else if (direction.x > 0)
             {
+                isRotate = true;
                 transform.DORotate(new Vector3(45, 180, 0), 0.5f).OnComplete(MoveToTargetPosition);
                 HPBarInstance.transform.localRotation = Quaternion.Euler(45, 180, 0);
             }
@@ -160,7 +189,7 @@ public class ChessBase : MonoBehaviour //棋子基类
         {
             //将该棋子移动到目标位置aimPosition（尝试使用DOTween），需要判断何时移动完成
             float moveDuration = 0.5f * moveDistance;  //移动所需的时间
-            transform.DOMove(aimPosition, moveDuration).OnComplete(() =>
+            transform.DOMove(aimPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
                 //移动完成后执行的代码
                 if (DontMeleeAttack == false && roadblockObject != null)
@@ -188,6 +217,8 @@ public class ChessBase : MonoBehaviour //棋子基类
                 }
             });
         }
+
+        return (residualDistance, isMeleeAttack, isRotate);
     }
 
     /// <summary>
@@ -227,13 +258,25 @@ public class ChessBase : MonoBehaviour //棋子基类
 
             Vector2 originalPosition = transform.position;  //保存原始位置
             Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  //目标位置
-            float moveDuration = 0.7f;  //移动所需的时间
+            float moveDuration = 0.5f;  //移动所需的时间
+
+            // 计算攻击方向
+            Vector3 attackDirection = (roadblockObject.transform.position - transform.position).normalized;
             //创建一个序列
             DG.Tweening.Sequence sequence = DG.Tweening.DOTween.Sequence();
             //添加前往目标位置的动画
-            sequence.Append(transform.DOMove(targetPosition, moveDuration));
+            sequence.Append(transform.DOMove(targetPosition, moveDuration).SetEase(Ease.InCubic).OnComplete(() => {
+                // 添加被撞方抖动的动画，抖动的方向是攻击方向
+                Vector3 shakePosition = roadblockObject.transform.position + attackDirection * 0.15f;
+                DG.Tweening.Sequence sequence1 = DG.Tweening.DOTween.Sequence();
+                sequence1.Append(roadblockObject.transform.DOMove(shakePosition, 0.15f).SetEase(Ease.OutCubic).SetDelay(0.1f));
+                sequence1.Append(roadblockObject.transform.DOMove(roadblockObject.transform.position, 0.15f).SetEase(Ease.InCubic));
+                sequence1.Play();
+                //在被撞方处实例化粒子特效
+                GameObject hitEffect = Instantiate(Resources.Load<GameObject>("Prefabs/Particle/CrashParticle"), roadblockObject.transform.position, Quaternion.identity);
+            }));
             //添加返回原始位置的动画
-            sequence.Append(transform.DOMove(originalPosition, moveDuration));
+            sequence.Append(transform.DOMove(originalPosition, moveDuration).SetEase(Ease.OutCubic));
             //在动画播放完毕后执行近战伤害判断
             sequence.OnComplete(() => {
                 //计算撞击伤害
@@ -262,6 +305,56 @@ public class ChessBase : MonoBehaviour //棋子基类
             });
             //开始动画
             sequence.Play();
+    }
+
+    /// <summary>
+    /// 弹幕攻击方法
+    /// </summary>
+    /// <param name="bulletDamage">弹幕伤害</param>
+    /// <param name="aimChess">目标棋子</param>
+    /// <param name="bulletPrefab">子弹预制件</param>
+    /// <param name="HitEffectPrefab"></param>
+    /// <returns></returns>
+    /// <remarks>子弹射出前有固定滞留时间delayDuration = 0.5f</remarks>
+    public virtual void BulletAttack(int bulletDamage, ChessBase aimChess, GameObject bulletPrefab, GameObject HitEffectPrefab)
+    {
+        float delayDuration = 0.5f;
+
+        // 弹幕攻击
+
+        // 获取粒子系统组件
+        ParticleSystem particleSystem = bulletPrefab.GetComponent<ParticleSystem>();
+        // 计算目标与当前位置的距离
+        float distance = Vector3.Distance(transform.position, aimChess.transform.position);
+        // 根据距离计算移动时间
+        float moveDuration = distance / 10; // 假设子弹的速度为3单位/秒
+        /* // 设置粒子的生命周期
+        if (particleSystem != null)
+        {
+            var main = particleSystem.main;
+            main.startLifetime = delayDuration + moveDuration;
+        } */
+        // 实例化子弹
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+        // 等待滞空时间再发射子弹
+        /* Debug.Log("Before WaitForSeconds, delayDuration: " + delayDuration);
+        yield return new WaitForSeconds(delayDuration);
+        Debug.Log("After WaitForSeconds"); */
+
+        Debug.Log(aimChess.transform.position + " " + aimChess.name);
+
+        // 子弹移动到目标位置
+        bullet.transform.DOMove(aimChess.transform.position, moveDuration).SetDelay(delayDuration).SetEase(Ease.InCubic).OnComplete(() =>
+        {
+            // 在目标位置实例化击中特效
+            Instantiate(HitEffectPrefab, aimChess.transform.position, Quaternion.identity);
+            // 对目标造成伤害
+            aimChess.TakeDamage(bulletDamage, this);
+            // 销毁子弹
+            Destroy(bullet);
+        });
+
     }
 
     // 受伤方法

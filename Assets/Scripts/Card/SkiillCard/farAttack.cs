@@ -40,7 +40,10 @@ public class farAttack : Card
         if(enemyPos!=new Vector2Int(-111,-111))
         {
             Debug.Log(enemyPos);
-            ChessboardManager.instance.CheckCell(enemyPos).TakeDamage(damage, PlayerController.instance);
+            GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
+            GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/Hit Effect");
+            //StartCoroutine(PlayerController.instance.BulletAttack(damage, ChessboardManager.instance.CheckCell(enemyPos), BulletPrefab, HitEffect));
+            PlayerController.instance.BulletAttack(damage, ChessboardManager.instance.CheckCell(enemyPos), BulletPrefab, HitEffect);
         }
         else
         {
