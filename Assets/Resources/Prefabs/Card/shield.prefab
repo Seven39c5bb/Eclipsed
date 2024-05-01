@@ -238,11 +238,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9608919fa2599ca47874788bfca9da64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
   rare: 0
   cardName: shield
   discription: take 10 barrier
   cost: 1
+  costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
   canvas: {fileID: 0}

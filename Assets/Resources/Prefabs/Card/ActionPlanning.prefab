@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f85a77323a9b349b33b3fd7abc2bb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  type: 3
   rare: 0
   cardName: "\u884C\u52A8\u9884\u8C0B"
   discription: "\u62BD\u4E00\u5F20\u884C\u52A8\u724C\u3002"

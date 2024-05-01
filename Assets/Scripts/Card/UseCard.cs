@@ -69,6 +69,7 @@ public class UseCard : MonoBehaviour,IDropHandler
         {
             FightUI.cardList.Remove(curCard.GetComponent<Card>());
             Destroy(curCard);
+            FightUI.instance.OnUpdateCardsPos();
         }
 
     }
