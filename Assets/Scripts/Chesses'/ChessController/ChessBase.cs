@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class ChessBase : MonoBehaviour //棋子基类
 {
@@ -118,7 +119,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     /// 子类实现注意事项：
     /// 1. 需要添加移动动画。
     /// </remarks>
-    public virtual (int residualDistance, bool isMeleeAttack) Move(Vector2Int direction)
+    public virtual (int residualDistance, bool isMeleeAttack, bool isRotate) Move(Vector2Int direction)
     {
 
         //移动
@@ -160,7 +161,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             }
         }
 
-
+        bool isRotate = false;
         if (direction.x == 0 || Math.Sign(direction.x) == originOrientation) //如果是向上或者向下移动，或者是向左移动
         {
             MoveToTargetPosition();
@@ -172,11 +173,13 @@ public class ChessBase : MonoBehaviour //棋子基类
             //翻转棋子
             if (direction.x < 0)
             {
+                isRotate = true;
                 transform.DORotate(new Vector3(-45, 0, 0), 0.5f).OnComplete(MoveToTargetPosition);
                 HPBarInstance.transform.localRotation = Quaternion.Euler(-45, 0, 0);
             }
             else if (direction.x > 0)
             {
+                isRotate = true;
                 transform.DORotate(new Vector3(45, 180, 0), 0.5f).OnComplete(MoveToTargetPosition);
                 HPBarInstance.transform.localRotation = Quaternion.Euler(45, 180, 0);
             }
@@ -215,7 +218,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             });
         }
 
-        return (residualDistance, isMeleeAttack);
+        return (residualDistance, isMeleeAttack, isRotate);
     }
 
     /// <summary>
@@ -302,6 +305,56 @@ public class ChessBase : MonoBehaviour //棋子基类
             });
             //开始动画
             sequence.Play();
+    }
+
+    /// <summary>
+    /// 弹幕攻击方法
+    /// </summary>
+    /// <param name="bulletDamage">弹幕伤害</param>
+    /// <param name="aimChess">目标棋子</param>
+    /// <param name="bulletPrefab">子弹预制件</param>
+    /// <param name="HitEffectPrefab"></param>
+    /// <returns></returns>
+    /// <remarks>子弹射出前有固定滞留时间delayDuration = 0.5f</remarks>
+    public virtual void BulletAttack(int bulletDamage, ChessBase aimChess, GameObject bulletPrefab, GameObject HitEffectPrefab)
+    {
+        float delayDuration = 0.5f;
+
+        // 弹幕攻击
+
+        // 获取粒子系统组件
+        ParticleSystem particleSystem = bulletPrefab.GetComponent<ParticleSystem>();
+        // 计算目标与当前位置的距离
+        float distance = Vector3.Distance(transform.position, aimChess.transform.position);
+        // 根据距离计算移动时间
+        float moveDuration = distance / 10; // 假设子弹的速度为3单位/秒
+        /* // 设置粒子的生命周期
+        if (particleSystem != null)
+        {
+            var main = particleSystem.main;
+            main.startLifetime = delayDuration + moveDuration;
+        } */
+        // 实例化子弹
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+
+        // 等待滞空时间再发射子弹
+        /* Debug.Log("Before WaitForSeconds, delayDuration: " + delayDuration);
+        yield return new WaitForSeconds(delayDuration);
+        Debug.Log("After WaitForSeconds"); */
+
+        Debug.Log(aimChess.transform.position + " " + aimChess.name);
+
+        // 子弹移动到目标位置
+        bullet.transform.DOMove(aimChess.transform.position, moveDuration).SetDelay(delayDuration).SetEase(Ease.InCubic).OnComplete(() =>
+        {
+            // 在目标位置实例化击中特效
+            Instantiate(HitEffectPrefab, aimChess.transform.position, Quaternion.identity);
+            // 对目标造成伤害
+            aimChess.TakeDamage(bulletDamage, this);
+            // 销毁子弹
+            Destroy(bullet);
+        });
+
     }
 
     // 受伤方法

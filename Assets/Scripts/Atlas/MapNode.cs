@@ -58,7 +58,6 @@ public class MapNode : MonoBehaviour
     void Awake()
     {
         Renderer = GetComponent<SpriteRenderer>();
-        originLocalScale = this.transform.localScale;
 
         MapManager.Instance.mapNodes[nodeId.x][nodeId.y] = this;
 
@@ -126,9 +125,11 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Hunting:
                             // 进入狩猎场景
+                            NodeInfoName = "Elite_1_2_1";//暂时用精英战斗的布置
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.Save();
+                            SceneManager.LoadScene("CardTest");
                             break;
                         case NodeType.Event:
                             // 进入事件场景
@@ -266,5 +267,7 @@ public class MapNode : MonoBehaviour
                 Renderer.sprite = sprites[0];
                 break;
         }
+
+        originLocalScale = this.transform.localScale;
     }
 }
