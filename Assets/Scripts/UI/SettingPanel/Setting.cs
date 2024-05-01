@@ -35,6 +35,7 @@ public class Setting : MonoBehaviour
 
     public void OnClickBackToMenu()
     {
+        Time.timeScale = 1;
         UnityEngine.SceneManagement.SceneManager.LoadScene("Start");
     }
 

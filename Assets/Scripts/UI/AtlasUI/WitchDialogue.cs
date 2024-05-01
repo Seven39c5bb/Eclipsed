@@ -16,11 +16,27 @@ public class WitchDialogue : UIBase
         DialoguePanel = GameObject.Find("DialoguePanel").GetComponent<CanvasGroup>();
 
         // 初始化对话文本
-        originDialogues.Add("那怎么办呢？");
-        originDialogues.Add("我也不知道啊！");
-        originDialogues.Add("你说呢？");
+        originDialogues.Add("......");
+        originDialogues.Add("谨遵母亲大人的教诲。");
+        originDialogues.Add("这座城市已被色彩污染。");
+        originDialogues.Add("......祂在邀请我。");
+        originDialogues.Add("我能看到、听到、触摸到这种色彩......不，不行。");
+        originDialogues.Add("城市的居民被祂的力量扭曲而变作怪物，真是可悲。");
+        if(SaveManager.instance.jsonData.playerData.HP >= 55) originDialogues.Add("我的体力充足，不需要花费时间修整。");
+        if(SaveManager.instance.jsonData.playerData.HP < 55 && SaveManager.instance.jsonData.playerData.HP >= 30) originDialogues.Add("或许我该稍作休整。");
+        if(SaveManager.instance.jsonData.playerData.HP < 30) originDialogues.Add("我需要......休息......");
+
 
         dialogues.AddRange(originDialogues);
+
+        int index = Random.Range(0, dialogues.Count); // 获取随机索引
+        currText = dialogues[index]; // 获取当前文本
+        dialogues.RemoveAt(index); // 将当前文本从列表中移除
+        // 使用DoTween动画，将对话框的透明度从0变为1
+        DialoguePanel.DOFade(1, 0.5f);
+        textLabel = GameObject.Find("WitchDialogue").GetComponent<TextMeshProUGUI>();
+        StartCoroutine(SetTextUI());
+        timer = 0;
     }
 
     float timer = 0;
@@ -47,6 +63,7 @@ public class WitchDialogue : UIBase
     }
 
     bool isAnimating = false;
+    int dialoguesCounter = 0;
     void OnClickWitch(GameObject obj, PointerEventData eventData)
     {
 
@@ -79,6 +96,13 @@ public class WitchDialogue : UIBase
             int index = Random.Range(0, dialogues.Count); // 获取随机索引
             currText = dialogues[index]; // 获取当前文本
             dialogues.RemoveAt(index); // 将当前文本从列表中移除
+
+            dialoguesCounter++;//小彩蛋计数器
+            if(dialoguesCounter >= 20)
+            {
+                currText = "......你很无聊吗？";
+            }
+
             // 使用DoTween动画，将对话框的透明度从0变为1
             DialoguePanel.DOFade(1, 0.5f);
             textLabel = GameObject.Find("WitchDialogue").GetComponent<TextMeshProUGUI>();

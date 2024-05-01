@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2be4460140fe96344b6b5e97442b6e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chessboardManager: {fileID: 0}
   HPBar: {fileID: 0}
   DamageHPBar: {fileID: 0}
   CureHPBar: {fileID: 0}
@@ -53,6 +52,8 @@ MonoBehaviour:
   HPBarCanvasPrefab: {fileID: 0}
   HPBarCanvasInstance: {fileID: 0}
   chessName: Chess
+  buffList: []
+  DontMeleeAttack: 0
   MaxHp: 10
   Hp: 10
   barrier: 0
