@@ -81,7 +81,7 @@ public class UseCard : MonoBehaviour,IDropHandler
         CardManager.discardDesk.Add(curCard.GetComponent<Card>().name);
         curCard.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.5f).OnComplete(() =>
         {
-            Destroy(curCard);
+            StartCoroutine(DestroyCard(curCard.GetComponent<Card>()));
         });
     }
 
@@ -102,5 +102,10 @@ public class UseCard : MonoBehaviour,IDropHandler
             Transform childT = handCardArea.GetChild(i);
             Destroy(childT.gameObject);
         }
+    }
+    IEnumerator DestroyCard(Card card)
+    {
+           yield return new WaitForSeconds(0.2f);
+           Destroy(card.gameObject);
     }
 }

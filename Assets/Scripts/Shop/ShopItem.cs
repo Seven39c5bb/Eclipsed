@@ -50,11 +50,13 @@ public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
         else
         {
             if (SaveManager.instance.jsonData.playerData.fingerBone >= price)
-            { SaveManager.instance.jsonData.playerData.fingerBone -= price;
-              //将卡牌放入卡组
-              SaveManager.instance.jsonData.playerData.playerDeck.Add(this.card_Name);
-              SaveManager.instance.jsonData.playerData.fbCardBuyTimes += 1;
-              SaveManager.instance.Save();             
+            { 
+                SaveManager.instance.jsonData.playerData.fingerBone -= price;
+                buyTimes -= 1;
+                //将卡牌放入卡组
+                SaveManager.instance.jsonData.playerData.playerDeck.Add(this.card_Name);
+                SaveManager.instance.jsonData.playerData.fbCardBuyTimes += 1;
+                SaveManager.instance.Save();             
             }
             else { Debug.Log("指骨不足"); }/*提示骨头不足*/
         }
