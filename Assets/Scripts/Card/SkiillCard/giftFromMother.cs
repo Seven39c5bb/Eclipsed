@@ -5,13 +5,30 @@ using UnityEngine;
 public class giftFromMother : Card
 {
     public int damage;
+    public float bulletInterval=0.1f; // 子弹间隔时间
+
     public override void CardFunc()
     {
-        //�����3����������˺�
+        StartCoroutine(GenerateBullets());
+        costManager.instance.curCost -= cost;
+    }
+
+    IEnumerator GenerateBullets()
+    {
         for (int i = 0; i < 3; i++)
         {
-            ChessboardManager.instance.enemyControllerList[Random.Range(0, ChessboardManager.instance.enemyControllerList.Count)].TakeDamage(damage, PlayerController.instance);
+            EnemyBase enemy = ChessboardManager.instance.enemyControllerList[Random.Range(0, ChessboardManager.instance.enemyControllerList.Count)];
+            StartCoroutine(Shot(enemy));
+            yield return new WaitForSeconds(bulletInterval); // 等待指定的时间间隔
         }
-        costManager.instance.curCost -= cost;
+    }
+
+    IEnumerator Shot(EnemyBase enemy)
+    {
+        yield return new WaitForSeconds(0f);
+        Debug.Log("yes");
+        GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
+        GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/Hit Effect");
+        PlayerController.instance.BulletAttack(damage, enemy, BulletPrefab, HitEffect);
     }
 }
