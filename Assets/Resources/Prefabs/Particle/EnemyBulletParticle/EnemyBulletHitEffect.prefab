@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3170764391939927341}
   - component: {fileID: 3162600421337314800}
   m_Layer: 0
-  m_Name: Hit Effect
+  m_Name: EnemyBulletHitEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
