@@ -68,7 +68,9 @@ public class GunMan : EnemyBase
         if (player != null)
         {
             //特效加在这里
-            player.TakeDamage(shotDamage, this);
+            GameObject bulletEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletParticle");
+            GameObject bulletHitEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletHitEffect");
+            BulletAttack(shotDamage, player, bulletEffect, bulletHitEffect);
             BuffManager.instance.AddBuff("BuffConcentration_GunMan", this);//添加全神贯注buff
         }
     }
