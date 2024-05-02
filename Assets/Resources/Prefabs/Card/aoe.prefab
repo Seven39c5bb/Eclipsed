@@ -378,7 +378,7 @@ MonoBehaviour:
   type: 1
   rare: 0
   cardName: aoe
-  discription: "\u5BF93*3\u8303\u56F4\u5185\u7684\u654C\u4EBA\u9020\u62109\u70B9\u4F24\u5BB3"
+  discription: "\u5BF95*5\u8303\u56F4\u5185\u7684\u654C\u4EBA\u9020\u62109\u70B9\u4F24\u5BB3"
   cost: 1
   costText: {fileID: 0}
   rtTransform: {fileID: 0}
