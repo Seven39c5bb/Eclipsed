@@ -41,7 +41,7 @@ public class farAttack : Card
         {
             Debug.Log(enemyPos);
             GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
-            GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/Hit Effect");
+            GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletHitEffect");
             //StartCoroutine(PlayerController.instance.BulletAttack(damage, ChessboardManager.instance.CheckCell(enemyPos), BulletPrefab, HitEffect));
             PlayerController.instance.BulletAttack(damage, ChessboardManager.instance.CheckCell(enemyPos), BulletPrefab, HitEffect);
         }
