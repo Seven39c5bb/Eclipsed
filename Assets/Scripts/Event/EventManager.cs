@@ -153,6 +153,10 @@ public class EventManager : MonoBehaviour
         Debug.Log(healNum);
         int heal = int.Parse(healNum);
         SaveManager.instance.jsonData.playerData.HP += heal;
+        if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
+        {
+            SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
+        }
         //更改事件描述为事件后续
         eventDescription.text = eventResult;
         //清空选项面板，替换为继续按钮

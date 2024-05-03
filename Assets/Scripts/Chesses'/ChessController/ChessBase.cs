@@ -234,7 +234,15 @@ public class ChessBase : MonoBehaviour //棋子基类
         {
             //传送成功
             Debug.Log(gameObject.name + "传送到了" + aimLocation);
-            gameObject.transform.position = ChessboardManager.instance.cellStates[Location.x, Location.y].transform.position;
+            //添加传送特效
+            Material tpMat=Resources.Load<Material>("Shader/shaderTest/dissolve");
+            this.GetComponent<SpriteRenderer>().material = tpMat;
+            this.GetComponent<SpriteRenderer>().material.DOFloat(0, "_dissolveValue", 1f).OnComplete(() =>
+            {
+               gameObject.transform.position = ChessboardManager.instance.cellStates[Location.x, Location.y].transform.position;
+               this.GetComponent<SpriteRenderer>().material.DOFloat(1, "_dissolveValue", 1f);
+            });
+            
         }
         else
         {
