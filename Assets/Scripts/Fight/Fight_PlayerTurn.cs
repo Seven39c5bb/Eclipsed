@@ -6,8 +6,10 @@ public class Fight_PlayerTurn : FightUnit
 {
     public override void Init()
     {
+        // 检查玩家buff
+        List<BuffBase> buffsToProcess = new List<BuffBase>(PlayerController.instance.buffList);
         //检查玩家buff
-        foreach(var buff in PlayerController.instance.buffList)
+        foreach (var buff in buffsToProcess)
         {
             buff.OnTurnStart();
         }
