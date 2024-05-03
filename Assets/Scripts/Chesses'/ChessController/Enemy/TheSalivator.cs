@@ -68,7 +68,9 @@ public class TheSalivator : EnemyBase
                 if (currCellObject != null && currCellObject.tag == "Player")
                 {
                     player = currCellObject;
-                    player.TakeDamage(7, this);
+                    GameObject bulletEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletParticle");
+                    GameObject bulletHitEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletHitEffect");
+                    BulletAttack(7, player, bulletEffect, bulletHitEffect);
                     Debug.Log("泌涎者攻击了玩家，玩家受到了7点伤害");
                 }
             }

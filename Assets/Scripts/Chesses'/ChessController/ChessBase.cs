@@ -343,7 +343,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             main.startLifetime = delayDuration + moveDuration;
         } */
         // 实例化子弹
-        GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0, 0, -1), Quaternion.identity);
 
         // 等待滞空时间再发射子弹
         /* Debug.Log("Before WaitForSeconds, delayDuration: " + delayDuration);
