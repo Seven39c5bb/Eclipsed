@@ -108,7 +108,9 @@ public class SaveManager : MonoBehaviour
         {
             Debug.Log("保存文件的所在位置为：" + Application.persistentDataPath);
             File.Create(JsonPath()).Close();
-            AssetDatabase.Refresh();
+            #if UNITY_EDITOR
+            UnityEditor.AssetDatabase.Refresh();
+            #endif
         }
         string json = JsonUtility.ToJson(jsonData, true);
         File.WriteAllText(JsonPath(), json);
@@ -261,7 +263,9 @@ public class SaveManager : MonoBehaviour
         if (!Directory.Exists(Application.persistentDataPath))
         {
             Directory.CreateDirectory(Application.persistentDataPath);
-            AssetDatabase.Refresh();
+            #if UNITY_EDITOR
+            UnityEditor.AssetDatabase.Refresh();
+            #endif
         }
         return File.Exists(JsonPath());
     }
