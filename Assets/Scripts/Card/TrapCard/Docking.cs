@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Overload : Card
+public class Docking : Card
 {
     public override void CardFunc()
     {
@@ -15,24 +15,25 @@ public class Overload : Card
                 indexList.Add(i);
             }
         }
-        if(indexList.Count<2)
+        if (indexList.Count <=1)
         {
             int index = Random.Range(0, indexList.Count);
             Card card = CardManager.instance.handCards[indexList[index]];
             indexList.RemoveAt(index);
             CardManager.instance.Discard(card);
-            CardManager.instance.Draw(2);
+            PlayerController.instance.Barrier += 15;
             costManager.instance.curCost -= cost;
             return;
         }
-        for (int i = 0; i < 2; i++)
+        else
         {
-            int index=Random.Range(0, indexList.Count);
+            int index = Random.Range(0, indexList.Count);
             Card card = CardManager.instance.handCards[indexList[index]];
             indexList.RemoveAt(index);
             CardManager.instance.Discard(card);
-            CardManager.instance.Draw(1);
+            PlayerController.instance.Barrier += 15;
+            costManager.instance.curCost -= cost;
         }
-        costManager.instance.curCost -= cost;
+        
     }
 }

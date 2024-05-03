@@ -1,1 +1,1 @@
-up,left,down,right,aoe,farAttack,wisdom,shield,Armed,CrossSlash,BladeAndArmor,ActionPlanning,Snipe,ReserveMagazine,ContinuousFire,QuickLoading,Overload,PowerRelease
+Armed,CrossSlash,BladeAndArmor,ActionPlanning,Snipe,ReserveMagazine,ContinuousFire,QuickLoading,Overload,PowerRelease

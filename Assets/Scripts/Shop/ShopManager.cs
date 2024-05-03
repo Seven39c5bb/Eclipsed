@@ -182,6 +182,10 @@ public class ShopManager : MonoBehaviour
             return;
         }
         SaveManager.instance.jsonData.playerData.HP += 30;
+        if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
+        {
+            SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
+        }
         SaveManager.instance.jsonData.playerData.coin -= 50;
         isHeal = true;
         GameObject.Find("Heal").GetComponent<Image>().color = Color.gray;
