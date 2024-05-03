@@ -14,6 +14,7 @@ public class MotorGangster : EnemyBase
         moveMode = 2;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "摩托暴徒";//棋子名称
+        chessDiscrption = "身体发生诡异膨胀的摩托骑手，手上抓着一具干尸作为武器。\r\n被动技能：飞驰疾行：如果在上个回合没有受到伤害，则行动力+1。\r\n技能：暴力锤击：对3*3范围内的玩家造成15点伤害。";//棋子描述
         ChessboardManager.instance.AddChess(this.gameObject, Location);
         BuffManager.instance.AddBuff("BuffDriveMotor_MotorGangster", this);
     }

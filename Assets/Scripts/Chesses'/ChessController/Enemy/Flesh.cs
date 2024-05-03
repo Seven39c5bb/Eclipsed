@@ -14,6 +14,7 @@ public class Flesh : EnemyBase
         moveMode = 3;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "模糊血肉";//棋子名称
+        chessDiscrption = "一团血肉混合物，仍在不停蠕动，似乎有着攻击与吞噬的本能。\r\n被动技能：强化肌肉：这个怪物的近战伤害增加3。";//棋子描述
         
         ChessboardManager.instance.AddChess(this.gameObject, Location);
         

@@ -7,5 +7,6 @@ public class NewBehaviourScript : Card
     public override void CardFunc()
     {
         BuffManager.instance.AddBuff("MercuryBulletBuff", PlayerController.instance);
+        costManager.instance.curCost -= cost;
     }
 }

@@ -110,15 +110,21 @@ public class Cell : MonoBehaviour
     {
         isSelected = true;
         ChessboardManager.instance.curCell = this;
-        // 将颜色设置为透明
-        originColor = spriteRenderer.color;
-        spriteRenderer.color = new Color(1, 1, 0, 1);
+        // 将颜色设置为黄色
+        if (state != StateType.Wall)
+        {
+            originColor = spriteRenderer.color;
+            spriteRenderer.color = new Color(1, 1, 0, 1);
+        }
     }
     private void OnMouseExit()
     {
         ChessboardManager.instance.curCell = null;
         isSelected = false;
-        // 将颜色设置为原始颜色
-        spriteRenderer.color = originColor;
+        if (state != StateType.Wall)
+        {
+            // 将颜色设置为原始颜色
+            spriteRenderer.color = originColor;
+        }
     }
 }
