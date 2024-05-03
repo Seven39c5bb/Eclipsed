@@ -17,6 +17,16 @@ public class CrossSlash : Card
             posList.Add(new Vector2Int(playerPos.x, playerPos.y + i));
         }
         posList.Remove(playerPos);
+        //十字斩特效
+        GameObject CrossSlashEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerEffect/CrossSlashEffect");
+        Instantiate(CrossSlashEffect, PlayerController.instance.gameObject.transform.position, Quaternion.identity);
+        StartCoroutine(DelayedDamage(posList));
+        costManager.instance.curCost -= cost;
+    }
+
+    IEnumerator DelayedDamage(List<Vector2Int> posList)
+    {
+        yield return new WaitForSeconds(0.3f);
         foreach (var pos in posList)
         {
             if (pos.x < 0 || pos.y < 0 || pos.x > 9 || pos.y > 9) continue;
@@ -27,6 +37,5 @@ public class CrossSlash : Card
                 ChessboardManager.instance.CheckCell(pos).TakeDamage(PlayerController.instance.meleeAttackPower,PlayerController.instance);
             }
         }
-        costManager.instance.curCost -= cost;
     }
 }
