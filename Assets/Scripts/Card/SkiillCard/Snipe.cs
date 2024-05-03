@@ -49,7 +49,7 @@ public class Snipe : Card
                 damage += 8;
             }
             GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
-            GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/Hit Effect");
+            GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletHitEffect");
             PlayerController.instance.BulletAttack(damage, enemy, BulletPrefab, HitEffect);
         }
         costManager.instance.curCost -= cost;

@@ -7,7 +7,7 @@ public class DiffusionFire : Card
     public int damage = 8;
     public override void CardFunc()
     {
-        GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/Hit Effect");
+        GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletHitEffect");
         GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
         //找到血量最高的敌人
         EnemyBase maxHpEnemy = ChessboardManager.instance.enemyControllerList[0];
