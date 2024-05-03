@@ -27,7 +27,7 @@ public class AllIn : Card
         {
             Card card = CardManager.instance.handCards[indexList[i]];
             CardManager.instance.Discard(card);
-            int damage = Random.Range(5, 11);
+            int damage = Random.Range(7, 11);
             float nearDistance = 9999f;
             EnemyBase nearEnemy = null;
             foreach (var enemy in ChessboardManager.instance.enemyControllerList)
