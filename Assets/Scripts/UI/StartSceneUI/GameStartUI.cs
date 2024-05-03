@@ -9,6 +9,7 @@ public class GameStartUI : UIBase
     {
         Register("Start").onClick = LoadSceneAtlas_1;
         Register("Continue").onClick = LoadSceneContinue;
+        Register("Quit").onClick = OuitGame;
     }
     void LoadSceneAtlas_1(GameObject obj, PointerEventData eventData)
     {
@@ -20,5 +21,9 @@ public class GameStartUI : UIBase
     {
         SaveManager.instance.Load();
         UIManager.Instance.LoadScene("Atlas_" + MapManager.AtlasIDToInt(SaveManager.instance.jsonData.mapData.currAtlasID));
+    }
+    void OuitGame(GameObject obj, PointerEventData eventData)
+    {
+        Application.Quit();
     }
 }

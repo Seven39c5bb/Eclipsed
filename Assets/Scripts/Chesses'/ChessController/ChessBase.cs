@@ -16,6 +16,7 @@ public class ChessBase : MonoBehaviour //棋子基类
 
     // 共有属性
     public string chessName = "Chess";//棋子名称
+    public string chessDiscrption = "";//棋子描述
     public List<BuffBase> buffList = new List<BuffBase>();//buff列表
     public bool DontMeleeAttack = false;//是否不主动碰撞
     public int MaxHp = 10;//最大生命值

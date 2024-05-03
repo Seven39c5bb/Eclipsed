@@ -15,6 +15,7 @@ public class GunMan : EnemyBase
         moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "枪手";//棋子名称
+        chessDiscrption = "头部变化为枪膛形状的行尸，能将骨刺从头部高速射出。\r\n技能：骨刺射击：对玩家造成5点伤害，最大距离为4格，下次使用该技能时伤害永久增加3点。";//棋子描述
 
         base.Start();//添加血条
         ChessboardManager.instance.AddChess(this.gameObject, Location);

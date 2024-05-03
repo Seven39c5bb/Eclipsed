@@ -88,6 +88,7 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
             MobilityText.text = "行动力: --";
             MoveModeText.text = "行为模式: --";
             MeleeAttackText.text = "近战伤害: " + PlayerController.instance.MeleeAttackPower;
+            CardDescription.text = PlayerController.instance.chessDiscrption;
 
             if (preBuffListCount != PlayerController.instance.buffList.Count)
             {

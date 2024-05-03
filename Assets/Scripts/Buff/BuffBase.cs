@@ -87,6 +87,11 @@ public class BuffBase : MonoBehaviour
     {
         //子类实现
     }
+    //不可叠加的buff重复添加的时候触发
+    public virtual void OnUnlayerBuffRepeatAdd()
+    {
+        //子类实现
+    }
     //buff移除的时候触发
     public virtual void OnRemove()
     {
