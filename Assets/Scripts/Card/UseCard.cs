@@ -105,7 +105,7 @@ public class UseCard : MonoBehaviour,IDropHandler
     }
     IEnumerator DestroyCard(Card card)
     {
-           yield return new WaitForSeconds(0.2f);
+           yield return new WaitForSeconds(2f);
            Destroy(card.gameObject);
     }
 }
