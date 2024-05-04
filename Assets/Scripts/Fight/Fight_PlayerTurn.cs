@@ -6,6 +6,9 @@ public class Fight_PlayerTurn : FightUnit
 {
     public override void Init()
     {
+        //回合开始时，玩家护盾衰减
+        PlayerController.instance.BarrierDecay();
+
         // 检查玩家buff
         List<BuffBase> buffsToProcess = new List<BuffBase>(PlayerController.instance.buffList);
         //检查玩家buff

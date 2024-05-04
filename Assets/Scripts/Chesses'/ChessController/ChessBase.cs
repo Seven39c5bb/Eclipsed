@@ -427,6 +427,18 @@ public class ChessBase : MonoBehaviour //棋子基类
         });
     }
 
+    // 自身回合开始时护盾衰减方法
+    public void BarrierDecay()
+    {
+        // 护盾值减半
+        Barrier -= Barrier / 2;
+        // 使用DoTween使护盾闪烁
+        BarrierBar.DOColor(new Color(38f/255f, 214/255f, 1, 0), 0.25f).OnComplete(() =>
+        {
+            BarrierBar.DOColor(new Color(38f/255f, 214/255f, 1, 139f/255f), 0.25f);
+        });
+    }
+
     // 死亡方法
     public virtual void Death()
     {
