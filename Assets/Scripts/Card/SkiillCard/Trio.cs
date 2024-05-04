@@ -64,7 +64,7 @@ public class Trio : Card
         yield return new WaitForSeconds(0f);
         Debug.Log("yes");
         GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
-        GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/Hit Effect");
+        GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletHitEffect");
         PlayerController.instance.BulletAttack(damage, enemy, BulletPrefab, HitEffect);
     }
 }

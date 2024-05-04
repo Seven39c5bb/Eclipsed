@@ -41,6 +41,7 @@ public class BuffManager : MonoBehaviour
             else
             {
                 //刷新持续时间
+                currBuff.OnUnlayerBuffRepeatAdd();
             }
         }
         else

@@ -50,7 +50,7 @@ public class ContinuousFire : Card, IPointerDownHandler, IPointerUpHandler
                 flag = 1;
             }
             GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
-            GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/Hit Effect");
+            GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletHitEffect");
             PlayerController.instance.BulletAttack(damage, enemy, BulletPrefab, HitEffect);
             if (flag==1)
             {

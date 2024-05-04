@@ -20,6 +20,32 @@ public class UIManager : MonoBehaviour
 
         uiList = new List<UIBase>();
     }
+    void Start()
+    {
+        // width 和 height 为分辨率的宽和高
+        SetResolution();
+    }
+    void SetResolution() 
+    {
+        float heightScal = 9.0f;
+        float widthScal = 16.0f;
+        int screenWidth = Screen.currentResolution.width;
+        int screenHeight = Screen.currentResolution.height;
+        int width = Screen.width;
+        int height = Screen.height;
+        if (((widthScal * height) / heightScal) > screenWidth)
+        {
+            int h = (int)((heightScal * screenWidth) / widthScal);
+            int w = (int)((widthScal * h) / heightScal);
+            Screen.SetResolution(w, h, true);
+        }
+        else
+        {
+            int w = (int)((widthScal * screenHeight) / heightScal);
+            int h = (int)((heightScal * screenWidth) / widthScal);
+            Screen.SetResolution(w, h, true);
+        }
+    }
     //显示
     public UIBase ShowUI<T>(string uiName) where T : UIBase
     {
