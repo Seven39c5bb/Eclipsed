@@ -222,7 +222,7 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     public void OnBarrierEnter()
     {
         if (detailedPanel.GetComponent<CanvasGroup>().alpha == 1)
-        {ShowTooltip("用于抵挡即将受到的伤害，会优先于生命值扣除。", "护盾值");}
+        {ShowTooltip("用于抵挡即将受到的伤害，会优先于生命值扣除。回合开始时会衰减50%。", "护盾值");}
     }
 
     public void OnMobilityEnter()
