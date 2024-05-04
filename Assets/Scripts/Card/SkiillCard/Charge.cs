@@ -1,22 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Charge : Card
+public class Charge : Card,IPointerDownHandler,IPointerUpHandler
 {
+    GameObject line;
     public new void Update()
     {
         //如果正在被拖拽，将该卡牌变透明
         if (isDrag)
         {
-            this.GetComponent<Image>().color= new Color(0, 0, 0, 0.05f);
+            this.GetComponent<CanvasGroup>().alpha = 0.1f;
         }
         else
         {
-            this.GetComponent<Image>().color = startColor;
+            this.GetComponent<CanvasGroup>().alpha = 1f;
         }
     }
+    //按下时生成一条线
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        line = Instantiate(Resources.Load("Prefabs/UI/LineUI"), GameObject.Find("Canvas").transform) as GameObject;
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Destroy(line);
+    }
+
     public override void CardFunc()
     {
         /*选择一个方向进行移动，直到与一个怪物进行碰撞或触碰到障碍。碰撞时对怪物造成基础近战伤害*/
@@ -115,4 +127,6 @@ public class Charge : Card
         }
         costManager.instance.curCost -= cost;
     }
+
+
 }

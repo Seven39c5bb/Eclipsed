@@ -146,16 +146,16 @@ public class ShopManager : MonoBehaviour
                 switch (cardMes.GetComponent<Card>().rare)
                 {
                     case Card.rareType.common:
-                        cardTemplate.price = 10;
-                        cardTemplate.cardPrice.text = "10";
+                        cardTemplate.price = 50;
+                        cardTemplate.cardPrice.text = "50";
                         break;
                     case Card.rareType.rare:
-                        cardTemplate.price = 20;
-                        cardTemplate.cardPrice.text = "20";
+                        cardTemplate.price = 75;
+                        cardTemplate.cardPrice.text = "75";
                         break;
                     case Card.rareType.legend:
-                        cardTemplate.price = 30;
-                        cardTemplate.cardPrice.text = "30";
+                        cardTemplate.price = 125;
+                        cardTemplate.cardPrice.text = "125";
                         break;
                 }
             }

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EmergencyEscape : Card
+public class EmergencyEscape : Card, IPointerDownHandler, IPointerUpHandler
 {
+    GameObject line;
     public new void Update()
     {
         //如果正在被拖拽，将该卡牌变透明
@@ -16,6 +18,14 @@ public class EmergencyEscape : Card
         {
             this.GetComponent<Image>().color = startColor;
         }
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        line = Instantiate(Resources.Load("Prefabs/UI/LineUI"), GameObject.Find("Canvas").transform) as GameObject;
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Destroy(line);
     }
     public override void CardFunc()
     {
