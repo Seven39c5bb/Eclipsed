@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
         if (SaveManager.instance.jsonData.mapData.currNodeID != null)
         {
             currNodeID = SaveManager.instance.jsonData.mapData.currNodeID;
-            this.gameObject.transform.position = MapManager.Instance.mapNodes[currNodeID.x][currNodeID.y].transform.position + new Vector3(0.2f, 0, 0);
+            this.gameObject.transform.position = new Vector3(MapManager.Instance.mapNodes[currNodeID.x][currNodeID.y].transform.position.x, 0, 0) + new Vector3(0.2f, 0, 0);
         }
     }
     private bool cursorIsHand = false;

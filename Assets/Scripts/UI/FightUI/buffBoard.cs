@@ -8,9 +8,10 @@ public class buffBoard : MonoBehaviour, IPointerExitHandler
     public BuffBase buff;
     public UnityEngine.UI.Image buffImg;
     public stateBoard stateBoard;
+    public bool isDetailed = true;
     public void OnPointerExit(PointerEventData eventData)
     {
-        stateBoard.instance.HideTooltip();
+        if (isDetailed) stateBoard.instance.HideTooltip();
     }
     void Start()
     {
@@ -46,6 +47,6 @@ public class buffBoard : MonoBehaviour, IPointerExitHandler
     }
     public void OnBuffEnter()
     {
-        stateBoard.instance.ShowTooltip(buff.description, buff.buffNameCN);
+        if (isDetailed) stateBoard.instance.ShowTooltip(buff.description, buff.buffNameCN);
     }
 }
