@@ -30,6 +30,7 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
     
     public static stateBoard instance;
     public List<GameObject> buffBlockList = new List<GameObject>();
+    public List<GameObject> buffBlockListOutside = new List<GameObject>();
 
     public GameObject buffBlockPrefab;
     public int preBuffListCount = 0;
@@ -66,10 +67,12 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         healthImage.DOFillAmount((float)PlayerController.instance.Hp / PlayerController.instance.MaxHp, 0.5f);
         if (FightManager.instance.curFightType == FightType.Player)
         {
-            turnTip.GetComponent<CanvasGroup>().DOFade(1, 0.2f);
+            turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.white, 0.2f);
         }
-        else if(FightManager.instance.curFightType != FightType.Player && turnTip.GetComponent<CanvasGroup>().alpha == 1)
-        { turnTip.GetComponent<CanvasGroup>().DOFade(0, 0.2f); }
+        else if(FightManager.instance.curFightType != FightType.Player && turnTip.GetComponent<UnityEngine.UI.Image>().color == Color.white)
+        { 
+            turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.black, 0.2f); 
+        }
         //test
         //foreach(var enemy in ChessboardManager.instance.enemyControllerList)
         //{
@@ -100,11 +103,28 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
                 foreach (var buff in PlayerController.instance.buffList)
                 {
                     GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                    buffBlock.GetComponent<buffBoard>().isDetailed = true;
                     buffBlockList.Add(buffBlock);
                     buffBlock.GetComponent<buffBoard>().buff = buff;
                 }
-                preBuffListCount = PlayerController.instance.buffList.Count;
             }
+        }
+
+        if (preBuffListCount != PlayerController.instance.buffList.Count)
+        {
+            foreach (var buff in buffBlockListOutside)
+            {
+                Destroy(buff);
+            }
+            buffBlockListOutside.Clear();
+            foreach (var buff in PlayerController.instance.buffList)
+            {
+                GameObject buffBlock = Instantiate(buffBlockPrefab, transform.Find("OutsideBuffs").transform) as GameObject;
+                buffBlock.GetComponent<buffBoard>().isDetailed = false;//外部buff不显示详细信息
+                buffBlockListOutside.Add(buffBlock);
+                buffBlock.GetComponent<buffBoard>().buff = buff;
+            }
+            preBuffListCount = PlayerController.instance.buffList.Count;
         }
 
         if (isTooltipActive)
