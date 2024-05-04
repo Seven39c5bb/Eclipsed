@@ -16,6 +16,7 @@ public class TheSalivator : EnemyBase
         moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "泌涎者";//棋子名称
+        chessDiscrption = "头骨沿着眼眶向内塌陷的人类，从头颅的各个缝隙中流出五彩斑斓的液体。\r\n技能：分泌物射击：对玩家造成7点伤害，最大距离为3格。";//棋子描述
         ChessboardManager.instance.AddChess(this.gameObject, Location);
         
     }

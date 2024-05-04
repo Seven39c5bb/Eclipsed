@@ -66,7 +66,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
             MobilityText.text = "行动力: " + thisEnemy.mobility;
             MoveModeText.text = "行为模式: " + thisEnemy.moveMode;
             MeleeAttackText.text = "近战伤害: " + thisEnemy.MeleeAttackPower;
-            CardDescription.text = description;
+            CardDescription.text = thisEnemy.chessDiscrption;
 
             if (preBuffListCount != thisEnemy.buffList.Count)
             {

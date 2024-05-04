@@ -49,6 +49,7 @@ public class PlayerController : ChessBase
         HP = initHp;//当前生命值
         MeleeAttackPower = 10;//近战攻击力
         chessName = "魔女";//棋子名称
+        chessDiscrption = "教宗的喉舌，教母的利刃。";//棋子描述
 
         base.Start();//添加血条
         ChessboardManager.instance.AddChess(this.gameObject, Location);
