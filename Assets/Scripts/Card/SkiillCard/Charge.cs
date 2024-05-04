@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Charge : Card,IPointerDownHandler,IPointerUpHandler
 {
-    public int flag = 1;
     GameObject line;
     public new void Update()
     {
@@ -24,7 +23,6 @@ public class Charge : Card,IPointerDownHandler,IPointerUpHandler
     public void OnPointerDown(PointerEventData eventData)
     {
         line = Instantiate(Resources.Load("Prefabs/UI/LineUI"), GameObject.Find("Canvas").transform) as GameObject;
-        line.GetComponent<LineUI>().SetStartPos(new Vector2(0,-600f));
     }
     public void OnPointerUp(PointerEventData eventData)
     {

@@ -5,51 +5,68 @@ using UnityEngine;
 
 public class LineUI : MonoBehaviour
 {
-    private void Update()
+    public GameObject arrowHead;
+    public GameObject arrowNode;
+    public int arrowNum;
+    public float scaleFactor;
+
+    private RectTransform origin;//P0的位置
+    private List<RectTransform> arrowNodes=new List<RectTransform>();//箭头节点的位置
+    private List<Vector2> controlPoints=new List<Vector2>();//控制点的位置
+    private readonly List<Vector2> controlPointFactors = new List<Vector2> { new Vector2(-0.3f, 0.8f), new Vector2(0.1f, 1.4f) };//控制点的位置系数
+    private void Awake()
     {
-        UpdateLine();
-    }
-    //更新线
-    public void UpdateLine()
-    {
-        Vector3 mousePos = Input.mousePosition;
-        SetEndPos(mousePos);
-    }
-    //设置开始位置
-    public void SetStartPos(Vector2 pos)
-    {
-        transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition = pos;
-    }
-    //设置终点位置
-    public void SetEndPos(Vector2 pos)
-    {
-        transform.GetChild(transform.childCount-1).GetComponent<RectTransform>().anchoredPosition = pos;
-        //开始点
-        Vector3 startPos = transform.GetChild(0).GetComponent<RectTransform>().anchoredPosition;
-        //终点
-        Vector3 endPos = pos;
-        //中点
-        Vector3 midPos = Vector3.zero;
-        midPos.y = (startPos.y + endPos.y) / 2;
-        midPos.x = startPos.x;
-        //计算开始点与终点的方向
-        Vector3 dir= (endPos - startPos).normalized;
-        float angle=Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;//弧度转角度
-        //设置终点角度
-        transform.GetChild(transform.childCount - 1).eulerAngles = new Vector3(0, 0, angle);
-        for(int i = transform.childCount - 1; i >= 0; i--)
+        this.origin=this.GetComponent<RectTransform>();
+        //生成箭头和箭头结点
+        for(int i = 0; i < arrowNum; i++)
         {
-            transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition=GetBezier(startPos,endPos,midPos,i/(float)(transform.childCount));
-            if (i != transform.childCount - 1)
-            {
-                dir=(transform.GetChild(i + 1).GetComponent<RectTransform>().anchoredPosition - transform.GetChild(i).GetComponent<RectTransform>().anchoredPosition).normalized;
-                angle=Mathf.Atan2(dir.y,dir.x)*Mathf.Rad2Deg;
-                transform.GetChild(i).eulerAngles = new Vector3(0, 0, angle);
-            }
+            this.arrowNodes.Add(Instantiate(arrowNode, this.transform).GetComponent<RectTransform>());
+        }
+        this.arrowNodes.Add(Instantiate(arrowHead, this.transform).GetComponent<RectTransform>());
+
+        //隐藏所有箭头
+        this.arrowNodes.ForEach(node =>
+        {
+            node.GetComponent<RectTransform>().position=new Vector2(-1000, -1000);
+        });
+
+        //初始化控制点列表
+        for(int i = 0; i < 4; i++)
+        {
+            this.controlPoints.Add(new Vector2(0, 0));
         }
     }
-    public Vector3 GetBezier(Vector3 startPos, Vector3 endPos, Vector3 midPos, float t)
+    private void Update()
     {
-        return (1.0f - t) * (1.0f - t) * startPos + 2 * t * (1.0f - t) * midPos + t * t * endPos;
+        //计算四个控制点的位置
+        this.controlPoints[0] = this.origin.position-new Vector3(-500f,600f,0);
+
+        this.controlPoints[3] = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        this.controlPoints[1] = this.controlPoints[0] + (this.controlPoints[3] - this.controlPoints[0]) * this.controlPointFactors[0];
+        this.controlPoints[2] = this.controlPoints[0] + (this.controlPoints[3] - this.controlPoints[0]) * this.controlPointFactors[1];
+
+        for(int i=0;i<this.arrowNodes.Count;i++)
+        {
+            float t=Mathf.Log(1f*i/(this.arrowNodes.Count-1)+1f,2f);
+
+            //计算贝塞尔曲线上的点
+            this.arrowNodes[i].position=
+                Mathf.Pow(1 - t, 3) * this.controlPoints[0]+
+                3 * Mathf.Pow(1 - t, 2) * t * this.controlPoints[1]+
+                3 * (1 - t) * Mathf.Pow(t, 2) * this.controlPoints[2]+
+                Mathf.Pow(t, 3) * this.controlPoints[3];
+
+            //计算箭头的旋转角度
+            if (i > 0)
+            {
+                var euler=new Vector3(0, 0, Vector2.SignedAngle(Vector2.up, this.arrowNodes[i].position - this.arrowNodes[i-1].position));
+                this.arrowNodes[i].rotation=Quaternion.Euler(euler);
+            }
+            //计算箭头的缩放
+            var scale = this.scaleFactor*(1f-0.03f*(this.arrowNodes.Count-i-1));
+            this.arrowNodes[i].localScale=new Vector3(scale, scale, 1f);
+        }
+        this.arrowNodes[0].transform.rotation = this.arrowNodes[1].transform.rotation;
     }
 }

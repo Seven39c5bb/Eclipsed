@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class FocusFire : Card
+public class FocusFire : Card, IPointerDownHandler, IPointerUpHandler
 {
 
     public int damage = 5;
+    GameObject line;
     public new void Update()
     {
         //如果正在被拖拽，将该卡牌变透明
@@ -18,6 +20,14 @@ public class FocusFire : Card
         {
             this.GetComponent<Image>().color = startColor;
         }
+    }
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        line = Instantiate(Resources.Load("Prefabs/UI/LineUI"), GameObject.Find("Canvas").transform) as GameObject;
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Destroy(line);
     }
     public override void CardFunc()
     {
