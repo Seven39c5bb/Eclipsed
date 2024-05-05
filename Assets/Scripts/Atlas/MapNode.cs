@@ -113,6 +113,7 @@ public class MapNode : MonoBehaviour
                             // 进入战斗场景
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;//用于战斗场景怪物的初始化
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;//用于战斗胜利后的返回
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Fight;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();//保存存档
                             SceneManager.LoadScene("CardTest");
                             break;
@@ -120,6 +121,7 @@ public class MapNode : MonoBehaviour
                             // 进入精英战斗场景
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Elite;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("CardTest");
                             break;
@@ -128,6 +130,7 @@ public class MapNode : MonoBehaviour
                             NodeInfoName = "Elite_1_2_1";//暂时用精英战斗的布置
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Elite;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("CardTest");
                             break;
@@ -135,6 +138,7 @@ public class MapNode : MonoBehaviour
                             // 进入事件场景
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Event;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("Event");
                             break;
@@ -142,12 +146,14 @@ public class MapNode : MonoBehaviour
                             // 进入剧情场景
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Plot;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("Plot");
                             break;
                         case NodeType.Shop:
                             // 进入商店场景
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Shop;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("Shop");
                             break;
@@ -155,8 +161,10 @@ public class MapNode : MonoBehaviour
                             // 进入Boss战斗场景
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Boss;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
-                            SceneManager.LoadScene("CardTest");
+                            Debug.Log("Atlas_" + (SaveManager.instance.jsonData.mapData.currAtlasID + 1).ToString() + "_Boss");
+                            SceneManager.LoadScene(SaveManager.instance.jsonData.mapData.currAtlasID .ToString() + "_Boss");
                             break;
                 }
                 });

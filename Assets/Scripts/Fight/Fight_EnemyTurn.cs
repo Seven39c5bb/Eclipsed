@@ -39,6 +39,12 @@ public class Fight_EnemyTurn : FightUnit
         {
             Debug.Log(enemy.GetType());
         }
+
+        //遍历所有敌人，衰减其护盾
+        foreach (var enemy in enemyList)
+        {
+            enemy.BarrierDecay();
+        }
     }
 
     private Coroutine currCoroutine = null;//用于检测当前怪物是否已经完成了行动

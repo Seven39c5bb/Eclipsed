@@ -27,6 +27,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     public string cardName;
     //卡牌描述
     public string discription;
+    public TMPro.TextMeshProUGUI discriptionText;
     //卡牌的费用
     public int cost;
     //卡牌上的费用显示
@@ -53,7 +54,13 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         {
             costText = this.transform.Find("cost").GetComponent<TextMeshProUGUI>();
             costText.text = cost.ToString();
-        }   
+        }
+        //找到该物体下的discriptionText
+        if(this.transform.Find("Text (TMP) (1)") != null)
+        {
+            discriptionText = this.transform.Find("Text (TMP) (1)").GetComponent<TextMeshProUGUI>();
+            //discriptionText.text = discription;
+        }
     }
     public void Start()
     {

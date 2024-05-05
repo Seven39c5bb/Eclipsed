@@ -12,6 +12,19 @@ public class left : Card
     private void Awake()
     {
         slider = this.GetComponentInChildren<Slider>();
+        startColor=this.GetComponent<Image>().color;
+        //找到该物体下的costText
+        if(this.transform.Find("cost") != null)
+        {
+            costText = this.transform.Find("cost").GetComponent<TextMeshProUGUI>();
+            costText.text = cost.ToString();
+        }
+        //找到该物体下的discriptionText
+        if(this.transform.Find("Text (TMP) (1)") != null)
+        {
+            discriptionText = this.transform.Find("Text (TMP) (1)").GetComponent<TextMeshProUGUI>();
+            //discriptionText.text = discription;
+        }
     }
     private new void Start()
     {
@@ -20,6 +33,8 @@ public class left : Card
     private new void Update()
     {
         cost = (int)slider.value;
+        costText.text = cost.ToString();
+        discriptionText.text = "向左移动**" + (cost + 1).ToString() + "**格\r\n（滑动滑块调整）";
     }
     public override void CardFunc()
     {

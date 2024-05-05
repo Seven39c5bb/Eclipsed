@@ -41,11 +41,11 @@ public class costManager : MonoBehaviour
         textMeshPro.text=curCost.ToString()+'/'+maxCost.ToString();//实时显示剩余费用和max费用
         if (curCost == 0)
         {
-            CostEye.DOColor(new Color(70f/255f, 90f/255f, 140f/255f, 1), 0.5f); // 当费用为0时，将 CostEye 图片的颜色调暗
+            CostEye.DOColor(new Color(140f/255f, 160f/255f, 160f/255f, 1), 0.5f); // 当费用为0时，将 CostEye 图片的颜色调暗
         }
         else
         {
-            CostEye.DOColor(new Color(1, 200f/255f, 1, 1), 0.5f); // 当费用不为0时，将 CostEye 图片的颜色调回白色
+            CostEye.DOColor(new Color(1, 190f/255f, 1, 1), 0.5f); // 当费用不为0时，将 CostEye 图片的颜色调回白色
         }
     }
 }
