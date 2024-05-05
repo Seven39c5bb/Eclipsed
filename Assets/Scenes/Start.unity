@@ -270,7 +270,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4755171701029069837, guid: 7efe0e1296512864eb38cfd1d299eb11, type: 3}
       propertyPath: m_Name
-      value: SaveManager
+      value: Save_Audio_Manager
       objectReference: {fileID: 0}
     - target: {fileID: 8082283337605026614, guid: 7efe0e1296512864eb38cfd1d299eb11, type: 3}
       propertyPath: m_LocalPosition.x
