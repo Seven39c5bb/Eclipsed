@@ -41,6 +41,7 @@ public class DeckBoard : MonoBehaviour
                 //Debug.Log(cardMes.transform.GetChild(0).name);
                 cardTemplate.cardName.text = cardMes.GetComponent<Card>().cardName;
                 cardTemplate.cardDescription.text = cardMes.GetComponent<Card>().discription;
+                cardTemplate.cardCost.text= cardMes.GetComponent<Card>().cost.ToString();
             }
         }
     }

@@ -14,11 +14,11 @@ public class FocusFire : Card, IPointerDownHandler, IPointerUpHandler
         //如果正在被拖拽，将该卡牌变透明
         if (isDrag)
         {
-            this.GetComponent<Image>().color = new Color(0, 0, 0, 0.05f);
+            this.GetComponent<CanvasGroup>().alpha = 0.1f;
         }
         else
         {
-            this.GetComponent<Image>().color = startColor;
+            this.GetComponent<CanvasGroup>().alpha = 1f;
         }
     }
     public void OnPointerDown(PointerEventData eventData)
