@@ -65,8 +65,21 @@ public class Trio : Card
         {
             if (furthestEnemies[i] == null)//如果该位置为null，说明敌人数量少于3个
             {
+                if (furthestEnemies[i - 1] != null)
+                {
+                    StartCoroutine(Shot(furthestEnemies[i-1]));
+                }
+                else if (i - 2 >= 0 && furthestEnemies[i - 2] != null)
+                {
+                    StartCoroutine(Shot(furthestEnemies[i-2]));
+                }
+                else
+                {
+                    StartCoroutine(Shot(furthestEnemies[0]));
+                }
                 damage += 5;
-                StartCoroutine(Shot(furthestEnemies[i-1]));
+                yield return new WaitForSeconds(0.51f);
+                continue;
             }
             if (furthestEnemies[i].HP <= 0)
             {
@@ -84,14 +97,20 @@ public class Trio : Card
             }
             if (furthestEnemies[i] != curEnemy)
             {
-                damage = 10;
-                StartCoroutine(Shot(furthestEnemies[i]));
-                curEnemy = furthestEnemies[i];
+                if (furthestEnemies[i] != null)
+                {
+                    damage = 10;
+                    StartCoroutine(Shot(furthestEnemies[i]));
+                    curEnemy = furthestEnemies[i];
+                }
             }
             else
             {
-                damage += 5;
-                StartCoroutine(Shot(furthestEnemies[i]));
+                if (furthestEnemies[i] != null)
+                {
+                    damage += 5;
+                    StartCoroutine(Shot(furthestEnemies[i]));
+                }
             }
             yield return new WaitForSeconds(0.51f);
         }
