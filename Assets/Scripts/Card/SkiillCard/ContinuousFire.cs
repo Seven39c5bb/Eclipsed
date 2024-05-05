@@ -8,6 +8,7 @@ public class ContinuousFire : Card, IPointerDownHandler, IPointerUpHandler
 {
     public int damage;
     public GameObject line;bool isChangeColor = false;
+    int dragFlag = 1;
     public new void Update()
     {
         //如果正在被拖拽，将该卡牌变透明
@@ -17,20 +18,34 @@ public class ContinuousFire : Card, IPointerDownHandler, IPointerUpHandler
         }
         else
         {
+            if(dragFlag == 1)
             this.GetComponent<CanvasGroup>().alpha = 1f;
         }
-        //让line变色
+        #region 让线变色
         if (ChessboardManager.instance.curCell != null)
         {
             string selectedCell = ChessboardManager.instance.curCell.name;
             Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
-            if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
+            if (ChessboardManager.instance.CheckCell(selectedCellPos))
             {
-                if (line != null)
+                if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
                 {
-                    for (int i = 0; i < line.transform.childCount; i++)
+                    if (line != null)
                     {
-                        line.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                        for (int i = 0; i < line.transform.childCount; i++)
+                        {
+                            line.transform.GetChild(i).GetComponent<Image>().color = Color.red;
+                        }
+                    }
+                }
+                else
+                {
+                    if (line != null)
+                    {
+                        for (int i = 0; i < line.transform.childCount; i++)
+                        {
+                            line.transform.GetChild(i).GetComponent<Image>().color = Color.yellow;
+                        }
                     }
                 }
             }
@@ -45,6 +60,7 @@ public class ContinuousFire : Card, IPointerDownHandler, IPointerUpHandler
                 }
             }
         }
+        #endregion
     }
     //按下时生成一条线
     public void OnPointerDown(PointerEventData eventData)
@@ -84,6 +100,7 @@ public class ContinuousFire : Card, IPointerDownHandler, IPointerUpHandler
                 CardManager.instance.Draw(1);
             }
         }
+        dragFlag = 0;isDrag=false;
         costManager.instance.curCost -= cost;
     }
 }

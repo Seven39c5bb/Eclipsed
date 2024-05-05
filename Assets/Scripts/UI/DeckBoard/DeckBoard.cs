@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class DeckBoard : MonoBehaviour
@@ -42,6 +43,35 @@ public class DeckBoard : MonoBehaviour
                 cardTemplate.cardName.text = cardMes.GetComponent<Card>().cardName;
                 cardTemplate.cardDescription.text = cardMes.GetComponent<Card>().discription;
                 cardTemplate.cardCost.text= cardMes.GetComponent<Card>().cost.ToString();
+                switch (cardMes.GetComponent<Card>().rare)
+                {
+                    case Card.rareType.common:
+                        cardTemplate.cardName.color=Color.white;
+                        break;
+                    case Card.rareType.rare:
+                        cardTemplate.cardName.color = Color.blue;
+                        break;
+                    case Card.rareType.legend:
+                        cardTemplate.cardName.color = new Color(1, (float)(148 / 255), (float)(68 / 255));
+                        break;
+                }
+                Sprite[] sprites = Resources.LoadAll<Sprite>("Pictures/CardImg/cardTypeImg");
+                switch (cardMes.GetComponent<Card>().type)
+                {
+                    case Card.cardType.action:
+                        cardTemplate.cardTypeImg.sprite = sprites[0];
+                        break;
+                    case Card.cardType.skill:
+                        cardTemplate.cardTypeImg.sprite = sprites[4];
+                        break;
+                    case Card.cardType.rites:
+                        cardTemplate.cardTypeImg.sprite = sprites[3];
+                        break;
+                    case Card.cardType.trap:
+                        cardTemplate.cardTypeImg.sprite = sprites[5];
+                        break;
+                }
+
             }
         }
     }

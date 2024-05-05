@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 89c06f9711c469b41a45a6095bdb5e97
+guid: 443a1f81badc52147a8506c1679e3b9d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,127 +110,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trap
+      name: "\u7206\u88C2_0"
       rect:
         serializedVersion: 2
-        x: 129
-        y: 1467
-        width: 229
-        height: 225
+        x: 4
+        y: 33
+        width: 470
+        height: 603
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb50454037b1b63499d92d3840592e0b
-      internalID: -1340649428
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Rite
-      rect:
-        serializedVersion: 2
-        x: 695
-        y: 1489
-        width: 192
-        height: 215
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 177eebd7f5f1ea64998e51290646fccb
-      internalID: -2104287769
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skill
-      rect:
-        serializedVersion: 2
-        x: 1232
-        y: 1494
-        width: 189
-        height: 253
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13900e07d606bd842950663a290cb4e8
-      internalID: -189489592
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cardTypeImg_3
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 829
-        width: 245
-        height: 253
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0d3d09ad5a39d44489cc496b48b760c
-      internalID: 278366123
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Action
-      rect:
-        serializedVersion: 2
-        x: 698
-        y: 860
-        width: 166
-        height: 217
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d164c19e6d2eced4984bf71a268e81fa
-      internalID: 1332961280
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cardTypeImg_5
-      rect:
-        serializedVersion: 2
-        x: 149
-        y: 197
-        width: 250
-        height: 250
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f7259ed5f16c7864eaa9123819d55f73
-      internalID: 1311473595
+      spriteID: 2a194ef39f9ecc24aa5db8e9ccf3d0e9
+      internalID: 981277733
       vertices: []
       indices: 
       edges: []
@@ -246,12 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Action: 1332961280
-      Rite: -2104287769
-      Skill: -189489592
-      Trap: -1340649428
-      cardTypeImg_3: 278366123
-      cardTypeImg_5: 1311473595
+      "\u7206\u88C2_0": 981277733
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

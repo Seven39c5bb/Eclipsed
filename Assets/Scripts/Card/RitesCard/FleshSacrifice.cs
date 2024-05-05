@@ -7,5 +7,6 @@ public class FleshSacrifice : Card
     public override void CardFunc()
     {
         BuffManager.instance.AddBuff("FleshSacrificeBuff", PlayerController.instance);
+        costManager.instance.curCost -= cost;
     }
 }

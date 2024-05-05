@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CardTemplate : MonoBehaviour,IPointerClickHandler
 {
@@ -16,6 +17,8 @@ public class CardTemplate : MonoBehaviour,IPointerClickHandler
     public TMPro.TextMeshProUGUI cardCost;
     //卡牌图片
     public Sprite cardImage;
+    //卡牌类型图片
+    public Image cardTypeImg;
 
     /*检测卡牌面板和三选一面板的类型，确定点击该卡牌模板的效果*/
     public void OnPointerClick(PointerEventData eventData)

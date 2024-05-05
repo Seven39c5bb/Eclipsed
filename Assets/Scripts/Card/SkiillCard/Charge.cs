@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Charge : Card,IPointerDownHandler,IPointerUpHandler
 {
     GameObject line;
+    int dragFlag = 1;
     public new void Update()
     {
         //如果正在被拖拽，将该卡牌变透明
@@ -16,8 +17,37 @@ public class Charge : Card,IPointerDownHandler,IPointerUpHandler
         }
         else
         {
+            if(dragFlag == 1)
             this.GetComponent<CanvasGroup>().alpha = 1f;
         }
+
+        #region 让线变色
+        if (ChessboardManager.instance.curCell != null)
+        {
+            string selectedCell = ChessboardManager.instance.curCell.name;
+            Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
+            if ((selectedCellPos.x != PlayerController.instance.Location.x && selectedCellPos.y != PlayerController.instance.Location.y) || selectedCellPos == PlayerController.instance.Location)
+            {
+                if (line != null)
+                {
+                    for (int i = 0; i < line.transform.childCount; i++)
+                    {
+                        line.transform.GetChild(i).GetComponent<Image>().color = Color.red;
+                    }
+                }
+            }
+            else
+            {
+                if (line != null)
+                {
+                    for (int i = 0; i < line.transform.childCount; i++)
+                    {
+                        line.transform.GetChild(i).GetComponent<Image>().color = Color.yellow;
+                    }
+                }
+            }
+        }
+        #endregion
     }
     //按下时生成一条线
     public void OnPointerDown(PointerEventData eventData)
@@ -125,6 +155,7 @@ public class Charge : Card,IPointerDownHandler,IPointerUpHandler
             aimDirection = aimPos - PlayerController.instance.Location;
             PlayerController.instance.Move(aimDirection);
         }
+        dragFlag = 0;isDrag = false;//使用卡牌以后将卡牌完全变透明
         costManager.instance.curCost -= cost;
     }
 

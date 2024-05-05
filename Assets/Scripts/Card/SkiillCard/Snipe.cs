@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Snipe : Card, IPointerDownHandler, IPointerUpHandler
 {
     public int damage;
-    GameObject line;
+    GameObject line;int dragFlag = 1;
     public new void Update()
     {
         //如果正在被拖拽，将该卡牌变透明
@@ -16,8 +17,49 @@ public class Snipe : Card, IPointerDownHandler, IPointerUpHandler
         }
         else
         {
+            if(dragFlag==1)
             this.GetComponent<CanvasGroup>().alpha = 1f;
         }
+        #region 让线变色
+        if (ChessboardManager.instance.curCell != null)
+        {
+            string selectedCell = ChessboardManager.instance.curCell.name;
+            Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
+            if (ChessboardManager.instance.CheckCell(selectedCellPos))
+            {
+                if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
+                {
+                    if (line != null)
+                    {
+                        for (int i = 0; i < line.transform.childCount; i++)
+                        {
+                            line.transform.GetChild(i).GetComponent<Image>().color = Color.red;
+                        }
+                    }
+                }
+                else
+                {
+                    if (line != null)
+                    {
+                        for (int i = 0; i < line.transform.childCount; i++)
+                        {
+                            line.transform.GetChild(i).GetComponent<Image>().color = Color.yellow;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (line != null)
+                {
+                    for (int i = 0; i < line.transform.childCount; i++)
+                    {
+                        line.transform.GetChild(i).GetComponent<Image>().color = Color.red;
+                    }
+                }
+            }
+        }
+        #endregion
     }
     //按下时生成一条线
     public void OnPointerDown(PointerEventData eventData)
@@ -63,6 +105,7 @@ public class Snipe : Card, IPointerDownHandler, IPointerUpHandler
             GameObject HitEffect = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletHitEffect");
             PlayerController.instance.BulletAttack(damage, enemy, BulletPrefab, HitEffect);
         }
+        dragFlag = 0;isDrag = false;
         costManager.instance.curCost -= cost;
     }
 }
