@@ -2,21 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ContinuousFire : Card, IPointerDownHandler, IPointerUpHandler
 {
     public int damage;
-    GameObject line;
+    public GameObject line;bool isChangeColor = false;
     public new void Update()
     {
         //如果正在被拖拽，将该卡牌变透明
         if (isDrag)
         {
-            this.GetComponent<UnityEngine.UI.Image>().color = new Color(0, 0, 0, 0.05f);
+            this.GetComponent<CanvasGroup>().alpha = 0.1f;
         }
         else
         {
-            this.GetComponent<UnityEngine.UI.Image>().color = startColor;
+            this.GetComponent<CanvasGroup>().alpha = 1f;
+        }
+        //让line变色
+        if (ChessboardManager.instance.curCell != null)
+        {
+            string selectedCell = ChessboardManager.instance.curCell.name;
+            Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
+            if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
+            {
+                if (line != null)
+                {
+                    for (int i = 0; i < line.transform.childCount; i++)
+                    {
+                        line.transform.GetChild(i).GetComponent<Image>().color = Color.white;
+                    }
+                }
+            }
+            else
+            {
+                if (line != null)
+                {
+                    for (int i = 0; i < line.transform.childCount; i++)
+                    {
+                        line.transform.GetChild(i).GetComponent<Image>().color = Color.red;
+                    }
+                }
+            }
         }
     }
     //按下时生成一条线

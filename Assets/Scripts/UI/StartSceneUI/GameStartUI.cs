@@ -26,4 +26,9 @@ public class GameStartUI : UIBase
     {
         Application.Quit();
     }
+    void About()
+    {
+        
+    }
+
 }
