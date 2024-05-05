@@ -13,7 +13,7 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
     public TextMeshProUGUI chessHealth;
     public string chessBarrier;
     public string description;
-    public UnityEngine.UI.Image cardImg;
+    public UnityEngine.UI.Image HeadImg;
     public EnemyBase thisEnemy;
 
     public GameObject detailedPanel;
@@ -30,9 +30,10 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
 
     public GameObject EntryExplanation;
     public GameObject buffBlockPrefab;
+    private List<GameObject> OutsideBuffs = new List<GameObject>();
     private int preBuffListCount = 0;
 
-    private void Awake()
+    private void Start()
     {
         detailedPanel = GameObject.Find("detailedStatePanel");
         chessName=GameObject.Find("chessName").GetComponent<TextMeshProUGUI>();
@@ -48,13 +49,19 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
 
         //加载buffBlock预制体
         buffBlockPrefab = Resources.Load<GameObject>("Prefabs/BuffBlock");
+
+        //获取加载头像
+        HeadImg = transform.Find("HeadMask/HeadImage").GetComponent<UnityEngine.UI.Image>();
+        Debug.Log("Pictures/UI/HeadImage/" + thisEnemy.GetType().Name + "HeadImage");
+        Sprite sprite = Resources.Load<Sprite>("Pictures/UI/HeadImage/" + thisEnemy.GetType().Name + "HeadImage");
+        HeadImg.sprite = sprite;
     }
     private void Update()
     {
-        //��ʾ�غ�
-        if(thisEnemy.isActed) { turnTip.GetComponent<CanvasGroup>().DOFade(1, 0.2f); }
-        if (!thisEnemy.isActed && turnTip.GetComponent<CanvasGroup>().alpha == 1) { turnTip.GetComponent<CanvasGroup>().DOFade(0, 0.2f); }
-        //Ѫ���仯
+        //显示轮次
+        if(thisEnemy.isActed) { turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.white, 0.2f);  }
+        if (!thisEnemy.isActed && turnTip.GetComponent<UnityEngine.UI.Image>().color == Color.white) { turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.black, 0.2f); }
+        //血量变化
         chessHealth.text = thisEnemy.HP.ToString();
         if(healthImage.fillAmount != (float)thisEnemy.HP / thisEnemy.MaxHp) { healthImage.DOFillAmount((float)thisEnemy.HP / thisEnemy.MaxHp, 0.5f); }
 
@@ -78,11 +85,28 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
                 foreach (var buff in thisEnemy.buffList)
                 {
                     GameObject buffBlock = Instantiate(buffBlockPrefab, GameObject.Find("BuffGrid").transform) as GameObject;
+                    buffBlock.GetComponent<buffBoard>().isDetailed = true;
                     buffBlock.GetComponent<buffBoard>().buff = buff;
                     stateBoard.instance.buffBlockList.Add(buffBlock);
                 }
-                preBuffListCount = thisEnemy.buffList.Count;
             }
+        }
+
+        if (preBuffListCount != thisEnemy.buffList.Count)
+        {
+            foreach (var buffBlock in OutsideBuffs)
+            {
+                Destroy(buffBlock);
+            }
+            OutsideBuffs.Clear();
+            foreach (var buff in thisEnemy.buffList)
+            {
+                GameObject buffBlock = Instantiate(buffBlockPrefab, transform.Find("OutsideBuffs").transform) as GameObject;
+                buffBlock.GetComponent<buffBoard>().isDetailed = false;//外部buff不显示详细信息
+                buffBlock.GetComponent<buffBoard>().buff = buff;
+                OutsideBuffs.Add(buffBlock);
+            }
+            preBuffListCount = thisEnemy.buffList.Count;
         }
         
     }
