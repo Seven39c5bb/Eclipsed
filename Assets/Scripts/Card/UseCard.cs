@@ -81,6 +81,7 @@ public class UseCard : MonoBehaviour,IDropHandler
         CardManager.discardDesk.Add(curCard.GetComponent<Card>().name);
         curCard.GetComponent<RectTransform>().DOMove(GameObject.Find("discardDesk").transform.position, 0.5f).OnComplete(() =>
         {
+            Debug.Log("compelete");
             curCard.GetComponent<CanvasGroup>().alpha = 0;
             curCard.GetComponent<CanvasGroup>().blocksRaycasts = false;
             StartCoroutine(DestroyCard(curCard.GetComponent<Card>()));

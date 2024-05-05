@@ -26,6 +26,7 @@ public class DiffusionFire : Card
         }
         //maxHpEnemy.TakeDamage(damage+4,PlayerController.instance);
         StartCoroutine(DelayedBulletAttack(damage, maxHpEnemy, BulletPrefab, HitEffect));
+        costManager.instance.curCost -= cost;
     }
 
     private IEnumerator DelayedBulletAttack(int damage, EnemyBase enemy, GameObject bulletPrefab, GameObject hitEffect)
