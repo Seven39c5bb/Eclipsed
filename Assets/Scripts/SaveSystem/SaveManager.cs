@@ -31,6 +31,7 @@ public class MapData
     public List<NodesListUnit> mapNodes;
     public string currNodeInfoName;//当前战斗节点信息文件名,用于进入战斗场景后的读取
     public Vector2Int currNodeID;//当前节点ID,用于从其他场景返回时，将该节点设置为已探索，将其子节点解锁
+    public MapNode.NodeType currNodeType;//用于战斗BGM的选取以及战斗胜利后的的奖励设置
 }
 [System.Serializable]
 public class PlayerData
