@@ -101,6 +101,16 @@ public class EventManager : MonoBehaviour
                 #endregion
             }
         }
+
+        switch (SaveManager.instance.jsonData.mapData.currNodeType)
+        {
+            case MapNode.NodeType.Event:
+                AudioManager.PlayBGM("Event");
+                break;
+            case MapNode.NodeType.Plot:
+                AudioManager.PlayBGM("Plot");
+                break;
+        }
     }
 
     //处理eventAsset

@@ -46,8 +46,8 @@ public class AllIn : Card
 
             fireball.transform.DOMove(nearEnemy.transform.position, 2f).SetEase(Ease.Linear).OnComplete(() =>
             {
-                nearEnemy.TakeDamage(damage, PlayerController.instance);
                 Destroy(fireball);
+                nearEnemy.TakeDamage(damage, PlayerController.instance);
             });
 
             yield return new WaitForSeconds(0.3f); // 在每次释放火球之间等待1秒

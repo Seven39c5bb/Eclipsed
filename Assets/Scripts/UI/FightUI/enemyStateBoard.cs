@@ -59,8 +59,8 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
     private void Update()
     {
         //显示轮次
-        if(thisEnemy.isActed) { turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.white, 0.2f);  }
-        if (!thisEnemy.isActed && turnTip.GetComponent<UnityEngine.UI.Image>().color == Color.white) { turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.black, 0.2f); }
+        if(thisEnemy.isActed) { turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(new Color(1, 1, 138f/255f), 0.2f);  }//黄色
+        if (!thisEnemy.isActed && turnTip.GetComponent<UnityEngine.UI.Image>().color == new Color(1, 1, 138f/255f)) { turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.black, 0.2f); }
         //血量变化
         chessHealth.text = thisEnemy.HP.ToString();
         if(healthImage.fillAmount != (float)thisEnemy.HP / thisEnemy.MaxHp) { healthImage.DOFillAmount((float)thisEnemy.HP / thisEnemy.MaxHp, 0.5f); }
