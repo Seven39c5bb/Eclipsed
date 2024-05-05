@@ -58,6 +58,8 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         //加载buffBlock预制体
         buffBlockPrefab = Resources.Load<GameObject>("Prefabs/BuffBlock");
     }
+    private bool isPlayerTurn = false;
+    private Sequence TipAnimaSequence;
     private void Update()
     {
         //收到伤害时血条变透明
@@ -67,11 +69,24 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         healthImage.DOFillAmount((float)PlayerController.instance.Hp / PlayerController.instance.MaxHp, 0.5f);
         if (FightManager.instance.curFightType == FightType.Player)
         {
-            turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.white, 0.2f);
+            if (!isPlayerTurn)
+            {
+                isPlayerTurn = true;
+                TipAnimaSequence = DOTween.Sequence();
+                TipAnimaSequence.Append(turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(new Color(1, 1, 138f/255f), 1f)) // 黄色
+                                .Append(turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(new Color(144f/255f, 144f/255f, 63f/255f), 1f)) // 黄黑
+                                .SetLoops(-1, LoopType.Yoyo) // 循环播放，Yoyo模式表示每次循环都会反向播放动画
+                                .SetEase(Ease.Linear); // 使颜色的改变更加平滑
+            }
         }
-        else if(FightManager.instance.curFightType != FightType.Player && turnTip.GetComponent<UnityEngine.UI.Image>().color == Color.white)
-        { 
-            turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.black, 0.2f); 
+        else
+        {
+            if (isPlayerTurn)
+            {
+                isPlayerTurn = false;
+                TipAnimaSequence.Kill(); // 停止动画序列
+                turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.black, 1f); 
+            }
         }
         //test
         //foreach(var enemy in ChessboardManager.instance.enemyControllerList)

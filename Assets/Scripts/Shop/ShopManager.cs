@@ -51,6 +51,9 @@ public class ShopManager : MonoBehaviour
 
         isDeleteCard = false;
         isHeal = false;
+
+        //播放BGM
+        AudioManager.PlayBGM("Shop");
     }
     void Update()
     {
