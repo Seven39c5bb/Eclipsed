@@ -18,7 +18,18 @@ public class WinPanel : MonoBehaviour
         //如果点击了卡牌增加按钮,弹出OptionPanel
         GameObject optionPanel = Instantiate(Resources.Load("Prefabs/UI/OptionPanel"), GameObject.Find("Canvas").transform) as GameObject;
         optionPanel.GetComponent<OptionPanel>().type = OptionPanel.panelType.add;
-        OptionPanel.instance.cardPool = Resources.Load("TextAssets/CardPool/All") as TextAsset;
+        if(SaveManager.instance.jsonData.mapData.currNodeType==MapNode.NodeType.Elite)
+        {
+            OptionPanel.instance.cardPool = Resources.Load("TextAssets/CardPool/All") as TextAsset;
+        }
+        else if(SaveManager.instance.jsonData.mapData.currNodeType == MapNode.NodeType.Fight)
+        {
+            OptionPanel.instance.cardPool = Resources.Load("TextAssets/CardPool/Fight") as TextAsset;
+        }
+        //else if (SaveManager.instance.jsonData.mapData.currNodeType == MapNode.NodeType.Boss)
+        //{
+        //    OptionPanel.instance.cardPool = Resources.Load("TextAssets/CardPool/Boss") as TextAsset;
+        //}
         OptionPanel.instance.LoadPanel();
         Debug.Log("卡牌增加");
         SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;

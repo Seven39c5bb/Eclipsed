@@ -111,6 +111,41 @@ public class ShopManager : MonoBehaviour
                 //根据指骨牌购买次数设置价格
                 cardTemplate.price = 1 + SaveManager.instance.jsonData.playerData.fbCardBuyTimes * 2;
                 cardTemplate.cardPrice.text = cardTemplate.price.ToString();
+
+                switch (cardMes.GetComponent<Card>().rare)
+                {
+                    case Card.rareType.common:
+                        cardTemplate.cardName.color = Color.white;
+                        break;
+                    case Card.rareType.rare:
+                        cardTemplate.cardName.color = Color.blue;
+                        break;
+                    case Card.rareType.legend:
+                        cardTemplate.cardName.color = new Color(1, (float)(148 / 255), (float)(68 / 255));
+                        break;
+                }
+                Sprite[] sprites = Resources.LoadAll<Sprite>("Pictures/CardImg/cardTypeImg");
+                switch (cardMes.GetComponent<Card>().type)
+                {
+                    case Card.cardType.action:
+                        cardTemplate.cardTypeImg.sprite = sprites[0];
+                        break;
+                    case Card.cardType.skill:
+                        cardTemplate.cardTypeImg.sprite = sprites[4];
+                        break;
+                    case Card.cardType.rites:
+                        cardTemplate.cardTypeImg.sprite = sprites[3];
+                        break;
+                    case Card.cardType.trap:
+                        cardTemplate.cardTypeImg.sprite = sprites[5];
+                        break;
+                }
+
+                //更换卡面
+                if (Resources.Load("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName) != null)
+                {
+                    cardTemplate.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName);                
+                }
             }
         }
     }
@@ -161,19 +196,54 @@ public class ShopManager : MonoBehaviour
                         cardTemplate.cardPrice.text = "125";
                         break;
                 }
+                
+                switch (cardMes.GetComponent<Card>().rare)
+                {
+                    case Card.rareType.common:
+                        cardTemplate.cardName.color = Color.white;
+                        break;
+                    case Card.rareType.rare:
+                        cardTemplate.cardName.color = Color.blue;
+                        break;
+                    case Card.rareType.legend:
+                        cardTemplate.cardName.color = new Color(1, (float)(148 / 255), (float)(68 / 255));
+                        break;
+                }
+                Sprite[] sprites = Resources.LoadAll<Sprite>("Pictures/CardImg/cardTypeImg");
+                switch (cardMes.GetComponent<Card>().type)
+                {
+                    case Card.cardType.action:
+                        cardTemplate.cardTypeImg.sprite = sprites[0];
+                        break;
+                    case Card.cardType.skill:
+                        cardTemplate.cardTypeImg.sprite = sprites[4];
+                        break;
+                    case Card.cardType.rites:
+                        cardTemplate.cardTypeImg.sprite = sprites[3];
+                        break;
+                    case Card.cardType.trap:
+                        cardTemplate.cardTypeImg.sprite = sprites[5];
+                        break;
+                }
+
+                //更换卡面
+                if (Resources.Load("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName) != null)
+                {
+                    cardTemplate.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName);
+                }
             }
         }
     }
     //打开删卡面板
     public void OpenDeletePanel()
     {
-        if(SaveManager.instance.jsonData.playerData.coin<100 || isDeleteCard)
+        if(SaveManager.instance.jsonData.playerData.coin<75 || isDeleteCard)
         {
             return;
         }
         GameObject deletePanel = Instantiate(Resources.Load("Prefabs/UI/CardListPanel"), GameObject.Find("Canvas").transform) as GameObject;
         FindObjectOfType<DeckBoard>().type=DeckBoard.boardType.delete;
-        SaveManager.instance.jsonData.playerData.coin -= 100;
+        SaveManager.instance.jsonData.playerData.coin -= 75;
         isDeleteCard = true;
         GameObject.Find("deleteCard").GetComponent<Image>().color = Color.gray;
     }

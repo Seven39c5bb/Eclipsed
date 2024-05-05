@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeckBoard : MonoBehaviour
 {
@@ -70,6 +71,11 @@ public class DeckBoard : MonoBehaviour
                     case Card.cardType.trap:
                         cardTemplate.cardTypeImg.sprite = sprites[5];
                         break;
+                }
+                //更换卡面
+                if (Resources.Load("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName) != null)
+                {
+                    cardTemplate.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName);
                 }
 
             }

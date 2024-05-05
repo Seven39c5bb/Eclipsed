@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -845657039, guid: 2e099cb0dca43254caf9ac72b0c47eb3, type: 3}
+  m_Sprite: {fileID: 1736883682, guid: 01fa35cc603b2714a98de181195280d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -327,6 +327,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &114257417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +611,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &214434700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -843,6 +845,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &319174280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,7 +1145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3affb89f990751149b12cce06fd33ec5, type: 3}
+  m_Sprite: {fileID: 1440240276, guid: 01fa35cc603b2714a98de181195280d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1318,16 +1321,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 392774114}
-  m_LocalRotation: {x: -0, y: -0, z: -0.17364825, w: 0.9848078}
+  m_LocalRotation: {x: -0, y: -0, z: -0.007827034, w: 0.99996936}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 407382013}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.897}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -29.4, y: 1.1250019}
+  m_AnchoredPosition: {x: -29.400116, y: 1.122757}
   m_SizeDelta: {x: 30.6447, y: 30.6447}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392774116
@@ -1343,14 +1346,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.50628924, b: 0.50628924, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e0e30e41baffa434ba3324c4d0acae1d, type: 3}
+  m_Sprite: {fileID: -498158981, guid: 2a01691a87fedbe4aa6de6f1c0c0f3d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1506,6 +1509,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &443188673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1602,7 +1606,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ac9a912831ca5d04f8494bd89fa8879f, type: 3}
+  m_Sprite: {fileID: 1874171000, guid: 01fa35cc603b2714a98de181195280d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1701,16 +1705,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455890869}
-  m_LocalRotation: {x: -0, y: -0, z: 0.12754023, w: 0.9918334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 805818969}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 14.655}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35, y: -17.8}
+  m_AnchoredPosition: {x: 41.1, y: -17.8}
   m_SizeDelta: {x: 20.4319, y: 17.8694}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &455890871
@@ -1733,7 +1737,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 75
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}
@@ -1871,6 +1875,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &541721143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2642,6 +2647,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &785955532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2706,14 +2712,14 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805818968}
-  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 455890870}
   m_Father: {fileID: 968169445}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -393.22305, y: 65.08649}
@@ -2739,7 +2745,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b8e0222a006d824e930445c7d435ac3, type: 3}
+  m_Sprite: {fileID: -1835288682, guid: 91f01d3669b32d8479eab47b4eab3a76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2874,6 +2880,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &809527274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3684,6 +3691,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &1425842022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4091,6 +4099,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &1584613524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4188,7 +4197,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 44dc65116207f4b46aa85443dae5ad96, type: 3}
+  m_Sprite: {fileID: 935543201, guid: 91f01d3669b32d8479eab47b4eab3a76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4828,6 +4837,7 @@ MonoBehaviour:
   cardPrice: {fileID: 0}
   cardImage: {fileID: 0}
   buyTimes: 0
+  cardTypeImg: {fileID: 0}
 --- !u!114 &1850000832
 MonoBehaviour:
   m_ObjectHideFlags: 0

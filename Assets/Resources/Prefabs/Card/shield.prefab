@@ -316,8 +316,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 3
   rare: 0
-  cardName: shield
+  cardName: "\u62A4\u76FE"
   discription: take 10 barrier
+  discriptionText: {fileID: 0}
   cost: 1
   costText: {fileID: 0}
   rtTransform: {fileID: 0}

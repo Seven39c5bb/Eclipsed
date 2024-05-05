@@ -47,7 +47,7 @@ public class PlayerController : ChessBase
         player_instance = this;
         MaxHp = 80;//最大生命值
         HP = initHp;//当前生命值
-        MeleeAttackPower = 10;//近战攻击力
+        MeleeAttackPower = 5;//近战攻击力
         chessName = "魔女";//棋子名称
         chessDiscrption = "教宗的喉舌，教母的利刃。";//棋子描述
 

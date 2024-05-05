@@ -242,8 +242,9 @@ MonoBehaviour:
   type: 2
   rare: 1
   cardName: "\u6218\u58EB\u5851\u9020"
-  discription: "\u672C\u6B21\u6218\u6597\u4E2D\uFF0C\u4F60\u83B7\u5F97\u4E00\u5B9A\u6570\u503C\u7684\u989D\u5916\u751F\u547D\u503C\uFF0C\u5E76\u6BCF\u56DE\u5408\u589E\u52A0\u8FD1\u6218\u4F24\u5BB3\u3002"
-  cost: 0
+  discription: "\u672C\u6B21\u6218\u6597\u4E2D\uFF0C\u4F60\u83B7\u5F9712\u70B9\u989D\u5916\u751F\u547D\u503C\uFF0C\u5E76\u6BCF\u56DE\u5408\u589E\u52A02\u70B9\u8FD1\u6218\u4F24\u5BB3\u3002"
+  discriptionText: {fileID: 0}
+  cost: 4
   costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -527,7 +528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u672C\u6B21\u6218\u6597\u4E2D\uFF0C\u4F60\u83B7\u5F97\u4E00\u5B9A\u6570\u503C\u7684\u989D\u5916\u751F\u547D\u503C\uFF0C\u5E76\u6BCF\u56DE\u5408\u589E\u52A0\u8FD1\u6218\u4F24\u5BB3\u3002\n"
+  m_text: "\u672C\u6B21\u6218\u6597\u4E2D\uFF0C\u4F60\u83B7\u5F9712\u70B9\u989D\u5916\u751F\u547D\u503C\uFF0C\u5E76\u6BCF\u56DE\u5408\u589E\u52A02\u70B9\u8FD1\u6218\u4F24\u5BB3\u3002\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}

@@ -10,7 +10,7 @@ public class WarriorShapingBuff : BuffBase
         buffNameCN = "战士塑形";
         durationTurn = 1;
         buffType = BuffType.Buff;
-        description = "你正在强健自己的体魄，每回合+1近战攻击力";
+        description = "你正在强健自己的体魄，每回合+2近战攻击力";
         canBeLayed = true;
         buffImgType = BuffImgType.Damage;
     }
@@ -21,6 +21,6 @@ public class WarriorShapingBuff : BuffBase
     }
     public override void OnTurnStart()
     {
-        chessBase.meleeAttackPower += 1;
+        chessBase.meleeAttackPower += 2;
     }
 }

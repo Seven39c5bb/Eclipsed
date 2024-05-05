@@ -338,7 +338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -563093688, guid: 3c6f01eec6998a8489d84986b9148355, type: 3}
+  m_Sprite: {fileID: -1789193951, guid: 44973fd7421adfc4aa33a3992e0e55d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -374,8 +374,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   rare: 0
-  cardName: "\u8FDE\u7EED\u5C04\u51FB "
+  cardName: "\u8FDE\u7EED\u5C04\u51FB"
   discription: "\u5BF9\u4E00\u4E2A\u654C\u4EBA\u9020\u621018\u70B9\u4F24\u5BB3\u3002\u5982\u679C\u8FD9\u5F20\u724C\u6D88\u706D\u4E86\u4E00\u4E2A\u654C\u4EBA\uFF0C\u5219\u62BD\u4E00\u5F20\u724C\u3002 "
+  discriptionText: {fileID: 0}
   cost: 2
   costText: {fileID: 0}
   rtTransform: {fileID: 0}
@@ -387,6 +388,7 @@ MonoBehaviour:
   isUsed: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
   damage: 18
+  line: {fileID: 0}
 --- !u!1 &8688264783306014931
 GameObject:
   m_ObjectHideFlags: 0
