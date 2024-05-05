@@ -13,7 +13,7 @@ public class GameConfig
     {
         instance = this;
         cardDeckData = new Dictionary<string, int>();
-        //»ñÈ¡¿¨×éÎÄ¼ştxt 
+        //è·å–å¡ç»„æ–‡ä»¶txt 
         deckAsset = Resources.Load<TextAsset>("TextAssets/Initial deck");
         //Debug.Log(deckAsset.text);
         string[] lines = deckAsset.text.Split('\n');
@@ -35,7 +35,7 @@ public class GameConfig
                 }
             }
             //Debug.Log(cardName+cardCount);
-            //½«¿¨ÅÆÃû×ÖºÍ¿¨ÅÆÊıÁ¿¼Ó½øcarddeckdataÖĞ
+            //å°†å¡ç‰Œåå­—å’Œå¡ç‰Œæ•°é‡åŠ è¿›carddeckdataä¸­
             cardDeckData.Add(cardName,cardCount);
         }
         //Debug.Log(cardDeckData);

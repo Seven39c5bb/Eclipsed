@@ -60,7 +60,7 @@ public class MapManager : MonoBehaviour
         // 从存档中读取当前地图是否被创建(在进入新地图时，记得将其置为false)
         // MapBeCreated = SaveManager.instance.jsonData.mapData.mapBeCreated;
 
-
+        AudioManager.PlayBGM(currAtlasID.ToString());//播放当前地图的背景音乐
     }
 
     private void Start()

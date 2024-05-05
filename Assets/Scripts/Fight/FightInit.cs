@@ -64,6 +64,16 @@ public class FightInit : FightUnit
                     }
                 }
             }
+            switch (SaveManager.instance.jsonData.mapData.currNodeType)
+            {
+                case MapNode.NodeType.Fight:
+                case MapNode.NodeType.Elite:
+                    AudioManager.PlayBGM(SaveManager.instance.jsonData.mapData.currAtlasID.ToString() + "_NormalBattle");
+                    break;
+                case MapNode.NodeType.Boss:
+                    AudioManager.PlayBGM("BloodSoup");//暂时只有血羹
+                    break;
+            }
         }
 
         //从Assets/Resources/Prefabs/Chesses/Player.prefab处获取玩家预制体
