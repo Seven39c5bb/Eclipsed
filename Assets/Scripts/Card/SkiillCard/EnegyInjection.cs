@@ -8,5 +8,6 @@ public class EnegyInjection : Card
     {
         //添加一个注能buff
         BuffManager.instance.AddBuff("EnegyInjectionBuff", PlayerController.instance);
+        costManager.instance.curCost -= cost;
     }
 }

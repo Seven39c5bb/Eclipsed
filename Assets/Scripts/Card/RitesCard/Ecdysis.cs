@@ -7,5 +7,6 @@ public class Ecdysis : Card
     public override void CardFunc()
     {
         BuffManager.instance.AddBuff("EcdysisBuff", PlayerController.instance);
+        costManager.instance.curCost -= cost;
     }
 }

@@ -8,5 +8,6 @@ public class BloodForBlood : Card
     {
         //添加一个以血还血buff
         BuffManager.instance.AddBuff("BloodForBloodBuff", PlayerController.instance);
+        costManager.instance.curCost -= cost;
     }
 }
