@@ -62,37 +62,37 @@ MonoBehaviour:
   sounds:
   - clip: {fileID: 8300000, guid: c0c1733306e67f24cabca86f047e40d9, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
-    volume: 1
+    volume: 0.8
     playOnAwake: 1
     loop: 1
   - clip: {fileID: 8300000, guid: 611c8291b0eabac449944d2d48fcd6bc, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
-    volume: 1
+    volume: 0.8
     playOnAwake: 0
     loop: 1
   - clip: {fileID: 8300000, guid: 25c25b0757664e642a52e659e7cd1ef4, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
-    volume: 1
+    volume: 0.8
     playOnAwake: 0
     loop: 1
   - clip: {fileID: 8300000, guid: 8144a94a2e3018a4fb33f782eff83c5e, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
-    volume: 1
+    volume: 0.8
     playOnAwake: 0
     loop: 1
   - clip: {fileID: 8300000, guid: dc35cf26e2983ed45a08d09d07fc0ff3, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
-    volume: 1
+    volume: 0.8
     playOnAwake: 0
     loop: 1
   - clip: {fileID: 8300000, guid: 5faf500949d189b42bcc4be3677ddc9e, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
-    volume: 1
+    volume: 0.8
     playOnAwake: 0
     loop: 1
   - clip: {fileID: 8300000, guid: a81d6fb6d8e96d040bcf3ec18465bcc5, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
-    volume: 1
+    volume: 0.8
     playOnAwake: 0
     loop: 1
 --- !u!114 &5326781932161947914
