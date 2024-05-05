@@ -732,7 +732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rare: 0
-  cardName: up
+  cardName: "\u524D\u8FDB"
   discription: "\u5411\u4E0A\u79FB\u52A8n\u683C"
   discriptionText: {fileID: 0}
   cost: 0

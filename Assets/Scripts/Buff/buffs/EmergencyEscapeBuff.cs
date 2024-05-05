@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class EmergencyEscapeBuff : BuffBase
 {
-    public override void OnUseCard(Card card)
+    public override void OnAdd()
     {
-        if (card.type == Card.cardType.action)
+        foreach(Card card in CardManager.instance.handCards)
         {
-            card.isUsed = false;
+            if(card.type == Card.cardType.action)
+            {
+                card.cost += 10;
+            }
         }
     }
+    //public override void OnUseCard(Card card)
+    //{
+    //    if (card.type == Card.cardType.action)
+    //    {
+    //        card.cost += 10;
+    //    }
+    //}
     public override void OnTurnEnd()
     {
         BuffManager.instance.DeleteBuff("EmergencyEscapeBuff", PlayerController.instance);

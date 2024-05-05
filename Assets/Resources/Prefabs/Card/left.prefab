@@ -495,7 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rare: 0
-  cardName: left
+  cardName: "\u5DE6\u884C"
   discription: "\u5411\u5DE6\u79FB\u52A8n\u683C"
   discriptionText: {fileID: 0}
   cost: 0

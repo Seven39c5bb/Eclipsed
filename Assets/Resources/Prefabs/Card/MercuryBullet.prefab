@@ -71,7 +71,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -563093688, guid: 3c6f01eec6998a8489d84986b9148355, type: 3}
+  m_Sprite: {fileID: 1776344370, guid: 141d6f1c789dcb9498bceec3484930fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -109,6 +109,7 @@ MonoBehaviour:
   rare: 1
   cardName: "\u6C34\u94F6\u5B50\u5F39"
   discription: "\u4F60\u6BCF\u4F7F\u7528\u4E00\u5F20\u6280\u80FD\u724C\u540E\uFF0C\u4F7F\u602A\u7269\u53D7\u5230\u7684\u6240\u6709\u4F24\u5BB3+1\u3002"
+  discriptionText: {fileID: 0}
   cost: 4
   costText: {fileID: 0}
   rtTransform: {fileID: 0}

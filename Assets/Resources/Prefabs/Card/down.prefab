@@ -183,7 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   rare: 0
-  cardName: down
+  cardName: "\u540E\u9000"
   discription: "\u5411\u4E0Bn\u683C"
   discriptionText: {fileID: 0}
   cost: 0

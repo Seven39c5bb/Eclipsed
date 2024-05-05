@@ -68,7 +68,7 @@ public class EmergencyEscape : Card, IPointerDownHandler, IPointerUpHandler
             return;
         }
         PlayerController.instance.Teleport(selectedCellPos);
-        BuffManager.instance.AddBuff("EmergencyEscapeBuff", PlayerController.instance);
+        //BuffManager.instance.AddBuff("EmergencyEscapeBuff", PlayerController.instance);
         dragFlag = 0;isDrag = false;
         costManager.instance.curCost-= cost;
     }

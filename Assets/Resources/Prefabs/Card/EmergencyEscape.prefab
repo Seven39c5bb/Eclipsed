@@ -414,7 +414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -563093688, guid: 3c6f01eec6998a8489d84986b9148355, type: 3}
+  m_Sprite: {fileID: 207118533, guid: 924d24586d117be45925213a4b5e87df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -451,7 +451,8 @@ MonoBehaviour:
   type: 0
   rare: 2
   cardName: "\u7D27\u6025\u907F\u9669"
-  discription: "\u79FB\u52A8\u5230\u4EFB\u610F\u4E00\u4E2A\u683C\u5B50\uFF0C\u672C\u56DE\u5408\u4E2D\u65E0\u6CD5\u4F7F\u7528\u884C\u52A8\u724C\u3002"
+  discription: "\u79FB\u52A8\u5230\u4EFB\u610F\u4E00\u4E2A\u683C\u5B50"
+  discriptionText: {fileID: 0}
   cost: 1
   costText: {fileID: 0}
   rtTransform: {fileID: 0}
@@ -527,7 +528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u79FB\u52A8\u5230\u4EFB\u610F\u4E00\u4E2A\u683C\u5B50\uFF0C\u672C\u56DE\u5408\u4E2D\u65E0\u6CD5\u4F7F\u7528\u884C\u52A8\u724C\u3002"
+  m_text: "\u79FB\u52A8\u5230\u4EFB\u610F\u4E00\u4E2A\u683C\u5B50"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}

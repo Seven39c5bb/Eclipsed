@@ -30,6 +30,7 @@ public class ShopItem : MonoBehaviour,IPointerClickHandler,IPointerEnterHandler,
     //物品可购买次数
     public int buyTimes;
     //如果购买次数等于0，不可再次购买
+    public Image cardTypeImg;
     //购买
     public void BuyCard()
     {

@@ -375,8 +375,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   rare: 0
-  cardName: "\u7075\u611F"
+  cardName: "\u654F\u6377\u601D\u7EEA"
   discription: "\u62BD\u4E24\u5F20\u724C"
+  discriptionText: {fileID: 0}
   cost: 1
   costText: {fileID: 0}
   rtTransform: {fileID: 0}
