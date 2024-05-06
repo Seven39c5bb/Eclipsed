@@ -69,7 +69,7 @@ public class PlayerController : ChessBase
 
     public override void Death()
     {
-        FightManager.instance.ChangeType(FightType.Loss);
+        if (FightManager.instance.curFightType != FightType.Loss) FightManager.instance.ChangeType(FightType.Loss);
         Time.timeScale = 0;
     }
 }
