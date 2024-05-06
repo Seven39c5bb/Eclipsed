@@ -68,7 +68,13 @@ public class FightInit : FightUnit
             {
                 case MapNode.NodeType.Fight:
                 case MapNode.NodeType.Elite:
-                    AudioManager.PlayBGM(SaveManager.instance.jsonData.mapData.currAtlasID.ToString() + "_NormalBattle");
+                    List<string> bgmList = new List<string> 
+                    { 
+                        SaveManager.instance.jsonData.mapData.currAtlasID.ToString() + "_NormalBattle1",
+                        SaveManager.instance.jsonData.mapData.currAtlasID.ToString() + "_NormalBattle2",
+                        SaveManager.instance.jsonData.mapData.currAtlasID.ToString() + "_NormalBattle3"
+                    };
+                    AudioManager.PlayBGM(bgmList);
                     break;
                 case MapNode.NodeType.Boss:
                     AudioManager.PlayBGM("BloodSoup");//暂时只有血羹
