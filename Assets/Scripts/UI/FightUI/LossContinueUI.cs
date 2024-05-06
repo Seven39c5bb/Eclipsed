@@ -14,6 +14,7 @@ public class LossContinueUI : UIBase
 
     void OnClickBackMenu(GameObject obj, PointerEventData eventData)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Start");
     }
 }
