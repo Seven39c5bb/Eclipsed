@@ -10,6 +10,7 @@ public class GameStartUI : UIBase
         Register("Start").onClick = LoadSceneAtlas_1;
         Register("Continue").onClick = LoadSceneContinue;
         Register("Quit").onClick = OuitGame;
+        AudioManager.PlayBGM("Cover");
     }
     void LoadSceneAtlas_1(GameObject obj, PointerEventData eventData)
     {

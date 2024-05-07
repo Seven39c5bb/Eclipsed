@@ -63,7 +63,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: c0c1733306e67f24cabca86f047e40d9, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
     volume: 0.8
-    playOnAwake: 1
+    playOnAwake: 0
     loop: 1
   - clip: {fileID: 8300000, guid: 611c8291b0eabac449944d2d48fcd6bc, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
