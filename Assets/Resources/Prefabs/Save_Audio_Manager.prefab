@@ -84,12 +84,22 @@ MonoBehaviour:
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
     volume: 0.8
     playOnAwake: 0
-    loop: 1
-  - clip: {fileID: 8300000, guid: 5faf500949d189b42bcc4be3677ddc9e, type: 3}
+    loop: 0
+  - clip: {fileID: 8300000, guid: 8272c8c52e020294ea0996f3d7f8d710, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
     volume: 0.8
     playOnAwake: 0
-    loop: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 58f1cc5a990a5204d8ff86d6c240e248, type: 3}
+    outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
+    volume: 0.8
+    playOnAwake: 0
+    loop: 0
+  - clip: {fileID: 8300000, guid: 141c7822a4db4094b908c64a858acaf3, type: 3}
+    outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
+    volume: 0.8
+    playOnAwake: 0
+    loop: 0
   - clip: {fileID: 8300000, guid: a81d6fb6d8e96d040bcf3ec18465bcc5, type: 3}
     outputGroup: {fileID: -5018197450517616831, guid: 4d47623e7d21c954099e58afc33c29ab, type: 2}
     volume: 0.8

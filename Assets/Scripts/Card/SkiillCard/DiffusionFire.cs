@@ -11,14 +11,14 @@ public class DiffusionFire : Card
         GameObject BulletPrefab = Resources.Load<GameObject>("Prefabs/Particle/PlayerBulletParticle/PlayerBulletParticle");
         //找到血量最高的敌人
         EnemyBase maxHpEnemy = ChessboardManager.instance.enemyControllerList[0];
-        //对3格外所有敌人造成8点伤害，再对血量最多的敌人造成12点伤害
+        //对2格外所有敌人造成8点伤害，再对血量最多的敌人造成12点伤害
         foreach (EnemyBase enemy in ChessboardManager.instance.enemyControllerList)
         {
             if (enemy.Hp > maxHpEnemy.Hp)
             {
                 maxHpEnemy = enemy;
             }
-            if (Mathf.Abs(PlayerController.instance.Location.x - enemy.Location.x) >= 3 || Mathf.Abs(PlayerController.instance.Location.y - enemy.Location.y) >= 3)
+            if (Mathf.Abs(PlayerController.instance.Location.x - enemy.Location.x) >= 2 || Mathf.Abs(PlayerController.instance.Location.y - enemy.Location.y) >= 2)
             {
                 //enemy.TakeDamage(damage,PlayerController.instance);
                 PlayerController.instance.BulletAttack(damage, enemy, BulletPrefab, HitEffect);
