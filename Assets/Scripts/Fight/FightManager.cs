@@ -37,7 +37,7 @@ public class FightManager : MonoBehaviour
         }
         if (isCheckingVictory && curFightType != FightType.Loss)
         {
-            if (ChessboardManager.instance.enemyList.Count == 0)
+            if (ChessboardManager.instance.enemyList.Count == 0 && curFightType != FightType.Loss)
             {
                 ChangeType(FightType.Win);
                 isCheckingVictory = false;
