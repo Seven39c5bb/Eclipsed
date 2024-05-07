@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 //using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,12 +18,27 @@ public class DeckBoard : MonoBehaviour
     public List<string> cardNames;
     public Transform cardTemplateParent;
     public boardType type;
+    public TextMeshProUGUI tips;
     //从存档中读取卡牌信息
     private void Awake()
     {
         LoadDeck();
     }
-
+    private void Update()
+    {
+        switch (type)
+        {
+            case boardType.copy:
+                tips.text = "点击卡牌复制到剪切板";
+                break;
+            case boardType.delete:
+                tips.text = "点击卡牌删除";
+                break;
+            case boardType.showOnly:
+                tips.text = "查看卡组";
+                break;
+        }
+    }
     public void LoadDeck()
     {
         //从存档中读取卡牌信息

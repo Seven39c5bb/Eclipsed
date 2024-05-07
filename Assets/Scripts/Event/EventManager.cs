@@ -161,8 +161,9 @@ public class EventManager : MonoBehaviour
         //确定改变的生命值
         Debug.Log("ChangeHealth");
         Debug.Log(healNum);
-        int heal = int.Parse(healNum);
-        SaveManager.instance.jsonData.playerData.HP += heal;
+        float heal = int.Parse(healNum)*0.01f;
+        int healIntAdd = (int)( heal* SaveManager.instance.jsonData.playerData.HP);
+        SaveManager.instance.jsonData.playerData.HP += healIntAdd;
         if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
         {
             SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
@@ -202,7 +203,7 @@ public class EventManager : MonoBehaviour
         Debug.Log("OpenOptionPanel");
         //清空选项面板，替换为继续按钮
         ClearOptionContinue();
-        Instantiate(Resources.Load("Prefabs/UI/OptionPanel"), GameObject.Find("Canvas").transform);
+        Instantiate(Resources.Load("Prefabs/UI/OptionPanelBox"), GameObject.Find("Canvas").transform);
         
         //FindObjectOfType<OptionPanel>().cardPool = (TextAsset)Resources.Load("TextAssets/CardPool/Common");
         //Debug.Log(cardPoolTextAsset.text);
@@ -218,7 +219,7 @@ public class EventManager : MonoBehaviour
         //给该OptionPanel传入卡池数据
         if (cardPool == "Default")
         {
-            string cardTxt = "";
+            string cardTxt = null;//可能是这里的问题
             foreach(string card in SaveManager.instance.jsonData.playerData.playerDeck)
             {
                 cardTxt += card + ",";

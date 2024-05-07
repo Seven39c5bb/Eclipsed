@@ -451,7 +451,8 @@ MonoBehaviour:
   type: 1
   rare: 0
   cardName: "\u7206\u88C2"
-  discription: "\u5BF95*5\u8303\u56F4\u5185\u7684\u654C\u4EBA\u9020\u62109\u70B9\u4F24\u5BB3"
+  discription: "\u5BF92\u683C\u5185\u7684\u6240\u6709\u654C\u4EBA\u9020\u621010\u70B9\u4F24\u5BB3"
+  discriptionText: {fileID: 0}
   cost: 1
   costText: {fileID: 0}
   rtTransform: {fileID: 0}
@@ -462,7 +463,7 @@ MonoBehaviour:
   hoverPos: {x: 0, y: 0}
   isUsed: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 9
+  damage: 10
 --- !u!1 &8817913974879622676
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BF92\u683C\u5185\u7684\u6240\u6709\u654C\u4EBA\u9020\u62109\u70B9\u4F24\u5BB3"
+  m_text: "\u5BF92\u683C\u5185\u7684\u6240\u6709\u654C\u4EBA\u9020\u621010\u70B9\u4F24\u5BB3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}

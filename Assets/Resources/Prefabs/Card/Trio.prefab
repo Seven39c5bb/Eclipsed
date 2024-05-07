@@ -452,6 +452,7 @@ MonoBehaviour:
   rare: 2
   cardName: "\u4E09\u91CD\u594F"
   discription: "\u5BF9\u8DDD\u79BB\u4F60\u6700\u8FDC\u7684\u4E09\u4E2A\u76EE\u6807\u9020\u621010\u70B9\u4F24\u5BB3\u3002\u5982\u679C\u9501\u5B9A\u5230\u540C\u4E00\u4E2A\u76EE\u6807\uFF0C\u5219\u9020\u621010/15/20\u70B9\u4F24\u5BB3\u3002"
+  discriptionText: {fileID: 0}
   cost: 3
   costText: {fileID: 0}
   rtTransform: {fileID: 0}

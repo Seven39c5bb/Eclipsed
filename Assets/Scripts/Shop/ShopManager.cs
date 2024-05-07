@@ -98,6 +98,7 @@ public class ShopManager : MonoBehaviour
             ShopItem cardTemplate = card.GetComponent<ShopItem>();
             GameObject cardMes = Resources.Load<GameObject>("Prefabs/Card/" + Cards[randomIndex]);
             Debug.Log(Cards[randomIndex]);
+            #region 获取cardMes上信息
             //获取cardMes上信息
             if (cardMes != null)
             {
@@ -147,6 +148,7 @@ public class ShopManager : MonoBehaviour
                     cardTemplate.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName);                
                 }
             }
+            #endregion
         }
     }
     private void UpdateCardFromPool(string cardPool,int num)
@@ -169,6 +171,7 @@ public class ShopManager : MonoBehaviour
             ShopItem cardTemplate = card.GetComponent<ShopItem>();
             GameObject cardMes = Resources.Load<GameObject>("Prefabs/Card/" + Cards[randomIndex]);
             Debug.Log(Cards[randomIndex]);
+            #region 获取cardMes上信息
             //获取cardMes上信息
             if (cardMes != null)
             {
@@ -232,6 +235,7 @@ public class ShopManager : MonoBehaviour
                     cardTemplate.GetComponent<Image>().sprite = Resources.Load<Sprite>("Pictures/CardImg/cardTmpImg/" + cardMes.GetComponent<Card>().cardName);
                 }
             }
+            #endregion
         }
     }
     //打开删卡面板
@@ -243,7 +247,7 @@ public class ShopManager : MonoBehaviour
         }
         GameObject deletePanel = Instantiate(Resources.Load("Prefabs/UI/CardListPanel"), GameObject.Find("Canvas").transform) as GameObject;
         FindObjectOfType<DeckBoard>().type=DeckBoard.boardType.delete;
-        SaveManager.instance.jsonData.playerData.coin -= 75;
+        SaveManager.instance.jsonData.playerData.coin -= 25;
         isDeleteCard = true;
         GameObject.Find("deleteCard").GetComponent<Image>().color = Color.gray;
     }

@@ -451,7 +451,7 @@ MonoBehaviour:
   type: 1
   rare: 0
   cardName: "\u9B54\u6CD5\u6253\u51FB"
-  discription: take 5 damage to a 5*5 area enemy
+  discription: "\u5BF95\u683C\u5185\u6700\u8FD1\u7684\u4E00\u4E2A\u654C\u4EBA\u9020\u621012\u70B9\u4F24\u5BB3"
   discriptionText: {fileID: 0}
   cost: 1
   costText: {fileID: 0}
@@ -463,7 +463,7 @@ MonoBehaviour:
   hoverPos: {x: 0, y: 0}
   isUsed: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 10
+  damage: 12
 --- !u!1 &9200797088705667564
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BF95\u683C\u5185\u6700\u8FD1\u7684\u4E00\u4E2A\u654C\u4EBA\u9020\u621010\u70B9\u4F24\u5BB3"
+  m_text: "\u5BF95\u683C\u5185\u6700\u8FD1\u7684\u4E00\u4E2A\u654C\u4EBA\u9020\u621012\u70B9\u4F24\u5BB3"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}
