@@ -151,12 +151,16 @@ public class AudioManager : MonoBehaviour
     private IEnumerator PlayBGMIEnumerator(List<string> names)
     {
         // 停止所有正在播放的 BGM
-        foreach (var pair in instance.audioSourceDics)
+        /* foreach (var pair in instance.audioSourceDics)
         {
-            if (pair.Value.outputAudioMixerGroup.name == "BGM")
+            if (pair.Value.outputAudioMixerGroup.name == "BGM" && !names.Contains(pair.Key))
             {
                 yield return instance.StartCoroutine(FadeOut(pair.Key));
             }
+        } */
+        if (instance.currentBgm != null && names[0] != instance.currentBgm.clip.name)
+        {
+            yield return instance.StartCoroutine(FadeOut(instance.currentBgm.clip.name));
         }
 
         // 循环播放新的 BGM

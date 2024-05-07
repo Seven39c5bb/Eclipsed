@@ -75,7 +75,7 @@ public class FightInit : FightUnit
                         SaveManager.instance.jsonData.mapData.currAtlasID.ToString() + "_NormalBattle3"
                     };
                     // 创建一个 Random 实例
-                    Random rng = new Random();
+                    System.Random rng = new System.Random();
 
                     // 使用 Sort 方法和 Random 实例来随机排序列表
                     bgmList.Sort((a, b) => rng.Next(-1, 2));
