@@ -22,7 +22,7 @@ public class BloodSoup : EnemyBase
         // 初始化敌人棋子
         MaxHp = 180;//最大生命值
         HP = 180;//当前生命值
-        MeleeAttackPower = 0;//近战攻击力
+        MeleeAttackPower = 5;//近战攻击力
         mobility = 1;//行动力
         moveMode = 2;//移动模式
         this.gameObject.tag = "Enemy";
@@ -178,10 +178,10 @@ public class BloodSoup : EnemyBase
     {
         //返回9*9范围最外围的格子(记得设置条件不要返回已经被占据的格子和墙)
         HashSet<Vector2Int> result = new HashSet<Vector2Int>();
-        int leftAxis = Location.x - 3;
-        int rightAxis = Location.x + 3;
-        int upAxis = Location.y - 3;
-        int downAxis = Location.y + 3;
+        int leftAxis = Location.x - 1;
+        int rightAxis = Location.x + 1;
+        int upAxis = Location.y - 1;
+        int downAxis = Location.y + 1;
 
         for (int i = leftAxis; i <= rightAxis; i++)
         {

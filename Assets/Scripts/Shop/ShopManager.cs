@@ -241,7 +241,7 @@ public class ShopManager : MonoBehaviour
     //打开删卡面板
     public void OpenDeletePanel()
     {
-        if(SaveManager.instance.jsonData.playerData.coin<75 || isDeleteCard)
+        if(SaveManager.instance.jsonData.playerData.coin<25 || isDeleteCard)
         {
             return;
         }
