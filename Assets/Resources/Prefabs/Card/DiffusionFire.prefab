@@ -451,7 +451,7 @@ MonoBehaviour:
   type: 1
   rare: 1
   cardName: "\u6269\u6563\u5C04\u51FB"
-  discription: "\u5BF93\u683C\u5916\u6240\u6709\u654C\u4EBA\u9020\u62108\u70B9\u4F24\u5BB3\uFF0C\u518D\u5BF9\u8840\u91CF\u6700\u591A\u7684\u654C\u4EBA\u9020\u621012\u70B9\u4F24\u5BB3\u3002 "
+  discription: "\u5BF92\u683C\u5916\u6240\u6709\u654C\u4EBA\u9020\u62108\u70B9\u4F24\u5BB3\uFF0C\u518D\u5BF9\u8840\u91CF\u6700\u591A\u7684\u654C\u4EBA\u9020\u621012\u70B9\u4F24\u5BB3\u3002 "
   discriptionText: {fileID: 0}
   cost: 2
   costText: {fileID: 0}
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BF93\u683C\u5916\u6240\u6709\u654C\u4EBA\u9020\u62108\u70B9\u4F24\u5BB3\uFF0C\u518D\u5BF9\u8840\u91CF\u6700\u591A\u7684\u654C\u4EBA\u9020\u621012\u70B9\u4F24\u5BB3\u3002\n"
+  m_text: "\u5BF92\u683C\u5916\u6240\u6709\u654C\u4EBA\u9020\u62108\u70B9\u4F24\u5BB3\uFF0C\u518D\u5BF9\u8840\u91CF\u6700\u591A\u7684\u654C\u4EBA\u9020\u621012\u70B9\u4F24\u5BB3\u3002\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}

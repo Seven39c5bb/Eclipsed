@@ -5,11 +5,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class GameStartUI : UIBase
 {
-    private void Awake()
+    private void Start()
     {
         Register("Start").onClick = LoadSceneAtlas_1;
         Register("Continue").onClick = LoadSceneContinue;
         Register("Quit").onClick = OuitGame;
+        AudioManager.PlayBGM("Cover");
     }
     void LoadSceneAtlas_1(GameObject obj, PointerEventData eventData)
     {
