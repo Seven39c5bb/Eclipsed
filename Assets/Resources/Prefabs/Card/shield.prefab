@@ -317,7 +317,7 @@ MonoBehaviour:
   type: 3
   rare: 0
   cardName: "\u62A4\u76FE"
-  discription: take 10 barrier
+  discription: "\u83B7\u5F978\u70B9\u62A4\u76FE"
   discriptionText: {fileID: 0}
   cost: 1
   costText: {fileID: 0}
