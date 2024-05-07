@@ -29,8 +29,8 @@ public class FocusFire : Card, IPointerDownHandler, IPointerUpHandler
             if (ChessboardManager.instance.CheckCell(selectedCellPos))
             {
                 if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() != null
-                    && (Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().Location.x - PlayerController.instance.Location.x) >= 5
-                || Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().Location.y - PlayerController.instance.Location.y) >= 5))
+                    && (Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().Location.x - PlayerController.instance.Location.x) >= 2
+                || Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().Location.y - PlayerController.instance.Location.y) >= 2))
                 {
                     if (line != null)
                     {
@@ -100,7 +100,7 @@ public class FocusFire : Card, IPointerDownHandler, IPointerUpHandler
                 }
             }
         }
-        //对5格外的一个敌人造成伤害
+        //对2格外的一个敌人造成伤害
         //获取当前鼠标所处点击的cell
         Debug.Log(ChessboardManager.instance.curCell.name);
         string selectedCell = ChessboardManager.instance.curCell.name;
@@ -114,11 +114,11 @@ public class FocusFire : Card, IPointerDownHandler, IPointerUpHandler
         }
         else
         {
-            //判断敌人是否在5格内
+            //判断敌人是否在2格内
 
             EnemyBase enemy = ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>();
-            if(Mathf.Abs(enemy.Location.x - PlayerController.instance.Location.x) >= 5 
-                || Mathf.Abs(enemy.Location.y - PlayerController.instance.Location.y )>= 5)
+            if(Mathf.Abs(enemy.Location.x - PlayerController.instance.Location.x) >= 2 
+                || Mathf.Abs(enemy.Location.y - PlayerController.instance.Location.y )>= 2)
             {
                 enemy.TakeDamage(damage, PlayerController.instance);
             }
