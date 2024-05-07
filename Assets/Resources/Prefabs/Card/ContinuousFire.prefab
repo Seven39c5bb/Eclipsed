@@ -375,9 +375,9 @@ MonoBehaviour:
   type: 1
   rare: 0
   cardName: "\u8FDE\u7EED\u5C04\u51FB"
-  discription: "\u5BF9\u4E00\u4E2A\u654C\u4EBA\u9020\u621018\u70B9\u4F24\u5BB3\u3002\u5982\u679C\u8FD9\u5F20\u724C\u6D88\u706D\u4E86\u4E00\u4E2A\u654C\u4EBA\uFF0C\u5219\u62BD\u4E00\u5F20\u724C\u3002 "
+  discription: "\u5BF9\u4E00\u4E2A\u654C\u4EBA\u9020\u621013\u70B9\u4F24\u5BB3\u3002\u5982\u679C\u8FD9\u5F20\u724C\u6D88\u706D\u4E86\u4E00\u4E2A\u654C\u4EBA\uFF0C\u5219\u62BD\u4E00\u5F20\u724C\u3002"
   discriptionText: {fileID: 0}
-  cost: 2
+  cost: 1
   costText: {fileID: 0}
   rtTransform: {fileID: 0}
   canvasGroup: {fileID: 0}
@@ -387,7 +387,7 @@ MonoBehaviour:
   hoverPos: {x: 0, y: 0}
   isUsed: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 18
+  damage: 13
   line: {fileID: 0}
 --- !u!1 &8688264783306014931
 GameObject:
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u5BF9\u4E00\u4E2A\u654C\u4EBA\u9020\u621018\u70B9\u4F24\u5BB3\u3002\u5982\u679C\u8FD9\u5F20\u724C\u6D88\u706D\u4E86\u4E00\u4E2A\u654C\u4EBA\uFF0C\u5219\u62BD\u4E00\u5F20\u724C\u3002\n"
+  m_text: "\u5BF9\u4E00\u4E2A\u654C\u4EBA\u9020\u621013\u70B9\u4F24\u5BB3\u3002\u5982\u679C\u8FD9\u5F20\u724C\u6D88\u706D\u4E86\u4E00\u4E2A\u654C\u4EBA\uFF0C\u5219\u62BD\u4E00\u5F20\u724C\u3002\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 95f31be42e42b1c469442b4406809826, type: 2}
   m_sharedMaterial: {fileID: -5885308436397591173, guid: 95f31be42e42b1c469442b4406809826, type: 2}

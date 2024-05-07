@@ -16,8 +16,8 @@ public class WinPanel : MonoBehaviour
     public void CardAppend()
     {
         //如果点击了卡牌增加按钮,弹出OptionPanel
-        GameObject optionPanel = Instantiate(Resources.Load("Prefabs/UI/OptionPanel"), GameObject.Find("Canvas").transform) as GameObject;
-        optionPanel.GetComponent<OptionPanel>().type = OptionPanel.panelType.add;
+        GameObject optionPanel = Instantiate(Resources.Load("Prefabs/UI/OptionPanelBox"), GameObject.Find("Canvas").transform) as GameObject;
+        OptionPanel.instance.type = OptionPanel.panelType.add;
         if(SaveManager.instance.jsonData.mapData.currNodeType==MapNode.NodeType.Elite)
         {
             OptionPanel.instance.cardPool = Resources.Load("TextAssets/CardPool/All") as TextAsset;
@@ -37,7 +37,9 @@ public class WinPanel : MonoBehaviour
         {
             SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
         }
-        tipsText.text = "*新增了卡牌*";
+        int coin = Random.Range(20, 30);
+        SaveManager.instance.jsonData.playerData.coin += coin;
+        tipsText.text = "*新增了卡牌,获得了*"+coin.ToString()+"金币";
         winContinueBtm.SetActive(true);
         Destroy(HealBtm); Destroy(coinBtm); Destroy(cardAppendBtm);
     }
@@ -52,7 +54,9 @@ public class WinPanel : MonoBehaviour
         {
             SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;
         }
-        tipsText.text = "*生命+20*";
+        int coin = Random.Range(20, 30);
+        SaveManager.instance.jsonData.playerData.coin += coin;
+        tipsText.text = "*生命+20,*获得了"+coin.ToString()+"金币";
         winContinueBtm.SetActive(true);
         SaveManager.instance.Save();
         Destroy(HealBtm);Destroy(coinBtm);Destroy(cardAppendBtm);

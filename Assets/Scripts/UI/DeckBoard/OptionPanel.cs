@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static DeckBoard;
 
 public class OptionPanel : MonoBehaviour
 {
@@ -16,6 +18,8 @@ public class OptionPanel : MonoBehaviour
     //从卡池TextAsset中读取卡牌信息
     public TextAsset cardPool;
     public string cardPoolText;
+    //显示提示信息
+    public TextMeshProUGUI tips;
     public static OptionPanel op_instance;
     public static OptionPanel instance
     {
@@ -26,6 +30,21 @@ public class OptionPanel : MonoBehaviour
                 op_instance = FindObjectOfType<OptionPanel>();
             }
             return op_instance;
+        }
+    }
+    private void Update()
+    {
+        switch (type)
+        {
+            case panelType.add:
+                tips.text = "*新增*";
+                break;
+            case panelType.delete:
+                tips.text = "*删除*";
+                break;
+            case panelType.win:
+                tips.text = "*奖励*";
+                break;
         }
     }
     public void LoadPanel()

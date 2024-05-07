@@ -49,7 +49,7 @@ public class CardTemplate : MonoBehaviour,IPointerClickHandler
             {
                 AddCard();
             }
-            Destroy(GameObject.Find("OptionPanel(Clone)").gameObject);
+            Destroy(GameObject.Find("OptionPanelBox(Clone)").gameObject);
         }
     }
     //删除该卡牌
