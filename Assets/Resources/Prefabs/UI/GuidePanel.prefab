@@ -228,9 +228,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guideImgs:
-  - {fileID: 21300000, guid: 07a002a26f2fee94f9af902171309d67, type: 3}
-  - {fileID: 21300000, guid: 9bba4a67300f5bf4dae67d3491240b68, type: 3}
-  - {fileID: 21300000, guid: 9ed935378192a7d4ebfc0a1bae50da42, type: 3}
+  - {fileID: 21300000, guid: 87d8973c08b2f1f4aa8aae7523fe5504, type: 3}
+  - {fileID: 21300000, guid: 1ffb25d6798f2ff4ca4f766777d275dd, type: 3}
+  - {fileID: 21300000, guid: 2096c478cc369c540bfda0c15468f12a, type: 3}
   curGuideImg: {fileID: 642792490871118586}
 --- !u!1 &895305583761340628
 GameObject:
@@ -816,8 +816,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.14463, y: -13.7595}
-  m_SizeDelta: {x: 535.66, y: 310.9798}
+  m_AnchoredPosition: {x: -0.9, y: -21.8929}
+  m_SizeDelta: {x: 536.8079, y: 311.6462}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6294829445344828957
 CanvasRenderer:

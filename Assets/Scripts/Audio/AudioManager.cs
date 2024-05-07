@@ -182,7 +182,8 @@ public class AudioManager : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogWarning($"名为{name}的音频不存在");
+                    //Debug.Log($"名为{name}的音频不存在");
+                    yield break;
                 }
             }
         }

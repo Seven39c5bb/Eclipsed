@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 public class GameStartUI : UIBase
 {
-    private void Awake()
+    private void Start()
     {
         Register("Start").onClick = LoadSceneAtlas_1;
         Register("Continue").onClick = LoadSceneContinue;
