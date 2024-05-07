@@ -125,11 +125,30 @@ public class AudioManager : MonoBehaviour
     /// 停止所有BGM，并切换到指定BGM
     /// </summary>
     /// <param name="name">音频名称</param>
+    private Coroutine currentBgmCoroutine;
+
     public static void PlayBGM(string name)
     {
-        instance.StartCoroutine(instance.PlayBGMIEnumerator(name));
+        if (instance.currentBgmCoroutine != null)
+        {
+            instance.StopCoroutine(instance.currentBgmCoroutine);
+        }
+        instance.currentBgmCoroutine = instance.StartCoroutine(instance.PlayBGMIEnumerator(name));
+    }
+    public static void PlayBGM(List<string> names)
+    {
+        if (instance.currentBgmCoroutine != null)
+        {
+            instance.StopCoroutine(instance.currentBgmCoroutine);
+        }
+        instance.currentBgmCoroutine = instance.StartCoroutine(instance.PlayBGMIEnumerator(names));
     }
     private IEnumerator PlayBGMIEnumerator(string name)
+    {
+        yield return PlayBGMIEnumerator(new List<string> { name });
+    }
+    AudioSource currentBgm = null;
+    private IEnumerator PlayBGMIEnumerator(List<string> names)
     {
         // 停止所有正在播放的 BGM
         foreach (var pair in instance.audioSourceDics)
@@ -140,14 +159,28 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        // 播放新的 BGM
-        if (instance.audioSourceDics.ContainsKey(name))
+        // 循环播放新的 BGM
+        while (true)
         {
-            instance.audioSourceDics[name].Play();
-        }
-        else
-        {
-            Debug.LogWarning($"名为{name}的音频不存在");
+            foreach (var name in names)
+            {
+                // 停止正在播放的 BGM
+                if (instance.currentBgm != null)
+                {
+                    instance.currentBgm.Stop();
+                }
+
+                if (instance.audioSourceDics.ContainsKey(name))
+                {
+                    instance.audioSourceDics[name].Play();
+                    instance.currentBgm = instance.audioSourceDics[name];  // 更新当前正在播放的 BGM
+                    yield return new WaitForSeconds(instance.audioSourceDics[name].clip.length);
+                }
+                else
+                {
+                    Debug.LogWarning($"名为{name}的音频不存在");
+                }
+            }
         }
     }
 
