@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class evilflame : Card
 {
-    int addFlag = 0;
+    int addFlag = 0;//防止重复添加
     public new void Update()
     {
         base.Update();
