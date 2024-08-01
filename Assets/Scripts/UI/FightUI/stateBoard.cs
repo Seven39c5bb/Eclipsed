@@ -65,8 +65,8 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         //收到伤害时血条变透明
         //float healthAlpha = PlayerController.instance.HP / PlayerController.instance.MaxHp;
         //healthCanvasGroup.alpha = healthAlpha;
-        chessHealth.text=PlayerController.instance.Hp.ToString();//test
-        healthImage.DOFillAmount((float)PlayerController.instance.Hp / PlayerController.instance.MaxHp, 0.5f);
+        chessHealth.text=PlayerController.instance.HP_private.ToString();//test
+        healthImage.DOFillAmount((float)PlayerController.instance.HP_private / PlayerController.instance.maxHp, 0.5f);
         if (FightManager.instance.curFightType == FightType.Player)
         {
             if (!isPlayerTurn)
@@ -101,11 +101,11 @@ public class stateBoard:MonoBehaviour,IPointerClickHandler
         {
             chessName.text = PlayerController.instance.chessName;
             CardDescription.text = description;
-            HealthText.text = "生命值: " + PlayerController.instance.Hp;
-            BarrierText.text = "护盾值: " + PlayerController.instance.Barrier;
+            HealthText.text = "生命值: " + PlayerController.instance.HP_private;
+            BarrierText.text = "护盾值: " + PlayerController.instance.barrier;
             MobilityText.text = "行动力: --";
             MoveModeText.text = "行为模式: --";
-            MeleeAttackText.text = "近战伤害: " + PlayerController.instance.MeleeAttackPower;
+            MeleeAttackText.text = "近战伤害: " + PlayerController.instance.meleeAttackPower;
             CardDescription.text = PlayerController.instance.chessDiscrption;
 
             if (preBuffListCount != PlayerController.instance.buffList.Count)

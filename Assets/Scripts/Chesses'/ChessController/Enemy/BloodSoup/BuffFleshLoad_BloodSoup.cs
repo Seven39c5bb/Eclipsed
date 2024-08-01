@@ -44,7 +44,7 @@ public class BuffFleshLoad_BloodSoup : BuffBase
     }
     public override void OnAdd()
     {
-        playerPrePos = PlayerController.instance.Location;
+        playerPrePos = PlayerController.instance.location;
         //在玩家位置所在棋格生成一个目标指示器
         BloodSoup_AimBar = Instantiate(Resources.Load<GameObject>("Prefabs/BloodSoup_AimBar"));
         AimBarMeshRenderer = BloodSoup_AimBar.GetComponent<MeshRenderer>();

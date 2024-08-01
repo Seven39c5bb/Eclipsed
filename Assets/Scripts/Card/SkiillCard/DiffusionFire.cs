@@ -14,11 +14,11 @@ public class DiffusionFire : Card
         //对2格外所有敌人造成8点伤害，再对血量最多的敌人造成12点伤害
         foreach (EnemyBase enemy in ChessboardManager.instance.enemyControllerList)
         {
-            if (enemy.Hp > maxHpEnemy.Hp)
+            if (enemy.HP_private > maxHpEnemy.HP_private)
             {
                 maxHpEnemy = enemy;
             }
-            if (Mathf.Abs(PlayerController.instance.Location.x - enemy.Location.x) >= 2 || Mathf.Abs(PlayerController.instance.Location.y - enemy.Location.y) >= 2)
+            if (Mathf.Abs(PlayerController.instance.location.x - enemy.location.x) >= 2 || Mathf.Abs(PlayerController.instance.location.y - enemy.location.y) >= 2)
             {
                 //enemy.TakeDamage(damage,PlayerController.instance);
                 PlayerController.instance.BulletAttack(damage, enemy, BulletPrefab, HitEffect);

@@ -22,7 +22,7 @@ public class PlayerController : ChessBase
                 {
                     player_instance.initHp = SaveManager.instance.jsonData.playerData.HP;
                 }
-                player_instance.Hp = player_instance.initHp;
+                player_instance.HP_private = player_instance.initHp;
             }
             return player_instance;
         }
@@ -45,14 +45,14 @@ public class PlayerController : ChessBase
 
         // 初始化玩家棋子
         player_instance = this;
-        MaxHp = 80;//最大生命值
+        maxHp = 80;//最大生命值
         HP = initHp;//当前生命值
-        MeleeAttackPower = 8;//近战攻击力
+        meleeAttackPower = 8;//近战攻击力
         chessName = "魔女";//棋子名称
         chessDiscrption = "教宗的喉舌，教母的利刃。";//棋子描述
 
         base.Start();//添加血条
-        ChessboardManager.instance.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, location);
 
         //将标签设置为玩家
         this.gameObject.tag = "Player";

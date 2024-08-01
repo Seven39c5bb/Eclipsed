@@ -21,7 +21,7 @@ public class Docking : Card
             Card card = CardManager.instance.handCards[indexList[index]];
             indexList.RemoveAt(index);
             CardManager.instance.Discard(card);
-            PlayerController.instance.Barrier += 15;
+            PlayerController.instance.barrier += 15;
             costManager.instance.curCost -= cost;
             return;
         }
@@ -31,7 +31,7 @@ public class Docking : Card
             Card card = CardManager.instance.handCards[indexList[index]];
             indexList.RemoveAt(index);
             CardManager.instance.Discard(card);
-            PlayerController.instance.Barrier += 15;
+            PlayerController.instance.barrier += 15;
             costManager.instance.curCost -= cost;
         }
         

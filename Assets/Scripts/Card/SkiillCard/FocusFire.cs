@@ -29,8 +29,8 @@ public class FocusFire : Card, IPointerDownHandler, IPointerUpHandler
             if (ChessboardManager.instance.CheckCell(selectedCellPos))
             {
                 if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() != null
-                    && (Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().Location.x - PlayerController.instance.Location.x) >= 2
-                || Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().Location.y - PlayerController.instance.Location.y) >= 2))
+                    && (Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().location.x - PlayerController.instance.location.x) >= 2
+                || Mathf.Abs(ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().location.y - PlayerController.instance.location.y) >= 2))
                 {
                     if (line != null)
                     {
@@ -117,8 +117,8 @@ public class FocusFire : Card, IPointerDownHandler, IPointerUpHandler
             //判断敌人是否在2格内
 
             EnemyBase enemy = ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>();
-            if(Mathf.Abs(enemy.Location.x - PlayerController.instance.Location.x) >= 2 
-                || Mathf.Abs(enemy.Location.y - PlayerController.instance.Location.y )>= 2)
+            if(Mathf.Abs(enemy.location.x - PlayerController.instance.location.x) >= 2 
+                || Mathf.Abs(enemy.location.y - PlayerController.instance.location.y )>= 2)
             {
                 enemy.TakeDamage(damage, PlayerController.instance);
             }

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-public class ChessBase : MonoBehaviour //棋子基类
+public abstract class ChessBase : MonoBehaviour //棋子基类
 {
     // 血条组件
     public UnityEngine.UI.Image HPBar;//血条
@@ -18,46 +18,46 @@ public class ChessBase : MonoBehaviour //棋子基类
     public string chessName = "Chess";//棋子名称
     public string chessDiscrption = "";//棋子描述
     public List<BuffBase> buffList = new List<BuffBase>();//buff列表
-    public bool DontMeleeAttack = false;//是否不主动碰撞
-    public int MaxHp = 10;//最大生命值
-    public int Hp = 10;
+    public bool dontMeleeAttack = false;//是否不主动碰撞
+    public int maxHp = 10;//最大生命值
+    public int HP_private = 10;
     public int HP//当前生命值
     {
-        get { return Hp; }
-        set { Hp = Mathf.Clamp(value, 0, MaxHp); }
+        get { return HP_private; }
+        set { HP_private = Mathf.Clamp(value, 0, maxHp); }
     }
 
-    public int barrier = 0;//护盾值
-    public int Barrier
+    public int barrier_private = 0;//护盾值
+    public int barrier
     {
-        get { return barrier; }
+        get { return barrier_private; }
         set { 
-                barrier = Mathf.Max(0, value);
-                BarrierBar.DOFillAmount((float)Barrier / MaxHp, 0.5f);
+                barrier_private = Mathf.Max(0, value);
+                BarrierBar.DOFillAmount((float)barrier / maxHp, 0.5f);
             }
     }
 
-    public int meleeAttackPower = 2;//近战攻击力
-    public int MeleeAttackPower
+    public int meleeAttackPower_private = 2;//近战攻击力
+    public int meleeAttackPower
     {
-        get { return meleeAttackPower; }
-        set { meleeAttackPower = Mathf.Max(0, value); }
+        get { return meleeAttackPower_private; }
+        set { meleeAttackPower_private = Mathf.Max(0, value); }
     }
 
 
-    private float moveSpeed = 5.0f;//可能不需要的属性
-    public float MoveSpeed
+    private float moveSpeed_private = 5.0f;//可能不需要的属性
+    public float moveSpeed
     {
-        get { return moveSpeed; }
-        set { moveSpeed = Mathf.Max(0, value); }
+        get { return moveSpeed_private; }
+        set { moveSpeed_private = Mathf.Max(0, value); }
     }
 
-    public Vector2Int location;//棋盘坐标
-    public Vector2Int Location
+    public Vector2Int location_private;//棋盘坐标
+    public Vector2Int location
     {
-        get { return location; }
+        get { return location_private; }
         //坐标的值在0-9之间
-        set { location = new Vector2Int(Mathf.Clamp(value.x, 0, 9), Mathf.Clamp(value.y, 0, 9)); }
+        set { location_private = new Vector2Int(Mathf.Clamp(value.x, 0, 9), Mathf.Clamp(value.y, 0, 9)); }
     }
 
     // 方法
@@ -104,10 +104,10 @@ public class ChessBase : MonoBehaviour //棋子基类
         CureHPBar = HPBarCanvasInstance.transform.Find("CureBar").GetComponent<UnityEngine.UI.Image>();
 
         // 初始化血条的形状
-        HPBar.fillAmount = (float)HP / MaxHp;
-        CureHPBar.fillAmount = (float)HP / MaxHp;
-        DamageHPBar.fillAmount = (float)HP / MaxHp;
-        BarrierBar.fillAmount = (float)Barrier / MaxHp;
+        HPBar.fillAmount = (float)HP / maxHp;
+        CureHPBar.fillAmount = (float)HP / maxHp;
+        DamageHPBar.fillAmount = (float)HP / maxHp;
+        BarrierBar.fillAmount = (float)barrier / maxHp;
     }
 
 
@@ -125,20 +125,20 @@ public class ChessBase : MonoBehaviour //棋子基类
 
         //移动
         (Vector2 aimPosition, Vector2Int aimLocation, string roadblockType, GameObject roadblockObject) = 
-        ChessboardManager.instance.MoveControl(gameObject, Location, direction);
+        ChessboardManager.instance.MoveControl(gameObject, location, direction);
 
         //计算Location和aimLocation之间的距离
-        int moveDistance = Mathf.Abs(aimLocation.x - Location.x) + Mathf.Abs(aimLocation.y - Location.y);
+        int moveDistance = Mathf.Abs(aimLocation.x - location.x) + Mathf.Abs(aimLocation.y - location.y);
 
         //计算剩余移动数
         int residualDistance = Mathf.Abs(Mathf.Abs(direction.x) + Mathf.Abs(direction.y) - moveDistance);
 
         //更新Location
-        Location = aimLocation;
+        location = aimLocation;
 
         bool isMeleeAttack = false;
         //判断是否发生近战攻击（不能放在回调函数中，因为回调函数是异步的）
-        if (DontMeleeAttack == false && roadblockObject != null)
+        if (dontMeleeAttack == false && roadblockObject != null)
         {
             //根据该棋子的不同分类，对不同的障碍物做出不同的处理
             switch (roadblockType)
@@ -193,7 +193,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             transform.DOMove(aimPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
                 //移动完成后执行的代码
-                if (DontMeleeAttack == false && roadblockObject != null)
+                if (dontMeleeAttack == false && roadblockObject != null)
                 {
                     //根据该棋子的不同分类，对不同的障碍物做出不同的处理
                     switch (roadblockType)
@@ -240,7 +240,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             this.GetComponent<SpriteRenderer>().material = tpMat;
             this.GetComponent<SpriteRenderer>().material.DOFloat(0, "_dissolveValue", 1f).OnComplete(() =>
             {
-               gameObject.transform.position = ChessboardManager.instance.cellStates[Location.x, Location.y].transform.position;
+               gameObject.transform.position = ChessboardManager.instance.cellStates[location.x, location.y].transform.position;
                this.GetComponent<SpriteRenderer>().material.DOFloat(1, "_dissolveValue", 1f);
             });
             
@@ -289,7 +289,7 @@ public class ChessBase : MonoBehaviour //棋子基类
             //在动画播放完毕后执行近战伤害判断
             sequence.OnComplete(() => {
                 //计算撞击伤害
-                int crashDamage = MeleeAttackPower * residualDistance;//撞击伤害 = 攻击力 * 剩余移动数
+                int crashDamage = meleeAttackPower * residualDistance;//撞击伤害 = 攻击力 * 剩余移动数
                 foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
                 {
                     crashDamage = buff.OnCrash(crashDamage, AttackedChess);
@@ -301,7 +301,7 @@ public class ChessBase : MonoBehaviour //棋子基类
                 AttackedChess.TakeDamage(crashDamage, this);
 
                 //计算受反击伤害
-                int injury = AttackedChess.MeleeAttackPower;
+                int injury = AttackedChess.meleeAttackPower;
                 foreach (BuffBase buff in AttackedChess.buffList)//根据被撞者buff列表对伤害进行处理
                 {
                     injury = buff.OnCrash(injury, this);
@@ -378,15 +378,15 @@ public class ChessBase : MonoBehaviour //棋子基类
             damage = buff.OnHit(damage, this);
         }
 
-        int damageTaken = damage - Barrier;
-        Barrier -= damage;
+        int damageTaken = damage - barrier;
+        barrier -= damage;
         if (damageTaken > 0)
         {
             HP -= damageTaken;
             // 更新红色血条的形状
-            HPBar.fillAmount = (float)HP / MaxHp;
+            HPBar.fillAmount = (float)HP / maxHp;
             // 更新绿色血条的形状
-            CureHPBar.fillAmount = (float)HP / MaxHp;
+            CureHPBar.fillAmount = (float)HP / maxHp;
             // 延迟更新黄色血条的形状
             Invoke("UpdateDamageHPBar", 0.4f); // 延迟0.4秒
             Debug.Log(gameObject.name + "受到了" + damageTaken + "点伤害");
@@ -397,7 +397,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 黄色血条动画
     public void UpdateDamageHPBar()
     {
-        DamageHPBar.DOFillAmount((float)HP / MaxHp, 0.39f) // 使用DoTween创建血条填充动画，动画持续0.39秒
+        DamageHPBar.DOFillAmount((float)HP / maxHp, 0.39f) // 使用DoTween创建血条填充动画，动画持续0.39秒
         .OnComplete(() => // 在动画结束后执行以下代码
         {
             if (HP <= 0)
@@ -412,7 +412,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     {
         HP += cureValue;
         // 更新绿色血条的形状
-        CureHPBar.fillAmount = (float)HP / MaxHp;
+        CureHPBar.fillAmount = (float)HP / maxHp;
         // 延迟更新蓝色血条的形状
         Invoke("UpdateHPBar", 0.5f); // 延迟0.5秒
         Debug.Log(gameObject.name + "受到了" + cureValue + "点治疗");
@@ -421,9 +421,9 @@ public class ChessBase : MonoBehaviour //棋子基类
     // 治疗时红色血条动画,治疗完成后更新血条
     public void UpdateHPBar()
     {
-        HPBar.DOFillAmount((float)HP / MaxHp, 0.5f).OnComplete(() =>
+        HPBar.DOFillAmount((float)HP / maxHp, 0.5f).OnComplete(() =>
         {
-            DamageHPBar.fillAmount = (float)HP / MaxHp;
+            DamageHPBar.fillAmount = (float)HP / maxHp;
         });
     }
 
@@ -431,7 +431,7 @@ public class ChessBase : MonoBehaviour //棋子基类
     public void BarrierDecay()
     {
         // 护盾值减半
-        Barrier -= Barrier / 2;
+        barrier -= barrier / 2;
         // 使用DoTween使护盾闪烁
         BarrierBar.DOColor(new Color(38f/255f, 214/255f, 1, 0), 0.25f).OnComplete(() =>
         {

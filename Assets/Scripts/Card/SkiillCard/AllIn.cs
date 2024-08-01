@@ -32,7 +32,7 @@ public class AllIn : Card
             EnemyBase nearEnemy = null;
             foreach (var enemy in ChessboardManager.instance.enemyControllerList)
             {
-                float dist = Mathf.Sqrt(Mathf.Pow(enemy.Location.x - PlayerController.instance.Location.x, 2) + Mathf.Pow(enemy.Location.y - PlayerController.instance.Location.y, 2));
+                float dist = Mathf.Sqrt(Mathf.Pow(enemy.location.x - PlayerController.instance.location.x, 2) + Mathf.Pow(enemy.location.y - PlayerController.instance.location.y, 2));
                 if (dist < nearDistance)
                 {
                     nearDistance = dist;
