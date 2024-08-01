@@ -59,6 +59,7 @@ public class DiscardPanel : MonoBehaviour
                 CardManager.instance.Discard(card);
             }
         }
+        curDiscardNum = 0;
         this.gameObject.SetActive(false);
         CardManager.instance.isDiscardUI = false;
     }
