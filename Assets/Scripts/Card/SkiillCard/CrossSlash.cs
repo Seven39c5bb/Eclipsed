@@ -8,7 +8,7 @@ public class CrossSlash : Card
     public override void CardFunc()
     {
         //获取当前位置
-        Vector2Int playerPos = PlayerController.instance.Location;
+        Vector2Int playerPos = PlayerController.instance.location;
         //获取十字格子内的敌人
         List<Vector2Int> posList = new List<Vector2Int>();
         for(int i=-5; i<=5; i++)
@@ -34,7 +34,7 @@ public class CrossSlash : Card
             if (ChessboardManager.instance.cellStates[pos.x, pos.y].state == Cell.StateType.Occupied)
             {
                 if (ChessboardManager.instance.CheckCell(pos).GetComponent<EnemyBase>() != null)
-                ChessboardManager.instance.CheckCell(pos).TakeDamage(PlayerController.instance.meleeAttackPower,PlayerController.instance);
+                ChessboardManager.instance.CheckCell(pos).TakeDamage(PlayerController.instance.meleeAttackPower_private,PlayerController.instance);
             }
         }
     }

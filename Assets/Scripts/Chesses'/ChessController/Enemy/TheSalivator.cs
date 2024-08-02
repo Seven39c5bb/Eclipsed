@@ -9,15 +9,15 @@ public class TheSalivator : EnemyBase
     void Awake()
     {
         // 初始化敌人棋子
-        MaxHp = 40;//最大生命值
+        maxHp = 40;//最大生命值
         HP = 40;//当前生命值
-        MeleeAttackPower = 5;//近战攻击力
+        meleeAttackPower = 5;//近战攻击力
         mobility = 1;//行动力
         moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "泌涎者";//棋子名称
         chessDiscrption = "头骨沿着眼眶向内塌陷的人类，从头颅的各个缝隙中流出五彩斑斓的液体。\r\n技能：分泌物射击：对玩家造成7点伤害，最大距离为3格。";//棋子描述
-        ChessboardManager.instance.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, location);
         
     }
 
@@ -57,10 +57,10 @@ public class TheSalivator : EnemyBase
         //获取周围的敌人
         ChessBase player = null;
         //向ChessboardManager查询以自身为中心7*7范围内是否有玩家
-        int leftAxis = Location.x - 3 > 0 ? Location.x - 3 : 0;
-        int rightAxis = Location.x + 3 < 9 ? Location.x + 3 : 9;
-        int upAxis = Location.y - 3 > 0 ? Location.y - 3 : 0;
-        int downAxis = Location.y + 3 < 9 ? Location.y + 3 : 9;
+        int leftAxis = location.x - 3 > 0 ? location.x - 3 : 0;
+        int rightAxis = location.x + 3 < 9 ? location.x + 3 : 9;
+        int upAxis = location.y - 3 > 0 ? location.y - 3 : 0;
+        int downAxis = location.y + 3 < 9 ? location.y + 3 : 9;
         for (int i = leftAxis; i <= rightAxis; i++)
         {
             for (int j = upAxis; j <= downAxis; j++)

@@ -9,7 +9,7 @@ public class aoe : Card
     public override void CardFunc()
     {
         //获取主角位置
-        Vector2Int playerPos = PlayerController.instance.Location;
+        Vector2Int playerPos = PlayerController.instance.location;
         List<Vector2Int> posList = new List<Vector2Int>();
         //
         for(int i = -2; i <= 2; i++)
