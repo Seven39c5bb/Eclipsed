@@ -27,6 +27,14 @@ public class DiscardPanel : MonoBehaviour
     //按下确认键
     private void Update()
     {
+        //如果没有足够可以弃的卡牌，关闭UI
+        if (CardManager.instance.handCards[disCardNum-1]==null 
+            ||CardManager.instance.handCards[disCardNum-1].GetComponent<Card>())
+        {
+            curDiscardNum = 0;
+            this.gameObject.SetActive(false);
+            CardManager.instance.isDiscardUI = false;
+        }
         //如果没有选够足够的卡牌，不关闭UI
         if (curDiscardNum < disCardNum)
         {
