@@ -27,6 +27,9 @@ public class CardManager : MonoBehaviour
 
     //
     public GameConfig gameConfig;
+    //是否打开弃牌UI
+    public GameObject discardPanel;
+    public bool isDiscardUI = false;
     private void Awake()    
     {
         c_instance = this;
@@ -104,7 +107,18 @@ public class CardManager : MonoBehaviour
         GameObject handCardArea = GameObject.Find("handCardArea");
         Transform hcAreaTF= handCardArea.transform;    
     }
-
+    //弃牌
+    public void OpenDiscardUI(int num)
+    {
+        //打开弃牌UI
+        if (!isDiscardUI)
+        {
+            discardPanel.SetActive(true);
+            DiscardPanel.instance.disCardNum = num;
+            DiscardPanel.instance.textTips.text = "请选择" + num + "张卡牌弃掉";
+            isDiscardUI = true;
+        }
+    }
     public void Discard(Card card)
     {
         //播放弃牌动画

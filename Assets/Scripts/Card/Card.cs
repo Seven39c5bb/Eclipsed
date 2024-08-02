@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerEnterHandler,IPointerExitHandler
+public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
 {
     //枚举卡牌的种类
     public enum cardType
@@ -39,13 +39,16 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     //获取Canvas
     public Canvas canvas;
     //获取打出手牌时位置
-    public Vector2 startPos;public bool isDrag = false;
+    public Vector2 startPos;
+    public bool isDrag = false;
     //获取hover卡牌的位置
     public Vector2 hoverPos;
     //是否被使用
     public bool isUsed = false;
     //卡牌初始颜色
     public Color startColor;
+    //是否被选中弃牌
+    public bool isDiscard = false;
     private void Awake()
     {
         startColor=this.GetComponent<Image>().color;
@@ -103,7 +106,7 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
             hoverPos.y), 0.1f);
     }
     #endregion
-    #region ��ק���Ƶ�Ч��
+    #region 拖动卡牌的效果
     public void OnBeginDrag(PointerEventData eventData)
     {
         isDrag = true;
@@ -136,5 +139,23 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     }
     #endregion
     public void EndDrag() { isDrag = false; }
-
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //如果打开了弃牌UI，点击卡牌使其高亮
+        if(CardManager.instance.isDiscardUI)
+        {
+            if(isDiscard)
+            {
+                this.GetComponent<Image>().color = startColor;
+                DiscardPanel.instance.curDiscardNum -= 1;
+                isDiscard = false;
+            }
+            else
+            {
+                this.GetComponent<Image>().color = Color.red;
+                DiscardPanel.instance.curDiscardNum += 1;
+                isDiscard = true;
+            }
+        }
+    }
 }

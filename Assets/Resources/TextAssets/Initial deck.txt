@@ -1,8 +1,5 @@
 卡牌名称 数量
-up*2
-down*2
-left*2
-right*2
+Move*5
 shield*2
 aoe*2
 farAttack*2

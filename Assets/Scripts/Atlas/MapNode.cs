@@ -115,7 +115,8 @@ public class MapNode : MonoBehaviour
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;//用于战斗胜利后的返回
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Fight;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();//保存存档
-                            SceneManager.LoadScene("CardTest");
+                            Debug.Log("进入战斗场景");
+                            SceneTrans.instance.LoadNextScene_Trans("CardTest");//进入战斗场景
                             break;
                         case NodeType.Elite:
                             // 进入精英战斗场景
