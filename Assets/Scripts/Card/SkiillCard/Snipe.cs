@@ -87,8 +87,8 @@ public class Snipe : Card, IPointerDownHandler, IPointerUpHandler
         {
             EnemyBase enemy = ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>();
             //计算敌人距离玩家的距离
-            int xAbs= Mathf.Abs(enemy.Location.x - PlayerController.instance.Location.x);
-            int yAbs = Mathf.Abs(enemy.Location.y - PlayerController.instance.Location.y);
+            int xAbs= Mathf.Abs(enemy.location.x - PlayerController.instance.location.x);
+            int yAbs = Mathf.Abs(enemy.location.y - PlayerController.instance.location.y);
             //取xabs和yabs中的最大值
             int maxAbs = xAbs > yAbs ? xAbs : yAbs;
             //如果距离大于等于3，伤害+4、

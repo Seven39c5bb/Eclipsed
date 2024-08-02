@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BladeAndArmor : Card
 {
-    //»ñµÃ»ùÓÚÄã½üÕ½ÉËº¦ÊýÖµµÄ»¤¶Ü
+    //ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½Ëºï¿½ï¿½ï¿½Öµï¿½Ä»ï¿½ï¿½ï¿½
     public override void CardFunc()
     {
-        PlayerController.instance.Barrier += PlayerController.instance.meleeAttackPower;
+        PlayerController.instance.barrier += PlayerController.instance.meleeAttackPower_private;
         costManager.instance.curCost -= cost;
     }
 }

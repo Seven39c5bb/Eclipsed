@@ -91,7 +91,7 @@ public class FightInit : FightUnit
         //从Assets/Resources/Prefabs/Chesses/Player.prefab处获取玩家预制体
         GameObject player = Resources.Load("Prefabs/Chesses/Player") as GameObject;
         //实例化玩家
-        player.GetComponent<PlayerController>().Location = playerInitPos;
+        player.GetComponent<PlayerController>().location = playerInitPos;
         GameObject playerObj = ChessboardManager.Instantiate(player, new Vector3(0, 0, 0), player.transform.rotation);
 
         //从Assets/Resources/Prefabs/Chesses/敌人种类名.prefab处获取敌人预制体
@@ -101,7 +101,7 @@ public class FightInit : FightUnit
             //实例化敌人
             foreach (var pos in enemyType.Value)
             {
-                enemy.GetComponent<EnemyBase>().Location = pos;
+                enemy.GetComponent<EnemyBase>().location = pos;
                 GameObject enemyObj = ChessboardManager.Instantiate(enemy, new Vector3(0, 0, 0), enemy.transform.rotation);
             }
         }

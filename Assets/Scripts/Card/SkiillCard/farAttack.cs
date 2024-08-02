@@ -8,7 +8,7 @@ public class farAttack : Card
     public int damage;
     public override void CardFunc()
     {
-        Vector2Int playerPos = PlayerController.instance.Location;
+        Vector2Int playerPos = PlayerController.instance.location;
         List<Vector2Int> posList = new List<Vector2Int>();
         //遍历玩家+-5格的所有位置
         for (int i = -5; i <= 5; i++)
