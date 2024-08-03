@@ -63,16 +63,16 @@ public class enemyStateBoard : MonoBehaviour, IPointerClickHandler
         if (!thisEnemy.isActed && turnTip.GetComponent<UnityEngine.UI.Image>().color == new Color(1, 1, 138f/255f)) { turnTip.GetComponent<UnityEngine.UI.Image>().DOColor(Color.black, 0.2f); }
         //血量变化
         chessHealth.text = thisEnemy.HP.ToString();
-        if(healthImage.fillAmount != (float)thisEnemy.HP / thisEnemy.MaxHp) { healthImage.DOFillAmount((float)thisEnemy.HP / thisEnemy.MaxHp, 0.5f); }
+        if(healthImage.fillAmount != (float)thisEnemy.HP / thisEnemy.maxHp) { healthImage.DOFillAmount((float)thisEnemy.HP / thisEnemy.maxHp, 0.5f); }
 
         if(isClicked && thisEnemy != null)
         {
             chessName.text = thisEnemy.chessName;
             HealthText.text = "生命值: " + thisEnemy.HP;
-            BarrierText.text = "护盾值: " + thisEnemy.Barrier;
+            BarrierText.text = "护盾值: " + thisEnemy.barrier;
             MobilityText.text = "行动力: " + thisEnemy.mobility;
             MoveModeText.text = "行为模式: " + thisEnemy.moveMode;
-            MeleeAttackText.text = "近战伤害: " + thisEnemy.MeleeAttackPower;
+            MeleeAttackText.text = "近战伤害: " + thisEnemy.meleeAttackPower;
             CardDescription.text = thisEnemy.chessDiscrption;
 
             if (preBuffListCount != thisEnemy.buffList.Count)

@@ -8,16 +8,16 @@ public class GunMan : EnemyBase
     void Awake()
     {
         // 初始化敌人棋子
-        MaxHp = 50;//最大生命值
+        maxHp = 50;//最大生命值
         HP = 50;//当前生命值
-        MeleeAttackPower = 5;//近战攻击力
+        meleeAttackPower = 5;//近战攻击力
         mobility = 3;//行动力
         moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "枪手";//棋子名称
         chessDiscrption = "头部变化为枪膛形状的行尸，能将骨刺从头部高速射出。\r\n技能：骨刺射击：对玩家造成5点伤害，最大距离为4格，下次使用该技能时伤害永久增加3点。";//棋子描述
 
-        ChessboardManager.instance.AddChess(this.gameObject, Location);
+        ChessboardManager.instance.AddChess(this.gameObject, location);
     }
 
     public override IEnumerator OnTurn()
@@ -48,10 +48,10 @@ public class GunMan : EnemyBase
         //获取周围的敌人
         ChessBase player = null;
         //向ChessboardManager查询以自身为中心9*9范围内是否有玩家
-        int leftAxis = Location.x - 4 > 0 ? Location.x - 4 : 0;
-        int rightAxis = Location.x + 4 < 9 ? Location.x + 4 : 9;
-        int upAxis = Location.y - 4 > 0 ? Location.y - 4 : 0;
-        int downAxis = Location.y + 4 < 9 ? Location.y + 4 : 9;
+        int leftAxis = location.x - 4 > 0 ? location.x - 4 : 0;
+        int rightAxis = location.x + 4 < 9 ? location.x + 4 : 9;
+        int upAxis = location.y - 4 > 0 ? location.y - 4 : 0;
+        int downAxis = location.y + 4 < 9 ? location.y + 4 : 9;
         for (int i = leftAxis; i <= rightAxis; i++)
         {
             for (int j = upAxis; j <= downAxis; j++)

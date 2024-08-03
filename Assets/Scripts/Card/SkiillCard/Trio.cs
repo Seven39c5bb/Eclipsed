@@ -30,7 +30,7 @@ public class Trio : Card
                     continue;
                 }
                 //找到距离player最远的敌人
-                float dist = Mathf.Sqrt(Mathf.Pow(enemy.Location.x - PlayerController.instance.Location.x, 2) + Mathf.Pow(enemy.Location.y - PlayerController.instance.Location.y, 2));
+                float dist = Mathf.Sqrt(Mathf.Pow(enemy.location.x - PlayerController.instance.location.x, 2) + Mathf.Pow(enemy.location.y - PlayerController.instance.location.y, 2));
                 for (int j = 0; j < 3; j++)
                 {
                     if (furthestDistances[j] == -1f)//必须先搜索完列表确定没有-1
@@ -87,7 +87,7 @@ public class Trio : Card
                 foreach (var enemy in furthestEnemies)
                 {
                     //找到距离player最远的敌人,而且不为该furthestEnemy
-                    float dist = Mathf.Sqrt(Mathf.Pow(enemy.Location.x - PlayerController.instance.Location.x, 2) + Mathf.Pow(enemy.Location.y - PlayerController.instance.Location.y, 2));
+                    float dist = Mathf.Sqrt(Mathf.Pow(enemy.location.x - PlayerController.instance.location.x, 2) + Mathf.Pow(enemy.location.y - PlayerController.instance.location.y, 2));
                     if (dist > furthestDistance && furthestEnemies[i] != enemy)
                     {
                         furthestDistance = dist;

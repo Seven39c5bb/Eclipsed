@@ -3,7 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class EnemyBase : ChessBase
+/// <summary>
+/// 定义敌人行为的接口
+/// </summary>
+public interface IEnemy
+{
+    /// <summary>
+    /// 判断是否在该怪物偏好的环内
+    /// </summary>
+    /// <param name="location">怪物的位置</param>
+    /// <returns>如果在偏好环内返回true，否则返回false</returns>
+    bool IsInRange(Vector2Int location);
+
+    /// <summary>
+    /// 获取该怪物在玩家周围的偏好区
+    /// </summary>
+    /// <param name="location">玩家的位置</param>
+    /// <returns>一个包含偏好区位置的Vector2Int数组</returns>
+    Vector2Int[] CellsInRange(Vector2Int location);
+}
+
+
+public abstract class EnemyBase : ChessBase, IEnemy
 {
     public int mobility;//行动力
     public int moveMode;//移动模式
@@ -17,7 +38,7 @@ public class EnemyBase : ChessBase
         for (int i = 0; i < originMobility; i++)
         {
 
-            List<Vector2Int> path = ChessboardManager.instance.FindPath(Location, PlayerController.instance.Location, PlayerController.instance.gameObject, CellsInRange);
+            List<Vector2Int> path = ChessboardManager.instance.FindPath(location, PlayerController.instance.location, PlayerController.instance.gameObject, CellsInRange);
             //向玩家附近移动
 
             if (path == null || path.Count == 0)//防止越界
@@ -26,7 +47,7 @@ public class EnemyBase : ChessBase
                 yield break;
             }
 
-            if(IsInRange(PlayerController.instance.Location))//如果处在玩家周围偏好圈内，直接释放技能（防止怪物在偏好区内来回移动）
+            if(IsInRange(PlayerController.instance.location))//如果处在玩家周围偏好圈内，直接释放技能（防止怪物在偏好区内来回移动）
             {
                 break;
             }
@@ -38,7 +59,7 @@ public class EnemyBase : ChessBase
             else
             {
 
-                Vector2Int nextDirection = (path[1] - Location) * moveMode;
+                Vector2Int nextDirection = (path[1] - location) * moveMode;
                 Debug.Log("nextDirection: " + nextDirection);
                 (int residualDistance, bool isMeleeAttack, bool isRotate) = Move(nextDirection);
                 float attackDelay = 0;
@@ -67,14 +88,16 @@ public class EnemyBase : ChessBase
         }
     }
 
-    public virtual bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内
+    /* public virtual bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内
     {
         return false;//可直接用于碰撞类怪物,玩家位置既是偏好区
     }
 
-    public virtual Vector2Int[] CellsInRange(Vector2Int Location)//获取玩家周围偏好区，Location为玩家的位置
+    public virtual Vector2Int[] CellsInRange(Vector2Int Location)//获取该怪物在玩家周围的偏好区，Location为玩家的位置
     {
         //返回Location
         return new Vector2Int[] { Location };//可直接用于碰撞类怪物，玩家位置既是偏好区
-    }
+    } */
+    public abstract bool IsInRange(Vector2Int location);
+    public abstract Vector2Int[] CellsInRange(Vector2Int location);
 }

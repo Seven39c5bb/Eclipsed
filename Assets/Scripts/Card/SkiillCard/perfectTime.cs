@@ -8,7 +8,7 @@ public class perfectTime :Card
     public int damage;
     public override void CardFunc()
     {
-        Vector2Int playerPos = PlayerController.instance.Location;
+        Vector2Int playerPos = PlayerController.instance.location;
         //������ǰ���ĸ������������е��ˣ���������˺�
         if(ChessboardManager.instance.cellStates[playerPos.x+3, playerPos.y].state == Cell.StateType.Occupied)
         {

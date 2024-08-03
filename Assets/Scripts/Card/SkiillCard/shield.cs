@@ -7,7 +7,7 @@ public class shield : Card
     //获得10护盾
     public override void CardFunc()
     {
-        PlayerController.instance.Barrier += 8;
+        PlayerController.instance.barrier += 8;
         costManager.instance.curCost -= cost;
     }
 }
