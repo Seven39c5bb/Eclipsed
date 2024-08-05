@@ -131,7 +131,7 @@ public class MapNode : MonoBehaviour
                             NodeInfoName = "Elite_1_2_1";//暂时用精英战斗的布置
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
-                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Elite;//用于BGM的设置和胜利后的奖励
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Fight;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
                             SceneManager.LoadScene("CardTest");
                             break;

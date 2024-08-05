@@ -4,22 +4,35 @@ using UnityEngine;
 
 public class Lupin : EnemyBase
 {//鲁邦
+    private int currTurn = 0;
+    public int lupinWallet;
+    private static Lupin lupin_instance;
+    public static Lupin instance
+    {
+        get
+        {
+            if (lupin_instance == null)
+            {
+                lupin_instance = GameObject.FindObjectOfType<Lupin>();
+            }
+            return lupin_instance;
+        }
+    }
     void Awake()
     {
         // 初始化敌人棋子
-        maxHp = 500;//最大生命值
-        HP = 500;//当前生命值
+        maxHp = SaveManager.instance.jsonData.lupinData.MaxHP;//最大生命值
+        HP = SaveManager.instance.jsonData.lupinData.HP;//当前生命值
         meleeAttackPower = 5;//近战攻击力
         mobility = 2;//行动力
         moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
         chessName = "鲁邦";//棋子名称
         chessDiscrption = "在M市里四处偷盗、掠夺指骨的匪徒，身形高大、身披赤红色斗篷，似乎与商人是同一物种。\r\n技能1：对玩家造成3*4点伤害。自己每失去一百血，就再造成一次3点伤害。\r\n技能2：获得20点护盾。在下个回合开始时，对玩家造成护盾数额的伤害。\r\n技能3：对玩家造成10点伤害。在玩家回合开始时抽牌结束后，随机弃掉玩家手上3张牌。\r\n技能4：回合开始时，行动力变为5。\r\n技能5：结束战斗，并偷取玩家25-50点金钱。";//棋子描述
-        
 
-        location = new Vector2Int(6, 6);//临时位置
+
         ChessboardManager.instance.AddChess(this.gameObject, location);
-        
+
     }
 
     public override IEnumerator OnTurn()
@@ -30,9 +43,45 @@ public class Lupin : EnemyBase
             buff.OnTurnStart();
         }
 
+        //行动前释放的技能
+        switch (currTurn)
+        {
+            case 0:
+                //技能1：对玩家造成3*4点伤害。自己每失去一百血，就再造成一次3点伤害。
+                PlayerController.instance.TakeDamage(3 * ((maxHp - HP) / 100 + 4), this);
+                break;
+            case 1:
+                //技能2：获得20点护盾。在下个回合开始时，对玩家造成护盾数额的伤害。
+                barrier += 20;
+                BuffManager.instance.AddBuff("BuffShieldCounter_Lupin", this);
+                break;
+            case 2:
+                //技能3：对玩家造成10点伤害。在玩家回合开始时抽牌结束后，随机弃掉玩家手上3张牌。
+                PlayerController.instance.TakeDamage(10, this);
+                BuffManager.instance.AddBuff("BuffRandomDiscard_Lupin", PlayerController.instance);
+                break;
+            case 3:
+                //技能4：回合开始时，行动力变为5。
+                mobility = 5;
+                break;
+            case 4:
+                //技能5：结束战斗，并偷取玩家25-50点金钱。
+                int stealingTarget = Random.Range(25, 51);
+                int originMoney = PlayerController.instance.coins;
+                PlayerController.instance.coins -= stealingTarget;
+                int stolenMoney = originMoney - PlayerController.instance.coins;
+                lupinWallet += stolenMoney;
+                //结束战斗，跳转到普通战斗结算页面
+                FightManager.instance.curFightType = FightType.Win;
+                yield break;
+                //break;
+            default:
+                break;
+        }
+
         //用BFS算法找出
         yield return base.OnTurn();
-        
+
 
         yield return new WaitForSeconds(0.3f);
 
@@ -40,6 +89,8 @@ public class Lupin : EnemyBase
         {
             buff.OnTurnEnd();
         }
+
+        currTurn++;
     }
 
     public override bool IsInRange(Vector2Int playerLocation)//判断是否在该怪物偏好的环内
@@ -102,7 +153,7 @@ public class Lupin : EnemyBase
             step = cameFrom[step];
         }
         path.Reverse();
-        return  new Vector2Int[] { path[0] };
+        return new Vector2Int[] { path[0] };
     }
 
     // 检查格子是否可行走
@@ -121,3 +172,5 @@ public class Lupin : EnemyBase
         return false;
     }
 }
+
+

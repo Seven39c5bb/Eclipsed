@@ -9,6 +9,7 @@ public class JsonData
 {
     public MapData mapData;
     public PlayerData playerData;
+    public LupinData lupinData;
 }
 [System.Serializable]
 public class NodesListUnit
@@ -46,6 +47,14 @@ public class PlayerData
 
     public int fbCardBuyTimes;//指骨卡牌购买次数
 }
+[System.Serializable]
+public class LupinData
+{
+    public bool isArrested = false;
+    public int HP = 500;
+    public int MaxHP = 500;
+    public int coin = 0;
+}
 public class SaveManager : MonoBehaviour
 {
     public bool isBackFromNodeScene;//是否从节点场景返回,在战斗胜利时将之设为true,在加载回Atlas场景之前!!!!!!!!!!!!!!!!!!!!
@@ -80,6 +89,7 @@ public class SaveManager : MonoBehaviour
         jsonData = new JsonData();
         jsonData.mapData = new MapData();
         jsonData.playerData = new PlayerData();
+        jsonData.lupinData = new LupinData();
         jsonData.mapData.mapNodes = new List<NodesListUnit>();
         jsonData.playerData.playerDeck = new List<string>();
         #region 初始化初始卡组

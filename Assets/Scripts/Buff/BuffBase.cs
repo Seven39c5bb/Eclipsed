@@ -55,8 +55,13 @@ public class BuffBase : MonoBehaviour
         //子类实现
         return damage;
     }
-    //回合开始时触发
+    //回合开始时抽牌开始前触发
     public virtual void OnTurnStart()
+    {
+        //子类实现
+    }
+    //回合开始时抽牌结束后触发
+    public virtual void OnTurnStartEndDraw()
     {
         //子类实现
     }
