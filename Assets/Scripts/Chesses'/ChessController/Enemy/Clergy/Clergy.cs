@@ -1,32 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
-public class Gargoyle : EnemyBase
-{//石像鬼
+public class Clergy : EnemyBase
+{
     /// <summary>
-    /// 3.石像鬼：长得很像所谓石像鬼的飞行生物但头是骷髅，爪子相当锋利。
-    /// 血量：20 
-    /// 近战伤害：8 
+    /// 神职人员：被白色长袍遮盖身体的怪物，头的部分已经被巨型触手取代。
+    /// 血量：80 
+    /// 近战伤害：3 
     /// 行动力：2 
-    /// 行动模式：飞行（每次走四格） 
-    /// 技能：在当前轮次，如果这个敌人受到过伤害，则行动力-1
+    /// 行动模式：行走（每次走一格）
+    /// 技能：当这个怪物受到伤害时，为离他最近的怪物恢复5点生命值。
     /// </summary>
     void Awake()
     {
         // 初始化敌人棋子
-        maxHp = 20;//最大生命值
-        HP = 20;//当前生命值
-        meleeAttackPower = 8;//近战攻击力
+        maxHp = 80;//最大生命值
+        HP = 80;//当前生命值
+        meleeAttackPower = 3;//近战攻击力
         mobility = 2;//行动力
-        moveMode = 4;//移动模式
+        moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
-        chessName = "石像鬼";//棋子名称
-        chessDiscrption = "长得很像所谓石像鬼的飞行生物但头是骷髅，爪子相当锋利。\r\n被动技能：在当前轮次，如果这个敌人受到过伤害，则行动力-1";//棋子描述
+        chessName = "神职人员";//棋子名称
+        chessDiscrption = "被白色长袍遮盖身体的怪物，头的部分已经被巨型触手取代。\r\n技能：当这个怪物受到伤害时，为离他最近的怪物恢复5点生命值。";//棋子描述
 
         ChessboardManager.instance.AddChess(this.gameObject, location);
         //在当前轮次，如果这个敌人受到过伤害，则行动力-1
-        BuffManager.instance.AddBuff("Gargoyle_Buff", this);//添加buff（行动力-1）
+        BuffManager.instance.AddBuff("Clergy_Buff", this);//添加buff（行动力-1）
 
     }
 

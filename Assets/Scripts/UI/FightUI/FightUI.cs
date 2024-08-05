@@ -107,6 +107,11 @@ public class FightUI : UIBase
             obj.GetComponent<RectTransform>().anchoredPosition = new Vector2(GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.x,
             GameObject.Find("cardDesk").GetComponent<RectTransform>().anchoredPosition.y+100f);
             cardList.Add(obj.GetComponent<Card>());
+            //更新handcards
+            if(!CardManager.instance.handCards.Contains(obj.GetComponent<Card>()))
+            {
+                CardManager.instance.handCards.Add(obj.GetComponent<Card>());
+            }
         }
         OnUpdateCardsPos();
     }

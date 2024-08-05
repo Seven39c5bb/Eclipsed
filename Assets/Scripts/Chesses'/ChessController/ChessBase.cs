@@ -3,6 +3,7 @@ using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 
 public abstract class ChessBase : MonoBehaviour //棋子基类
 {
@@ -19,6 +20,7 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     public string chessDiscrption = "";//棋子描述
     public List<BuffBase> buffList = new List<BuffBase>();//buff列表
     public bool dontMeleeAttack = false;//是否不主动碰撞
+    public bool isDead;//是否死亡
     public int maxHp = 10;//最大生命值
     public int HP_private = 10;
     public int HP//当前生命值
@@ -109,7 +111,6 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         DamageHPBar.fillAmount = (float)HP / maxHp;
         BarrierBar.fillAmount = (float)barrier / maxHp;
     }
-
 
     private int originOrientation = -1;//初始朝向(左)
     /// <summary>
@@ -369,13 +370,17 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     // 受伤方法
     public virtual void TakeDamage(int damage, ChessBase attacker)
     {
-        foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
+        
+        if (attacker != null)
         {
-            damage = buff.OnHurt(damage, attacker);
-        }
-        foreach (BuffBase buff in attacker.buffList)//根据攻击者buff列表对伤害进行处理
-        {
-            damage = buff.OnHit(damage, this);
+            foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
+            {
+                damage = buff.OnHurt(damage, attacker);
+            }
+            foreach (BuffBase buff in attacker.buffList)//根据攻击者buff列表对伤害进行处理
+            {
+                damage = buff.OnHit(damage, this);
+            }
         }
 
         int damageTaken = damage - barrier;
@@ -383,6 +388,14 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         if (damageTaken > 0)
         {
             HP -= damageTaken;
+            if (HP <= 0)
+            {
+                isDead = true;
+                foreach(BuffBase buff in buffList)
+                {
+                    buff.OnDie();
+                }
+            }
             // 更新红色血条的形状
             HPBar.fillAmount = (float)HP / maxHp;
             // 更新绿色血条的形状

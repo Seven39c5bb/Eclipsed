@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gargoyle_Buff : BuffBase
 {
+    private int flag = 0;//判断本回合是否受到过伤害
     void Awake()
     {
         buffName = "Gargoyle_Buff";
@@ -18,13 +19,18 @@ public class Gargoyle_Buff : BuffBase
 
     public override int OnHurt(int damage, ChessBase attacker)
     {
-        Gargoyle gargoyle = chessBase as Gargoyle;
-        gargoyle.mobility -= 1;
+        if (flag == 0)
+        {
+            Gargoyle gargoyle = chessBase as Gargoyle;
+            gargoyle.mobility -= 1;
+            flag = 1;
+        }
         return damage;
     }
     public override void OnTurnEnd()
     {
         Gargoyle gargoyle = chessBase as Gargoyle;
         gargoyle.mobility = 2;//该怪回合结束后行动力恢复
+        flag = 0;
     }
 }

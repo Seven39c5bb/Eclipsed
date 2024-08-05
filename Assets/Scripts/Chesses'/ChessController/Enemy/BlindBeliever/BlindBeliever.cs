@@ -1,35 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
-public class Gargoyle : EnemyBase
-{//石像鬼
-    /// <summary>
-    /// 3.石像鬼：长得很像所谓石像鬼的飞行生物但头是骷髅，爪子相当锋利。
-    /// 血量：20 
-    /// 近战伤害：8 
-    /// 行动力：2 
-    /// 行动模式：飞行（每次走四格） 
-    /// 技能：在当前轮次，如果这个敌人受到过伤害，则行动力-1
-    /// </summary>
+public class BlindBeliever : EnemyBase
+{
+    ///1.盲目信徒：两个眼眶全都被脓包填满的普通人。
+    ///血量：35 
+    ///近战伤害：5 
+    ///行动力：3 
+    ///行动模式：行走（每次走一格）
+    ///技能：死亡时对3*3范围造成10点伤害。
     void Awake()
     {
         // 初始化敌人棋子
-        maxHp = 20;//最大生命值
-        HP = 20;//当前生命值
-        meleeAttackPower = 8;//近战攻击力
-        mobility = 2;//行动力
-        moveMode = 4;//移动模式
+        maxHp = 30;//最大生命值
+        HP = 30;//当前生命值
+        meleeAttackPower = 5;//近战攻击力
+        mobility = 3;//行动力
+        moveMode = 1;//移动模式
         this.gameObject.tag = "Enemy";
-        chessName = "石像鬼";//棋子名称
-        chessDiscrption = "长得很像所谓石像鬼的飞行生物但头是骷髅，爪子相当锋利。\r\n被动技能：在当前轮次，如果这个敌人受到过伤害，则行动力-1";//棋子描述
-
+        chessName = "盲目信徒";//棋子名称
+        chessDiscrption = "两个眼眶全都被脓包填满的普通人。\r\n技能：死亡时对3*3范围造成10点伤害。";//棋子描述
         ChessboardManager.instance.AddChess(this.gameObject, location);
-        //在当前轮次，如果这个敌人受到过伤害，则行动力-1
-        BuffManager.instance.AddBuff("Gargoyle_Buff", this);//添加buff（行动力-1）
-
+        //添加buff
+        BuffManager.instance.AddBuff("BlindBeliever_Buff", this);
     }
-
     public override IEnumerator OnTurn()
     {
         //该敌人回合
@@ -40,8 +36,6 @@ public class Gargoyle : EnemyBase
 
         //用BFS算法移动
         yield return base.OnTurn();
-
-        //释放技能
 
         yield return new WaitForSeconds(0.3f);
 

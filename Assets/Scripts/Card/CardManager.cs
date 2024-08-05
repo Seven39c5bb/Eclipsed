@@ -125,6 +125,10 @@ public class CardManager : MonoBehaviour
         //将卡牌放入弃牌堆
         Debug.Log(card.cardName);
         FightUI.cardList.Remove(card.GetComponent<Card>());
+        if (handCards.Contains(card))
+        {
+            handCards.Remove(card);
+        }
         FightUI.instance.OnUpdateCardsPos();
         CardManager.discardDesk.Add(card.GetComponent<Card>().name);
         foreach(var buff in PlayerController.instance.buffList)
