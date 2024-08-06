@@ -35,6 +35,10 @@ public class Fight_PlayerTurn : FightUnit
         costManager.instance.curCost = costManager.instance.maxCost;
         //draw card
         CardManager.instance.Draw(5);//test
+
+        // 回合开始时，抽牌结束后触发Buff
+        FightManager.instance.StartCoroutine(DelayedOnTurnStartEndDrawFunc(0.71f));
+
         FightUI.instance.isEnemyTurn = false;
     }
     public override void OnUpdate()
@@ -47,5 +51,17 @@ public class Fight_PlayerTurn : FightUnit
             CardManager.instance.UPdateDesk();
         }
         //����������������������
+    }
+
+    // 回合开始时，抽牌结束后触发Buff
+    public IEnumerator DelayedOnTurnStartEndDrawFunc(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Debug.Log("OnTurnStartEndDrawFunc");
+        List<BuffBase> buffsToProcess = new List<BuffBase>(PlayerController.instance.buffList);
+        foreach (var buff in buffsToProcess)
+        {
+            buff.OnTurnStartEndDraw();
+        }
     }
 }

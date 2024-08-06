@@ -7,7 +7,7 @@ public class Docking : Card
     public override void CardFunc()
     {
         CardManager.instance.OpenDiscardUI(1);
-        PlayerController.instance.Barrier += 15;
+        PlayerController.instance.barrier += 15;
         costManager.instance.curCost -= cost;
         ////随机获取handCards中的一张卡牌，排除当前物体
         //List<int> indexList = new List<int>();

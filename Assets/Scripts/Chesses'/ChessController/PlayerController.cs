@@ -1,3 +1,4 @@
+using System;
 using System.Buffers.Text;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,7 +29,18 @@ public class PlayerController : ChessBase
         }
     }
     public int initHp;
-    public int coins;
+    private int coins_private;
+    public int coins
+    {
+        get
+        {
+            return coins_private;
+        }
+        set
+        {
+            coins_private = Mathf.Clamp(value, 0, int.MaxValue);
+        }
+    }
     public int fingerBones;
     public override void Start()
     {
@@ -48,6 +60,7 @@ public class PlayerController : ChessBase
         maxHp = 80;//最大生命值
         HP = initHp;//当前生命值
         meleeAttackPower = 8;//近战攻击力
+        coins = SaveManager.instance.jsonData.playerData.coin;//金币
         chessName = "魔女";//棋子名称
         chessDiscrption = "教宗的喉舌，教母的利刃。";//棋子描述
 

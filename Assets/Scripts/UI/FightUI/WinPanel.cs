@@ -33,6 +33,12 @@ public class WinPanel : MonoBehaviour
         OptionPanel.instance.LoadPanel();
         Debug.Log("卡牌增加");
         SaveManager.instance.jsonData.playerData.HP = PlayerController.instance.HP;
+        SaveManager.instance.jsonData.playerData.coin = PlayerController.instance.coins;
+        if (Lupin.instance != null)
+        {
+            SaveManager.instance.jsonData.lupinData.HP = Lupin.instance.HP;
+            SaveManager.instance.jsonData.lupinData.coin = Lupin.instance.lupinWallet;
+        }
         if (SaveManager.instance.jsonData.playerData.HP > SaveManager.instance.jsonData.playerData.MaxHP)//确保生命值不超过最大生命值
         {
             SaveManager.instance.jsonData.playerData.HP = SaveManager.instance.jsonData.playerData.MaxHP;

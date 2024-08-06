@@ -16,12 +16,12 @@ public class GameStartUI : UIBase
     {
         SaveManager.instance.DeleteSave();//删档重来
         SaveManager.instance.InitJsonData();
-        UIManager.Instance.LoadScene("Atlas_1");
+        SceneTrans.instance.LoadScene("Atlas_1");
     }
     void LoadSceneContinue(GameObject obj, PointerEventData eventData)
     {
         SaveManager.instance.Load();
-        UIManager.Instance.LoadScene("Atlas_" + MapManager.AtlasIDToInt(SaveManager.instance.jsonData.mapData.currAtlasID));
+        SceneTrans.instance.LoadScene("Atlas_" + MapManager.AtlasIDToInt(SaveManager.instance.jsonData.mapData.currAtlasID));
     }
     void OuitGame(GameObject obj, PointerEventData eventData)
     {

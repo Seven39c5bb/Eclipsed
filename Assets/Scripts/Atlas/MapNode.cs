@@ -59,7 +59,7 @@ public class MapNode : MonoBehaviour
     {
         Renderer = GetComponent<SpriteRenderer>();
 
-        MapManager.Instance.mapNodes[nodeId.x][nodeId.y] = this;
+        MapManager.instance.mapNodes[nodeId.x][nodeId.y] = this;
 
         // 以父对象的位置为中心，半径为1的范围，随机旋转一个位置作为自己的新位置
         float angle = Random.Range(0, 360);
@@ -116,7 +116,7 @@ public class MapNode : MonoBehaviour
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Fight;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();//保存存档
                             Debug.Log("进入战斗场景");
-                            SceneTrans.instance.LoadNextScene_Trans("CardTest");//进入战斗场景
+                            SceneTrans.instance.LoadScene("CardTest");//进入战斗场景
                             break;
                         case NodeType.Elite:
                             // 进入精英战斗场景
@@ -124,16 +124,16 @@ public class MapNode : MonoBehaviour
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Elite;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
-                            SceneManager.LoadScene("CardTest");
+                            SceneTrans.instance.LoadScene("CardTest");
                             break;
                         case NodeType.Hunting:
                             // 进入狩猎场景
                             NodeInfoName = "Elite_1_2_1";//暂时用精英战斗的布置
                             SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
-                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Elite;//用于BGM的设置和胜利后的奖励
+                            SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Fight;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
-                            SceneManager.LoadScene("CardTest");
+                            SceneTrans.instance.LoadScene("CardTest");
                             break;
                         case NodeType.Event:
                             // 进入事件场景
@@ -141,7 +141,7 @@ public class MapNode : MonoBehaviour
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Event;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
-                            SceneManager.LoadScene("Event");
+                            SceneTrans.instance.LoadScene("Event");
                             break;
                         case NodeType.Plot:
                             // 进入剧情场景
@@ -149,14 +149,14 @@ public class MapNode : MonoBehaviour
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Plot;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
-                            SceneManager.LoadScene("Plot");
+                            SceneTrans.instance.LoadScene("Plot");
                             break;
                         case NodeType.Shop:
                             // 进入商店场景
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Shop;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
-                            SceneManager.LoadScene("Shop");
+                            SceneTrans.instance.LoadScene("Shop");
                             break;
                         case NodeType.Boss:
                             // 进入Boss战斗场景
@@ -165,7 +165,7 @@ public class MapNode : MonoBehaviour
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Boss;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
                             Debug.Log("Atlas_" + (SaveManager.instance.jsonData.mapData.currAtlasID + 1).ToString() + "_Boss");
-                            SceneManager.LoadScene(SaveManager.instance.jsonData.mapData.currAtlasID .ToString() + "_Boss");
+                            SceneTrans.instance.LoadScene(SaveManager.instance.jsonData.mapData.currAtlasID .ToString() + "_Boss");
                             break;
                 }
                 });
