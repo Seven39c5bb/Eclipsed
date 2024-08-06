@@ -6,26 +6,26 @@ using TMPro;
 
 public class MapManager : MonoBehaviour
 {
-    public static MapManager instance;
-    public static MapManager Instance
+    public static MapManager instance_private;
+    public static MapManager instance
     {
         get
         {
-            if (instance == null)
+            if (instance_private == null)
             {
-                instance = FindObjectOfType<MapManager>();
+                instance_private = FindObjectOfType<MapManager>();
                 // 如果找不到MapManager实例，那么返回null
-                if (instance == null)
+                if (instance_private == null)
                 {
                     return null;
                 }
-                instance.mapNodes = new MapNode[14][];
-                for (int i = 0; i < instance.mapNodes.Length; i++)
+                instance_private.mapNodes = new MapNode[14][];
+                for (int i = 0; i < instance_private.mapNodes.Length; i++)
                 {
-                    instance.mapNodes[i] = new MapNode[3];
+                    instance_private.mapNodes[i] = new MapNode[3];
                 }
             }
-            return instance;
+            return instance_private;
         }
     }
 

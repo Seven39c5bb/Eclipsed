@@ -59,7 +59,7 @@ public class MapNode : MonoBehaviour
     {
         Renderer = GetComponent<SpriteRenderer>();
 
-        MapManager.Instance.mapNodes[nodeId.x][nodeId.y] = this;
+        MapManager.instance.mapNodes[nodeId.x][nodeId.y] = this;
 
         // 以父对象的位置为中心，半径为1的范围，随机旋转一个位置作为自己的新位置
         float angle = Random.Range(0, 360);

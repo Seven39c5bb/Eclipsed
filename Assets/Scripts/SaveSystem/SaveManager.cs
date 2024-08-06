@@ -146,14 +146,14 @@ public class SaveManager : MonoBehaviour
     private void UpdateCurDate()//记得添加数据前记得清空list，防止重复添加！！！！！！！！！
     {
         //如果MapManager.Instance存在
-        if (MapManager.Instance != null )
+        if (MapManager.instance != null )
         {
             //jsonData.mapData.mapBeCreated = MapManager.Instance.MapBeCreated;//地图是否被创建
 
-            jsonData.mapData.currAtlasID = MapManager.Instance.currAtlasID;//当前地图ID
+            jsonData.mapData.currAtlasID = MapManager.instance.currAtlasID;//当前地图ID
             jsonData.mapData.mapNodes.Clear();
 
-            foreach(var nodes in MapManager.Instance.mapNodes)//从当前地图中更新节点数据
+            foreach(var nodes in MapManager.instance.mapNodes)//从当前地图中更新节点数据
             {
                 foreach(var node in nodes)
                 {
@@ -211,58 +211,58 @@ public class SaveManager : MonoBehaviour
     private void UpdateInfo()
     {
         //如果MapManager.Instance存在
-        if (MapManager.Instance != null)
+        if (MapManager.instance != null)
         { 
             //MapManager.Instance.MapBeCreated = jsonData.mapData.mapBeCreated;
-            for (int i = 0; i < MapManager.Instance.mapNodes.Length; i++)
+            for (int i = 0; i < MapManager.instance.mapNodes.Length; i++)
             {
-                for (int j = 0; j < MapManager.Instance.mapNodes[i].Length; j++)
+                for (int j = 0; j < MapManager.instance.mapNodes[i].Length; j++)
                 {
-                    if (MapManager.Instance.mapNodes[i][j] != null)
+                    if (MapManager.instance.mapNodes[i][j] != null)
                     {
-                        MapManager.Instance.mapNodes[i][j].isLocked = jsonData.mapData.mapNodes[i * 3 + j].isLocked;
-                        MapManager.Instance.mapNodes[i][j].nextNodes = new List<MapNode>();
+                        MapManager.instance.mapNodes[i][j].isLocked = jsonData.mapData.mapNodes[i * 3 + j].isLocked;
+                        MapManager.instance.mapNodes[i][j].nextNodes = new List<MapNode>();
                         foreach (var nextNode in jsonData.mapData.mapNodes[i * 3 + j].nextNodes)
                         {
-                            MapManager.Instance.mapNodes[i][j].nextNodes.Add(MapManager.Instance.mapNodes[nextNode.x][nextNode.y]);
+                            MapManager.instance.mapNodes[i][j].nextNodes.Add(MapManager.instance.mapNodes[nextNode.x][nextNode.y]);
                         }
-                        MapManager.Instance.mapNodes[i][j].transform.position = jsonData.mapData.mapNodes[i * 3 + j].position;
-                        MapManager.Instance.mapNodes[i][j].Renderer.color = jsonData.mapData.mapNodes[i * 3 + j].color;
+                        MapManager.instance.mapNodes[i][j].transform.position = jsonData.mapData.mapNodes[i * 3 + j].position;
+                        MapManager.instance.mapNodes[i][j].Renderer.color = jsonData.mapData.mapNodes[i * 3 + j].color;
                         if (jsonData.mapData.mapNodes[i * 3 + j].leftNode != new Vector2Int(-1, -1))//左节点
                         {
-                            MapManager.Instance.mapNodes[i][j].leftNode = MapManager.Instance.mapNodes[jsonData.mapData.mapNodes[i * 3 + j].leftNode.x][jsonData.mapData.mapNodes[i * 3 + j].leftNode.y];
+                            MapManager.instance.mapNodes[i][j].leftNode = MapManager.instance.mapNodes[jsonData.mapData.mapNodes[i * 3 + j].leftNode.x][jsonData.mapData.mapNodes[i * 3 + j].leftNode.y];
                         }
                         else
                         {
-                            MapManager.Instance.mapNodes[i][j].leftNode = null;
+                            MapManager.instance.mapNodes[i][j].leftNode = null;
                         }
                         if (jsonData.mapData.mapNodes[i * 3 + j].rightNode != new Vector2Int(-1, -1))//右节点
                         {
-                            MapManager.Instance.mapNodes[i][j].rightNode = MapManager.Instance.mapNodes[jsonData.mapData.mapNodes[i * 3 + j].rightNode.x][jsonData.mapData.mapNodes[i * 3 + j].rightNode.y];
+                            MapManager.instance.mapNodes[i][j].rightNode = MapManager.instance.mapNodes[jsonData.mapData.mapNodes[i * 3 + j].rightNode.x][jsonData.mapData.mapNodes[i * 3 + j].rightNode.y];
                         }
                         else
                         {
-                            MapManager.Instance.mapNodes[i][j].rightNode = null;
+                            MapManager.instance.mapNodes[i][j].rightNode = null;
                         }
-                        MapManager.Instance.mapNodes[i][j].nodeType = jsonData.mapData.mapNodes[i * 3 + j].nodeType;
-                        MapManager.Instance.mapNodes[i][j].NodeInfoName = jsonData.mapData.mapNodes[i * 3 + j].NodeInfoName;
+                        MapManager.instance.mapNodes[i][j].nodeType = jsonData.mapData.mapNodes[i * 3 + j].nodeType;
+                        MapManager.instance.mapNodes[i][j].NodeInfoName = jsonData.mapData.mapNodes[i * 3 + j].NodeInfoName;
                     }
                 }
             }
 
-            for (int i = 0; i < MapManager.Instance.mapNodes.Length; i++)
+            for (int i = 0; i < MapManager.instance.mapNodes.Length; i++)
             {
-                for (int j = 0; j < MapManager.Instance.mapNodes[i].Length; j++)
+                for (int j = 0; j < MapManager.instance.mapNodes[i].Length; j++)
                 {
-                    if (MapManager.Instance.mapNodes[i][j] != null)
+                    if (MapManager.instance.mapNodes[i][j] != null)
                     {
-                        MapManager.Instance.mapNodes[i][j].PathGenerate();
-                        MapManager.Instance.mapNodes[i][j].SetNodeSprite();
+                        MapManager.instance.mapNodes[i][j].PathGenerate();
+                        MapManager.instance.mapNodes[i][j].SetNodeSprite();
                     }
                 }
             }
 
-            MapManager.Instance.currAtlasID = jsonData.mapData.currAtlasID;
+            MapManager.instance.currAtlasID = jsonData.mapData.currAtlasID;
         }
     
     }
