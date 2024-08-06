@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1198575113345273744}
   - component: {fileID: 6436207801145233932}
   - component: {fileID: 464632487239763608}
-  - component: {fileID: 6382789743330925592}
   m_Layer: 5
   m_Name: BlackCanvas
   m_TagString: Untagged
@@ -111,16 +110,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6382789743330925592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7180193512197094955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 109ccba6ee3b9284d9549a00eed216ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transition: {fileID: 464632487239763608}
