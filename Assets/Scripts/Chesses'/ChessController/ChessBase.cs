@@ -193,6 +193,8 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
             float moveDuration = 0.5f * moveDistance;  //移动所需的时间
             transform.DOMove(aimPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
+                //当玩家移动到该棋格，触发该效果
+                ChessboardManager.instance.cellStates[location.x, location.y].property?.OnPlayerEnter();
                 //移动完成后执行的代码
                 if (dontMeleeAttack == false && roadblockObject != null)
                 {

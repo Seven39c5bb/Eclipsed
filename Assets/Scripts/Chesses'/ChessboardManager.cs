@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.PlayerLoop;
+using Unity.VisualScripting;
 
 public class ChessboardManager : MonoBehaviour
 {
@@ -50,10 +51,12 @@ public class ChessboardManager : MonoBehaviour
                 cellStates[i, j] = CellObject.GetComponent<Cell>();
             }
         }
-
         UpdateEnemyControllerList();
 
         Chess_instance = this;
+
+        ChangeProperty(new Vector2Int(4, 4), "smogy");
+
     }
 
     public void UpdateEnemyControllerList()
@@ -509,4 +512,40 @@ public class ChessboardManager : MonoBehaviour
         
     }
 
+    ///<summary>
+    ///将棋格替换为另一个棋格
+    ///</summary>
+    ///<param name="location">要更换的棋格坐标</param>
+    ///<param name="className">要进行更换的棋格类型类名</param>
+    public void ChangeCell(Vector2Int location, string className)
+    {
+        int x = location.x, y = location.y;
+        GameObject cell = cellStates[x, y].gameObject;
+        //添加脚本
+        Type type = Type.GetType(className);
+        if(type != null)
+        {
+            Destroy(cell.GetComponent<Cell>());
+            cell.AddComponent(type);
+            cellStates[x, y] = (Cell)cell.GetComponent(type);
+        }
+        //更换贴图
+    }
+
+    ///<summary>
+    ///更换棋格额外属性
+    /// </summary>
+    public void ChangeProperty(Vector2Int location, string propertyName)
+    {
+        int x = location.x, y = location.y;
+        GameObject cell = cellStates[x, y].gameObject;
+        if (cellStates[x, y].property?.propertyName == propertyName) return;
+        if(cellStates[x, y].property != null)
+        {
+            Destroy(cellStates[x, y].property.gameObject);
+        }
+        GameObject obj = Instantiate(Resources.Load("Prefabs/CellProperty/smogy"), cell.transform) as GameObject;
+        cellStates[x,y].property=obj.GetComponent<CellProperty>();
+        Debug.Log(obj.name);
+    }
 }
