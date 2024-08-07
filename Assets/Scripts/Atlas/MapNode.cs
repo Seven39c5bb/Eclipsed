@@ -45,8 +45,8 @@ public class MapNode : MonoBehaviour
 
     public NodeType nodeType; 
 
-    // 储存战斗类节点关卡信息的Txt文件
-    public string NodeInfoName;//根据当前节点id确定位置，随机抽取对应战斗布置
+    // 储存节点加载信息的Txt文件名
+    public string InfoFileName;//根据当前节点id确定位置，随机抽取对应战斗布置
 
     // 跳转的场景
     private string sceneName;//将会从存档文件中读取
@@ -111,7 +111,7 @@ public class MapNode : MonoBehaviour
                     {
                         case NodeType.Fight:
                             // 进入战斗场景
-                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;//用于战斗场景怪物的初始化
+                            SaveManager.instance.jsonData.mapData.currInfoFileName = InfoFileName;//用于战斗场景怪物的初始化
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;//用于战斗胜利后的返回
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Fight;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();//保存存档
@@ -120,7 +120,7 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Elite:
                             // 进入精英战斗场景
-                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
+                            SaveManager.instance.jsonData.mapData.currInfoFileName = InfoFileName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Elite;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
@@ -128,8 +128,8 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Hunting:
                             // 进入狩猎场景
-                            NodeInfoName = "Elite_1_2_1";//暂时用精英战斗的布置
-                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
+                            InfoFileName = "Elite_1_2_1";//暂时用精英战斗的布置
+                            SaveManager.instance.jsonData.mapData.currInfoFileName = InfoFileName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Fight;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
@@ -137,7 +137,7 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Event:
                             // 进入事件场景
-                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
+                            SaveManager.instance.jsonData.mapData.currInfoFileName = InfoFileName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Event;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
@@ -145,7 +145,7 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Plot:
                             // 进入剧情场景
-                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
+                            SaveManager.instance.jsonData.mapData.currInfoFileName = InfoFileName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Plot;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
@@ -160,7 +160,7 @@ public class MapNode : MonoBehaviour
                             break;
                         case NodeType.Boss:
                             // 进入Boss战斗场景
-                            SaveManager.instance.jsonData.mapData.currNodeInfoName = NodeInfoName;
+                            SaveManager.instance.jsonData.mapData.currInfoFileName = InfoFileName;
                             SaveManager.instance.jsonData.mapData.backAtlasID = backAtlasID;
                             SaveManager.instance.jsonData.mapData.currNodeType = NodeType.Boss;//用于BGM的设置和胜利后的奖励
                             SaveManager.instance.Save();
@@ -253,6 +253,7 @@ public class MapNode : MonoBehaviour
         switch (nodeType)
         {
             case NodeType.Fight:
+                Debug.Log("FightNode");
                 Renderer.sprite = sprites[3];
                 break;
             case NodeType.Elite:
@@ -273,6 +274,7 @@ public class MapNode : MonoBehaviour
                 Renderer.sprite = sprites[6];
                 break;
             case NodeType.Boss:
+                Debug.Log("BossNode");
                 Renderer.sprite = sprites[0];
                 break;
         }

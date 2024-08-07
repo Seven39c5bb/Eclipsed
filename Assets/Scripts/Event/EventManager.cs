@@ -117,7 +117,7 @@ public class EventManager : MonoBehaviour
     public void HandleEventAsset()
     {
         //从eventAsset中读取事件信息
-        eventAsset = Resources.Load<TextAsset>("TextAssets/events/" + SaveManager.instance.jsonData.mapData.currNodeInfoName);
+        eventAsset = Resources.Load<TextAsset>("TextAssets/events/" + SaveManager.instance.jsonData.mapData.currInfoFileName);
         string[] eventParts = eventAsset.text.Split('：');
         //事件名字
         string eventName = eventParts[1];

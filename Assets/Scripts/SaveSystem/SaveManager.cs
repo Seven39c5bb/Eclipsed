@@ -30,7 +30,7 @@ public class MapData
     public MapManager.AtlasID currAtlasID;//当前地图ID
     public MapManager.AtlasID backAtlasID;//返回地图ID
     public List<NodesListUnit> mapNodes;
-    public string currNodeInfoName;//当前战斗节点信息文件名,用于进入战斗场景后的读取
+    public string currInfoFileName;//当前战斗节点信息文件名,用于进入战斗场景后的读取
     public Vector2Int currNodeID;//当前节点ID,用于从其他场景返回时，将该节点设置为已探索，将其子节点解锁
     public MapNode.NodeType currNodeType;//用于战斗BGM的选取以及战斗胜利后的的奖励设置
 }
@@ -91,6 +91,7 @@ public class SaveManager : MonoBehaviour
         jsonData.playerData = new PlayerData();
         jsonData.lupinData = new LupinData();
         jsonData.mapData.mapNodes = new List<NodesListUnit>();
+        jsonData.mapData.currAtlasID = MapManager.AtlasID.Atlas_1;
         jsonData.playerData.playerDeck = new List<string>();
         #region 初始化初始卡组
         GameConfig gameConfig = new GameConfig();
@@ -193,7 +194,7 @@ public class SaveManager : MonoBehaviour
 
                         nodesListUnit.position = node.transform.position;//位置
 
-                        nodesListUnit.NodeInfoName = node.NodeInfoName;//战斗节点信息文件名
+                        nodesListUnit.NodeInfoName = node.InfoFileName;//战斗节点信息文件名
 
                         jsonData.mapData.mapNodes.Add(nodesListUnit);//添加节点数据
 
@@ -245,7 +246,7 @@ public class SaveManager : MonoBehaviour
                             MapManager.instance.mapNodes[i][j].rightNode = null;
                         }
                         MapManager.instance.mapNodes[i][j].nodeType = jsonData.mapData.mapNodes[i * 3 + j].nodeType;
-                        MapManager.instance.mapNodes[i][j].NodeInfoName = jsonData.mapData.mapNodes[i * 3 + j].NodeInfoName;
+                        MapManager.instance.mapNodes[i][j].InfoFileName = jsonData.mapData.mapNodes[i * 3 + j].NodeInfoName;
                     }
                 }
             }
