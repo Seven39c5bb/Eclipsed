@@ -18,6 +18,7 @@ public class Fight_PlayerTurn : FightUnit
         }
 
         FightManager.instance.turnCounter++;//回合数+1
+
         //遍历所有棋格，调用OnPlayerTurnBegin
         foreach(var cell in ChessboardManager.instance.cellStates)
         {

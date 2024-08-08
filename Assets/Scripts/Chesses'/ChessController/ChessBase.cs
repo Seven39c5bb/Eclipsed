@@ -139,7 +139,7 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         {
             ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessExit(this);
         }
-
+ 
         //更新Location
         location = aimLocation;
 

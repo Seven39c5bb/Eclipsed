@@ -329,6 +329,8 @@ MonoBehaviour:
   hoverPos: {x: 0, y: 0}
   isUsed: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
+  isDiscard: 0
+  releaseRange: 0
   damage: 10
 --- !u!1 &8307778887904322907
 GameObject:
