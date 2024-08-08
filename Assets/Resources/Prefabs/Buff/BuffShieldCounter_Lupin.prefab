@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4395751657931380967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4117825753855032719}
+  - component: {fileID: 181916500748398080}
+  m_Layer: 0
+  m_Name: BuffShieldCounter_Lupin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4117825753855032719
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395751657931380967}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.0148118, y: 3.889436, z: 1.1738248}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &181916500748398080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4395751657931380967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74a971a8d182556418d9b7a12376d1d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffImgType: 0
+  buffName: BuffShieldCounter_Lupin
+  buffNameCN: "\u62A4\u76FE\u53CD\u51FB"
+  durationTurn: 0
+  chessBase: {fileID: 0}
+  buffType: 0
+  description: "\u9C81\u5BBE\u5373\u5C06\u4F7F\u7528\u62A4\u76FE\u53CD\u51FB\uFF0C\u5BF9\u73A9\u5BB6\u9020\u6210\u62A4\u76FE\u6570\u989D\u7684\u4F24\u5BB3\u3002"
+  canBeLayed: 0
+  layer: 1
