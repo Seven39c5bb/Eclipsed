@@ -254,6 +254,7 @@ MonoBehaviour:
   hoverPos: {x: 0, y: 0}
   isUsed: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
+  isDiscard: 0
   skillList: []
 --- !u!1 &1046353958495336828
 GameObject:

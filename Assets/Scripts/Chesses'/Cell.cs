@@ -16,7 +16,8 @@ public class Cell : MonoBehaviour
     public GameObject occupant = null;
     //是否被鼠标选中
     public bool isSelected = false;
-    
+    //该棋格上的属性
+    public CellProperty property;
 
 
     #region 血池效果
@@ -46,7 +47,7 @@ public class Cell : MonoBehaviour
                 break;
         }
     }
-    private GameObject bloodPool;//血池图像
+    private GameObject bloodPool;//血池图像‘
     public void SetBloodPool(CellCondition condition)//设置血池
     {
         cellCondition = condition;
@@ -93,7 +94,7 @@ public class Cell : MonoBehaviour
 
 
     SpriteRenderer spriteRenderer;
-    Color originColor;
+    public Color originColor;
     private void Awake()
     {
         if (state == StateType.Wall)
@@ -126,5 +127,10 @@ public class Cell : MonoBehaviour
             // 将颜色设置为原始颜色
             spriteRenderer.color = originColor;
         }
+    }
+
+    public virtual void OnPlayerEnter()
+    {
+
     }
 }

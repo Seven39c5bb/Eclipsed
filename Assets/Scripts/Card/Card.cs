@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.FilePathAttribute;
 
 public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPointerEnterHandler,IPointerExitHandler,IPointerClickHandler
 {
@@ -49,6 +50,8 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     public Color startColor;
     //是否被选中弃牌
     public bool isDiscard = false;
+    //释放范围
+    public int releaseRange = -1;
     private void Awake()
     {
         startColor=this.GetComponent<Image>().color;
@@ -113,6 +116,22 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         //startPos = this.transform.position;
         canvasGroup.blocksRaycasts = false;
         Debug.Log("onbegindrag");
+        //以玩家为中心n*n的范围使地块变色
+        if(releaseRange!=-1)
+        {
+            
+            int leftAxis = PlayerController.instance.location.x - 3 > 0 ? PlayerController.instance.location.x - 3 : 0;
+            int rightAxis = PlayerController.instance.location.x + 3 < 9 ? PlayerController.instance.location.x + 3 : 9;
+            int upAxis = PlayerController.instance.location.y - 3 > 0 ? PlayerController.instance.location.y - 3 : 0;
+            int downAxis = PlayerController.instance.location.y + 3 < 9 ? PlayerController.instance.location.y + 3 : 9;
+            for (int i = leftAxis; i <= rightAxis; i++)
+            {
+                for (int j = upAxis; j <= downAxis; j++)
+                {
+                    
+                }
+            }
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
