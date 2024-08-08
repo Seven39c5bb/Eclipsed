@@ -31,6 +31,7 @@ public class ChessboardManager : MonoBehaviour
                         string cellName = $"Cell ({i},{j})";
                         GameObject CellObject = GameObject.Find(cellName);
                         ChessboardManager.Chess_instance.cellStates[i, j] = CellObject.GetComponent<Cell>();
+                        ChessboardManager.Chess_instance.cellStates[i, j].cellLocation = new Vector2Int(i, j);
                     }
                 }
 
@@ -49,13 +50,14 @@ public class ChessboardManager : MonoBehaviour
                 string cellName = $"Cell ({i},{j})";
                 GameObject CellObject = GameObject.Find(cellName);
                 cellStates[i, j] = CellObject.GetComponent<Cell>();
+
             }
         }
         UpdateEnemyControllerList();
 
         Chess_instance = this;
 
-        ChangeProperty(new Vector2Int(4, 4), "smogy");
+        ChangeProperty(new Vector2Int(5, 4), "smogy");
     }
 
     public void UpdateEnemyControllerList()
@@ -541,10 +543,17 @@ public class ChessboardManager : MonoBehaviour
         if (cellStates[x, y].property?.propertyName == propertyName) return;
         if(cellStates[x, y].property != null)
         {
-            Destroy(cellStates[x, y].property.gameObject);
+            //Debug.Log("测试是否触发OnRemove");
+            cellStates[x, y].property.OnRemove();
         }
-        GameObject obj = Instantiate(Resources.Load("Prefabs/CellProperty/smogy"), cell.transform) as GameObject;
+        if (propertyName == null) return;
+        GameObject obj = Instantiate(Resources.Load("Prefabs/CellProperty/"+propertyName), cell.transform) as GameObject;
+        
+        obj.GetComponent<CellProperty>().cell = cellStates[x, y];
         cellStates[x,y].property=obj.GetComponent<CellProperty>();
+        //调用
+        cellStates[x, y].property.OnAdd();
+
         Debug.Log(obj.name);
     }
 }
