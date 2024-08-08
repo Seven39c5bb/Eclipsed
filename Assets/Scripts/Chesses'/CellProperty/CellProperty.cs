@@ -7,8 +7,6 @@ public class CellProperty : MonoBehaviour
     public string propertyName;
     public string description;
 
-    public virtual void OnPlayerEnter()
-    {
-
-    }
+    public virtual void OnChessEnter(ChessBase chess){ }
+    public virtual void OnChessExit(ChessBase chess) { }
 }

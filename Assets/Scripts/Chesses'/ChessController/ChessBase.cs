@@ -134,6 +134,12 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         //计算剩余移动数
         int residualDistance = Mathf.Abs(Mathf.Abs(direction.x) + Mathf.Abs(direction.y) - moveDistance);
 
+        //当玩家离开该棋格
+        if (location != aimLocation)
+        {
+            ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessExit(this);
+        }
+
         //更新Location
         location = aimLocation;
 
@@ -194,7 +200,7 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
             transform.DOMove(aimPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
             {
                 //当玩家移动到该棋格，触发该效果
-                ChessboardManager.instance.cellStates[location.x, location.y].property?.OnPlayerEnter();
+                ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessEnter(this);
                 //移动完成后执行的代码
                 if (dontMeleeAttack == false && roadblockObject != null)
                 {
