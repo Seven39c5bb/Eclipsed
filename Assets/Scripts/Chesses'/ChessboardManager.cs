@@ -50,7 +50,7 @@ public class ChessboardManager : MonoBehaviour
                 string cellName = $"Cell ({i},{j})";
                 GameObject CellObject = GameObject.Find(cellName);
                 cellStates[i, j] = CellObject.GetComponent<Cell>();
-
+                ChessboardManager.Chess_instance.cellStates[i, j].cellLocation = new Vector2Int(i, j);
             }
         }
         UpdateEnemyControllerList();

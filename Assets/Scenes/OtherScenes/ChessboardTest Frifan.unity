@@ -5903,7 +5903,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1450593274
 Transform:
   m_ObjectHideFlags: 0
@@ -5941,6 +5941,7 @@ MonoBehaviour:
   chessDiscrption: 
   buffList: []
   dontMeleeAttack: 0
+  isDead: 0
   maxHp: 10
   HP_private: 10
   barrier_private: 0
@@ -6204,14 +6205,12 @@ MonoBehaviour:
   chessDiscrption: 
   buffList: []
   dontMeleeAttack: 0
+  isDead: 0
   maxHp: 10
   HP_private: 10
   barrier_private: 0
   meleeAttackPower_private: 2
-  moveSpeed_private: 5
   location_private: {x: 0, y: 0}
-  HPBarInstance: {fileID: 0}
-  originOrientation: -1
   mobility: 0
   moveMode: 0
   isActed: 0
@@ -6478,13 +6477,13 @@ MonoBehaviour:
   chessDiscrption: 
   buffList: []
   dontMeleeAttack: 0
+  isDead: 0
   maxHp: 10
   HP_private: 10
   barrier_private: 0
   meleeAttackPower_private: 2
   location_private: {x: 0, y: 0}
   initHp: 0
-  coins: 0
   fingerBones: 0
 --- !u!1001 &383448202457740243
 PrefabInstance:
@@ -6722,6 +6721,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29e050e271a4e474083e55b6b0027417, type: 3}
+--- !u!1001 &3133728655066323761
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 39.148804
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.3046562
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.1136413
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2022619058758086833, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7996836901057373927, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
+      propertyPath: m_Name
+      value: BloodPool
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bd5637b62b5b69a4baeadd2ab43d6337, type: 3}
 --- !u!1001 &3504264638590521565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7311,7 +7367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836504382509601683, guid: 454655a82309d6f4e80424b8a5e6b2bc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4237011874105879973, guid: 454655a82309d6f4e80424b8a5e6b2bc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8367,3 +8423,4 @@ SceneRoots:
   - {fileID: 1882268298}
   - {fileID: 1126731025197929318}
   - {fileID: 5731171366314562065}
+  - {fileID: 3133728655066323761}

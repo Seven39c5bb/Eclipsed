@@ -23,6 +23,7 @@ public class Fight_PlayerTurn : FightUnit
         foreach(var cell in ChessboardManager.instance.cellStates)
         {
             cell.OnPlayerTurnBegin();
+            if(cell.property != null)  cell.property.OnPlayerTurnBegin();
         }
 
 
