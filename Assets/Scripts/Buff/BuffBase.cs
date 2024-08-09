@@ -118,4 +118,10 @@ public class BuffBase : MonoBehaviour
     {
         //子类实现
     }
+
+    //当玩家回合开始时触发
+    public virtual void OnPlayerTurnBegin()
+    {
+
+    }
 }

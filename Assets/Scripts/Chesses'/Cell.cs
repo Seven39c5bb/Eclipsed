@@ -18,7 +18,8 @@ public class Cell : MonoBehaviour
     public bool isSelected = false;
     //该棋格上的属性
     public CellProperty property;
-
+    //该棋格的位置
+    public Vector2Int cellLocation;
 
     #region 血池效果
     public enum CellCondition
@@ -95,7 +96,7 @@ public class Cell : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     public Color originColor;
-    private void Awake()
+    public virtual void Awake()
     {
         if (state == StateType.Wall)
         {
@@ -129,8 +130,14 @@ public class Cell : MonoBehaviour
         }
     }
 
+    #region
+    public virtual void OnAdd()
+    {
+
+    }
     public virtual void OnPlayerEnter()
     {
 
     }
+    #endregion
 }

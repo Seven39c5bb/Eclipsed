@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Smoke : CellProperty
@@ -21,5 +22,28 @@ public class Smoke : CellProperty
     {
         Debug.Log("Exit the Smoke");
         chess.GetComponent<SpriteRenderer>().DOColor(Color.white, 0.3f);
+    }
+    public override void OnAdd()
+    {
+        //判断添加时该棋格上有没有棋子
+        if(cell.state!=Cell.StateType.Empty)
+        {
+            cell.occupant.GetComponent<SpriteRenderer>().DOColor(new Color(0, 0, 0, 0), 0.3f);
+        }
+    }
+    public override void OnRemove()
+    {
+        //判断移除时该棋格上有没有棋子
+        if (cell.state != Cell.StateType.Empty)
+        {
+            cell.occupant.GetComponent<SpriteRenderer>().DOColor(Color.white, 0.3f).OnComplete(() =>
+            {
+                Destroy(this.gameObject);
+            });
+        }
+        else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
