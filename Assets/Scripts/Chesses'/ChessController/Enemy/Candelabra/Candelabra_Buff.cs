@@ -7,6 +7,7 @@ using static UnityEditor.FilePathAttribute;
 public class Candelabra_Buff : BuffBase
 {
     public int flag = 0;
+    public int turn;
     void Awake()
     {
         buffName = "Candelabra_Buff";
@@ -39,10 +40,15 @@ public class Candelabra_Buff : BuffBase
         {
             for (int j = upAxis; j <= downAxis; j++)
             {
+                //Debug.Log("("+i+", "+j+")");    
                 if (ChessboardManager.instance.cellStates[i, j].property?.propertyName =="Smoke" )
                 {
                     ChessboardManager.instance.ChangeProperty(new Vector2Int(i,j),null);
-                    chessBase.GetComponent<Candelabra>()?.points.Add(new Vector2Int(i,j));
+                    if(!chessBase.GetComponent<Candelabra>().points.Contains(new Vector2Int(i, j)))
+                    {
+                        chessBase.GetComponent<Candelabra>()?.points.Add(new Vector2Int(i,j));
+                    }
+
                     Debug.Log(i +" "+ j + " 上有烟雾");
                 }
             }
@@ -52,6 +58,16 @@ public class Candelabra_Buff : BuffBase
 
     public override void OnPlayerTurnBegin()
     {
-        base.OnPlayerTurnBegin();
+        if(turn==2)
+        {
+            turn = 0;
+            Debug.Log("恢复烟雾");
+            //恢复烟雾
+            foreach(var point in chessBase.GetComponent<Candelabra>().points)
+            {
+                ChessboardManager.instance.ChangeProperty(point, "Smoke");
+            }
+        }
+        else { turn += 1; }
     }
 }

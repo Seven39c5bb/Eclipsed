@@ -5012,7 +5012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3899008387087418889, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5455151108220730742, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
       propertyPath: m_Sprite
@@ -5024,6 +5024,31 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+--- !u!1 &378421162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1361993098586984088, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+  m_PrefabInstance: {fileID: 8646781033769029042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &378421167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378421162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b8c49b4fc245bd44907d1dba54b5d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  occupant: {fileID: 0}
+  isSelected: 0
+  property: {fileID: 0}
+  cellLocation: {x: 0, y: 0}
+  cellCondition: 0
+  sustainTurn: 0
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!4 &510485001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3233580361549578195, guid: d1ba5a85bf1561f479e43a53e60d445b, type: 3}
@@ -10268,7 +10293,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
@@ -15648,7 +15672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1450593274
 Transform:
   m_ObjectHideFlags: 0
@@ -15686,6 +15710,7 @@ MonoBehaviour:
   chessDiscrption: 
   buffList: []
   dontMeleeAttack: 0
+  isDead: 0
   maxHp: 10
   HP_private: 10
   barrier_private: 0
@@ -15949,14 +15974,12 @@ MonoBehaviour:
   chessDiscrption: 
   buffList: []
   dontMeleeAttack: 0
+  isDead: 0
   maxHp: 10
   HP_private: 10
   barrier_private: 0
   meleeAttackPower_private: 2
-  moveSpeed_private: 5
   location_private: {x: 0, y: 0}
-  HPBarInstance: {fileID: 0}
-  originOrientation: -1
   mobility: 0
   moveMode: 0
   isActed: 0
@@ -21096,7 +21119,6 @@ MonoBehaviour:
   meleeAttackPower_private: 2
   location_private: {x: 0, y: 0}
   initHp: 0
-  coins: 0
   fingerBones: 0
 --- !u!1001 &360540238993440817
 PrefabInstance:
@@ -21510,7 +21532,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3899008387087418889, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23219,13 +23241,17 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7094157147342020343, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8359369302211969962, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 702929165}
+    - targetCorrespondingSourceObject: {fileID: 1361993098586984088, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 378421167}
   m_SourcePrefab: {fileID: 100100000, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
 --- !u!1001 &8993385623352297249
 PrefabInstance:

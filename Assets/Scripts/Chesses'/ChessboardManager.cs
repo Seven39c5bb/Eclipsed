@@ -50,14 +50,14 @@ public class ChessboardManager : MonoBehaviour
                 string cellName = $"Cell ({i},{j})";
                 GameObject CellObject = GameObject.Find(cellName);
                 cellStates[i, j] = CellObject.GetComponent<Cell>();
-
+                cellStates[i, j].cellLocation = new Vector2Int(i, j);
             }
         }
         UpdateEnemyControllerList();
 
         Chess_instance = this;
 
-        ChangeProperty(new Vector2Int(5, 4), "smogy");
+        ChangeProperty(new Vector2Int(5, 4), "Smoke");
     }
 
     public void UpdateEnemyControllerList()
@@ -142,7 +142,7 @@ public class ChessboardManager : MonoBehaviour
 
                     if(cellStates[x + i * step, y].state == Cell.StateType.Occupied)
                     {
-                        if(cellStates[x + i * step, y].occupant.tag == "Enemy")//障碍是敌方棋子时
+                        if(cellStates[x + i * step, y].occupant.GetComponent<EnemyBase>())//障碍是敌方棋子时
                         {
                             cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
                             cellStates[x + (i - 1) * step, y].occupant = requestObject;

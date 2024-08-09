@@ -38,11 +38,13 @@ public class Smoke : CellProperty
         {
             cell.occupant.GetComponent<SpriteRenderer>().DOColor(Color.white, 0.3f).OnComplete(() =>
             {
+                cell.property = null;
                 Destroy(this.gameObject);
             });
         }
         else
         {
+            cell.property = null;
             Destroy(this.gameObject);
         }
     }
