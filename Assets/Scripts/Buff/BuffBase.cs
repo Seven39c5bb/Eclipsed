@@ -44,13 +44,13 @@ public class BuffBase : MonoBehaviour
     public int layer = 1;
 
     //造成伤害时触发
-    public virtual int OnHit(int damage, ChessBase target)
+    public virtual int OnHit(int damage, ChessBase target, DamageType damageType = DamageType.Null)
     {
         //子类实现
         return damage;
     }
     //受到伤害时触发
-    public virtual int OnHurt(int damage, ChessBase attacker)
+    public virtual int OnHurt(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
         //子类实现
         return damage;

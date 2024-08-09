@@ -15644,7 +15644,7 @@ GameObject:
   - component: {fileID: 1450593275}
   m_Layer: 0
   m_Name: Lupin
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15939,27 +15939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0dae947fb96fb4d9567e23a018c31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HPBar: {fileID: 0}
-  DamageHPBar: {fileID: 0}
-  CureHPBar: {fileID: 0}
-  BarrierBar: {fileID: 0}
-  HPBarCanvasPrefab: {fileID: 0}
-  HPBarCanvasInstance: {fileID: 0}
-  chessName: Chess
-  chessDiscrption: 
-  buffList: []
-  dontMeleeAttack: 0
-  maxHp: 10
-  HP_private: 10
-  barrier_private: 0
-  meleeAttackPower_private: 2
-  moveSpeed_private: 5
-  location_private: {x: 0, y: 0}
-  HPBarInstance: {fileID: 0}
-  originOrientation: -1
-  mobility: 0
-  moveMode: 0
-  isActed: 0
 --- !u!212 &1835862989
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -21096,7 +21075,6 @@ MonoBehaviour:
   meleeAttackPower_private: 2
   location_private: {x: 0, y: 0}
   initHp: 0
-  coins: 0
   fingerBones: 0
 --- !u!1001 &360540238993440817
 PrefabInstance:

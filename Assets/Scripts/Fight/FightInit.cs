@@ -19,7 +19,7 @@ public class FightInit : FightUnit
 
         //从日志文件中读取储存该场地信息的txt文件所在路径，并加载该txt文件
         //chessboardSettingName = "chessTestTxt";//记得修改为从日志文件中读取文件名!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        chessboardSettingName = SaveManager.instance.jsonData.mapData.currNodeInfoName;
+        chessboardSettingName = SaveManager.instance.jsonData.mapData.currInfoFileName;
         fightNodeInfo = Resources.Load<TextAsset>("TextAssets/ChessboardSetting/" + chessboardSettingName);
 
         //初始化棋盘

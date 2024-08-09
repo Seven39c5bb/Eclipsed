@@ -12,8 +12,7 @@ public class SceneTrans : MonoBehaviour
     {
         StartScene,
         AtlasScene,
-        NodeScene,
-        EndNodeScene,
+        NodeScene
     }
     SceneType currSceneType;
     public static SceneTrans sce_instance;
@@ -67,22 +66,77 @@ public class SceneTrans : MonoBehaviour
                 currSceneType = SceneType.StartScene;
                 break;
             case "Atlas_1":
-                if (currSceneType == SceneType.NodeScene) SaveManager.instance.isBackFromNodeScene = true;
+                if (currSceneType == SceneType.NodeScene) 
+                {
+                    if (SaveManager.instance.jsonData.mapData.currAtlasID == SaveManager.instance.jsonData.mapData.backAtlasID)//如果当前地区和将要前往的地区相同，则为返回地图
+                    {
+                        SaveManager.instance.isBackFromNodeScene = true;
+                    }
+                    else//否则为前往新地图，需要重新生成地图数据
+                    {
+                        SaveManager.instance.jsonData.mapData = new MapData();
+                        SaveManager.instance.jsonData.mapData.mapNodes = new List<NodesListUnit>();
+                        SaveManager.instance.jsonData.mapData.currAtlasID = MapManager.AtlasID.Atlas_1;
+                        SaveManager.instance.Save();
+                    }
+                }
                 StartCoroutine(LoadNextScene("Atlas_1"));
                 currSceneType = SceneType.AtlasScene;
                 break;
             case "Atlas_2":
-                if (currSceneType == SceneType.NodeScene) SaveManager.instance.isBackFromNodeScene = true;
+                if (currSceneType == SceneType.NodeScene) 
+                {
+                    Debug.Log("当前地图id" + SaveManager.instance.jsonData.mapData.currAtlasID + "返回地图id" + SaveManager.instance.jsonData.mapData.backAtlasID);
+                    if (SaveManager.instance.jsonData.mapData.currAtlasID == SaveManager.instance.jsonData.mapData.backAtlasID)//如果当前地区和将要前往的地区相同，则为返回地图
+                    {
+                        SaveManager.instance.isBackFromNodeScene = true;
+                        Debug.Log("未重新生成地图数据");
+                    }
+                    else//否则为前往新地图，需要重新生成地图数据
+                    {
+                        SaveManager.instance.jsonData.mapData = new MapData();
+                        SaveManager.instance.jsonData.mapData.mapNodes = new List<NodesListUnit>();
+                        SaveManager.instance.jsonData.mapData.currAtlasID = MapManager.AtlasID.Atlas_2;
+                        //SaveManager.instance.Save();
+                        Debug.Log("加载Atlas_2");
+                    }
+                }
                 StartCoroutine(LoadNextScene("Atlas_2"));
                 currSceneType = SceneType.AtlasScene;
                 break;
             case "Atlas_3":
-                if (currSceneType == SceneType.NodeScene) SaveManager.instance.isBackFromNodeScene = true;
+                if (currSceneType == SceneType.NodeScene) 
+                {
+                    if (SaveManager.instance.jsonData.mapData.currAtlasID == SaveManager.instance.jsonData.mapData.backAtlasID)//如果当前地区和将要前往的地区相同，则为返回地图
+                    {
+                        SaveManager.instance.isBackFromNodeScene = true;
+                    }
+                    else//否则为前往新地图，需要重新生成地图数据
+                    {
+                        SaveManager.instance.jsonData.mapData = new MapData();
+                        SaveManager.instance.jsonData.mapData.mapNodes = new List<NodesListUnit>();
+                        SaveManager.instance.jsonData.mapData.currAtlasID = MapManager.AtlasID.Atlas_3;
+                        SaveManager.instance.Save();
+                    }
+                }
                 StartCoroutine(LoadNextScene("Atlas_3"));
                 currSceneType = SceneType.AtlasScene;
                 break;
             case "Atlas_4":
-                if (currSceneType == SceneType.NodeScene) SaveManager.instance.isBackFromNodeScene = true;
+                if (currSceneType == SceneType.NodeScene) 
+                {
+                    if (SaveManager.instance.jsonData.mapData.currAtlasID == SaveManager.instance.jsonData.mapData.backAtlasID)//如果当前地区和将要前往的地区相同，则为返回地图
+                    {
+                        SaveManager.instance.isBackFromNodeScene = true;
+                    }
+                    else//否则为前往新地图，需要重新生成地图数据
+                    {
+                        SaveManager.instance.jsonData.mapData = new MapData();
+                        SaveManager.instance.jsonData.mapData.mapNodes = new List<NodesListUnit>();
+                        SaveManager.instance.jsonData.mapData.currAtlasID = MapManager.AtlasID.Atlas_4;
+                        SaveManager.instance.Save();
+                    }
+                }
                 StartCoroutine(LoadNextScene("Atlas_4"));
                 currSceneType = SceneType.AtlasScene;
                 break;
@@ -104,7 +158,7 @@ public class SceneTrans : MonoBehaviour
                 break;
             case "Atlas_1_Boss":
                 StartCoroutine(LoadNextScene("Atlas_1_Boss"));
-                currSceneType = SceneType.EndNodeScene;
+                currSceneType = SceneType.NodeScene;
                 break;
             default:
                 //抛出异常

@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Atlas_1_Boss.unity
     guid: 6825bf1a6e2e4514888bbbea432741ad
+  - enabled: 1
+    path: Assets/Scenes/Atlas_2.unity
+    guid: cf7f5836cdcabff41a46e019d91d56d8
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: efe018009fc589f46b831232a98275c1, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 0206c100da936b140bd775329de52b1d, type: 2}

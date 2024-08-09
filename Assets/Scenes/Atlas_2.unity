@@ -2009,7 +2009,7 @@ Transform:
   m_GameObject: {fileID: 998954947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.7133842, y: -0.018188477, z: -10}
+  m_LocalPosition: {x: -3.7157187, y: -0.018173695, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3909,7 +3909,7 @@ GameObject:
   - component: {fileID: 2103540046}
   - component: {fileID: 2103540045}
   m_Layer: 0
-  m_Name: Atlas_1
+  m_Name: Atlas_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3957,7 +3957,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 2bb7876c40399e64c9db4400d53c20d5, type: 3}
-  m_Color: {r: 0.69182384, g: 0.65866953, b: 0.5678176, a: 1}
+  m_Color: {r: 1, g: 0.66352195, b: 0.98416585, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4164,10 +4164,6 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
-      propertyPath: InfoFileName
-      value: Plot_1_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4427225404569644215, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: NodeInfoName
       value: Plot_1_1
       objectReference: {fileID: 0}
@@ -4182,10 +4178,6 @@ PrefabInstance:
     - target: {fileID: 6615868909204071913, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: nodeType
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6615868909204071913, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
-      propertyPath: InfoFileName
-      value: Plot_1_2
       objectReference: {fileID: 0}
     - target: {fileID: 6615868909204071913, guid: 004d72a57091094468ba42bed8ca55fc, type: 3}
       propertyPath: NodeInfoName
