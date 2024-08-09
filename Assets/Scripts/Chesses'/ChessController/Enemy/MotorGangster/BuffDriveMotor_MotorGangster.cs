@@ -20,7 +20,7 @@ public class BuffDriveMotor_MotorGangster : BuffBase
         MotorGangster motorGangster = chessBase as MotorGangster;
         motorGangster.mobility += 1;
     }
-    public override int OnHurt(int damage, ChessBase attacker)
+    public override int OnHurt(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
         BuffManager.instance.DeleteBuff("BuffDriveMotor_MotorGangster", chessBase);
         return damage;

@@ -17,7 +17,7 @@ public class Clergy_Buff : BuffBase
         buffImgType = BuffImgType.Defense;
     }
 
-    public override int OnHurt(int damage, ChessBase attacker)
+    public override int OnHurt(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
         //找到离该棋子最近的怪物
         float minDistance = 1000f;
