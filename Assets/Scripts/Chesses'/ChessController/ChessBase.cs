@@ -5,6 +5,14 @@ using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
 
+// 伤害类型
+public enum DamageType
+{
+    Null, //无类型伤害
+    Melee, //近战伤害
+    Remote, //远程伤害
+}
+
 public abstract class ChessBase : MonoBehaviour //棋子基类
 {
     // 血条组件
@@ -376,18 +384,18 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     }
 
     // 受伤方法
-    public virtual void TakeDamage(int damage, ChessBase attacker)
+    public virtual void TakeDamage(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
         
         if (attacker != null)
         {
             foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
             {
-                damage = buff.OnHurt(damage, attacker);
+                damage = buff.OnHurt(damage, attacker, damageType);
             }
             foreach (BuffBase buff in attacker.buffList)//根据攻击者buff列表对伤害进行处理
             {
-                damage = buff.OnHit(damage, this);
+                damage = buff.OnHit(damage, this, damageType);
             }
         }
 
