@@ -31,11 +31,13 @@ public class BuffFleshLoad_BloodSoup : BuffBase
                 {
                     if (ChessboardManager.instance.cellStates[i, j].state == Cell.StateType.Occupied && ChessboardManager.instance.cellStates[i, j].occupant.tag == "Player")
                     {
-                        ChessboardManager.instance.cellStates[i, j].occupant.GetComponent<PlayerController>().TakeDamage(12, BloodSoup.Instance);
+                        ChessboardManager.instance.cellStates[i, j].occupant.GetComponent<PlayerController>().TakeDamage(12, BloodSoup.instance);
                     }
-                    if (ChessboardManager.instance.cellStates[i, j].cellCondition != Cell.CellCondition.BloodPool_Deep)//如果不是深水，就设置为浅水
+                    if (!((ChessboardManager.instance.cellStates[i, j].property is BloodPool) && (ChessboardManager.instance.cellStates[i, j].property as BloodPool).bloodPoolDepth == BloodPool.BloodPoolDepth.Deep))//如果不是深水，就设置为浅水
                     {
-                        ChessboardManager.instance.cellStates[i, j].SetBloodPool(Cell.CellCondition.BloodPool_Shallow);
+                        ChessboardManager.instance.ChangeProperty(new Vector2Int(i, j), "BloodPool");
+                        BloodPool bloodPool = ChessboardManager.instance.cellStates[i, j].property as BloodPool;
+                        bloodPool.SetBloodPool(BloodPool.BloodPoolDepth.Shallow);
                     }
                 }
             }

@@ -5,16 +5,16 @@ using System.Linq;
 
 public class BloodSoup : EnemyBase
 {
-    private static BloodSoup instance;
-    public static BloodSoup Instance
+    private static BloodSoup instance_private;
+    public static BloodSoup instance
     {
         get
         {
-            if (instance == null)
+            if (instance_private == null)
             {
-                instance = GameObject.FindObjectOfType<BloodSoup>();
+                instance_private = GameObject.FindObjectOfType<BloodSoup>();
             }
-            return instance;
+            return instance_private;
         }
     }
     void Awake()
@@ -40,7 +40,9 @@ public class BloodSoup : EnemyBase
             {
                 if (location.x + i >= 0 && location.x + i < 10 && location.y + j >= 0 && location.y + j < 10)
                 {
-                    ChessboardManager.instance.cellStates[location.x + i, location.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Deep);
+                    ChessboardManager.instance.ChangeProperty(new Vector2Int(location.x + i, location.y + j), "BloodPool");
+                    BloodPool bloodPool = ChessboardManager.instance.cellStates[location.x + i, location.y + j].property as BloodPool;
+                    bloodPool.SetBloodPool(BloodPool.BloodPoolDepth.Deep);
                 }
             }
         }
@@ -53,12 +55,16 @@ public class BloodSoup : EnemyBase
         // 检查所有棋格，如果cellCondition为BloodPool_Shallow，其持续回合-1，如果为0，将其设置为Normal
         foreach (var cell in ChessboardManager.instance.cellStates)
         {
-            if (cell.cellCondition == Cell.CellCondition.BloodPool_Shallow)
+            if (cell.property != null && cell.property is BloodPool)
             {
-                cell.sustainTurn--;
-                if (cell.sustainTurn == 0)
+                BloodPool bloodPool = (BloodPool)cell.property;
+                if (bloodPool.bloodPoolDepth == BloodPool.BloodPoolDepth.Shallow)
                 {
-                    cell.SetBloodPool(Cell.CellCondition.Normal);
+                    bloodPool.sustainTurn--;
+                    if (bloodPool.sustainTurn == 0)
+                    {
+                        bloodPool.SetBloodPool(BloodPool.BloodPoolDepth.Normal);
+                    }
                 }
             }
         }
@@ -105,7 +111,9 @@ public class BloodSoup : EnemyBase
                         {
                             if (preLocation.x + k >= 0 && preLocation.x + k < 10 && preLocation.y + j >= 0 && preLocation.y + j < 10)
                             {
-                                ChessboardManager.instance.cellStates[preLocation.x + k, preLocation.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Shallow);
+                                ChessboardManager.instance.ChangeProperty(new Vector2Int(preLocation.x + k, preLocation.y + j), "BloodPool");
+                                BloodPool bloodPool = ChessboardManager.instance.cellStates[preLocation.x + k, preLocation.y + j].property as BloodPool;
+                                bloodPool.SetBloodPool(BloodPool.BloodPoolDepth.Shallow);
                             }
                         }
                     }
@@ -116,7 +124,9 @@ public class BloodSoup : EnemyBase
                         {
                             if (location.x + k >= 0 && location.x + k < 10 && location.y + j >= 0 && location.y + j < 10)
                             {
-                                ChessboardManager.instance.cellStates[location.x + k, location.y + j].SetBloodPool(Cell.CellCondition.BloodPool_Deep);
+                                ChessboardManager.instance.ChangeProperty(new Vector2Int(location.x + k, location.y + j), "BloodPool");
+                                BloodPool bloodPool = ChessboardManager.instance.cellStates[location.x + k, location.y + j].property as BloodPool;
+                                bloodPool.SetBloodPool(BloodPool.BloodPoolDepth.Deep);
                             }
                         }
                     }
@@ -134,9 +144,17 @@ public class BloodSoup : EnemyBase
         }
     }
 
-    public void OnBloodPool(int damage)//血池效果
+    public void OnBloodPool(BloodPool.BloodPoolDepth bloodPoolDepth)//血池效果
     {
-        PlayerController.instance.TakeDamage(damage, this);
+        switch (bloodPoolDepth)
+        {
+            case BloodPool.BloodPoolDepth.Shallow:
+                PlayerController.instance.TakeDamage(9, this);
+                break;
+            case BloodPool.BloodPoolDepth.Deep:
+                PlayerController.instance.TakeDamage(15, this);
+                break;
+        }
     }
 
     //灵魂尖啸

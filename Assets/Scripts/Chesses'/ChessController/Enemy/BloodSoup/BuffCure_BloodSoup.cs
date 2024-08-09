@@ -17,6 +17,6 @@ public class BuffCure_BloodSoup : BuffBase
     {
         Debug.Log("血肉愈合！");
         //对血羹进行治疗
-        BloodSoup.Instance.Cure(8);
+        BloodSoup.instance.Cure(8);
     }
 }

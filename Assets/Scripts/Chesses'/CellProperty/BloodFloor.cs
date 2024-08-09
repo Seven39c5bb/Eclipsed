@@ -7,6 +7,6 @@ public class BloodFloor : CellProperty
     void Awake()
     {
         this.propertyName = "BloodFloor";
-        this.description = "血池地板";
+        this.description = "染血的地面";
     }
 }
