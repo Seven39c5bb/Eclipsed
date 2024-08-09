@@ -18,7 +18,7 @@ public class Candelabra_Buff : BuffBase
         buffType = BuffType.Buff;
         buffImgType = BuffImgType.Action;
     }
-    public override int OnHurt(int damage, ChessBase attacker)
+    public override int OnHurt(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
         //改变烛台颜色
         flag = flag == 0 ? 1 : 0;
