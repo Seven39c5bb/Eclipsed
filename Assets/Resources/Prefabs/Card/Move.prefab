@@ -870,6 +870,7 @@ MonoBehaviour:
   isUsed: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
   isDiscard: 0
+  releaseRange: -1
   moveState: 0
   upBtn: {fileID: 6012450386989709011}
   downBtn: {fileID: 6450222376221692961}
