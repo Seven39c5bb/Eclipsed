@@ -60,7 +60,7 @@ public abstract class EnemyBase : ChessBase, IEnemy
             {
 
                 Vector2Int nextDirection = (path[1] - location) * moveMode;
-                Debug.Log("nextDirection: " + nextDirection);
+                /* Debug.Log("nextDirection: " + nextDirection);
                 (int residualDistance, bool isMeleeAttack, bool isRotate) = Move(nextDirection);
                 float attackDelay = 0;
                 if (isMeleeAttack)
@@ -76,7 +76,9 @@ public abstract class EnemyBase : ChessBase, IEnemy
                 }
                 //等待nextDirection的模*0.5f的时间后，再继续循环
                 float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y) - residualDistance) + attackDelay + rotateDelay + 0.3f;
-                yield return new WaitForSeconds(delay);
+                yield return new WaitForSeconds(delay); */
+                Coroutine moveCoroutine = StartCoroutine(Move(nextDirection));
+                yield return moveCoroutine;
 
                 // 在每次移动之后都检查怪物是否已经死亡
                 if (HP <= 0)

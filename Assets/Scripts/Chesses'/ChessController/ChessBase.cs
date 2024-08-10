@@ -13,6 +13,144 @@ public enum DamageType
     Remote, //远程伤害
 }
 
+public interface IMobileUnit
+{
+    void Execute();
+    void Undo();
+    bool IsCompleted { get; }
+}
+public class MoveUnit : IMobileUnit//移动命令单元
+{
+    private ChessBase chess;
+    private Vector2Int direction;//移动方向(单位向量)
+    public bool IsCompleted { get; private set; }
+    private int originOrientation;//初始朝向
+
+    /// <summary>
+    /// 移动单元构造函数
+    /// </summary>
+    /// <param name="chess">移动的棋子</param>
+    /// <param name="direction">移动的方向</param>
+    public MoveUnit(ChessBase chess, Vector2Int direction)
+    {
+        this.chess = chess;
+        this.direction = direction;
+        IsCompleted = false;
+    }
+
+    public void Execute()
+    {
+        // 执行移动操作
+        chess.StartCoroutine(MoveCoroutine());
+    }
+
+    private IEnumerator MoveCoroutine()
+    {
+        // 执行移动操作
+        originOrientation = chess.originOrientation;
+        if (direction.x == 0 || Math.Sign(direction.x) == originOrientation) //如果是向上或者向下移动，或者是向面朝方向移动
+        {
+            MoveToTargetPosition();
+        }
+        else
+        {
+            //更新朝向
+            originOrientation = Math.Sign(direction.x);
+            chess.originOrientation = originOrientation;
+            //翻转棋子
+            if (direction.x < 0)
+            {
+                chess.transform.DORotate(new Vector3(-45, 0, 0), 0.5f).OnComplete(MoveToTargetPosition);
+                chess.HPBarInstance.transform.localRotation = Quaternion.Euler(-45, 0, 0);
+            }
+            else if (direction.x > 0)
+            {
+                chess.transform.DORotate(new Vector3(45, 180, 0), 0.5f).OnComplete(MoveToTargetPosition);
+                chess.HPBarInstance.transform.localRotation = Quaternion.Euler(45, 180, 0);
+            }
+        }
+
+        void MoveToTargetPosition()
+        {
+            //将该棋子移动到目标位置aimPosition（尝试使用DOTween），需要判断何时移动完成
+            float moveDuration = 0.5f;  //移动所需的时间
+            Vector2Int aimLocation = chess.location + direction;
+            Vector2 aimPosition = ChessboardManager.instance.cellStates[aimLocation.x, aimLocation.y].transform.position;
+            //当棋子离开该棋格，触发棋格OnExit效果
+            ChessboardManager.instance.cellStates[chess.location.x, chess.location.y].OnChessExit(chess);
+            ChessboardManager.instance.cellStates[chess.location.x, chess.location.y].property?.OnChessExit(chess);
+
+            chess.transform.DOMove(aimPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+            {
+                //更新Location
+                ChessboardManager.instance.cellStates[chess.location.x, chess.location.y].state = Cell.StateType.Empty;
+                ChessboardManager.instance.cellStates[chess.location.x, chess.location.y].occupant = null;
+                ChessboardManager.instance.cellStates[aimLocation.x, aimLocation.y].state = Cell.StateType.Occupied;
+                ChessboardManager.instance.cellStates[aimLocation.x, aimLocation.y].occupant = chess.gameObject;
+                chess.location = aimLocation;
+
+                //当玩家“进入”该棋格，触发该效果
+                ChessboardManager.instance.cellStates[chess.location.x, chess.location.y].property?.OnChessEnter(chess);
+                ChessboardManager.instance.cellStates[chess.location.x, chess.location.y].OnChessEnter(chess);
+                // 标记为命令完成
+                IsCompleted = true;
+            });
+        }
+
+        yield break;
+    }
+
+    public void Undo()
+    {
+        // 撤销移动操作
+    }
+}
+public class MeleeAttackUnit : IMobileUnit//近战攻击命令单元
+{
+    private ChessBase attacker;
+    private ChessBase target;
+    private int residualDistance;
+    public bool IsCompleted { get; private set; }
+
+    public MeleeAttackUnit(ChessBase attacker, ChessBase target, int residualDistance)
+    {
+        this.attacker = attacker;
+        this.target = target;
+        this.residualDistance = residualDistance;
+        IsCompleted = false;
+        attacker.OnMeleeAttackComplete -= () => HandleMeleeAttackComplete();
+        attacker.OnMeleeAttackComplete += () => HandleMeleeAttackComplete();
+    }
+
+    private void HandleMeleeAttackComplete()
+    {
+        // 事件处理逻辑
+        IsCompleted = true;
+    }
+
+    public void Execute()
+    {
+        // 执行近战攻击
+        attacker.StartCoroutine(AttackCoroutine());
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        // 攻击逻辑
+        attacker.MeleeAttack(target.gameObject, residualDistance);
+
+        // 标记为完成
+        IsCompleted = true;
+        yield break;
+    }
+
+    public void Undo()
+    {
+        // 撤销攻击操作
+    }
+}
+
+
 public abstract class ChessBase : MonoBehaviour //棋子基类
 {
     // 血条组件
@@ -76,7 +214,7 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         //chessboardManager = GameObject.Find("Chessboard").GetComponent<ChessboardManager>();
     }
 
-    GameObject HPBarInstance;
+    public GameObject HPBarInstance;
     public virtual void Start()
     {
         GameObject HPBarPrefab = Resources.Load<GameObject>("Prefabs/UI/HealthBar");
@@ -120,7 +258,8 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         BarrierBar.fillAmount = (float)barrier / maxHp;
     }
 
-    private int originOrientation = -1;//初始朝向(左)
+    /* private int originOrientation = -1;//初始朝向(左)
+    private List<Vector2Int> mobileUnits = new List<Vector2Int>(); //待执行的移动单元
     /// <summary>
     /// 移动方法
     /// </summary>
@@ -133,7 +272,7 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     {
 
         //移动
-        (Vector2 aimPosition, Vector2Int aimLocation, string roadblockType, GameObject roadblockObject) = 
+        (Vector2 aimPosition, Vector2Int aimLocation, string roadblockType, GameObject roadblockObject, List<Vector2Int> pastCellList) = 
         ChessboardManager.instance.MoveControl(gameObject, location, direction);
 
         //计算Location和aimLocation之间的距离
@@ -237,7 +376,35 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         }
 
         return (residualDistance, isMeleeAttack, isRotate);
+    } */
+
+
+    public int originOrientation = -1; //初始朝向(左)
+    private List<IMobileUnit> mobileUnits = new List<IMobileUnit>(); //待执行的移动单元
+    public virtual IEnumerator Move(Vector2Int direction)
+    {
+        // 获取命令列表
+        List<IMobileUnit> commands = ChessboardManager.instance.MoveControl(gameObject, location, direction);
+
+        while (commands.Count > 0)
+        {
+            // 执行第一个命令
+            var command = commands[0];
+            command.Execute();
+
+            // 等待命令执行完成
+            yield return new WaitUntil(() => command.IsCompleted);
+
+            // 移除已执行的命令
+            commands.RemoveAt(0);
+        }
     }
+
+
+
+
+
+
 
     /// <summary>
     /// 传送方法，传送到指定位置，在子类中需要添加传送特效。
@@ -271,6 +438,7 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     }
 
 
+    public event Action OnMeleeAttackComplete;//近战攻击完成事件
     /// <summary>
     /// 近战攻击方法
     /// </summary>
@@ -279,58 +447,61 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     /// <remarks>在子类中需要添加攻击动画。</remarks>
     public virtual void MeleeAttack(GameObject roadblockObject, int residualDistance)
     {
-        //近战攻击
-            ChessBase AttackedChess = roadblockObject.GetComponent<ChessBase>();
+        // 近战攻击
+        ChessBase AttackedChess = roadblockObject.GetComponent<ChessBase>();
 
-            Vector2 originalPosition = transform.position;  //保存原始位置
-            Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  //目标位置
-            float moveDuration = 0.5f;  //移动所需的时间
+        Vector2 originalPosition = transform.position;  // 保存原始位置
+        Vector2 targetPosition = originalPosition + (new Vector2(roadblockObject.transform.position.x, roadblockObject.transform.position.y) - originalPosition) * 0.75f;  // 目标位置
+        float moveDuration = 0.5f;  // 移动所需的时间
 
-            // 计算攻击方向
-            Vector3 attackDirection = (roadblockObject.transform.position - transform.position).normalized;
-            //创建一个序列
-            DG.Tweening.Sequence sequence = DG.Tweening.DOTween.Sequence();
-            //添加前往目标位置的动画
-            sequence.Append(transform.DOMove(targetPosition, moveDuration).SetEase(Ease.InCubic).OnComplete(() => {
-                // 添加被撞方抖动的动画，抖动的方向是攻击方向
-                Vector3 shakePosition = roadblockObject.transform.position + attackDirection * 0.15f;
-                DG.Tweening.Sequence sequence1 = DG.Tweening.DOTween.Sequence();
-                sequence1.Append(roadblockObject.transform.DOMove(shakePosition, 0.15f).SetEase(Ease.OutCubic).SetDelay(0.1f));
-                sequence1.Append(roadblockObject.transform.DOMove(roadblockObject.transform.position, 0.15f).SetEase(Ease.InCubic));
-                sequence1.Play();
-                //在被撞方处实例化粒子特效
-                GameObject hitEffect = Instantiate(Resources.Load<GameObject>("Prefabs/Particle/CrashParticle"), roadblockObject.transform.position, Quaternion.identity);
-            }));
-            //添加返回原始位置的动画
-            sequence.Append(transform.DOMove(originalPosition, moveDuration).SetEase(Ease.OutCubic));
-            //在动画播放完毕后执行近战伤害判断
-            sequence.OnComplete(() => {
-                //计算撞击伤害
-                int crashDamage = meleeAttackPower * residualDistance;//撞击伤害 = 攻击力 * 剩余移动数
-                foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
-                {
-                    crashDamage = buff.OnCrash(crashDamage, AttackedChess);
-                }
-                foreach (BuffBase buff in AttackedChess.buffList)//根据被撞者buff列表对伤害进行处理
-                {
-                    crashDamage = buff.BeCrashed(crashDamage, this);
-                }
-                AttackedChess.TakeDamage(crashDamage, this);
+        // 计算攻击方向
+        Vector3 attackDirection = (roadblockObject.transform.position - transform.position).normalized;
+        // 创建一个序列
+        DG.Tweening.Sequence sequence = DG.Tweening.DOTween.Sequence();
+        // 添加前往目标位置的动画
+        sequence.Append(transform.DOMove(targetPosition, moveDuration).SetEase(Ease.InCubic).OnComplete(() => {
+            // 添加被撞方抖动的动画，抖动的方向是攻击方向
+            Vector3 shakePosition = roadblockObject.transform.position + attackDirection * 0.15f;
+            DG.Tweening.Sequence sequence1 = DG.Tweening.DOTween.Sequence();
+            sequence1.Append(roadblockObject.transform.DOMove(shakePosition, 0.15f).SetEase(Ease.OutCubic).SetDelay(0.1f));
+            sequence1.Append(roadblockObject.transform.DOMove(roadblockObject.transform.position, 0.15f).SetEase(Ease.InCubic));
+            sequence1.Play();
+            // 在被撞方处实例化粒子特效
+            GameObject hitEffect = Instantiate(Resources.Load<GameObject>("Prefabs/Particle/CrashParticle"), roadblockObject.transform.position, Quaternion.identity);
+        }));
+        // 添加返回原始位置的动画
+        sequence.Append(transform.DOMove(originalPosition, moveDuration).SetEase(Ease.OutCubic));
+        // 在动画播放完毕后执行近战伤害判断
+        sequence.OnComplete(() => {
+            // 计算撞击伤害
+            int crashDamage = meleeAttackPower * residualDistance; // 撞击伤害 = 攻击力 * 剩余移动数
+            foreach (BuffBase buff in buffList) // 根据自身buff列表对伤害进行处理
+            {
+                crashDamage = buff.OnCrash(crashDamage, AttackedChess);
+            }
+            foreach (BuffBase buff in AttackedChess.buffList) // 根据被撞者buff列表对伤害进行处理
+            {
+                crashDamage = buff.BeCrashed(crashDamage, this);
+            }
+            AttackedChess.TakeDamage(crashDamage, this);
 
-                //计算受反击伤害
-                int injury = AttackedChess.meleeAttackPower;
-                foreach (BuffBase buff in AttackedChess.buffList)//根据被撞者buff列表对伤害进行处理
-                {
-                    injury = buff.OnCrash(injury, this);
-                }
-                foreach (BuffBase buff in buffList)//根据自身buff列表对伤害进行处理
-                {
-                    injury = buff.BeCrashed(injury, AttackedChess);
-                }
-                TakeDamage(injury, AttackedChess);
-            });
-            //开始动画
-            sequence.Play();
+            // 计算受反击伤害
+            int injury = AttackedChess.meleeAttackPower;
+            foreach (BuffBase buff in AttackedChess.buffList) // 根据被撞者buff列表对伤害进行处理
+            {
+                injury = buff.OnCrash(injury, this);
+            }
+            foreach (BuffBase buff in buffList) // 根据自身buff列表对伤害进行处理
+            {
+                injury = buff.BeCrashed(injury, AttackedChess);
+            }
+            TakeDamage(injury, AttackedChess);
+
+            // 触发事件
+            OnMeleeAttackComplete?.Invoke();
+        });
+        // 开始动画
+        sequence.Play();
     }
 
     /// <summary>
