@@ -14,7 +14,7 @@ public class EnemyBruisingBuff : BuffBase
         buffImgType = BuffImgType.HP;
     }
     public int brusingDmg = 1;
-    public override int OnHurt(int damage, ChessBase attacker)
+    public override int OnHurt(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
         return damage + brusingDmg;
     }

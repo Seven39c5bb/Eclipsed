@@ -10,6 +10,7 @@ public class CellProperty : MonoBehaviour
 
     public virtual void OnChessEnter(ChessBase chess){ }
     public virtual void OnChessExit(ChessBase chess) { }
+    public virtual void OnPlayerTurnBegin() { }
     public virtual void OnAdd() { }
     public virtual void OnRemove() { }
 }

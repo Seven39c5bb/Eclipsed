@@ -17,7 +17,7 @@ public class Gargoyle_Buff : BuffBase
         buffImgType = BuffImgType.Action;
     }
 
-    public override int OnHurt(int damage, ChessBase attacker)
+    public override int OnHurt(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
         if (flag == 0)
         {
