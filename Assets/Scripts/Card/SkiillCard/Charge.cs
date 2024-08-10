@@ -93,7 +93,8 @@ public class Charge : Card,IPointerDownHandler,IPointerUpHandler
                 }
             }
             aimDirection = aimPos - PlayerController.instance.location;
-            PlayerController.instance.Move(aimDirection);
+            //PlayerController.instance.Move(aimDirection);
+            StartCoroutine(PlayerController.instance.Move(aimDirection));
         }
         else if (selectedCellPos.x - PlayerController.instance.location.x < 0)
         {
@@ -113,7 +114,8 @@ public class Charge : Card,IPointerDownHandler,IPointerUpHandler
                 }
             }
             aimDirection = aimPos - PlayerController.instance.location;
-            PlayerController.instance.Move(aimDirection);
+            //PlayerController.instance.Move(aimDirection);
+            StartCoroutine(PlayerController.instance.Move(aimDirection));
         }
         else if (selectedCellPos.y - PlayerController.instance.location.y > 0)
         {
@@ -133,7 +135,8 @@ public class Charge : Card,IPointerDownHandler,IPointerUpHandler
                 }
             }
             aimDirection = aimPos - PlayerController.instance.location;
-            PlayerController.instance.Move(aimDirection);
+            //PlayerController.instance.Move(aimDirection);
+            StartCoroutine(PlayerController.instance.Move(aimDirection));
         }
         else if (selectedCellPos.y - PlayerController.instance.location.y < 0)
         {
@@ -153,7 +156,8 @@ public class Charge : Card,IPointerDownHandler,IPointerUpHandler
                 }
             }
             aimDirection = aimPos - PlayerController.instance.location;
-            PlayerController.instance.Move(aimDirection);
+            //PlayerController.instance.Move(aimDirection);
+            StartCoroutine(PlayerController.instance.Move(aimDirection));
         }
         dragFlag = 0;isDrag = false;//使用卡牌以后将卡牌完全变透明
         costManager.instance.curCost -= cost;

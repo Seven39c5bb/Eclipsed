@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,10 +20,10 @@ public class Fight_PlayerTurn : FightUnit
         FightManager.instance.turnCounter++;//回合数+1
 
         //遍历所有棋格，调用OnPlayerTurnBegin
-        foreach(var cell in ChessboardManager.instance.cellStates)
+        foreach (var cell in ChessboardManager.instance.cellStates)
         {
             cell.OnPlayerTurnBegin();
-            if(cell.property != null)  cell.property.OnPlayerTurnBegin();
+            if (cell.property != null) cell.property.OnPlayerTurnBegin();
         }
 
 
@@ -47,7 +47,7 @@ public class Fight_PlayerTurn : FightUnit
     {
         //���Խ��в���
         //when deck count<=0,then update the deck
-        if(CardManager.cardDesk.Count <= 0)
+        if (CardManager.cardDesk.Count <= 0)
         {
             //Debug.Log("update the deck");
             CardManager.instance.UPdateDesk();

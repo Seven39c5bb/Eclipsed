@@ -98,7 +98,8 @@ public class BloodSoup : EnemyBase
                 else
                 {
                     Vector2Int preLocation = location;
-                    Move(nextDirection);
+                    //Move(nextDirection);
+                    StartCoroutine(Move(nextDirection));
                     //等待nextDirection的模*0.5f的时间后，再继续循环
                     float delay = 0.5f * (Mathf.Abs(nextDirection.x) + Mathf.Abs(nextDirection.y));
                     yield return new WaitForSeconds(delay);

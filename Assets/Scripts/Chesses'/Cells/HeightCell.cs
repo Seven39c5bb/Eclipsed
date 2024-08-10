@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeightCell : Cell
 {
-    public override void OnPlayerEnter()
+    public override void OnChessEnter(ChessBase chess)
     {
         if(state == StateType.Occupied && occupant.tag == "Player")
         {

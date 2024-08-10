@@ -21,41 +21,39 @@ public class Cell : MonoBehaviour
     //该棋格的位置
     public Vector2Int cellLocation;
 
+    //棋格地形的名字和描述
+    public string cellName;
+    public string cellDescription;
 
-    SpriteRenderer spriteRenderer;
+
+    public SpriteRenderer spriteRenderer;
     public Color originColor;
     public virtual void Awake()
     {
-        if (state == StateType.Wall)
+        if (occupant == null && state != StateType.Wall)
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            //设置为黑色
-            spriteRenderer.color = Color.gray;
+            state = StateType.Empty;
         }
         //记录当前颜色
         spriteRenderer = GetComponent<SpriteRenderer>();
         originColor = spriteRenderer.color;
     }
-    private void OnMouseEnter()
+    public virtual void OnMouseEnter()
     {
         isSelected = true;
         ChessboardManager.instance.curCell = this;
+        
         // 将颜色设置为黄色
-        if (state != StateType.Wall)
-        {
-            originColor = spriteRenderer.color;
-            spriteRenderer.color = new Color(1, 1, 0, 1);
-        }
+        originColor = spriteRenderer.color;
+        spriteRenderer.color = new Color(1, 1, 0, 1);
     }
-    private void OnMouseExit()
+    public virtual void OnMouseExit()
     {
         ChessboardManager.instance.curCell = null;
         isSelected = false;
-        if (state != StateType.Wall)
-        {
-            // 将颜色设置为原始颜色
-            spriteRenderer.color = originColor;
-        }
+
+        // 将颜色设置为原始颜色
+        spriteRenderer.color = originColor;
     }
 
     #region
@@ -63,14 +61,15 @@ public class Cell : MonoBehaviour
     {
 
     }
-    public virtual void OnPlayerEnter()
+    public virtual void OnChessEnter(ChessBase chess)
     {
 
     }
-    public virtual void OnPlayerExit()
+    public virtual void OnChessExit(ChessBase chess)
     {
 
     }
+
     public virtual void OnPlayerTurnBegin()
     {
 

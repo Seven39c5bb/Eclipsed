@@ -62,19 +62,23 @@ public class Move : Card
                 this.isUsed = false;
                 return;
             case state.up:
-                PlayerController.instance.Move(new Vector2Int(0, -cost - 1));
+                //PlayerController.instance.Move(new Vector2Int(0, -cost - 1));
+                PlayerController.instance.StartCoroutine(PlayerController.instance.Move(new Vector2Int(0, -cost - 1)));
                 costManager.instance.curCost -= cost;
                 break;
             case state.down:
-                PlayerController.instance.Move(new Vector2Int(0, cost + 1));
+                //PlayerController.instance.Move(new Vector2Int(0, cost + 1));
+                PlayerController.instance.StartCoroutine(PlayerController.instance.Move(new Vector2Int(0, cost + 1)));
                 costManager.instance.curCost -= cost;
                 break;
             case state.left:
-                PlayerController.instance.Move(new Vector2Int(-cost - 1, 0));
+                //PlayerController.instance.Move(new Vector2Int(-cost - 1, 0));
+                PlayerController.instance.StartCoroutine(PlayerController.instance.Move(new Vector2Int(-cost - 1, 0)));
                 costManager.instance.curCost -= cost;
                 break;
             case state.right:
-                PlayerController.instance.Move(new Vector2Int(cost + 1, 0));
+                //PlayerController.instance.Move(new Vector2Int(cost + 1, 0));
+                PlayerController.instance.StartCoroutine(PlayerController.instance.Move(new Vector2Int(cost + 1, 0)));
                 costManager.instance.curCost -= cost;
                 break;
         }
