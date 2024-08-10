@@ -69,6 +69,14 @@ public class Cell : MonoBehaviour
     {
 
     }
+    public virtual void OnChessReach(ChessBase chess)//棋子移动结束到达
+    {
+
+    }
+    public virtual void OnChessDepart(ChessBase chess)//棋子从此出发
+    {
+
+    }
 
     public virtual void OnPlayerTurnBegin()
     {

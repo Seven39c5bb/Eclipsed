@@ -384,19 +384,29 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     public virtual IEnumerator Move(Vector2Int direction)
     {
         // 获取命令列表
-        List<IMobileUnit> commands = ChessboardManager.instance.MoveControl(gameObject, location, direction);
+        mobileUnits = ChessboardManager.instance.MoveControl(gameObject, location, direction);
 
-        while (commands.Count > 0)
+        // 触发地块出发效果
+        ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessDepart(this);
+        ChessboardManager.instance.cellStates[location.x, location.y].OnChessDepart(this);
+
+        while (mobileUnits.Count > 0)
         {
             // 执行第一个命令
-            var command = commands[0];
+            var command = mobileUnits[0];
+            if (mobileUnits.Count == 1 || (mobileUnits.Count > 1 && mobileUnits[1] is MeleeAttackUnit))
+            {
+                // 触发移动结束抵达地块效果
+                ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessReach(this);
+                ChessboardManager.instance.cellStates[location.x, location.y].OnChessReach(this);
+            }
             command.Execute();
 
             // 等待命令执行完成
             yield return new WaitUntil(() => command.IsCompleted);
 
             // 移除已执行的命令
-            commands.RemoveAt(0);
+            mobileUnits.RemoveAt(0);
         }
     }
 
