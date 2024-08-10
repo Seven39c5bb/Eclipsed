@@ -332,6 +332,7 @@ public class ChessboardManager : MonoBehaviour
             cellStates[Location.x, Location.y].state = Cell.StateType.Occupied;
             cellStates[Location.x, Location.y].occupant = requestObject.gameObject;
             cellStates[requestObject.location.x, requestObject.location.y].state = Cell.StateType.Empty;
+            cellStates[requestObject.location.x, requestObject.location.y].occupant = null;
             requestObject.location = Location;//更新请求棋子的Location
             return true;
         }
