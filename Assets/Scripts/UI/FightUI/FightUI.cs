@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
 using System;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
@@ -215,7 +216,7 @@ public class FightUI : UIBase
         //test
         }
     }
-
+    #region EnemyStateBoard
     //初始化EnemyStateBoard
     public void InitEnemyStateBoard()
     {
@@ -246,6 +247,52 @@ public class FightUI : UIBase
             if(board.thisEnemy == enemyBase)
             {
                 Destroy(board.gameObject);
+            }
+        }
+    }
+    #endregion
+    public void ChangeLineColor(GameObject line,Card card)
+    {
+        if (ChessboardManager.instance.curCell != null)
+        {
+            string selectedCell = ChessboardManager.instance.curCell.name;
+            Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
+            if (ChessboardManager.instance.CheckCell(selectedCellPos))
+            {
+                if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
+                {
+                    if (line != null)
+                    {
+                        for (int i = 0; i < line.transform.childCount; i++)
+                        {
+                            line.transform.GetChild(i).GetComponent<UnityEngine.UI.Image>().color = Color.red;
+                        }
+                    }
+                }
+                else
+                {
+                    if (line != null)
+                    {
+                        foreach (var buff in ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().buffList)
+                        {
+                            card.canBeUse = buff.OnPlayerUsePointerCardToEnemy();
+                        }
+                        for (int i = 0; i < line.transform.childCount; i++)
+                        {
+                            line.transform.GetChild(i).GetComponent<UnityEngine.UI.Image>().color = Color.yellow;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (line != null)
+                {
+                    for (int i = 0; i < line.transform.childCount; i++)
+                    {
+                        line.transform.GetChild(i).GetComponent<UnityEngine.UI.Image>().color = Color.red;
+                    }
+                }
             }
         }
     }
