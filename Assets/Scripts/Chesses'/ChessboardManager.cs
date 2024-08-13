@@ -111,13 +111,6 @@ public class ChessboardManager : MonoBehaviour
                 {
                     target_location = new Vector2Int(xi - step, y);
                     roadblockType = "Wall";
-                    //调整棋格状态
-                    /* cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
-                    cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                    if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
-                    {
-                        cellStates[x , y].state = Cell.StateType.Empty;
-                    } */
                     break;
                 }
 
@@ -130,13 +123,6 @@ public class ChessboardManager : MonoBehaviour
                     {
                         //遇到墙在走到墙前时要弹出UI提示（感叹号？）
                         roadblockType = "Wall";
-                        //调整棋格状态
-                        /* cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
-                        cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                        if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
-                        {
-                            cellStates[x , y].state = Cell.StateType.Empty;
-                        } */
                         break;
                     }
 
@@ -144,25 +130,12 @@ public class ChessboardManager : MonoBehaviour
                     {
                         if(cellStates[x + i * step, y].occupant.GetComponent<EnemyBase>())//障碍是敌方棋子时
                         {
-                            /* cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
-                            cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                            if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
-                            {
-                                cellStates[x , y].state = Cell.StateType.Empty;
-                            } */
                             roadblockType = "Enemy";
                             roadblockObject = cellStates[x + i * step, y].occupant;
                             break;
                         }
                         if(cellStates[x + i * step, y].occupant.tag == "Player")//障碍是玩家时
                         {
-                            //target_location = new Vector2Int(x + (i - 1) * step, y);
-                            /* cellStates[x + (i - 1) * step, y].state = Cell.StateType.Occupied;
-                            cellStates[x + (i - 1) * step, y].occupant = requestObject;
-                            if(x + (i - 1) * step != x)//除非目的地不是原地,才将原地状态改为空
-                            {
-                                cellStates[x , y].state = Cell.StateType.Empty;
-                            } */
                             roadblockType = "Player";
                             roadblockObject = cellStates[x + i * step, y].occupant;
                             break;
@@ -175,9 +148,6 @@ public class ChessboardManager : MonoBehaviour
                 if(i == dx)//当畅通无阻时
                 {
                     target_location = new Vector2Int(x + dx * step, y);
-                    /* cellStates[x + dx * step, y].state = Cell.StateType.Occupied;
-                    cellStates[x + dx * step, y].occupant = requestObject;
-                    cellStates[x , y].state = Cell.StateType.Empty; */
                 }
             }
         }
@@ -193,12 +163,6 @@ public class ChessboardManager : MonoBehaviour
                 {
                     target_location = new Vector2Int(x, yi - step);
                     roadblockType = "Wall";
-                    /* cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
-                    cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                    if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
-                    {
-                        cellStates[x , y].state = Cell.StateType.Empty;
-                    } */
                     break;
                 }
 
@@ -208,37 +172,18 @@ public class ChessboardManager : MonoBehaviour
                     if(cellStates[x, y + i * step].state == Cell.StateType.Wall)
                     {
                         roadblockType = "Wall";
-                        /* cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
-                        cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                        if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
-                        {
-                            cellStates[x , y].state = Cell.StateType.Empty;
-                        } */
                         break;
                     }
                     if(cellStates[x, y + i * step].state == Cell.StateType.Occupied)
                     {
                         if(cellStates[x, y + i * step].occupant.tag == "Enemy")//障碍是敌方棋子时
                         {
-                            /* cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
-                            cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                            if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
-                            {
-                                cellStates[x , y].state = Cell.StateType.Empty;
-                            } */
                             roadblockType = "Enemy";
                             roadblockObject = cellStates[x, y + i * step].occupant;
                             break;
                         }
                         if(cellStates[x, y + i * step].occupant.tag == "Player")//障碍是玩家时
                         {
-                            //target_location = new Vector2Int(x, y + (i - 1) * step);
-                            /* cellStates[x, y + (i - 1) * step].state = Cell.StateType.Occupied;
-                            cellStates[x, y + (i - 1) * step].occupant = requestObject;
-                            if(y + (i - 1) * step != y)//除非目的地不是原地，才将原地状态改为空
-                            {
-                                cellStates[x , y].state = Cell.StateType.Empty;
-                            } */
                             roadblockType = "Player";
                             roadblockObject = cellStates[x, y + i * step].occupant;
                             break;
@@ -251,16 +196,13 @@ public class ChessboardManager : MonoBehaviour
                 if(i == dy)//当畅通无阻时
                 {
                     target_location = new Vector2Int(x, y + dy * step);
-                    /* cellStates[x, y + dy * step].state = Cell.StateType.Occupied;
-                    cellStates[x, y + dy * step].occupant = requestObject;
-                    cellStates[x , y].state = Cell.StateType.Empty; */
                 }
             }
         }
 
 
         //计算Location和aimLocation之间的距离
-        int residualDistance = direction.x + direction.y - Math.Abs(target_location.x - location.x) - Math.Abs(target_location.y - location.y);
+        int residualDistance = Math.Abs(direction.x) + Math.Abs(direction.y) - Math.Abs(target_location.x - location.x) - Math.Abs(target_location.y - location.y);
 
         //如果有剩余距离，说明可能需要执行近战攻击
         if(residualDistance > 0)
