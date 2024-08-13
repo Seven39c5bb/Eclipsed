@@ -126,5 +126,5 @@ public class BuffBase : MonoBehaviour
     }
 
     //当玩家使用指向性卡牌指定怪物时
-    public virtual bool OnPlayerUsePointerCardToEnemy() { return false; }
+    public virtual bool OnPlayerUsePointerCardToEnemy() { return true; }
 }

@@ -30,17 +30,21 @@ public class IncenseDemon : EnemyBase
 
         ChessboardManager.instance.AddChess(this.gameObject, location);
 
+        BuffManager.instance.AddBuff("IncenseDemon_Buff", this);
+
     }
 
     public override IEnumerator OnTurn()
     {
-        //该敌人回合
-        foreach (BuffBase buff in buffList)
+        // 该敌人回合
+        List<BuffBase> tempBuffList = new List<BuffBase>(buffList); // 创建buffList的副本
+
+        foreach (BuffBase buff in tempBuffList)
         {
             buff.OnTurnStart();
         }
 
-        //用BFS算法移动
+        // 用BFS算法移动
         yield return base.OnTurn();
 
         yield return new WaitForSeconds(0.3f);
