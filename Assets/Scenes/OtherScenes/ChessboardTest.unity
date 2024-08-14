@@ -22748,12 +22748,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3381200796193300287, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
       propertyPath: state
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3381200796193300287, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
       propertyPath: occupant
       value: 
-      objectReference: {fileID: 1986941985}
+      objectReference: {fileID: 0}
     - target: {fileID: 3391890131901725930, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
       propertyPath: m_Sprite
       value: 

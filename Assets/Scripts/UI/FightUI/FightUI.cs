@@ -273,6 +273,7 @@ public class FightUI : UIBase
                 {
                     if (line != null)
                     {
+                        //当玩家使用指向性卡牌指定一个敌人
                         foreach (var buff in ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>().buffList)
                         {
                             card.canBeUse = buff.OnPlayerUsePointerCardToEnemy();

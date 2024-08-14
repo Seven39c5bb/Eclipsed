@@ -57,7 +57,9 @@ public class ChessboardManager : MonoBehaviour
 
         Chess_instance = this;
 
+        //test
         ChangeProperty(new Vector2Int(5, 4), "Smoke");
+        //test
     }
 
     public void UpdateEnemyControllerList()
@@ -557,5 +559,21 @@ public class ChessboardManager : MonoBehaviour
         cellStates[x, y].property.OnAdd();
 
         Debug.Log(obj.name);
+    }
+
+    ///<summary>
+    ///召唤
+    ///</summary>
+    public void Summon(Vector2Int location,string monsterName)
+    {
+        //判断是否越界
+        if (location.x > 9 || location.y > 9 || location.x < 0 || location.y < 0) return;
+        if (ChessboardManager.instance.cellStates[location.x,location.y].state
+            == Cell.StateType.Empty)
+        {
+            GameObject monster = Resources.Load("Prefabs/Chesses/" + monsterName) as GameObject;
+            monster.GetComponent<EnemyBase>().location = location;
+            Instantiate(monster);
+        }
     }
 }

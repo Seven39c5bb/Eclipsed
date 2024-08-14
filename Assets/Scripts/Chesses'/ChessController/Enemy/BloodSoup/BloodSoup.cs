@@ -230,7 +230,8 @@ public class BloodSoup : EnemyBase
                 }
                 if(downAxis >= 0 && downAxis < 10 && i >= 0 && i < 10)
                 {
-                    if((ChessboardManager.instance.cellStates[i, downAxis].state != Cell.StateType.Occupied || ChessboardManager.instance.cellStates[i, downAxis].occupant == this.gameObject)
+                    if((ChessboardManager.instance.cellStates[i, downAxis].state != Cell.StateType.Occupied 
+                        || ChessboardManager.instance.cellStates[i, downAxis].occupant == this.gameObject)
                     && ChessboardManager.instance.cellStates[i, downAxis].state != Cell.StateType.Wall)
                     {
                         result.Add(new Vector2Int(i, downAxis));

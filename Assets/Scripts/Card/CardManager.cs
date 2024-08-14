@@ -21,10 +21,11 @@ public class CardManager : MonoBehaviour
     public static List<string> discardDesk;
     //test
     public List<string> d_discardDesk;
-    //test
+    //手牌
     public List<Card> handCards=new List<Card>();
     public GameObject handCardArea;
-
+    //初始抽牌数量
+    public int drawNum = 5;
     //
     public GameConfig gameConfig;
     //是否打开弃牌UI

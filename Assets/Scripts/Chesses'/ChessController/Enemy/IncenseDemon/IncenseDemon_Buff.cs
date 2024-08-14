@@ -52,4 +52,46 @@ public class IncenseDemon_Buff : BuffBase
             }
         }
     }
+    public override void OnTurnEnd()
+    {
+        //检测以自身为中心5*5范围内有没有玩家
+        int hasPlayer = 0;
+        int leftAxis = chessBase.location.x - 2 > 0 ? chessBase.location.x - 2 : 0;
+        int rightAxis = chessBase.location.x + 2 < 9 ? chessBase.location.x + 2 : 9;
+        int upAxis = chessBase.location.y - 2 > 0 ? chessBase.location.y - 2 : 0;
+        int downAxis = chessBase.location.y + 2 < 9 ? chessBase.location.y + 2 : 9;
+        for (int i = leftAxis; i <= rightAxis; i++)
+        {
+            for (int j = upAxis; j <= downAxis; j++)
+            {
+                if (ChessboardManager.instance.cellStates[i, j].state == Cell.StateType.Occupied &&
+                    ChessboardManager.instance.cellStates[i, j].occupant?.tag == "Player")
+                {
+                    Debug.Log("i:" + i + "j:" + j);
+                    hasPlayer = 1;
+                }
+            }
+        }
+        //如果有玩家，则消除自身该格内的烟雾
+        if (hasPlayer==1)
+        {
+            ChessboardManager.instance.ChangeProperty(chessBase.location, null);
+        }
+    }
+    public override void OnPlayerReach()
+    {
+        //清除以自身5*5范围内的烟雾
+        int leftAxis = chessBase.location.x - 2 > 0 ? chessBase.location.x - 2 : 0;
+        int rightAxis = chessBase.location.x + 2 < 9 ? chessBase.location.x + 2 : 9;
+        int upAxis = chessBase.location.y - 2 > 0 ? chessBase.location.y - 2 : 0;
+        int downAxis = chessBase.location.y + 2 < 9 ? chessBase.location.y + 2 : 9;
+        for (int i = leftAxis; i <= rightAxis; i++)
+        {
+            for (int j = upAxis; j <= downAxis; j++)
+            {
+                ChessboardManager.instance.ChangeProperty(new Vector2Int(i, j), null);
+            }
+        }
+    }
+
 }
