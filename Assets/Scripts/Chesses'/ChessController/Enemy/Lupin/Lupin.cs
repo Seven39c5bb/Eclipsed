@@ -72,7 +72,9 @@ public class Lupin : EnemyBase
                 int stolenMoney = originMoney - PlayerController.instance.coins;
                 lupinWallet += stolenMoney;
                 //结束战斗，跳转到普通战斗结算页面
-                FightManager.instance.curFightType = FightType.Win;
+                FightManager.instance.ChangeType(FightType.Win);
+
+                Debug.Log("鲁邦偷取了" + stolenMoney + "金币，现在共有" + lupinWallet + "金币。");
                 yield break;
                 //break;
             default:
@@ -153,6 +155,13 @@ public class Lupin : EnemyBase
             step = cameFrom[step];
         }
         path.Reverse();
+
+        // 检查路径是否为空
+        if (path.Count == 0)
+        {
+            return null; // 或者 return new Vector2Int[0];
+        }
+
         return new Vector2Int[] { path[0] };
     }
 

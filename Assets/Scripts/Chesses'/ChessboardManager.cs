@@ -391,6 +391,12 @@ public class ChessboardManager : MonoBehaviour
             CellsInRange[0] = end;
         }
 
+        if (CellsInRange == null || CellsInRange.Length == 0)
+        {
+            Debug.Log("No cells in range");
+            return null;
+        }
+
         Debug.Log("start: " + start);
         //找到CellsInRange中离当前节点最近的点
         int minDistance = 9999;

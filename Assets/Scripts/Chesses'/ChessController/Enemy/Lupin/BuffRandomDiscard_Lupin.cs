@@ -23,5 +23,7 @@ public class BuffRandomDiscard_Lupin : BuffBase
             currCard = CardManager.instance.handCards[Random.Range(0, CardManager.instance.handCards.Count)];
             CardManager.instance.Discard(currCard);
         }
+        //删除buff
+        BuffManager.instance.DeleteBuff(buffName, chessBase);
     }
 }
