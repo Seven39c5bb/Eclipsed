@@ -127,4 +127,11 @@ public class BuffBase : MonoBehaviour
 
     //当玩家使用指向性卡牌指定怪物时
     public virtual bool OnPlayerUsePointerCardToEnemy() { return true; }
+
+    //棋子移动时触发
+    public virtual Vector2Int OnChessMove(Vector2Int direction)
+    {
+        //子类实现
+        return direction;
+    }
 }

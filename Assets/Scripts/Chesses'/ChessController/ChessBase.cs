@@ -383,6 +383,17 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     private List<IMobileUnit> mobileUnits = new List<IMobileUnit>(); //待执行的移动单元
     public virtual IEnumerator Move(Vector2Int direction)
     {
+        // 移动时触发的Buff
+        foreach (BuffBase buff in buffList)
+        {
+            direction = buff.OnChessMove(direction);
+        }
+
+        if (direction == Vector2Int.zero)
+        {
+            yield break;
+        }
+
         // 获取命令列表
         mobileUnits = ChessboardManager.instance.MoveControl(gameObject, location, direction);
 

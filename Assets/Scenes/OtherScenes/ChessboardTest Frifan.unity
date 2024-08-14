@@ -5929,7 +5929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1450593274
 Transform:
   m_ObjectHideFlags: 0
@@ -6296,6 +6296,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1882082495 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8703096003840559502, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+  m_PrefabInstance: {fileID: 8646781033769029042}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1882082498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882082495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2759632c5b3160141a9b3a6812f4c320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  occupant: {fileID: 0}
+  isSelected: 0
+  property: {fileID: 0}
+  cellLocation: {x: 0, y: 0}
+  cellName: 
+  cellDescription: 
+  spriteRenderer: {fileID: 0}
+  originColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1882268298
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8043,6 +8069,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1047179010988691839, guid: 049b2afd89adb7841adcc4a5f15399e1, type: 3}
     - target: {fileID: 5464272076844875437, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.3411652
+      objectReference: {fileID: 0}
+    - target: {fileID: 5464272076844875437, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3411652
+      objectReference: {fileID: 0}
+    - target: {fileID: 5464272076844875437, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+      propertyPath: m_Color.r
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 5464272076844875437, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
       propertyPath: m_SortingOrder
       value: -1
       objectReference: {fileID: 0}
@@ -8368,6 +8406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3486694277932961937, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+    - {fileID: 1339268164948506079, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -8377,6 +8416,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 31749479285675143, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
       insertIndex: 2
       addedObject: {fileID: 276643380}
+    - targetCorrespondingSourceObject: {fileID: 8703096003840559502, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 1882082498}
   m_SourcePrefab: {fileID: 100100000, guid: b6fbf32f642aae94dae675f0b4dc19b5, type: 3}
 --- !u!1001 &8993385623352297249
 PrefabInstance:
