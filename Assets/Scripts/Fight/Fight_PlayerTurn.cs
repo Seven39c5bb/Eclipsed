@@ -23,7 +23,14 @@ public class Fight_PlayerTurn : FightUnit
         foreach (var cell in ChessboardManager.instance.cellStates)
         {
             cell.OnPlayerTurnBegin();
-            if (cell.property != null) cell.property.OnPlayerTurnBegin();
+            //遍历所有棋格上的棋子
+            if (cell.state == Cell.StateType.Occupied)
+            {
+                foreach(var buff in cell.occupant.GetComponent<ChessBase>()?.buffList)
+                {
+                    buff.OnPlayerTurnBegin();
+                }
+            }
         }
 
 
