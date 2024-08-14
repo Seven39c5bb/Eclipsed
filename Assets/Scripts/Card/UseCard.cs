@@ -39,12 +39,15 @@ public class UseCard : MonoBehaviour,IDropHandler
 
         //��ȡ�������ϸÿ���cost
         //���curCost�����ͷţ�����
-
-        if (costManager.instance.curCost < curCard.GetComponent<Card>().cost)
+        //如果不够费用，无法使用
+        if (costManager.instance.curCost < curCard.GetComponent<Card>().cost || !curCard.GetComponent<Card>().canBeUse)
             
         {
             Debug.Log("curcardcost: " + curCard.GetComponent<Card>().cost.ToString());
-            curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f);            
+            curCard.GetComponent<RectTransform>().DOMove(curCard.GetComponent<Card>().startPos, 0.5f).OnComplete(() =>
+            {
+                curCard.GetComponent<Card>().canBeUse = true;
+            });
             Debug.Log("no more cost");
             return;
         }

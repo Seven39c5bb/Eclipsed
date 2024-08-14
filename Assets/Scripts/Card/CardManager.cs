@@ -39,7 +39,16 @@ public class CardManager : MonoBehaviour
         //......;0
 
         #region gameConfig 从json文档中读取卡组信息
-        cardDesk=new List<string>(SaveManager.instance.jsonData.playerData.playerDeck);
+        //cardDesk=new List<string>(SaveManager.instance?.jsonData.playerData.playerDeck);
+        //test
+        cardDesk = new List<string>();
+        if (cardDesk.Count <= 0)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                cardDesk.Add("Snipe");
+            }
+        }
         #endregion
 
         handCardArea = GameObject.Find("handCardArea");

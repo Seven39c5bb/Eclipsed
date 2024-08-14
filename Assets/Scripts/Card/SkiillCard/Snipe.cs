@@ -21,44 +21,7 @@ public class Snipe : Card, IPointerDownHandler, IPointerUpHandler
             this.GetComponent<CanvasGroup>().alpha = 1f;
         }
         #region 让线变色
-        if (ChessboardManager.instance.curCell != null)
-        {
-            string selectedCell = ChessboardManager.instance.curCell.name;
-            Vector2Int selectedCellPos = new Vector2Int(int.Parse(selectedCell[6].ToString()), int.Parse(selectedCell[8].ToString()));
-            if (ChessboardManager.instance.CheckCell(selectedCellPos))
-            {
-                if (ChessboardManager.instance.CheckCell(selectedCellPos).GetComponent<EnemyBase>() == null)
-                {
-                    if (line != null)
-                    {
-                        for (int i = 0; i < line.transform.childCount; i++)
-                        {
-                            line.transform.GetChild(i).GetComponent<Image>().color = Color.red;
-                        }
-                    }
-                }
-                else
-                {
-                    if (line != null)
-                    {
-                        for (int i = 0; i < line.transform.childCount; i++)
-                        {
-                            line.transform.GetChild(i).GetComponent<Image>().color = Color.yellow;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (line != null)
-                {
-                    for (int i = 0; i < line.transform.childCount; i++)
-                    {
-                        line.transform.GetChild(i).GetComponent<Image>().color = Color.red;
-                    }
-                }
-            }
-        }
+        FightUI.instance.ChangeLineColor(line,this);
         #endregion
     }
     //按下时生成一条线

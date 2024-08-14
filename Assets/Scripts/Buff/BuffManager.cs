@@ -19,6 +19,7 @@ public class BuffManager : MonoBehaviour
     }
     public void AddBuff(string buffName,ChessBase buffTaker)
     {
+        Debug.Log("触发AddBuff");
         BuffBase currBuff = null;
         bool isBuffExist = false;
         foreach(var buff in buffTaker.buffList)//遍历buff列表，检查buff是否存在
@@ -60,7 +61,7 @@ public class BuffManager : MonoBehaviour
     //删除buff
     public void DeleteBuff(string buffName,ChessBase buffTaker)
     {
-        Debug.Log("触发deleteBuff");
+        Debug.Log("触发deleteBuff,"+buffTaker.name+" "+buffName);
         List<BuffBase> buffsToRemove = new List<BuffBase>();
         foreach(var buff in buffTaker.buffList)
         {

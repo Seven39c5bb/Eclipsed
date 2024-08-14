@@ -44,6 +44,8 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
     public bool isDrag = false;
     //获取hover卡牌的位置
     public Vector2 hoverPos;
+    //是否可以使用
+    public bool canBeUse = true;
     //是否被使用
     public bool isUsed = false;
     //卡牌初始颜色
@@ -117,22 +119,9 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
         canvasGroup.blocksRaycasts = false;
         Debug.Log("onbegindrag");
         //以玩家为中心n*n的范围使地块变色
-        if(releaseRange!=-1)
-        {
-            
-            int leftAxis = PlayerController.instance.location.x - 3 > 0 ? PlayerController.instance.location.x - 3 : 0;
-            int rightAxis = PlayerController.instance.location.x + 3 < 9 ? PlayerController.instance.location.x + 3 : 9;
-            int upAxis = PlayerController.instance.location.y - 3 > 0 ? PlayerController.instance.location.y - 3 : 0;
-            int downAxis = PlayerController.instance.location.y + 3 < 9 ? PlayerController.instance.location.y + 3 : 9;
-            for (int i = leftAxis; i <= rightAxis; i++)
-            {
-                for (int j = upAxis; j <= downAxis; j++)
-                {
-                    
-                }
-            }
-        }
+        ChangeCellsColor();
     }
+    
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -174,6 +163,25 @@ public class Card : UIBase,IBeginDragHandler,IEndDragHandler,IDragHandler,IPoint
                 this.GetComponent<Image>().color = Color.red;
                 DiscardPanel.instance.curDiscardNum += 1;
                 isDiscard = true;
+            }
+        }
+    }
+    //让地块变色
+    private void ChangeCellsColor()
+    {
+        if (releaseRange != -1)
+        {
+
+            int leftAxis = PlayerController.instance.location.x - 3 > 0 ? PlayerController.instance.location.x - 3 : 0;
+            int rightAxis = PlayerController.instance.location.x + 3 < 9 ? PlayerController.instance.location.x + 3 : 9;
+            int upAxis = PlayerController.instance.location.y - 3 > 0 ? PlayerController.instance.location.y - 3 : 0;
+            int downAxis = PlayerController.instance.location.y + 3 < 9 ? PlayerController.instance.location.y + 3 : 9;
+            for (int i = leftAxis; i <= rightAxis; i++)
+            {
+                for (int j = upAxis; j <= downAxis; j++)
+                {
+
+                }
             }
         }
     }
