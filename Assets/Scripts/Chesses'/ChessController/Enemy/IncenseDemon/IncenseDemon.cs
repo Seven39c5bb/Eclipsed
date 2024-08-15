@@ -143,13 +143,29 @@ public class IncenseDemon : EnemyBase
     }
 
     ///<summary>
-    /// 被动2：当自身血量低于一半时，BOSS身上的烛台全部剧烈燃烧，使被动1、主动1失效，
-    /// 并获得效果：怪物回合结束时，引燃一部分格子。
-    /// 当怪物回合开始时，引爆这些格子，如果玩家在被引爆的格子上，则会受到15点伤害。每回合被引燃的格子是交替的。
+    /// 主动2：对5*5范围的玩家造成10点伤害。玩家下回合行动牌费用+10
     ///</summary>
     public void Skill_3()
     {
         Debug.Log("触发Skill3");
+        int leftAxis = location.x - 2 > 0 ? location.x - 2 : 0;
+        int rightAxis = location.x + 2 < 9 ? location.x + 2 : 9;
+        int upAxis = location.y - 2 > 0 ? location.y - 2 : 0;
+        int downAxis = location.y + 2 < 9 ? location.y + 2 : 9;
+        //yield return new WaitForSeconds(1f);
+        for (int i = leftAxis; i <= rightAxis; i++)
+        {
+            for (int j = upAxis; j <= downAxis; j++)
+            {
+                if (ChessboardManager.instance.cellStates[i,j].state!=Cell.StateType.Empty &&
+                    ChessboardManager.instance.cellStates[i, j].occupant.tag == "Player")
+                {
+                    PlayerController.instance.TakeDamage(10,this);
+                    //使玩家下回合行动牌费用+10
+                    break;
+                }
+            }
+        }
     }
     IEnumerator CheckBossHealth()
     {
