@@ -6,9 +6,6 @@ public class HeightCell : Cell
 {
     public override void OnChessEnter(ChessBase chess)
     {
-        if(state == StateType.Occupied && occupant.tag == "Player")
-        {
-            PlayerController.instance.TakeDamage(10, null);
-        }
+        BuffManager.instance.AddBuff("Height_Buff", chess);
     }
 }
