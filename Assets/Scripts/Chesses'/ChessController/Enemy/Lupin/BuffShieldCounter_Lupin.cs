@@ -7,7 +7,6 @@ public class BuffShieldCounter_Lupin : BuffBase
     void Awake()
     {
         //初始化buff
-        buffName = "BuffShieldCounter_Lupin";
         buffNameCN = "护盾反击";
         durationTurn = 1;
         buffType = BuffType.Buff;

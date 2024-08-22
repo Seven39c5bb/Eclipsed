@@ -6,7 +6,6 @@ public class ShadowVeilBuff : BuffBase
 {
     void Awake()
     {
-        buffName = "ShadowVeilBuff";
         buffNameCN = "暗影之幕";
         durationTurn = 1;
         buffType = BuffType.Buff;

@@ -73,4 +73,12 @@ public class FightManager : MonoBehaviour
         }
         fightUnit.Init();//初始化该战斗单元
     }
+
+
+    //掷一个20面骰子的协程
+    public static int RollDice()
+    {
+        //返回1-20的随机数
+        return Random.Range(1, 21);
+    }
 }

@@ -10,7 +10,6 @@ public class Candelabra_Buff : BuffBase
     public int turn;
     void Awake()
     {
-        buffName = "Candelabra_Buff";
         buffNameCN = "全神贯注";
         durationTurn = 9999;
         buffType = BuffType.Buff;

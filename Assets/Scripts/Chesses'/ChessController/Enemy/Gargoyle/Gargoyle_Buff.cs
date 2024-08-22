@@ -7,7 +7,6 @@ public class Gargoyle_Buff : BuffBase
     private int flag = 0;//判断本回合是否受到过伤害
     void Awake()
     {
-        buffName = "Gargoyle_Buff";
         buffNameCN = "飞驰疾行";
         durationTurn = 10;
         buffType = BuffType.Buff;

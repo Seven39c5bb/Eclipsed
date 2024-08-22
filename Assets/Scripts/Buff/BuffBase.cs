@@ -28,7 +28,8 @@ public class BuffBase : MonoBehaviour
     //buff图标类型
     public BuffImgType buffImgType;
     //buff名字
-    public string buffName;
+    //public string buffName;
+    public string buffName => GetType().Name;
     public string buffNameCN;//用于面板显示的中文名字
     //buff持续回合数
     public int durationTurn;
@@ -54,6 +55,11 @@ public class BuffBase : MonoBehaviour
     {
         //子类实现
         return damage;
+    }
+    //生命值减少后触发
+    public virtual void OnHPReduce(int damage)
+    {
+        //子类实现
     }
     //回合开始时抽牌开始前触发
     public virtual void OnTurnStart()
@@ -127,4 +133,11 @@ public class BuffBase : MonoBehaviour
 
     //当玩家使用指向性卡牌指定怪物时
     public virtual bool OnPlayerUsePointerCardToEnemy() { return true; }
+
+    //棋子移动时触发
+    public virtual Vector2Int OnChessMove(Vector2Int direction)
+    {
+        //子类实现
+        return direction;
+    }
 }

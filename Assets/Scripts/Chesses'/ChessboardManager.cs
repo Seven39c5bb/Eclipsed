@@ -57,7 +57,7 @@ public class ChessboardManager : MonoBehaviour
 
         Chess_instance = this;
 
-        ChangeProperty(new Vector2Int(5, 4), "Smoke");
+        //ChangeProperty(new Vector2Int(5, 4), "Smoke");
     }
 
     public void UpdateEnemyControllerList()
@@ -331,6 +331,12 @@ public class ChessboardManager : MonoBehaviour
         {
             CellsInRange = new Vector2Int[1];
             CellsInRange[0] = end;
+        }
+
+        if (CellsInRange == null || CellsInRange.Length == 0)
+        {
+            Debug.Log("No cells in range");
+            return null;
         }
 
         Debug.Log("start: " + start);

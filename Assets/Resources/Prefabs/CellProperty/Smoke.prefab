@@ -4798,7 +4798,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: -1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4843,5 +4843,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 288cd0947b717a747ba073d86bd0d8a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cell: {fileID: 0}
   propertyName: 
   description: 

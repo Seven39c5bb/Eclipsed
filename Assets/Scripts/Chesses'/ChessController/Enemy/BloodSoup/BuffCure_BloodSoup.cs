@@ -6,7 +6,6 @@ public class BuffCure_BloodSoup : BuffBase
 {
     void Awake()
     {
-        buffName = "BuffCure_BloodSoup";
         buffNameCN = "血肉愈合";
         description = "血羹正在缓慢恢复生命";
         durationTurn = 9999;

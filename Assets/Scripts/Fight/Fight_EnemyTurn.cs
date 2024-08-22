@@ -61,7 +61,7 @@ public class Fight_EnemyTurn : FightUnit
                 currCoroutine = ChessboardManager.instance.StartCoroutine(OnTurnCoroutine(enemyList[0]));//通过下面的协程来调用敌人的OnTurn
                 Debug.Log("Current Enemy Turn Started");
             }
-            timer = 0.8f;
+            timer = 1f;
         }
         else if(timer >= 0)
         {

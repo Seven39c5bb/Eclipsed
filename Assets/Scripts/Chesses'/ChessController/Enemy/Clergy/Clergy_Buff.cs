@@ -7,7 +7,6 @@ public class Clergy_Buff : BuffBase
 {
     void Awake()
     {
-        buffName = "Clergy_Buff";
         buffNameCN = "神圣治疗";
         durationTurn = 10;
         buffType = BuffType.Buff;

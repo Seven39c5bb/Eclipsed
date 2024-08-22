@@ -7,7 +7,6 @@ public class BuffRandomDiscard_Lupin : BuffBase
     void Awake()
     {
         //初始化buff
-        buffName = "BuffRandomDiscard_Lupin";
         buffNameCN = "随机弃牌";
         durationTurn = 1;
         buffType = BuffType.Debuff;
@@ -23,5 +22,7 @@ public class BuffRandomDiscard_Lupin : BuffBase
             currCard = CardManager.instance.handCards[Random.Range(0, CardManager.instance.handCards.Count)];
             CardManager.instance.Discard(currCard);
         }
+        //删除buff
+        BuffManager.instance.DeleteBuff(buffName, chessBase);
     }
 }
