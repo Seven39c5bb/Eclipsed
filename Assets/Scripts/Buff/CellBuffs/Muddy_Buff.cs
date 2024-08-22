@@ -9,7 +9,6 @@ public class Muddy_Buff : BuffBase
 
     void Awake()
     {
-        buffName = "Muddy_Buff";
         buffNameCN = "沾满泥巴";
         durationTurn = 1;
         buffType = BuffType.Debuff;
@@ -57,28 +56,32 @@ public class Muddy_Buff : BuffBase
     }
     public override Vector2Int OnChessMove(Vector2Int direction)//仅对玩家有效
     {
-        // 如果移动方向为0，直接返回
-        if (direction == Vector2Int.zero)
+        if (chessBase.gameObject.tag == "Player")
         {
-            return direction;
+            // 如果移动方向为0，直接返回
+            if (direction == Vector2Int.zero)
+            {
+                return direction;
+            }
+
+            // 计算模长
+            float magnitude = direction.magnitude;
+
+            // 归一化向量
+            Vector2 normalizedDirection = ((Vector2)direction).normalized;
+
+            // 将模长减少1
+            Vector2 newDirection = normalizedDirection * (magnitude - 1);
+
+            // 将结果转换回 Vector2Int
+            Vector2Int resultDirection = new Vector2Int(Mathf.RoundToInt(newDirection.x), Mathf.RoundToInt(newDirection.y));
+
+            // 删除buff
+            BuffManager.instance.DeleteBuff("Muddy_Buff", chessBase);
+
+            return resultDirection;
         }
-
-        // 计算模长
-        float magnitude = direction.magnitude;
-
-        // 归一化向量
-        Vector2 normalizedDirection = ((Vector2)direction).normalized;
-
-        // 将模长减少1
-        Vector2 newDirection = normalizedDirection * (magnitude - 1);
-
-        // 将结果转换回 Vector2Int
-        Vector2Int resultDirection = new Vector2Int(Mathf.RoundToInt(newDirection.x), Mathf.RoundToInt(newDirection.y));
-
-        // 删除buff
-        BuffManager.instance.DeleteBuff("Muddy_Buff", chessBase);
-
-        return resultDirection;
+        return direction;
     }
     public override void OnRemove()
     {

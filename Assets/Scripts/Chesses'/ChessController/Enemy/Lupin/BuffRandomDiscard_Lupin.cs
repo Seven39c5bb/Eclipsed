@@ -7,7 +7,6 @@ public class BuffRandomDiscard_Lupin : BuffBase
     void Awake()
     {
         //初始化buff
-        buffName = "BuffRandomDiscard_Lupin";
         buffNameCN = "随机弃牌";
         durationTurn = 1;
         buffType = BuffType.Debuff;

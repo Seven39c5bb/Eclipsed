@@ -7,7 +7,6 @@ public class Screamer_Buff : BuffBase
 {
     void Awake()
     {
-        buffName = "Screamer_Buff";
         buffNameCN = "恐惧";
         durationTurn = 10;
         buffType = BuffType.Debuff;

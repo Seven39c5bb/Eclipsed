@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1488576656, guid: bbe59acf66ce38b4e96ea6e4a44f158d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -113,6 +113,8 @@ MonoBehaviour:
   barrier_private: 0
   meleeAttackPower_private: 2
   location_private: {x: 5, y: 0}
+  HPBarInstance: {fileID: 0}
+  originOrientation: -1
   mobility: 0
   moveMode: 0
   isActed: 0

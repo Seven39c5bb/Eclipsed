@@ -7,11 +7,10 @@ public class Height_Buff : BuffBase
 {
     void Awake()
     {
-        buffName = "Height_Buff";
         buffNameCN = "居高临下";
         durationTurn = 9999;
         buffType = BuffType.Buff;
-        description = "高度加成";
+        description = "角色位于该地块时，使用远程技能牌命中敌人时每段多2点伤害。处于非高地的角色对位于高地的角色使用远程攻击时，有25%的概率miss。";
         canBeLayed = false;
         buffImgType = BuffImgType.Damage;
     }

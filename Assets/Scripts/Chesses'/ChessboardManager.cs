@@ -57,7 +57,7 @@ public class ChessboardManager : MonoBehaviour
 
         Chess_instance = this;
 
-        ChangeProperty(new Vector2Int(5, 4), "Smoke");
+        //ChangeProperty(new Vector2Int(5, 4), "Smoke");
     }
 
     public void UpdateEnemyControllerList()

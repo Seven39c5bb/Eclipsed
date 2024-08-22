@@ -256,6 +256,10 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         CureHPBar.fillAmount = (float)HP / maxHp;
         DamageHPBar.fillAmount = (float)HP / maxHp;
         BarrierBar.fillAmount = (float)barrier / maxHp;
+
+        // 初始时也要触发进入效果
+        ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessEnter(this);
+        ChessboardManager.instance.cellStates[location.x, location.y].OnChessEnter(this);
     }
 
     /* private int originOrientation = -1;//初始朝向(左)
@@ -596,6 +600,11 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         if (damageTaken > 0)
         {
             HP -= damageTaken;
+            // 触发受伤事件
+            foreach (BuffBase buff in buffList)
+            {
+                buff.OnHPReduce(damageTaken);
+            }
             if (HP <= 0)
             {
                 isDead = true;

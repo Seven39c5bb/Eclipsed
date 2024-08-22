@@ -6,7 +6,6 @@ public class BuffPsychasthenia_BloodSoup : BuffBase
 {
     void Awake()
     {
-        buffName = "BuffPsychasthenia_BloodSoup";
         buffNameCN = "精神衰弱";
         description = "尖啸贯穿心扉，精神衰弱，卡牌费用减少";
         durationTurn = 9999;

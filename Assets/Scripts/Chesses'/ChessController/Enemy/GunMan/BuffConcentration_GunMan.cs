@@ -6,7 +6,6 @@ public class BuffConcentration_GunMan : BuffBase
 {
     void Awake()
     {
-        buffName = "BuffConcentration_GunMan";
         buffNameCN = "全神贯注";
         durationTurn = 9999;
         buffType = BuffType.Buff;

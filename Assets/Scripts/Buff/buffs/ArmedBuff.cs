@@ -7,7 +7,6 @@ public class ArmedBuff : BuffBase
     private int increaseAttackPower = 0;
     void Awake()
     {
-        buffName = "ArmedBuff";
         buffNameCN = "武装";
         durationTurn = 9999;
         description = "近战攻击力提升了";

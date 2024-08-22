@@ -6,7 +6,6 @@ public class EnemyBruisingBuff : BuffBase
 {
     void Awake()
     {
-        buffName = "EnemyBruisingBuff";
         buffNameCN = "水银创伤";
         description = "该单位受到水银子弹的影响，受到的伤害+1";
         durationTurn = 9999;

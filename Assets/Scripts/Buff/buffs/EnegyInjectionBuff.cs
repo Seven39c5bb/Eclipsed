@@ -6,7 +6,6 @@ public class EnegyInjectionBuff : BuffBase
 {
     void Awake()
     {
-        buffName = "EnegyInjectionBuff";
         buffNameCN = "能量注入";
         durationTurn = 9999;
         buffType = BuffType.Buff;
