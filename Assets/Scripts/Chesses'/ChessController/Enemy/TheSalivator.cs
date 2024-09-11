@@ -42,7 +42,9 @@ public class TheSalivator : EnemyBase
         
 
         //释放技能
-        Salivate();
+        //Salivate();
+        // 释放技能
+        yield return StartCoroutine(ExecuteSkill(new SalivateSkill(this)));
 
         yield return new WaitForSeconds(0.3f);
 
@@ -52,7 +54,7 @@ public class TheSalivator : EnemyBase
         }
     }
 
-    public void Salivate()//唾液攻击
+/*     public void Salivate()//唾液攻击
     {
         //获取周围的敌人
         ChessBase player = null;
@@ -75,6 +77,42 @@ public class TheSalivator : EnemyBase
                     Debug.Log("泌涎者攻击了玩家，玩家受到了7点伤害");
                 }
             }
+        }
+    } */
+
+    public class SalivateSkill: SkillBase
+    {
+        public SalivateSkill(ChessBase chessBase) : base(chessBase)
+        {
+        }
+        protected override IEnumerator ExecuteSkill()
+        {
+            // 执行子类特定的技能逻辑
+            //获取周围的敌人
+            ChessBase player = null;
+            //向ChessboardManager查询以自身为中心7*7范围内是否有玩家
+            int leftAxis = self.location.x - 3 > 0 ? self.location.x - 3 : 0;
+            int rightAxis = self.location.x + 3 < 9 ? self.location.x + 3 : 9;
+            int upAxis = self.location.y - 3 > 0 ? self.location.y - 3 : 0;
+            int downAxis = self.location.y + 3 < 9 ? self.location.y + 3 : 9;
+            for (int i = leftAxis; i <= rightAxis; i++)
+            {
+                for (int j = upAxis; j <= downAxis; j++)
+                {
+                    ChessBase currCellObject = ChessboardManager.instance.CheckCell(new Vector2Int(i, j));
+                    if (currCellObject != null && currCellObject.tag == "Player")
+                    {
+                        player = currCellObject;
+                        GameObject bulletEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletParticle");
+                        GameObject bulletHitEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletHitEffect");
+                        yield return self.BulletAttackAsync(7, player, bulletEffect, bulletHitEffect).AsCoroutine();
+                        Debug.Log("泌涎者攻击了玩家，玩家受到了7点伤害");
+                    }
+                }
+            }
+            // 设置技能执行完成
+            //yield return new WaitForSeconds(0.3f);
+            IsCompleted = true;
         }
     }
 

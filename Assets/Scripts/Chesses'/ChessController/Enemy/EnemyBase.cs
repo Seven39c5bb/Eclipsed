@@ -24,12 +24,93 @@ public interface IEnemy
 }
 
 
+
+
+
+#region 技能基类
+/// <summary>
+/// 定义技能接口
+/// </summary>
+public interface ISkill
+{
+    bool IsCompleted { get; }
+    IEnumerator Execute();
+}
+/// <summary>
+/// 技能基类，实现ISkill接口
+/// </summary>
+public abstract class SkillBase : ISkill
+{
+    public bool IsCompleted { get; protected set; }
+    protected ChessBase self;
+
+    public SkillBase(ChessBase self)
+    {
+        this.IsCompleted = false;
+        this.self = self;
+    }
+
+    public IEnumerator Execute()
+    {
+        // 执行公共技能逻辑
+        yield return ExecuteSkill();
+    }
+
+    /// <summary>
+    /// 执行技能逻辑
+    /// </summary>
+    /// <remarks>
+    /// 需要在技能释放完毕时将IsCompleted设置为true
+    /// </remarks>
+    /// <returns></returns>
+    protected abstract IEnumerator ExecuteSkill();
+}
+#endregion
+
+
+
+
 public abstract class EnemyBase : ChessBase, IEnemy
 {
+
+    private IEnumerator ExecuteCommand(ISkill command)
+    {
+        // 启动命令的执行协程
+        yield return StartCoroutine(command.Execute());
+
+        // 等待命令执行完成
+        yield return new WaitUntil(() => command.IsCompleted);
+    }
+    /// <summary>
+    /// 执行技能
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="command"></param>
+    /// <remarks>
+    /// 使用方法：
+    /// yield return StartCoroutine(ExecuteSkill(new SpecificSkillCommand(this)));
+    /// SpecificSkillCommand继承自SkillBase
+    /// </remarks>
+    /// <returns></returns>
+    protected IEnumerator ExecuteSkill<T>(T command) where T : ISkill
+    {
+        if (canExecuteSkill)
+        {
+            yield return StartCoroutine(ExecuteCommand(command));
+        }
+    }
+
+
+    
+
+
     public int mobility;//行动力
     public int moveMode;//移动模式
 
     public bool isActed = false;
+
+    public bool canExecuteSkill = true;
+
 
     public virtual IEnumerator OnTurn()
     {

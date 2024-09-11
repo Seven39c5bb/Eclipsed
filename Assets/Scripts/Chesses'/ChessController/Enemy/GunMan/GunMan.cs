@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using NUnit.Framework;
 
 public class GunMan : EnemyBase
 {
@@ -32,7 +33,10 @@ public class GunMan : EnemyBase
         yield return base.OnTurn();
 
         //释放技能
-        Shot();
+        //Shot();
+        // 释放技能
+        yield return StartCoroutine(ExecuteSkill(new ShotSkill(this)));
+
 
         yield return new WaitForSeconds(0.3f);
 
@@ -42,7 +46,7 @@ public class GunMan : EnemyBase
         }
     }
 
-    public int shotDamage = 5;//射击伤害
+    /* public int shotDamage = 5;//射击伤害
     public void Shot()//射击
     {
         //获取周围的敌人
@@ -73,7 +77,52 @@ public class GunMan : EnemyBase
             BulletAttack(shotDamage, player, bulletEffect, bulletHitEffect);
             BuffManager.instance.AddBuff("BuffConcentration_GunMan", this);//添加全神贯注buff
         }
+    } */
+
+    public int shotDamage = 5;//射击伤害
+    public class ShotSkill : SkillBase
+    {
+        public ShotSkill(ChessBase self) : base(self)
+        {
+        }
+        protected override IEnumerator ExecuteSkill()
+        {
+            // 执行子类特定的技能逻辑
+            //获取周围的敌人
+            ChessBase player = null;
+            //向ChessboardManager查询以自身为中心9*9范围内是否有玩家
+            int leftAxis = self.location.x - 4 > 0 ? self.location.x - 4 : 0;
+            int rightAxis = self.location.x + 4 < 9 ? self.location.x + 4 : 9;
+            int upAxis = self.location.y - 4 > 0 ? self.location.y - 4 : 0;
+            int downAxis = self.location.y + 4 < 9 ? self.location.y + 4 : 9;
+            for (int i = leftAxis; i <= rightAxis; i++)
+            {
+                for (int j = upAxis; j <= downAxis; j++)
+                {
+                    ChessBase currCellObject = ChessboardManager.instance.CheckCell(new Vector2Int(i, j));
+                    if (currCellObject != null && currCellObject.gameObject.tag == "Player")
+                    {
+                        player = currCellObject;
+                        break;
+                    }
+                }
+            }
+
+            if (player != null)
+            {
+                //特效加在这里
+                GameObject bulletEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletParticle");
+                GameObject bulletHitEffect = Resources.Load<GameObject>("Prefabs/Particle/EnemyBulletParticle/EnemyBulletHitEffect");
+                yield return self.BulletAttackAsync((self as GunMan).shotDamage, player, bulletEffect, bulletHitEffect).AsCoroutine();
+                BuffManager.instance.AddBuff("BuffConcentration_GunMan", self);//添加全神贯注buff
+            }
+            yield return null;
+            IsCompleted = true;
+        }
     }
+
+
+
 
     public override bool IsInRange(Vector2Int Location)//判断是否在该怪物偏好的环内
     {
