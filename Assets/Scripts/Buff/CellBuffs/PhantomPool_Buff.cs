@@ -28,6 +28,22 @@ public class PhantomPool_Buff : BuffBase
             description = "生命值损失的一半会被转化为护盾，但是此单位无法使用技能";
         }
     }
+    public override void OnAdd()
+    {
+        if (chessBase.gameObject.tag != "Player")
+        {
+            EnemyBase enemyBase = chessBase as EnemyBase;
+            enemyBase.canExecuteSkill = false;
+        }
+    }
+    public override void OnRemove()
+    {
+        if (chessBase.gameObject.tag != "Player")
+        {
+            EnemyBase enemyBase = chessBase as EnemyBase;
+            enemyBase.canExecuteSkill = true;
+        }
+    }
 
     //在此地块时，生命值损失的一半会被转化为护盾，但是抽到的技能牌会被直接弃掉。（怪物进入此地形时，无法使用技能）
     public override void OnHPReduce(int damage)

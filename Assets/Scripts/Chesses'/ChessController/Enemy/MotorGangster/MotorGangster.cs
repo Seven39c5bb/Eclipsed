@@ -33,7 +33,9 @@ public class MotorGangster : EnemyBase
 
         yield return new WaitForSeconds(0.2f);
         //释放技能
-        RangeInjury();
+        //RangeInjury();
+        // 释放技能
+        yield return StartCoroutine(ExecuteSkill(new RangeInjurySkill(this)));
         yield return new WaitForSeconds(0.3f);
         BuffManager.instance.AddBuff("BuffDriveMotor_MotorGangster", this);//刷新驾驶buff
 
@@ -43,7 +45,7 @@ public class MotorGangster : EnemyBase
         }
     }
 
-    public void RangeInjury()//范围伤害
+/*     public void RangeInjury()//范围伤害
     {
         //获取周围的敌人
         ChessBase player = null;
@@ -72,6 +74,48 @@ public class MotorGangster : EnemyBase
             //对玩家造成伤害
             //特效加在这里
             player.TakeDamage(15, this);
+        }
+    } */
+
+    public class RangeInjurySkill: SkillBase
+    {
+        public RangeInjurySkill(ChessBase self) : base(self)
+        {
+        }
+        protected override IEnumerator ExecuteSkill()
+        {
+            // 执行子类特定的技能逻辑
+            //获取周围的敌人
+            ChessBase player = null;
+            //实例化旋风斩特效
+            GameObject effect = Instantiate(Resources.Load<GameObject>("Prefabs/Particle/Whirlwind Slash Effect"), self.transform.position, Quaternion.identity);
+            //向ChessboardManager查询以自身为中心3*3范围内是否有玩家
+            int leftAxis = self.location.x - 1 > 0 ? self.location.x - 1 : 0;
+            int rightAxis = self.location.x + 1 < 9 ? self.location.x + 1 : 9;
+            int upAxis = self.location.y - 1 > 0 ? self.location.y - 1 : 0;
+            int downAxis = self.location.y + 1 < 9 ? self.location.y + 1 : 9;
+            for (int i = leftAxis; i <= rightAxis; i++)
+            {
+                for (int j = upAxis; j <= downAxis; j++)
+                {
+                    ChessBase currCellObject = ChessboardManager.instance.CheckCell(new Vector2Int(i, j));
+                    if (currCellObject != null && currCellObject.gameObject.tag == "Player")
+                    {
+                        player = currCellObject;
+                        break;
+                    }
+                }
+            }
+
+            yield return new WaitForSeconds(0.2f);
+            if (player != null)
+            {
+                //对玩家造成伤害
+                //特效加在这里
+                player.TakeDamage(15, self);
+            }
+            // 设置技能执行完成
+            IsCompleted = true;
         }
     }
 

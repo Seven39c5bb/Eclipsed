@@ -137,13 +137,31 @@ public class BloodSoup : EnemyBase
 
         yield return new WaitForSeconds(0.3f);
 
-        BuffManager.instance.AddBuff("BuffFleshLoad_BloodSoup", this);
+        //BuffManager.instance.AddBuff("BuffFleshLoad_BloodSoup", this);
+        yield return StartCoroutine(ExecuteSkill(new FleshLoadSkill(this)));
 
         foreach (BuffBase buff in buffList)
         {
             buff.OnTurnEnd();
         }
     }
+
+    public class FleshLoadSkill : SkillBase
+    {
+        public FleshLoadSkill(ChessBase self) : base(self)
+        {
+        }
+
+        protected override IEnumerator ExecuteSkill()
+        {
+            //技能：血肉炮弹：向本回合开始时玩家所在的格子发射一枚炮弹，造成3*3范围的12点伤害，并留下血水。
+            BuffManager.instance.AddBuff("BuffFleshLoad_BloodSoup", self);
+            // 设置技能结束
+            IsCompleted = true;
+            yield break;
+        }
+    }
+
 
     public void OnBloodPool(BloodPool.BloodPoolDepth bloodPoolDepth)//血池效果
     {

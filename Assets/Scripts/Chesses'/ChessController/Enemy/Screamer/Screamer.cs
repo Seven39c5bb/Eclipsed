@@ -43,9 +43,13 @@ public class Screamer : EnemyBase
 
         //用BFS算法移动
         yield return base.OnTurn();
+        
+        // 被动技能：在玩家的回合开始时，玩家每打出一张牌，就会受到1点伤害。
+        BuffManager.instance.AddBuff("Screamer_Buff", PlayerController.instance);//添加buff
 
         //释放技能
-        ScreamerSkill();
+        //ScreamerSkill();
+        yield return StartCoroutine(ExecuteSkill(new ScreamingSkill(this)));
 
         yield return new WaitForSeconds(0.3f);
 
@@ -55,7 +59,7 @@ public class Screamer : EnemyBase
         }
     }
 
-    private void ScreamerSkill()
+    /* private void ScreamerSkill()
     {
         //test
         Debug.Log("ScreamerSkill");
@@ -77,6 +81,41 @@ public class Screamer : EnemyBase
                     player.TakeDamage(13, this);
                 }
             }
+        }
+    } */
+
+    public class ScreamingSkill : SkillBase
+    {
+        public ScreamingSkill(ChessBase self) : base(self)
+        {
+        }
+
+        protected override IEnumerator ExecuteSkill()
+        {
+            //test
+            Debug.Log("ScreamerSkill");
+            //获取周围的敌人
+            //ChessBase player = null;
+            //向ChessboardManager查询以自身为中心5*5范围内是否有玩家
+            int leftAxis = self.location.x - 2 > 0 ? self.location.x - 2 : 0;
+            int rightAxis = self.location.x + 2 < 9 ? self.location.x + 2 : 9;
+            int upAxis = self.location.y - 2 > 0 ? self.location.y - 2 : 0;
+            int downAxis = self.location.y + 2 < 9 ? self.location.y + 2 : 9;
+            for (int i = leftAxis; i <= rightAxis; i++)
+            {
+                for (int j = upAxis; j <= downAxis; j++)
+                {
+                    ChessBase currCellObject = ChessboardManager.instance.CheckCell(new Vector2Int(i, j));
+                    if (currCellObject != null && currCellObject.tag == "Player")
+                    {
+                        //player = currCellObject;
+                        currCellObject.TakeDamage(13, self);
+                    }
+                }
+            }
+            yield return null;
+            // 设置技能执行完成
+            IsCompleted = true;
         }
     }
 
