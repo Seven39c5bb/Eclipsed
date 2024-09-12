@@ -23,6 +23,8 @@ public class Lupin : EnemyBase
         // 初始化敌人棋子
         maxHp = SaveManager.instance.jsonData.lupinData.MaxHP;//最大生命值
         HP = SaveManager.instance.jsonData.lupinData.HP;//当前生命值
+        //maxHp = 100;//最大生命值
+        //HP = 100;//当前生命值
         meleeAttackPower = 5;//近战攻击力
         mobility = 2;//行动力
         moveMode = 1;//移动模式
@@ -48,17 +50,20 @@ public class Lupin : EnemyBase
         {
             case 0:
                 //技能1：对玩家造成3*4点伤害。自己每失去一百血，就再造成一次3点伤害。
-                PlayerController.instance.TakeDamage(3 * ((maxHp - HP) / 100 + 4), this);
+                //PlayerController.instance.TakeDamage(3 * ((maxHp - HP) / 100 + 4), this);
+                yield return StartCoroutine(ExecuteSkill(new LupinSkill1(this)));
                 break;
             case 1:
                 //技能2：获得20点护盾。在下个回合开始时，对玩家造成护盾数额的伤害。
-                barrier += 20;
-                BuffManager.instance.AddBuff("BuffShieldCounter_Lupin", this);
+                /* barrier += 20;
+                BuffManager.instance.AddBuff("BuffShieldCounter_Lupin", this); */
+                yield return StartCoroutine(ExecuteSkill(new LupinSkill2(this)));
                 break;
             case 2:
                 //技能3：对玩家造成10点伤害。在玩家回合开始时抽牌结束后，随机弃掉玩家手上3张牌。
-                PlayerController.instance.TakeDamage(10, this);
-                BuffManager.instance.AddBuff("BuffRandomDiscard_Lupin", PlayerController.instance);
+                /* PlayerController.instance.TakeDamage(10, this);
+                BuffManager.instance.AddBuff("BuffRandomDiscard_Lupin", PlayerController.instance); */
+                yield return StartCoroutine(ExecuteSkill(new LupinSkill3(this)));
                 break;
             case 3:
                 //技能4：回合开始时，行动力变为5。
@@ -94,6 +99,63 @@ public class Lupin : EnemyBase
 
         currTurn++;
     }
+
+    //技能1
+    public class LupinSkill1 : SkillBase
+    {
+        public LupinSkill1(ChessBase self) : base(self)
+        {
+        }
+
+        protected override IEnumerator ExecuteSkill()
+        {
+            //技能1：对玩家造成3*4点伤害。自己每失去一百血，就再造成一次3点伤害。
+
+            // 后续应该要改成分段扣血
+            PlayerController.instance.TakeDamage(3 * ((self.maxHp - self.HP) / 100 + 4), self);
+            // 设置技能结束
+            IsCompleted = true;
+            yield break;
+        }
+    }
+
+    //技能2
+    public class LupinSkill2 : SkillBase
+    {
+        public LupinSkill2(ChessBase self) : base(self)
+        {
+        }
+
+        protected override IEnumerator ExecuteSkill()
+        {
+            //技能2：获得20点护盾。在下个回合开始时，对玩家造成护盾数额的伤害。
+            self.barrier += 20;
+            BuffManager.instance.AddBuff("BuffShieldCounter_Lupin", self);
+            // 设置技能结束
+            IsCompleted = true;
+            yield break;
+        }
+    }
+
+    //技能3
+    public class LupinSkill3 : SkillBase
+    {
+        public LupinSkill3(ChessBase self) : base(self)
+        {
+        }
+
+        protected override IEnumerator ExecuteSkill()
+        {
+            //技能3：对玩家造成10点伤害。在玩家回合开始时抽牌结束后，随机弃掉玩家手上3张牌。
+            PlayerController.instance.TakeDamage(10, self);
+            BuffManager.instance.AddBuff("BuffRandomDiscard_Lupin", PlayerController.instance);
+            // 设置技能结束
+            IsCompleted = true;
+            yield break;
+        }
+    }
+
+
 
     public override bool IsInRange(Vector2Int playerLocation)//判断是否在该怪物偏好的环内
     {

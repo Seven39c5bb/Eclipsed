@@ -82,7 +82,7 @@ public class TheSalivator : EnemyBase
 
     public class SalivateSkill: SkillBase
     {
-        public SalivateSkill(ChessBase chessBase) : base(chessBase)
+        public SalivateSkill(ChessBase self) : base(self)
         {
         }
         protected override IEnumerator ExecuteSkill()
