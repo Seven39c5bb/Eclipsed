@@ -46,6 +46,7 @@ public class Flesh : EnemyBase
 
     public override Vector2Int[] CellsInRange(Vector2Int playerLocation)//获取该怪物在玩家周围的偏好区，Location为玩家的位置
     {
+      
         //返回Location
         return new Vector2Int[] { playerLocation };//可直接用于碰撞类怪物，玩家位置既是偏好区
     }

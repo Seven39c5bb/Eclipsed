@@ -4984,6 +4984,75 @@ MonoBehaviour:
   cellDescription: 
   spriteRenderer: {fileID: 0}
   originColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!1001 &465223351
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3649179628075297808, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899008387087418889, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_Name
+      value: Priest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3899008387087418889, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455151108220730742, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1954832688, guid: bbe59acf66ce38b4e96ea6e4a44f158d, type: 3}
+    m_RemovedComponents:
+    - {fileID: 5785534497321360205, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3899008387087418889, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 893217877}
+  m_SourcePrefab: {fileID: 100100000, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
 --- !u!4 &510485001 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3233580361549578195, guid: d1ba5a85bf1561f479e43a53e60d445b, type: 3}
@@ -10282,6 +10351,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &893217876 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3899008387087418889, guid: d2a6b61b7e71648499cfc39a29ad1682, type: 3}
+  m_PrefabInstance: {fileID: 465223351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &893217877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893217876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1f92def2437fa43a9854c23c3b679b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HPBar: {fileID: 0}
+  DamageHPBar: {fileID: 0}
+  CureHPBar: {fileID: 0}
+  BarrierBar: {fileID: 0}
+  HPBarCanvasPrefab: {fileID: 0}
+  HPBarCanvasInstance: {fileID: 0}
+  chessName: Chess
+  chessDiscrption: 
+  buffList: []
+  dontMeleeAttack: 0
+  isDead: 0
+  maxHp: 10
+  HP_private: 10
+  barrier_private: 0
+  meleeAttackPower_private: 2
+  location_private: {x: 3, y: 0}
+  HPBarInstance: {fileID: 0}
+  originOrientation: -1
+  mobility: 0
+  moveMode: 0
+  isActed: 0
 --- !u!1 &927777289
 GameObject:
   m_ObjectHideFlags: 0
@@ -21598,6 +21705,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: IncenseDemon
       objectReference: {fileID: 0}
+    - target: {fileID: 5405696369827253669, guid: 66503a7da32fafb428ec3a46b6644f87, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23335,5 +23446,6 @@ SceneRoots:
   - {fileID: 360540238993440817}
   - {fileID: 1952770125949068268}
   - {fileID: 2290542545119668484}
+  - {fileID: 465223351}
   - {fileID: 4148985895284571598}
   - {fileID: 1896248639}
