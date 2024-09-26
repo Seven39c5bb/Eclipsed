@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
+using System.Threading.Tasks;
 
 // 伤害类型
 public enum DamageType
@@ -256,6 +257,10 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         CureHPBar.fillAmount = (float)HP / maxHp;
         DamageHPBar.fillAmount = (float)HP / maxHp;
         BarrierBar.fillAmount = (float)barrier / maxHp;
+
+        // 初始时也要触发进入效果
+        ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessEnter(this);
+        ChessboardManager.instance.cellStates[location.x, location.y].OnChessEnter(this);
     }
 
     /* private int originOrientation = -1;//初始朝向(左)
@@ -383,6 +388,17 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
     private List<IMobileUnit> mobileUnits = new List<IMobileUnit>(); //待执行的移动单元
     public virtual IEnumerator Move(Vector2Int direction)
     {
+        // 移动时触发的Buff
+        foreach (BuffBase buff in buffList)
+        {
+            direction = buff.OnChessMove(direction);
+        }
+
+        if (direction == Vector2Int.zero)
+        {
+            yield break;
+        }
+
         // 获取命令列表
         mobileUnits = ChessboardManager.instance.MoveControl(gameObject, location, direction);
 
@@ -394,6 +410,14 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         {
             // 执行第一个命令
             var command = mobileUnits[0];
+            command.Execute();
+
+
+            // 等待命令执行完成
+            yield return new WaitUntil(() => command.IsCompleted);
+
+
+
             if (mobileUnits.Count == 1 || (mobileUnits.Count > 1 && mobileUnits[1] is MeleeAttackUnit))
             {
                 // 触发移动结束抵达地块效果
@@ -414,10 +438,6 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
                 }
 
             }
-            command.Execute();
-
-            // 等待命令执行完成
-            yield return new WaitUntil(() => command.IsCompleted);
 
             // 移除已执行的命令
             mobileUnits.RemoveAt(0);
@@ -578,6 +598,67 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
 
     }
 
+    /// <summary>
+    /// 弹幕攻击方法
+    /// </summary>
+    /// <param name="bulletDamage">弹幕伤害</param>
+    /// <param name="aimChess">目标棋子</param>
+    /// <param name="bulletPrefab">子弹预制件</param>
+    /// <param name="HitEffectPrefab"></param>
+    /// <returns></returns>
+    /// <remarks>子弹射出前有固定滞留时间delayDuration = 0.5f</remarks>
+    /// <remarks>该异步方法使用方式（在普通方法中）：await BulletAttackAsync(bulletDamage, aimChess, bulletPrefab, HitEffectPrefab);</remarks>
+    /// <remarks>该异步方法使用方式（在协程中）：yield return BulletAttackAsync(bulletDamage, aimChess, bulletPrefab, HitEffectPrefab).AsCoroutine();</remarks>
+    public virtual async Task BulletAttackAsync(int bulletDamage, ChessBase aimChess, GameObject bulletPrefab, GameObject HitEffectPrefab)
+    {
+        float delayDuration = 0.1f;
+
+        // 弹幕攻击
+
+        // 获取粒子系统组件
+        ParticleSystem particleSystem = bulletPrefab.GetComponent<ParticleSystem>();
+        // 计算目标与当前位置的距离
+        float distance = Vector3.Distance(transform.position, aimChess.transform.position);
+        // 根据距离计算移动时间
+        float moveDuration = distance / 10; // 假设子弹的速度为3单位/秒
+        /* // 设置粒子的生命周期
+        if (particleSystem != null)
+        {
+            var main = particleSystem.main;
+            main.startLifetime = delayDuration + moveDuration;
+        } */
+        // 实例化子弹
+        GameObject bullet = Instantiate(bulletPrefab, transform.position + new Vector3(0, 0, -1), Quaternion.identity);
+
+        // 等待滞空时间再发射子弹
+        await Task.Delay((int)(delayDuration * 1000));
+
+        Debug.Log(aimChess.transform.position + " " + aimChess.name);
+
+        // 创建一个 TaskCompletionSource，用于在动画完成时通知外部
+        var tcs = new TaskCompletionSource<bool>();
+
+        // 子弹移动到目标位置
+        bullet.transform.DOMove(aimChess.transform.position, moveDuration).SetDelay(delayDuration).SetEase(Ease.InCubic).OnComplete(() =>
+        {
+            // 在目标位置实例化击中特效
+            Instantiate(HitEffectPrefab, aimChess.transform.position, Quaternion.identity);
+            // 对目标造成伤害
+            aimChess.TakeDamage(bulletDamage, this);
+            // 销毁子弹
+            Destroy(bullet);
+
+            // 通知外部任务完成
+            tcs.SetResult(true);
+        });
+
+        // 等待任务完成
+        await tcs.Task;
+    }
+
+
+
+
     // 受伤方法
     public virtual void TakeDamage(int damage, ChessBase attacker, DamageType damageType = DamageType.Null)
     {
@@ -599,6 +680,11 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         if (damageTaken > 0)
         {
             HP -= damageTaken;
+            // 触发受伤事件
+            foreach (BuffBase buff in buffList)
+            {
+                buff.OnHPReduce(damageTaken);
+            }
             if (HP <= 0)
             {
                 isDead = true;
@@ -671,5 +757,22 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
         Debug.Log(gameObject.name + "死了");
         
         ChessboardManager.instance.RemoveChess(gameObject);
+    }
+}
+
+
+public static class TaskExtensions
+{
+    public static IEnumerator AsCoroutine(this Task task)
+    {
+        while (!task.IsCompleted)
+        {
+            yield return null;
+        }
+
+        if (task.IsFaulted)
+        {
+            throw task.Exception;
+        }
     }
 }

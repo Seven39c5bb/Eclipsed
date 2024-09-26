@@ -6,7 +6,6 @@ public class Smoke_Buff : BuffBase
 {
     private void Awake()
     {
-        buffName = "Smoke_Buff";
         buffNameCN = "烟雾中";
         durationTurn = 10;
         buffType = BuffType.Buff;

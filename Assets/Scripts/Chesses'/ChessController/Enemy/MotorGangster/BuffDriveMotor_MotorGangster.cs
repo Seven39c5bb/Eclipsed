@@ -6,7 +6,6 @@ public class BuffDriveMotor_MotorGangster : BuffBase
 {
     void Awake()
     {
-        buffName = "BuffDriveMotor_MotorGangster";
         buffNameCN = "飞驰疾行";
         durationTurn = 10;
         buffType = BuffType.Buff;

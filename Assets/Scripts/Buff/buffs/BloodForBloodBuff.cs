@@ -6,7 +6,6 @@ public class BloodForBloodBuff : BuffBase
 {
     void Awake()
     {
-        buffName = "BloodForBloodBuff";
         buffNameCN = "以血还血";
         durationTurn = 9999;
         buffType = BuffType.Buff;

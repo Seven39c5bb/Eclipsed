@@ -7,7 +7,6 @@ public class IncenseDemon_Buff : BuffBase
 {
     private void Awake()
     {
-        buffName = "IncenseDemon_Buff";
         buffNameCN = "潜行";
         durationTurn = 10;
         buffType = BuffType.Buff;

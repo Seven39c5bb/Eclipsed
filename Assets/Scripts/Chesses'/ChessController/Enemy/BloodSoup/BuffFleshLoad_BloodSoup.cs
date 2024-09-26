@@ -6,7 +6,6 @@ public class BuffFleshLoad_BloodSoup : BuffBase
 {
     void Awake()
     {
-        buffName = "BuffFleshLoad_BloodSoup";
         buffNameCN = "血肉上膛";
         description = "血肉已经上膛，准备发射！";
         durationTurn = 9999;

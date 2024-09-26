@@ -6,7 +6,6 @@ public class MercuryBulletBuff : BuffBase
 {
     void Awake()
     {
-        buffName = "MercuryBulletBuff";
         buffNameCN = "水银弹夹";
         description = "每当你使用一张技能牌后，射出水银子弹，使所有怪物受到的所有伤害+1";
         durationTurn = 9999;

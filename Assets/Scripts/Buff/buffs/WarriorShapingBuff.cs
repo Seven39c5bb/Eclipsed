@@ -6,7 +6,6 @@ public class WarriorShapingBuff : BuffBase
 {
     void Awake()
     {
-        buffName = "WarriorShapingBuff";
         buffNameCN = "战士塑形";
         durationTurn = 1;
         buffType = BuffType.Buff;

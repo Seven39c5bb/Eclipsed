@@ -6,7 +6,6 @@ public class QuickLoadingBuff : BuffBase
 {
     void Awake()
     {
-        buffName = "QuickLoadingBuff";
         buffNameCN = "快速装填";
         durationTurn = 1;
         buffType = BuffType.Buff;

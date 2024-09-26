@@ -8,7 +8,6 @@ public class BlindBeliever_Buff : BuffBase
     int damage = 10;
     void Awake()
     {
-        buffName = "BlindBeliever_Buff";
         buffNameCN = "爆";
         durationTurn = 10;
         buffType = BuffType.Buff;
