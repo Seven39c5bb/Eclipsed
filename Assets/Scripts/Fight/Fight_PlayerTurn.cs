@@ -42,8 +42,13 @@ public class Fight_PlayerTurn : FightUnit
         //��ʾ�ֵ���һغ϶���
         //update the cost
         costManager.instance.curCost = costManager.instance.maxCost;
-        //draw card
-        CardManager.instance.Draw(5);//test
+        //draw card'
+        //回合开始时，抽牌开始前触发buff
+        foreach(var buff in PlayerController.instance.buffList)
+        {
+            buff.OnBeforeDraw();
+        }
+        CardManager.instance.Draw(CardManager.instance.drawNum);//test
 
         // 回合开始时，抽牌结束后触发Buff
         FightManager.instance.StartCoroutine(DelayedOnTurnStartEndDrawFunc(0.71f));

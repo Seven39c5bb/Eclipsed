@@ -133,6 +133,12 @@ public class BuffBase : MonoBehaviour
 
     //当玩家使用指向性卡牌指定怪物时
     public virtual bool OnPlayerUsePointerCardToEnemy() { return true; }
+    //当棋子移动结束后
+    public virtual void OnChessReach(ChessBase chess) { }
+    //当玩家移动结束后
+    public virtual void OnPlayerReach() { }
+    //回合开始时，抽牌开始前触发buff
+    public virtual void OnBeforeDraw() { }
 
     //棋子移动时触发
     public virtual Vector2Int OnChessMove(Vector2Int direction)

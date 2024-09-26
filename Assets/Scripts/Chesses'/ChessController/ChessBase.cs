@@ -423,6 +423,20 @@ public abstract class ChessBase : MonoBehaviour //棋子基类
                 // 触发移动结束抵达地块效果
                 ChessboardManager.instance.cellStates[location.x, location.y].property?.OnChessReach(this);
                 ChessboardManager.instance.cellStates[location.x, location.y].OnChessReach(this);
+                // 触发移动结束的buff效果
+                foreach(var buff in this.buffList)
+                {
+                    buff.OnChessReach(this);
+                }
+                //触发玩家移动结束后的buff效果
+                if (this.tag == "Player")
+                {
+                    foreach(var enemy in ChessboardManager.instance.enemyControllerList)
+                    {
+                        foreach (var buff in enemy.buffList) { buff.OnPlayerReach(); }
+                    }
+                }
+
             }
 
             // 移除已执行的命令

@@ -17,19 +17,24 @@ public class CardManager : MonoBehaviour
             return c_instance;
         }
     }
+    [Header("卡组")]
     public static List<string> cardDesk;
     public static List<string> discardDesk;
     //test
     public List<string> d_discardDesk;
-    //test
+    //手牌
+    [Header("手牌")]
     public List<Card> handCards=new List<Card>();
     public GameObject handCardArea;
-
+    //初始抽牌数量
+    public int drawNum = 5;
     //
     public GameConfig gameConfig;
     //是否打开弃牌UI
     public GameObject discardPanel;
     public bool isDiscardUI = false;
+    [Header("开发者模式")]
+    public bool DEVELOPE_MODE;
     private void Awake()    
     {
         c_instance = this;
@@ -39,16 +44,21 @@ public class CardManager : MonoBehaviour
         //......;0
 
         #region gameConfig 从json文档中读取卡组信息
-        //cardDesk=new List<string>(SaveManager.instance?.jsonData.playerData.playerDeck);
+        if(!DEVELOPE_MODE)
+        cardDesk=new List<string>(SaveManager.instance?.jsonData.playerData.playerDeck);
         //test
-        cardDesk = new List<string>();
-        if (cardDesk.Count <= 0)
+        else
         {
-            for (int i = 0; i < 5; i++)
+            cardDesk = new List<string>();
+            if (cardDesk.Count <= 0)
             {
-                cardDesk.Add("Snipe");
+                for (int i = 0; i < 5; i++)
+                {
+                    cardDesk.Add("Snipe");
+                }
             }
         }
+        //test
         #endregion
 
         handCardArea = GameObject.Find("handCardArea");
